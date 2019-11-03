@@ -1,4 +1,4 @@
-# Vue.2.0 + Node Express back End + CLI v4.0 + Mocha unit Test STARTER 
+# Vue.2.0 + Node Express back End + CLI v4.0 + Mocha unit components testing STARTER 
 
 ## Project setup
 ```
