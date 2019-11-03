@@ -6,7 +6,7 @@
         <!-- Nested Row within Card Body -->
         <div class="row">
         <div class="col-lg-5 mx-auto d-none d-lg-block "> 
-				<div class="text-center"><img v-bind:src="'/static/img/aph_refait.jpg'" style="width:200px;height:150px;margin-top:150px"></img></div>
+				<div class="text-center"><img src="../assets/img/aph_refait.jpg"  style="width:200px;height:150px;margin-top:150px"></img></div>
 			  </div>
           <div class="col-lg-7">
             <div class="p-5">

@@ -8,6 +8,7 @@ import Users from "@/components/Users";
 import User from "@/components/User";
 import Register from "@/components/Register";
 import Dashboard from "@/components/Dashboard";
+import Login from "@/components/Login";
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,11 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
   }
 ];
 
