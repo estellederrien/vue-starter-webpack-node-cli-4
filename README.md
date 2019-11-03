@@ -1,4 +1,4 @@
-# Vue.2.0 + Node Express back End + CLI v4.0 + Mocha unit components testing STARTER 
+# Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing STARTER 
 
 Currently in DEV state !
 
