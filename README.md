@@ -1,4 +1,4 @@
-# hello-world
+# Vue.2.0 + Node Express back End + CLI v4.0 + Mocha unit Test STARTER 
 
 ## Project setup
 ```
