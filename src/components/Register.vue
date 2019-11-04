@@ -68,7 +68,7 @@ import axios from "axios";
     
     methods: {
     register: function() {
-      // `this` inside methods point to the Vue instance
+
 
       console.log(this.user);
 
