@@ -17,6 +17,9 @@ Will Contains :<br /><br />
 1 Linear solver lib<br />
 1 Calendar lib<br />
 1 v-dialog lib<br />
+<br /><br />
+I probably won't publish the node.js backend file because it is a lot of work . 
+
 
 ## Project setup
 ```
