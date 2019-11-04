@@ -25,7 +25,6 @@ export default {
 
     methods: {
         route: function (_id) {
-            alert(_id);
             this.$router.push("/user/" + _id);
         },
         getUsers: function () {
