@@ -2,9 +2,10 @@
   <div id="app">
 
 <!-- --------------------------------------------- TOPBAR ------------------------------------------------------------ -->
-  <nav class="navbar navbar-expand-md  navbar-custom " id="navbarTop">
+
+   <nav class="navbar navbar-expand-md navbar-custom navbar-light bg-light">
   <!-- Brand -->
-  <a class="navbar-brand" href="#">ApplicationsH</a>
+  <a class="navbar-brand" href="#">Navbar</a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -12,10 +13,8 @@
   </button>
 
   <!-- Navbar links -->
-  
-  <!-- LEFT MENU -->
-  <div class="collapse navbar-collapse " id="collapsibleNavbar">
-   <!--  <ul class="navbar-nav">
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
@@ -25,7 +24,8 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
-    </ul> -->
+    </ul>
+
 
 <!-- RIGHT -->
 <ul class="navbar-nav ml-auto">
@@ -209,9 +209,18 @@
 
 </ul>
 
+
+
+
+
+
+
+
+
+
+
   </div>
-</nav> 
-    
+</nav>   
 <!-- --------------------------------------------- SIDEBAR ------------------------------------------------------------ -->
 <sidebar-menu :menu="menu" :width="width" :collapsed="collapsed" :theme="selectedTheme"/>
     
@@ -323,13 +332,18 @@ export default {
 }
 /* change the link color */
 .navbar-custom .navbar-nav .nav-link {
-    color: grey;
+    color: black;
 }
 /* change the color of active or hovered links */
 .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:focus .nav-link,
 .navbar-custom .nav-item:hover .nav-link {
-    color: #ffffff;
+    color: black;
+}
+
+.navbar-toggler {
+  background-color:black;
+  color:Red
 }
 
 </style>
