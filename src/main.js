@@ -17,9 +17,14 @@ Vue.component("apexchart", VueApexCharts);
 Vue.use(VueSidebarMenu);
 Vue.config.productionTip = false;
 
-// Vue.server = Vue.prototype.server = "http://localhost/";
-Vue.server = Vue.prototype.server =
-  "http://vue-starter-literals-node.openode.io/";
+// https://github.com/euvl/vue-js-modal
+import VModal from "vue-js-modal";
+Vue.use(VModal, { dialog: true });
+
+// ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
+Vue.server = Vue.prototype.server = "http://localhost/";
+/* Vue.server = Vue.prototype.server =
+  "http://vue-starter-literals-node.openode.io/"; */
 
 new Vue({
   router,

@@ -265,7 +265,7 @@ export default {
                         icon: 'fas fa-users'
                     },
                     {
-                        href: '/user',
+                        href: '/user/profile',
                         title: 'User',
                         icon: 'fa fa-user'
                     },
