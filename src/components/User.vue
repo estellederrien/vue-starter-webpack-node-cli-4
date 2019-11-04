@@ -38,8 +38,8 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <!-- <v-btn v-if="auth" v-on:click="updateUser()"  class="btn btn-primary" name="btnAddMore" >Mise à jour</v-btn>
-                             <v-btn v-if="auth" v-on:click="deleteUser()"  class="btn btn-danger" name="btnAddMore" >Supprimer</v-btn> -->
+                <v-btn v-if="auth" v-on:click="updateUser()" class="btn btn-primary" name="btnAddMore">Mise à jour</v-btn>
+                <v-btn v-if="auth" v-on:click="deleteUser()" class="btn btn-danger" name="btnAddMore">Supprimer</v-btn>
             </div>
         </div>
         <div class="row">
@@ -73,7 +73,7 @@
                                 <label>Nom</label>
                             </div>
                             <div class="col-md-6">
-                                <p><input v-model="user.nom"  class="form-control"  placeholder="modifiez-moi"></p>
+                                <p><input v-model="user.nom" class="form-control" placeholder="modifiez-moi"></p>
                             </div>
                         </div>
                         <div class="row">
@@ -81,7 +81,7 @@
                                 <label>Prénom</label>
                             </div>
                             <div class="col-md-6">
-                                <!-- <p><input v-model="user.prenom"  class="form-control"  placeholder="modifiez-moi"></p> -->
+                                <p><input v-model="user.prenom" class="form-control" placeholder="modifiez-moi"></p>
                             </div>
                         </div>
                         <div class="row">
@@ -89,7 +89,7 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <!-- <p><input v-model="user.email"  class="form-control"  placeholder="modifiez-moi"></p> -->
+                                <p><input v-model="user.email" class="form-control" placeholder="modifiez-moi"></p>
                             </div>
                         </div>
                         <div class="row">
@@ -97,7 +97,7 @@
                                 <label>Téléphone</label>
                             </div>
                             <div class="col-md-6">
-                                <!-- <p><input v-model="user.phone"  class="form-control"  placeholder="modifiez-moi"></p> -->
+                                <p><input v-model="user.phone" class="form-control" placeholder="modifiez-moi"></p>
                             </div>
                         </div>
                         <div class="row">
@@ -105,7 +105,7 @@
                                 <label>Profession</label>
                             </div>
                             <div class="col-md-6">
-                                <!-- <p><input v-model="user.job"  class="form-control"  placeholder="modifiez-moi"></p> -->
+                                <p><input v-model="user.job" class="form-control" placeholder="modifiez-moi"></p>
                             </div>
                         </div>
                     </div>
@@ -257,48 +257,26 @@ export default {
         },
         getActualSession: function () {
             var self = this;
-            
-            
-              axios(this.server + "getActualSession", {
-                method: "post",
-                withCredentials: true
-                }).then(function (reponse) {
-                    alert('ok loggé');
-                  this.user = response.data;
-                    this.auth = true;
+
+            axios(this.server + "getActualSession", {
+                    method: "post",
+                    withCredentials: true
+                }).then(function (response) {
+                    // alert('ok loggé');
+                    self.user = response.data;
+                    self.auth = true;
                 })
                 .catch(function (erreur) {
                     alert("Problème d'identification");
                     //On traite ici les erreurs éventuellement survenues
                     console.log(erreur);
                 });
-           
-            
-            
-            
-            
-            
-            
-            
-            
-          /*   axios
-                .get(this.server + "getActualSession")
-                .then(response => {
-                    console.log(response.data);
-                    this.user = response.data;
-                    this.auth = true;
-                })
 
-                .catch(function (erreur) {
-                    alert("Not identified");
-                    self.$router.push("/login");
-                    console.log(erreur);
-                }); */
         }
     },
     mounted: function () {
         // This is the id value comin from the router
-        
+
         //   LOADING YOUR OWN PROFILE COMING FROM THE PROFILE MENU
         if (this.id == "profile") {
             this.getActualSession();

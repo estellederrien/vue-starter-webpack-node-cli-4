@@ -9,6 +9,7 @@ import User from "@/components/User";
 import Register from "@/components/Register";
 import Dashboard from "@/components/Dashboard";
 import Login from "@/components/Login";
+import Calendar from "@/components/Calendar";
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: Calendar
   }
 ];
 
