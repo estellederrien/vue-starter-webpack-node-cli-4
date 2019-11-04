@@ -65,7 +65,7 @@
                                 <label>User Id </label>
                             </div>
                             <div class="col-md-6">
-                                <!-- <p>{{user._id}}</p> -->
+                                <p>{{user._id}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -73,7 +73,7 @@
                                 <label>Nom</label>
                             </div>
                             <div class="col-md-6">
-                                <!-- <p><input v-model="user.nom"  class="form-control"  placeholder="modifiez-moi"></p> -->
+                                <p><input v-model="user.nom"  class="form-control"  placeholder="modifiez-moi"></p>
                             </div>
                         </div>
                         <div class="row">
@@ -168,6 +168,8 @@
 
 <script>
 import axios from "axios";
+axios.defaults.withCredentials = true
+
 import {
     SidebarMenu
 } from 'vue-sidebar-menu';
@@ -254,23 +256,49 @@ export default {
             }
         },
         getActualSession: function () {
-            axios
+            var self = this;
+            
+            
+              axios(this.server + "getActualSession", {
+                method: "post",
+                withCredentials: true
+                }).then(function (reponse) {
+                    alert('ok loggé');
+                  this.user = response.data;
+                    this.auth = true;
+                })
+                .catch(function (erreur) {
+                    alert("Problème d'identification");
+                    //On traite ici les erreurs éventuellement survenues
+                    console.log(erreur);
+                });
+           
+            
+            
+            
+            
+            
+            
+            
+            
+          /*   axios
                 .get(this.server + "getActualSession")
                 .then(response => {
+                    console.log(response.data);
                     this.user = response.data;
                     this.auth = true;
                 })
 
                 .catch(function (erreur) {
                     alert("Not identified");
-                    router.push("/login");
+                    self.$router.push("/login");
                     console.log(erreur);
-                });
+                }); */
         }
     },
     mounted: function () {
         // This is the id value comin from the router
-        alert("test");
+        
         //   LOADING YOUR OWN PROFILE COMING FROM THE PROFILE MENU
         if (this.id == "profile") {
             this.getActualSession();
