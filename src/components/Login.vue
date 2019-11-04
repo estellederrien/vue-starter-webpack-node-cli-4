@@ -63,9 +63,9 @@
 </template>
 
 <script>
-import {
-    SidebarMenu
-} from 'vue-sidebar-menu';
+
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export default {
     name: 'Login',
@@ -92,13 +92,15 @@ export default {
                 });
         },
         register: function () {
-            router.push("/register");
+              this.$router.push("/register");
         },
         getAuth: function () {
+           var self = this;
             axios
                 .post(this.server + "getAuth", this.user)
                 .then(function (reponse) {
-                    router.push("/user/profile");
+                    alert('ok')
+                   self.$router.push("/user/profile");
                 })
                 .catch(function (erreur) {
                     alert("Problème d'identification");
@@ -110,9 +112,9 @@ export default {
         }
     },
     created: function () {
-        if (this.$route.fullPath == "/logout") {
+       /*  if (this.$route.fullPath == "/logout") {
             this.logOut();
-        }
+        } */
     }
 };
 </script>
