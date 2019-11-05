@@ -15,7 +15,7 @@ export default {
     data: () => ({
 
     }),
-    name: 'HelloWorld',
+    name: 'Calendar',
     props: {
         msg: String
     }

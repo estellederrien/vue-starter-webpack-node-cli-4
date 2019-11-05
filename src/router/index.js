@@ -10,6 +10,7 @@ import Register from "@/components/Register";
 import Dashboard from "@/components/Dashboard";
 import Login from "@/components/Login";
 import Calendar from "@/components/Calendar";
+import Table from "@/components/Table";
 
 Vue.use(VueRouter);
 
@@ -54,6 +55,11 @@ const routes = [
     path: "/calendar",
     name: "Calendar",
     component: Calendar
+  },
+  {
+    path: "/table",
+    name: "Table",
+    component: Table
   }
 ];
 
