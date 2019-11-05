@@ -8,13 +8,21 @@
                     <div class="file btn btn-lg btn-primary">
                         Changer la Photo
                         <input type="file" name="file" />
+                        
+
+
+                       
                     </div>
+                    
                 </div>
             </div>
+
+
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
                         <!-- {{user.prenom |}} {{user.nom.toUpperCase()}} -->
+                      <upload></upload>   
                     </h5>
                     <h6>
                         Web Developer and Designeuse
@@ -169,7 +177,7 @@
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true
-
+import Upload from "@/components/Upload.vue";
 import {
     SidebarMenu
 } from 'vue-sidebar-menu';
@@ -191,7 +199,11 @@ export default {
             auth: false
         };
     },
+    components: {
+        'upload': Upload
+    },
     methods: {
+
         show() {
             // this.$modal.show('hello-world');
             this.$modal.show('dialog', {
