@@ -221,6 +221,10 @@ export default {
                         {
                             href: '/calendar',
                             title: 'Calendrier'
+                        },
+                        {
+                            href: '/table',
+                            title: 'Table'
                         }
                     ]
                 },
