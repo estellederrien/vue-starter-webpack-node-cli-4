@@ -1,4 +1,4 @@
-# Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing STARTER 
+# STARTER  : Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
 Currently in DEV state !
 
