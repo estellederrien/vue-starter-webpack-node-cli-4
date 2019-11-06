@@ -20,6 +20,7 @@ Will Contains :<br /><br />
 1 SOCKET.IO realtime evolutive system <br />
 1 Gps positionning lib <br />
 1 Effective multi selector <br />
+1 Linear multiple regression lib https://github.com/luccastera/shaman
 <br /><br />
 I probably won't publish the node.js backend file because it is a lot of work . 
 
