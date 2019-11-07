@@ -1,18 +1,22 @@
 <template>
-<div class="container">
+
     <div class="large-12 medium-12 small-12 cell">
-        <label>File
+        <a class="btn btn-primary btn-block" v-on:click="submitFile()">Télécharger</a><br><br>
+        
+        <label>
             <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" />
-        </label>
-        <a class="btn btn-primary" v-on:click="submitFile()">Submit</a>
+          
+        </label><br><br><br>
+          
     </div>
-</div>
+
 </template>
 
 <script>
 
 
 import axios from "axios";
+
 
 export default {
     /*
@@ -43,6 +47,16 @@ export default {
             /*
               Make the request to the POST /single-file URL
             */
+
+           /*  $.post( this.server + 'images',formData, function( data ) {
+                alert('ok');
+                });
+ */
+
+
+
+
+
             axios.post(this.server + 'images',
                     formData, {
                       crossdomain: true,
@@ -50,12 +64,24 @@ export default {
                             'Content-Type': 'multipart/form-data'
                         }
                     }
-                ).then(function (result) {
-                  console.log(result);
-                })
-               .catch(function (error) {
-                    console.log(error);
-                }); 
+                ).then(response => {
+                    // Send to parent component
+                     this.$emit('filename', response.data.filename)
+                    if(response == undefined){
+
+                      
+                    }
+                    console.log(response);
+                      console.log(JSON.stringify(response))
+                    //the following errors out because response is undefined
+                    if (response.data && response.data.success === true) {
+                    }
+                }).catch(err => {
+                    //catch never triggered
+                        console.log(err)
+                        console.log(err.response) 
+                        console.log(JSON.stringify(err))
+                });
         },
 
         /*

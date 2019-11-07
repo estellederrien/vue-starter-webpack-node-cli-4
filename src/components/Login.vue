@@ -95,6 +95,7 @@ export default {
               this.$router.push("/register");
         },
         getAuth: function () {
+            console.log(this.user);
            var self = this;
             axios
                 .post(this.server + "getAuth", this.user)
