@@ -4,28 +4,24 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
-                    <div class="file btn btn-lg btn-primary">
-                        Changer la Photo
-                        <input type="file" name="file" />
-                        
+                    <img v-bind:src="this.server + user.img   " @error="imageLoadError" />
+                    <!-- <div class="file btn btn-lg btn-primary"> -->
 
+                    <!-- <input type="file" name="file" /> -->
+                    <!-- </div> -->
 
-                       
-                    </div>
-                    
                 </div>
+                <upload @filename="onUpload"></upload>
             </div>
-
 
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        <!-- {{user.prenom |}} {{user.nom.toUpperCase()}} -->
-                      <upload></upload>   
+                        {{user.prenom |}} {{user.nom.toUpperCase()}}
+
                     </h5>
                     <h6>
-                        Web Developer and Designeuse
+                        Web Developer and Designeuses
                         <a v-on:click="show()" class="btn btn-danger"> Message</a>
                         <v-dialog />
 
@@ -41,6 +37,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dernières infos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">Fichiers</a>
                         </li>
                     </ul>
                 </div>
@@ -167,6 +166,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Files</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Expert</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,7 +204,8 @@ export default {
                 phone: "",
                 profession: "",
                 email: "",
-                password: ""
+                password: "",
+                img: ""
             },
             auth: false
         };
@@ -203,7 +214,16 @@ export default {
         'upload': Upload
     },
     methods: {
+        imageLoadError() {
+            this.user.img= 'defaut.png';
+            console.log('Image failed to load');
+        },
+        onUpload(value) {
+            // Pass Picture URL to the user object .
+            this.user.img = value;
+            console.log(this.user);
 
+        },
         show() {
             // this.$modal.show('hello-world');
             this.$modal.show('dialog', {
@@ -279,7 +299,9 @@ export default {
                     self.auth = true;
                 })
                 .catch(function (erreur) {
+
                     alert("Problème d'identification");
+                     self.$router.push("/login");
                     //On traite ici les erreurs éventuellement survenues
                     console.log(erreur);
                 });

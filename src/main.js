@@ -26,7 +26,7 @@ import SmartTable from "vuejs-smart-table";
 Vue.use(SmartTable);
 
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
-Vue.server = Vue.prototype.server = "http://localhost/";
+Vue.server = Vue.prototype.server = "http://localhost:3000/";
 /* Vue.server = Vue.prototype.server =
   "http://vue-starter-literals-node.openode.io/"; */
 new Vue({
