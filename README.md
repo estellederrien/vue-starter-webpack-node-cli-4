@@ -22,7 +22,6 @@ Will Contains :<br /><br />
 1 Effective multi selector <br />
 1 Linear multiple regression lib https://github.com/luccastera/shaman
 <br /><br />
-I probably won't publish the node.js backend file because it is a lot of work . 
 
 
 ## Project setup
