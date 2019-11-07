@@ -1,12 +1,12 @@
 <template>
 
-    <div class="large-12 medium-12 small-12 cell">
-        <a class="btn btn-primary btn-block" v-on:click="submitFile()">Télécharger</a><br><br>
+    <div class="col-lg-12">
+        <a class="btn btn-primary btn-block" v-on:click="submitFile()">Télécharger</a>
         
         <label>
             <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" />
           
-        </label><br><br><br>
+        </label><br>
           
     </div>
 
