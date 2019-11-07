@@ -1,23 +1,23 @@
 <template>
-<div class="container emp-profile">
+<div class="container ">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-img">
-                    <img v-bind:src="this.server + user.img   " @error="imageLoadError" />
+                <div class="profile-img"><upload @filename="onUpload" v-if="this.auth"></upload>
+                    <img v-bind:src="this.server + user.img" @error="replaceByDefault" style="width:150px"/>
                     <!-- <div class="file btn btn-lg btn-primary"> -->
 
                     <!-- <input type="file" name="file" /> -->
                     <!-- </div> -->
 
                 </div>
-                <upload @filename="onUpload"></upload>
+               
             </div>
 
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        {{user.prenom |}} {{user.nom.toUpperCase()}}
+                        {{user.prenom }} {{user.nom.toUpperCase()}}
 
                     </h5>
                     <h6>
@@ -45,12 +45,14 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <v-btn v-if="auth" v-on:click="updateUser()" class="btn btn-primary" name="btnAddMore">Mise à jour</v-btn>
-                <v-btn v-if="auth" v-on:click="deleteUser()" class="btn btn-danger" name="btnAddMore">Supprimer</v-btn>
+                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary" name="btnAddMore">Mise à jour</span >
+                <span  v-if="auth" v-on:click="deleteUser()" class="btn btn-danger" name="btnAddMore">Supprimer</span >
+                  
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
+               
                 <div class="profile-work">
                     <p>LIENS DE TRAVAIL</p>
                     <a href="">Website</a><br />
@@ -68,7 +70,7 @@
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>User Id </label>
                             </div>
                             <div class="col-md-6">
@@ -76,7 +78,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Nom</label>
                             </div>
                             <div class="col-md-6">
@@ -84,7 +86,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Prénom</label>
                             </div>
                             <div class="col-md-6">
@@ -92,7 +94,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
@@ -100,7 +102,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Téléphone</label>
                             </div>
                             <div class="col-md-6">
@@ -108,7 +110,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Profession</label>
                             </div>
                             <div class="col-md-6">
@@ -118,7 +120,7 @@
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Experience</label>
                             </div>
                             <div class="col-md-6">
@@ -126,7 +128,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Hourly Rate</label>
                             </div>
                             <div class="col-md-6">
@@ -134,7 +136,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Total Projects</label>
                             </div>
                             <div class="col-md-6">
@@ -142,7 +144,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>English Level</label>
                             </div>
                             <div class="col-md-6">
@@ -150,7 +152,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label>Availability</label>
                             </div>
                             <div class="col-md-6">
@@ -168,12 +170,10 @@
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
-                            <div class="col-md-6">
-                                <label>Files</label>
+                            <div class="col-md-12">
+                               <uploadfiles @filename="onUpload" v-if="this.auth"></uploadfiles>
                             </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
+                            
                         </div>
 
                     </div>
@@ -188,6 +188,7 @@
 import axios from "axios";
 axios.defaults.withCredentials = true
 import Upload from "@/components/Upload.vue";
+import Uploadfiles from "@/components/Uploadfiles.vue";
 import {
     SidebarMenu
 } from 'vue-sidebar-menu';
@@ -211,12 +212,12 @@ export default {
         };
     },
     components: {
-        'upload': Upload
+        'upload': Upload,
+        'uploadfiles':Uploadfiles
     },
     methods: {
-        imageLoadError() {
-            this.user.img= 'defaut.png';
-            console.log('Image failed to load');
+         replaceByDefault(e) {
+            e.target.src = this.server + 'defaut.png';
         },
         onUpload(value) {
             // Pass Picture URL to the user object .
@@ -297,6 +298,7 @@ export default {
                     // alert('ok loggé');
                     self.user = response.data;
                     self.auth = true;
+                    self.user.img = response.data.img;
                 })
                 .catch(function (erreur) {
 
@@ -314,6 +316,7 @@ export default {
         //   LOADING YOUR OWN PROFILE COMING FROM THE PROFILE MENU
         if (this.id == "profile") {
             this.getActualSession();
+           
         }
         //   LOADING ANY PROFILE BY _ID, COMING FROM THE USERS VIEW
         else {
