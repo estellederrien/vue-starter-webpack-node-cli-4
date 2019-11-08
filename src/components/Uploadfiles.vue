@@ -29,9 +29,24 @@ export default {
     },
 
     methods: {
-        /*Submits the file to the server*/
+       
         removeFile(key) {
-            this.files.splice(key, 1);
+            console.log(key);
+            console.log(this.files);
+            
+            // this.files.splice(key, 1);
+
+        var newList = [];
+
+            for(var i = 0; i < this.files.length; i++)
+            {
+                if(i !== key)
+                {
+                    newList.push(this.files[i]);
+                }
+            }
+        this.files = newList;
+
         },
         submitFiles: function () {
 
