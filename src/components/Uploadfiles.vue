@@ -1,15 +1,25 @@
 <template>
 <div class="container">
-    <div class="large-12 medium-12 small-12 cell">
+    <div class="col-md-12">
         <label>Files
             <input name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
         </label>
-        <a v-on:click="submitFiles" class="btn btn-primary">Submit</a>
+        <a v-on:click="submitFiles" class="btn btn-primary btn-block">Submit</a>
 
-        <div class="large-12 medium-12 small-12 cell">
-            <div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file btn btn-primary" v-on:click="removeFile( key )">Remove</span></div>
-        </div>
-        <br>
+       
+
+            <table class="table  table-dark">
+                <tbody>
+                    <tr v-for="(file, key) in files" class="file-listing">
+                        <th>{{ file.name }}</th>
+                        <th><span class="remove-file btn btn-primary" v-on:click="removeFile( key )">Remove</span></th>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        
+      
     </div>
 </div>
 </template>
@@ -22,37 +32,33 @@ export default {
       Defines the data used by the component
     */
     name: 'uploadfiles',
-    data() {
+    props:['filenames'],
+        data() {
         return {
             files: ''
+
         }
     },
 
     methods: {
-       
+
         removeFile(key) {
-            console.log(key);
-            console.log(this.files);
-            
-            // this.files.splice(key, 1);
 
-        var newList = [];
+            var newList = [];
 
-            for(var i = 0; i < this.files.length; i++)
-            {
-                if(i !== key)
-                {
+            for (var i = 0; i < this.files.length; i++) {
+                if (i !== key) {
                     newList.push(this.files[i]);
                 }
             }
-        this.files = newList;
+            this.files = newList;
 
         },
         submitFiles: function () {
 
             /*Initialize the form data*/
             var formData = new FormData();
-
+            var self = this;
             /*
             Iterate over any file sent over appending the files
             to the form data.
@@ -66,6 +72,7 @@ export default {
                 formData.append('file', file);
 
             }
+
             /*Make the request to the POST /multiple-files URL*/
             axios.post(this.server + 'files',
                     formData, {
@@ -75,15 +82,19 @@ export default {
                         }
                     }
                 ).then(function (response) {
-                    // Send to filenames to the parent component
-                    this.$emit('filenames', response.data.filenames)
+                    // Send to filenames to the parent component, Displaying them in the user component
+                    alert('Files have been uploaded ');
+                    // self.filenames = response.data;
+                    self.$emit('myfilenamesevent', response.data);
+                    
+
                 })
-                .catch(function (error) 
-                {
+                .catch(function (error) {
                     alert('Error : please contact an admin')
                     console.log(error);
                 });
-
+                
+               
         },
         handleFileUploads: function () {
             /*Handles a change on the file upload*/
