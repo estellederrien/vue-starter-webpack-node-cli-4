@@ -3,15 +3,16 @@
     <form method="post">
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-img"><upload @filename="onUpload" v-if="this.auth"></upload>
-                    <img v-bind:src="this.server + 'img/' + user.img" @error="replaceByDefault" style="width:150px"/>
+                <div class="profile-img">
+                    <upload @filename="onUpload" v-if="this.auth"></upload>
+                    <img v-bind:src="this.server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
                     <!-- <div class="file btn btn-lg btn-primary"> -->
 
                     <!-- <input type="file" name="file" /> -->
                     <!-- </div> -->
 
                 </div>
-               
+
             </div>
 
             <div class="col-md-6">
@@ -45,14 +46,14 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary" name="btnAddMore">Mise à jour</span >
-                <span  v-if="auth" v-on:click="deleteUser()" class="btn btn-danger" name="btnAddMore">Supprimer</span >
-                  
+                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary" name="btnAddMore">Mise à jour</span>
+                <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger" name="btnAddMore">Supprimer</span>
+
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-               
+
                 <div class="profile-work">
                     <p>LIENS DE TRAVAIL</p>
                     <a href="">Website</a><br />
@@ -170,10 +171,20 @@
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
-                            <div class="col-md-12">
-                               <uploadfiles @filename="onUpload" v-if="this.auth"></uploadfiles>
-                            </div>
-                            
+                           
+                               
+                                <div class="col-md-6">
+                                    <uploadfiles  @myfilenamesevent="onFileUploads" v-if="this.auth"></uploadfiles>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <span  class="badge badge-primary " v-for="file in filenames">{{ file.filename }}<br></span>
+                               </div>
+                               
+
+                               
+                           
+
                         </div>
 
                     </div>
@@ -196,6 +207,8 @@ import {
 export default {
     name: 'User',
     props: ["id"],
+
+    
     data() {
         return {
             user: {
@@ -207,22 +220,31 @@ export default {
                 email: "",
                 password: "",
                 img: ""
+
             },
-            auth: false
+            auth: false,
+            filenames:[]
         };
     },
     components: {
         'upload': Upload,
-        'uploadfiles':Uploadfiles
+        'uploadfiles': Uploadfiles
     },
     methods: {
-         replaceByDefault(e) {
+        replaceByDefault(e) {
             e.target.src = this.server + '/img/defaut.png';
         },
         onUpload(value) {
             // Pass Picture URL to the user object .
             this.user.img = value;
             console.log(this.user);
+        },
+        onFileUploads(values) {
+            alert('changed');
+            console.log(values);
+
+            this.filenames = values;
+
         },
         show() {
             // this.$modal.show('hello-world');
@@ -301,7 +323,7 @@ export default {
                 .catch(function (erreur) {
 
                     alert("Problème d'identification");
-                     self.$router.push("/login");
+                    self.$router.push("/login");
                     //On traite ici les erreurs éventuellement survenues
                     console.log(erreur);
                 });
@@ -314,7 +336,7 @@ export default {
         //   LOADING YOUR OWN PROFILE COMING FROM THE PROFILE MENU
         if (this.id == "profile") {
             this.getActualSession();
-           
+
         }
         //   LOADING ANY PROFILE BY _ID, COMING FROM THE USERS VIEW
         else {
