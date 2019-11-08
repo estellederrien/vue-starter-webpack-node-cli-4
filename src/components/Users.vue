@@ -3,7 +3,7 @@
     <div class="row">
         <div v-for="user in users" class="col-sm col-xs-12">
             <div class="card " style="margin-bottom : 20px">
-                <img v-bind:src="server + user.img" @error="replaceByDefault" class="card-img-top" alt="...">
+                <img v-bind:src="server  + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{user.nom}}</h5>
                     <p class="card-text">Voici la description de mon profil .</p>

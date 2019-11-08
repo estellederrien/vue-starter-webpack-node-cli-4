@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img"><upload @filename="onUpload" v-if="this.auth"></upload>
-                    <img v-bind:src="this.server + user.img" @error="replaceByDefault" style="width:150px"/>
+                    <img v-bind:src="this.server + 'img/' + user.img" @error="replaceByDefault" style="width:150px"/>
                     <!-- <div class="file btn btn-lg btn-primary"> -->
 
                     <!-- <input type="file" name="file" /> -->
@@ -217,13 +217,12 @@ export default {
     },
     methods: {
          replaceByDefault(e) {
-            e.target.src = this.server + 'defaut.png';
+            e.target.src = this.server + '/img/defaut.png';
         },
         onUpload(value) {
             // Pass Picture URL to the user object .
             this.user.img = value;
             console.log(this.user);
-
         },
         show() {
             // this.$modal.show('hello-world');
@@ -257,7 +256,6 @@ export default {
                 })
                 .then(response => {
                     this.user = response.data;
-                    console.log(response.data);
                 })
                 .catch(function (erreur) {
                     console.log(erreur);
