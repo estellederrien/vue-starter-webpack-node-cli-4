@@ -109,7 +109,8 @@ import axios from "axios";
         nom: "",
         prenom: "",
         email: "",
-        password: ""
+        password: "",
+        filenames:[]
       }
       }
     }
