@@ -284,4 +284,10 @@ export default {
     background-color: black;
     color: Red
 }
+
+
+
+
+
+ 
 </style>

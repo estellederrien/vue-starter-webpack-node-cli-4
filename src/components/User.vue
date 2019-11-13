@@ -1,6 +1,8 @@
 <template>
 <div class="container-fluid ">
     <form method="post">
+       
+       
         <div class="row">
             <div class="col-md-2">
                 <div class="profile-img">
@@ -26,6 +28,7 @@
                     </h6>
 
                     <p class="proile-rating">RANG : <span>8/10</span></p>
+
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
 
                         <li class="nav-item">
@@ -37,15 +40,22 @@
                         <li class="nav-item">
                             <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> Fichiers</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i> Autorisations</a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-
+                test
             </div>
         </div>
+        
+        
+        
+        
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 d-none d-sm-block">
 
                 <div class="profile-work" style="background-color : lightgrey">
                     <p>LIENS DE TRAVAIL</p>
@@ -166,10 +176,13 @@
                                  <label>Liste</label><br>
                                 <tr v-for="file in user.filenames" >
                                    <td><i class="fas fa-file-alt"></i> <a v-bind:href="server + 'files/' + file.filename">{{ file.filename}}</a></td>
-                                    <td><span class="remove-file btn btn-primary" v-on:click="removeFile( file )"><i class="far fa-trash-alt"></i><br></span></td>
+                                    <td><span class="remove-file btn btn-primary" v-on:click="deleteFile( file )"><i class="far fa-trash-alt"></i><br></span></td>
                                 </tr>
                             </div>
                         </div>
+                    </div>
+                     <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
+                         
                     </div>
                 </div>
             </div>
@@ -221,6 +234,26 @@ export default {
         'uploadfiles': Uploadfiles
     },
     methods: {
+        deleteFile(file) {
+            let self = this;
+              if (confirm("Do you really want to delete?")) {
+                axios
+                    .post(this.server + "deleteFile", {"name": file.filename})
+                    .then(response => {
+                        alert(" File has been deleted from server");
+
+                       self.user.filenames = self.user.filenames.filter(function( obj ) {
+                            return obj.filename !== file.filename;
+                        });
+
+                        this.updateUser();
+                       
+                    })
+                    .catch(function (erreur) {
+                        console.log(erreur);
+                    });
+            }
+        },
         replaceByDefault(e) {
             e.target.src = this.server + '/img/defaut.png';
         },
@@ -345,6 +378,14 @@ export default {
 </script>
 
 <style>
+
+/* change all .btn to .btn-sm size on xs */
+@include media-breakpoint-between(xs,sm){
+  .btn {
+      @include button-size($input-btn-padding-y-sm, $input-btn-padding-x-sm, $font-size-sm, $line-height-sm, $btn-border-radius-sm);
+  }
+}
+
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
