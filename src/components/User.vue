@@ -1,5 +1,5 @@
 <template>
-<div class="container ">
+<div class="container-fluid ">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
@@ -156,14 +156,15 @@
 
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
+                        <div class="row" style="height:400px">
 
                             <div class="col-md-6">
                                 <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
                             </div>
 
                             <div class="col-md-6">
-                                <span class="badge badge-primary " v-for="file in user.filenames">{{ file.filename}}<br></span>
+                                 <label>Liste</label>
+                                <span class="badge badge-primary btn-block" v-for="file in user.filenames">{{ file.filename}}<br></span>
                             </div>
                         </div>
                     </div>

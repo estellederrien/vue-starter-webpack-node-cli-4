@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div class="container-fluid">
  <label>Filter by Name:</label>
       <input class="form-control" v-model="filters.name.value"/>
 <v-table :data="users"   :filters="filters" class="table">

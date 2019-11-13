@@ -1,10 +1,10 @@
 <template>
 <div class="container">
     <div class="col-md-12">
-        <label>Files
+        <label>Fichiers multiples
             <input name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
         </label>
-        <a v-on:click="submitFiles" class="btn btn-primary btn-block">Submit</a>
+        <a v-on:click="submitFiles" class="btn btn-primary btn-block">Soumettre</a>
 
        
 

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container-fluid">
     <vue-cal style="height: 250px"></vue-cal>
 </div>
 </template>
