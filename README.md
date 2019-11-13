@@ -1,7 +1,7 @@
 # STARTER  : Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
 Currently in DEV state !
-Please allow between 2 weeks to 1 month for it to be finished.
+Please allow from 2 weeks to 1 month for it to get finished.
 
 Will Contains :<br /><br />
 
