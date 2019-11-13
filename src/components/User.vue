@@ -4,12 +4,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <upload @filename="onUpload" v-if="this.auth"></upload>
-                    <img v-bind:src="this.server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
-                    <!-- <div class="file btn btn-lg btn-primary"> -->
 
-                    <!-- <input type="file" name="file" /> -->
-                    <!-- </div> -->
+                    <img v-bind:src="this.server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
 
                 </div>
 
@@ -23,8 +19,6 @@
                     </h5>
                     <h6>
                         Web Developer and Designeuses
-                        <a v-on:click="show()" class="btn btn-danger"> Message</a>
-                        <v-dialog />
 
                         <!--   <modal name="hello-world">
                             hello, world!
@@ -33,6 +27,7 @@
 
                     <p class="proile-rating">RANG : <span>8/10</span></p>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A propos</a>
                         </li>
@@ -46,15 +41,13 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary" name="btnAddMore">Mise à jour</span>
-                <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger" name="btnAddMore">Supprimer</span>
 
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
 
-                <div class="profile-work">
+                <div class="profile-work" style="background-color : lightgrey">
                     <p>LIENS DE TRAVAIL</p>
                     <a href="">Website</a><br />
                     <a href="">Bootsnipp</a><br />
@@ -67,15 +60,15 @@
                     <a href="">PHP, .Net</a><br />
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
+            <div class="col-md-6">
+                <div class="tab-content profile-tab" id="myTabContent" style="background-color : lightgrey">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
                             <div class="col-md-2">
                                 <label>User Id </label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{user._id}}</p>
+                                <p><input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled></p>
                             </div>
                         </div>
                         <div class="row">
@@ -160,35 +153,29 @@
                                 <p>6 months</p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description
 
-                                </p>
-                            </div>
-                        </div>
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
-                           
-                               
-                                <div class="col-md-6">
-                                    <uploadfiles  @myfilenamesevent="onFileUploads" v-if="this.auth"></uploadfiles>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <span  class="badge badge-primary " v-for="file in filenames">{{ file.filename }}<br></span>
-                               </div>
-                               
 
-                               
-                           
+                            <div class="col-md-6">
+                                <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
+                            </div>
 
+                            <div class="col-md-6">
+                                <span class="badge badge-primary " v-for="file in user.filenames">{{ file.filename}}<br></span>
+                            </div>
                         </div>
-
                     </div>
                 </div>
+            </div>
+            <div class="col-md-2">
+                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary btn-block">Mise à jour</span><br>
+                <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger btn-block">Supprimer</span><br>
+                <span><a class="btn btn-primary btn-block" v-on:click="show()"> Message</a>
+                    <v-dialog /></span><br>
+
+                <upload @filename="onUpload" v-if="this.auth" style="margin-top:10px"> </upload>
             </div>
         </div>
     </form>
@@ -208,7 +195,6 @@ export default {
     name: 'User',
     props: ["id"],
 
-    
     data() {
         return {
             user: {
@@ -219,11 +205,11 @@ export default {
                 profession: "",
                 email: "",
                 password: "",
-                img: ""
+                img: "",
+                filenames: []
 
             },
-            auth: false,
-            filenames:[]
+            auth: false
         };
     },
     components: {
@@ -240,10 +226,16 @@ export default {
             console.log(this.user);
         },
         onFileUploads(values) {
-            alert('changed');
+
             console.log(values);
 
-            this.filenames = values;
+         let self = this;
+
+           values.forEach(function(value){
+               self.user.filenames.push(value);
+
+           })
+
 
         },
         show() {

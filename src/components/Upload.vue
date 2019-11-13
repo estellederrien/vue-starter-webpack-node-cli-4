@@ -1,13 +1,14 @@
 <template>
-    <div class="col-lg-12">
-        <a class="btn btn-primary btn-block" v-on:click="submitFile()">Télécharger</a>
+   
+        <!-- <a class="btn btn-primary btn-block" v-on:click="submitFile()">Télécharger</a> -->
 
-        <label>
-            <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" />
+      <span >
+            <label for="file" class="btn btn-secondary btn-block ">Avatar</label>
+            <input type="file" style="visibility:hidden;" id="file" ref="file" v-on:change="handleFileUpload()" />
+        </span>
+        
 
-        </label><br>
-
-    </div>
+    
 </template>
 
 <script>
@@ -59,6 +60,7 @@ export default {
         */
         handleFileUpload() {
             this.file = this.$refs.file.files[0];
+            this.submitFile();
         }
     }
 }
