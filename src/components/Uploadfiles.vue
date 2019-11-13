@@ -7,7 +7,7 @@
         <a v-on:click="submitFiles" class="btn btn-primary btn-block">Soumettre</a>
 
        
-
+            <!-- REALTIME FILE MANAGEMENT -->
             <table class="table  table-dark">
                 <tbody>
                     <tr v-for="(file, key) in files" class="file-listing">

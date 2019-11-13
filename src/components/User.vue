@@ -2,7 +2,7 @@
 <div class="container-fluid ">
     <form method="post">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="profile-img">
 
                     <img v-bind:src="this.server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
@@ -11,7 +11,7 @@
 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="profile-head">
                     <h5>
                         {{user.prenom }} {{user.nom.toUpperCase()}}
@@ -29,13 +29,13 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
 
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A propos</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i> A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dernières infos</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> Dernières infos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">Fichiers</a>
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> Fichiers</a>
                         </li>
                     </ul>
                 </div>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
 
                 <div class="profile-work" style="background-color : lightgrey">
                     <p>LIENS DE TRAVAIL</p>
@@ -60,7 +60,7 @@
                     <a href="">PHP, .Net</a><br />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent" style="background-color : lightgrey">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
@@ -163,8 +163,11 @@
                             </div>
 
                             <div class="col-md-6">
-                                 <label>Liste</label>
-                                <span class="badge badge-primary btn-block" v-for="file in user.filenames">{{ file.filename}}<br></span>
+                                 <label>Liste</label><br>
+                                <tr v-for="file in user.filenames" >
+                                   <td><i class="fas fa-file-alt"></i> <a v-bind:href="server + 'files/' + file.filename">{{ file.filename}}</a></td>
+                                    <td><span class="remove-file btn btn-primary" v-on:click="removeFile( file )"><i class="far fa-trash-alt"></i><br></span></td>
+                                </tr>
                             </div>
                         </div>
                     </div>
