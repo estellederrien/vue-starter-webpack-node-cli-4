@@ -164,7 +164,11 @@
               class="submenu dropdown-menu dropdown-menu-right shadow animated--grow-in "
               aria-labelledby="userDropdown"
             >
-              <router-link class="dropdown-item" to="/user/profile">
+              <router-link
+                @click.native="profile"
+                class="dropdown-item"
+                to="/user/profile"
+              >
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Mon
                 profil</router-link
               >
@@ -221,6 +225,11 @@ export default {
   name: "App",
   components: {
     SidebarMenu
+  },
+  methods: {
+    profile() {
+      this.$router.go(this.$router.currentRoute);
+    }
   },
   data() {
     return {
