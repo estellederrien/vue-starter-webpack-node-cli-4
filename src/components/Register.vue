@@ -101,7 +101,7 @@ import axios from "axios";
     }
   },
     created: function() {
-        this.getUsers();
+       
     },
     data () {
       return {
