@@ -13,7 +13,7 @@ Will Contains :<br /><br />
 1 Form validator (https://vuelidate.js.org/#getting-started)<br />
 1 Internal Messaging CRUD<br />
 1 Internal Alerts CRUD<br />
-1 Email system<br />
+1 Node.js Emailing system<br />
 1 Anti Flooding by IP System<br />
 1 File session store<br />
 1 Linear solver lib<br />
