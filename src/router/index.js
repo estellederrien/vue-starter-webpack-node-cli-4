@@ -12,6 +12,12 @@ import Login from "@/components/Login";
 import Calendar from "@/components/Calendar";
 import Table from "@/components/Table";
 
+import axios from "axios";
+axios.defaults.withCredentials = true;
+
+// Checking if user has logged in on the node server
+function logged_in() {}
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -68,3 +74,32 @@ const router = new VueRouter({
 });
 
 export default router;
+
+// ROUTES AUTH
+
+/* router.beforeEach((to, from, next) => {
+  axios(Vue.server + "getActualSession", {
+    method: "post",
+    withCredentials: true
+  })
+    .then(function(response) {
+      return next();
+    })
+    .catch(function(error) {
+      return false;
+    });
+});
+ */
+/* 
+ beforeEnter(to, from, next) {
+       axios(Vue.server + "getActualSession", {
+        method: "post",
+        withCredentials: true
+      })
+        .then(function(response) {
+          next();
+        })
+        .catch(function(error) {
+          router.push("/login");
+        }); 
+    } */
