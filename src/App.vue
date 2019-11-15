@@ -164,11 +164,7 @@
               class="submenu dropdown-menu dropdown-menu-right shadow animated--grow-in "
               aria-labelledby="userDropdown"
             >
-              <router-link
-                @click.native="profile"
-                class="dropdown-item"
-                to="/user/profile"
-              >
+              <router-link v-if="$userid" class="dropdown-item" to="/profile">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Mon
                 profil</router-link
               >
@@ -228,7 +224,7 @@ export default {
   },
   methods: {
     profile() {
-      this.$router.go(this.$router.currentRoute);
+      this.$router.push("/profile");
     }
   },
   data() {

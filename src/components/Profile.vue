@@ -213,9 +213,9 @@
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row" style="height:400px">
-                           <!--  <div class="col-md-6">
+                            <div class="col-md-6">
                                 <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
-                            </div> -->
+                            </div>
 
                             <div class="col-md-6">
                                 <label>Liste</label><br />
@@ -266,11 +266,9 @@ import {
 } from "vuelidate/lib/validators";
 
 export default {
-    name: "User",
+    name: "Profile",
     props: ["id"],
-    beforeCreate: function() {
-        console.log(this.$userid)
-    },
+
     data() {
         return {
             user: {
@@ -415,12 +413,24 @@ export default {
                         console.log(erreur);
                     });
             }
+        },
+        getActualSession: function () {
+            axios
+                .post(this.server + "getActualSession", {
+   
+                })
+                .then(response => {
+                    this.user = response.data;
+                    this.auth = true;
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$router.push("/login");
+                });
         }
     },
     mounted: function () {
-   
-        this.getUser(this.id);
-        
+        this.getActualSession()
     }
 };
 </script>

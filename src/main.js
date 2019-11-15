@@ -29,9 +29,30 @@ import Vuelidate from "vuelidate";
 Vue.use(Vuelidate);
 
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
-Vue.server = Vue.prototype.server = "http://localhost:3000/";
+Vue.server = Vue.prototype.server = "http://localhost:80/";
 /* Vue.server = Vue.prototype.server =
-  "http://vue-starter-literals-node.openode.io/"; */
+  "http://vue-starter-webpack-cli-4-node.openode.io/"; */
+
+// ---------------------------------------------- STORING MONGODB ID AS GLOBAL FOR PROFILE , THIS VAR IS POPULATED WHEN A USER LOGS IN for the PROFILE MENU TO APPEAR IN THE TOPBAR
+// ---------------------------------------------- VUEX WILL BE BETTER LATER
+
+let globalData = new Vue({
+  data: { $userid: "" }
+});
+
+Vue.mixin({
+  computed: {
+    $userid: {
+      get: function() {
+        return globalData.$data.$userid;
+      },
+      set: function(userid) {
+        globalData.$data.$userid = userid;
+      }
+    }
+  }
+});
+
 new Vue({
   router,
   render: h => h(App)

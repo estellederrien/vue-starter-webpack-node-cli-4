@@ -68,6 +68,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export default {
+  
     name: 'Login',
     props: ["id"],
     data() {
@@ -95,27 +96,28 @@ export default {
               this.$router.push("/register");
         },
         getAuth: function () {
-            console.log(this.user);
-           var self = this;
-            axios
+           
+             axios
                 .post(this.server + "getAuth", this.user)
-                .then(function (reponse) {
-                    alert('ok')
-                   self.$router.push("/user/profile");
+                .then(response => {
+                    this.$userid =  response.data.$userid; // MONGODB ID USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
+                   this.$router.push("/profile");
                 })
-                .catch(function (erreur) {
-                    alert("Problème d'identification");
-                    //On traite ici les erreurs éventuellement survenues
-                    console.log(erreur);
+                .catch(error => {
+                    console.log(error);
+                    this.$router.push("/login");
                 });
+
+
 
             this.auth = true;
         }
     },
-    created: function () {
-       /*  if (this.$route.fullPath == "/logout") {
-            this.logOut();
-        } */
+    mounted: function () {
+     
+          
+           
+             
     }
 };
 </script>
