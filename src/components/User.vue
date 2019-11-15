@@ -77,12 +77,13 @@
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.nom.$error }">
 
                                 <p>
-                                    <input v-model.trim="user.nom" class="form-control" placeholder="modifiez-moi" />
+                                    <input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
+                                    <!-- ERRORS MESSAGES -->
                                     <div class="error" v-if="!$v.user.nom.required">
-                                        Field is required
+                                        Le champs est nécessessaire
                                     </div>
                                     <div class="error" v-if="!$v.user.nom.minLength">
-                                        Name must have at least
+                                        Le nom doit avoir au moins
                                         {{ $v.user.nom.$params.minLength.min }} letters.
                                     </div>
                                 </p>
@@ -92,9 +93,22 @@
                             <div class="col-md-2">
                                 <label>Prénom</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
                                 <p>
-                                    <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" />
+                                    <input v-model="user.prenom" 
+                                    class="form-control" 
+                                    placeholder="modifiez-moi" 
+                                    v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+
+                                    <!-- ERRORS MESSAGES -->
+                                    <div class="error" v-if="!$v.user.prenom.required">
+                                        Le champs est nécessessaire
+                                    </div>
+                                    <div class="error" v-if="!$v.user.prenom.minLength">
+                                        Le prénom doit avoir au moins
+                                        {{ $v.user.nom.$params.minLength.min }} letters.
+                                    </div>
+
                                 </p>
                             </div>
                         </div>
@@ -102,9 +116,22 @@
                             <div class="col-md-2">
                                 <label>Email</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
                                 <p>
-                                    <input v-model="user.email" class="form-control" placeholder="modifiez-moi" />
+
+                                    <input v-model="user.email" class="form-control" 
+                                    placeholder="modifiez-moi"
+                                     v-on:input="$v.user.email.$touch" 
+                                     v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+                                    <!-- ERRORS MESSAGES -->
+                                    <div class="error" v-if="!$v.user.email.required">
+                                        Le champs est nécessessaire
+                                    </div>
+                                    <div class="error" v-if="!$v.user.email.minLength">
+                                        L'Email doit avoir au moins
+                                        {{ $v.user.nom.$params.minLength.min }} lettres.
+                                    </div>
+
                                 </p>
                             </div>
                         </div>
@@ -112,9 +139,22 @@
                             <div class="col-md-2">
                                 <label>Téléphone</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
                                 <p>
-                                    <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" />
+                                    <input v-model="user.phone" class="form-control" 
+                                    placeholder="modifiez-moi" 
+                                     v-on:input="$v.user.phone.$touch" 
+                                   v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}"  />
+                                    <!-- ERRORS MESSAGES -->
+
+                                    <div class="error" v-if="!$v.user.phone.minLength">
+                                        Le téléphone doit avoir au moins
+                                        {{ $v.user.phone.$params.minLength.min }} chiffres.
+                                    </div>
+                                    <!--   <div class="error" v-if="!$v.user.phone.numeric">
+                                        Le téléphone ne doit pas comporter de lettres
+                                       
+                                    </div> -->
                                 </p>
                             </div>
                         </div>
@@ -250,7 +290,19 @@ export default {
         user: {
             nom: {
                 required,
-                minLength: minLength(4)
+                minLength: minLength(2)
+            },
+            prenom: {
+                required,
+                minLength: minLength(2)
+            },
+            email: {
+                required,
+                minLength: minLength(2)
+            },
+            phone: {
+                minLength: minLength(2),
+                numeric: true
             }
         }
 
@@ -393,6 +445,24 @@ export default {
 </script>
 
 <style>
+.error {
+    border-color: red;
+    background: #FDD;
+}
+
+.error:focus {
+    outline-color: #F99;
+}
+
+.valid {
+    border-color: #5A5;
+    background: #EFE;
+}
+
+.valid:focus {
+    outline-color: #8E8;
+}
+
 /* change all .btn to .btn-sm size on xs */
 @include media-breakpoint-between(xs, sm) {
     .btn {
