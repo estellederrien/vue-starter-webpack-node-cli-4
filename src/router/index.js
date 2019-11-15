@@ -11,6 +11,7 @@ import Dashboard from "@/components/Dashboard";
 import Login from "@/components/Login";
 import Calendar from "@/components/Calendar";
 import Table from "@/components/Table";
+import Profile from "@/components/Profile";
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -66,6 +67,11 @@ const routes = [
     path: "/table",
     name: "Table",
     component: Table
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile
   }
 ];
 
