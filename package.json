@@ -27,6 +27,7 @@
     "vue-sidebar-menu": "^4.4.1",
     "vuejs-smart-table": "0.0.5",
     "vuelendar": "^1.0.0",
+    "vuelidate": "^0.7.4",
     "vuetable-2": "^2.0.0-beta.4"
   },
   "devDependencies": {
