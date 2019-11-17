@@ -3,6 +3,8 @@
 Currently in DEV state !
 Please allow from 2 weeks to 1 month for it to get finished.
 
+Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .
+
 Will Contains :<br /><br />
 
 1 Users CRUD<br />
