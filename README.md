@@ -27,6 +27,8 @@ Will Contains :<br /><br />
 
 The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/
 
+I will also publish it on google Cloud, and maybe AWS
+
 ## Project setup
 ```
 npm install
