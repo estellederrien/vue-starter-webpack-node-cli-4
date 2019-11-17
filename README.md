@@ -25,6 +25,7 @@ Will Contains :<br /><br />
 1 Linear multiple regression lib https://github.com/luccastera/shaman
 <br /><br />
 
+The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/
 
 ## Project setup
 ```
