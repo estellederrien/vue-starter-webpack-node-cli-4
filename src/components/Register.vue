@@ -84,7 +84,7 @@ import axios from "axios";
       }
 
       axios
-        .post(this.server + "insertUser", this.user)
+        .post(this.server + "registerUser", this.user)
         .then(function(reponse) {
           //On traite la suite une fois la réponse obtenue
           if (reponse.data.problem) {
