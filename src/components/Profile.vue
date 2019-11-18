@@ -338,8 +338,7 @@ export default {
     },
     components: {
         uploadpicture: Uploadpicture,
-        uploadfiles: Uploadfiles,
-        newuser: newuser
+        uploadfiles: Uploadfiles
     },
     methods: {
         deleteFile(file) {
