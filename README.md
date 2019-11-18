@@ -3,6 +3,8 @@
 Currently in DEV state !
 Please allow from 2 weeks to 1 month for it to get finished.
 
+Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .
+
 Will Contains :<br /><br />
 
 1 Users CRUD<br />
@@ -10,21 +12,24 @@ Will Contains :<br /><br />
 1 Profiles and Permissions management system <br />
 1 Files management system by users<br />
 1 Dashboard with some graphicals libs<br />
-1 Form validator (https://vuelidate.js.org/#getting-started)<br />
+1 Form validator : (https://vuelidate.js.org/#getting-started)<br />
 1 Internal Messaging CRUD<br />
 1 Internal Alerts CRUD<br />
 1 Node.js Emailing system<br />
 1 Anti Flooding by IP System<br />
 1 File session store<br />
-1 Linear solver lib<br />
+1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver<br />
 1 Calendar lib<br />
 1 v-dialog lib<br />
 1 SOCKET.IO realtime evolutive system <br />
 1 Gps positionning lib <br />
 1 Effective multi selector <br />
-1 Linear multiple regression lib https://github.com/luccastera/shaman
+1 Linear multiple regression lib : https://github.com/luccastera/shaman
 <br /><br />
 
+The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/
+
+I will also publish it on google Cloud, and maybe AWS
 
 ## Project setup
 ```
