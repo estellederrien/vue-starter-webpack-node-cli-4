@@ -233,7 +233,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab"></div>
+                    <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
+                      
+                        <div class="row">
+                            <div class="col-md-6 tab-content-user" >  <label>Liste des droits</label>
+                                <div v-for="p in user.permissions" >
+                                      <span class="badge badge-warning  ">  {{p}}<br></span>
+                                </div>      
+                            </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-2">
