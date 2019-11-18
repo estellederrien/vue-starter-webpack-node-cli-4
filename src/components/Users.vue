@@ -1,6 +1,37 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <div class="header">
+        <button class="btn btn-warning " v-on:click="openFilters()">
+          Filtres
+        </button>
+      </div>
+
+      <modal name="filters" :width="300" :height="400">
+        <label style="padding:5px"><b>Filtres</b></label>
+        <div class="row">
+          <div class="col-md-12 " style="padding:30px">
+            <select class="form-control ">
+              <option>Small select</option> </select
+            ><br />
+
+            <select class="form-control ">
+              <option>Small select</option> </select
+            ><br />
+
+            <select class="form-control ">
+              <option>Small select</option> </select
+            ><br />
+            <button
+              class="btn btn-warning float-right"
+              v-on:click="filterNow()"
+            >
+              Filter now !
+            </button>
+          </div>
+        </div>
+      </modal>
+
       <div v-for="user in users" class="col-sm col-xs-12">
         <div class="card " style="margin-bottom : 20px;min-width: 16rem;">
           <img
@@ -10,7 +41,7 @@
             alt="..."
           />
           <div class="card-body">
-            <h5 class="card-title">{{ user.nom }}</h5>
+            <h5 class="card-title">{{ user.nom }} test</h5>
             <p class="card-text">Voici la description de mon profil .</p>
             <a v-on:click="route(user._id)" class="btn btn-primary float-right"
               >Profil</a
@@ -49,6 +80,9 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    openFilters: function() {
+      this.$modal.show("filters");
     }
   },
   created: function() {
@@ -79,4 +113,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.header {
+  position: fixed; /* fixing the position takes it out of html flow - knows
+                   nothing about where to locate itself except by browser
+                   coordinates */
+  left: 0; /* top left corner should start at leftmost spot */
+  top: 50px; /* top left corner should start at topmost spot */
+  width: 100vw; /* take up the full browser width */
+  z-index: 200; /* high z index so other content scrolls underneath */
+  height: 20vh; /* define height for content */
+
+  padding: 15px;
+  margin-left: 30px;
+}
+</style>
