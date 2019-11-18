@@ -5,6 +5,8 @@ Please allow from 2 weeks to 1 month for it to get finished.
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .
 
+Testing: log in with -> login:admin@admin.com / password:admin
+
 Will Contains :<br /><br />
 
 1 Users CRUD<br />
