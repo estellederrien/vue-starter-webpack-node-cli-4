@@ -104,6 +104,7 @@ export default {
                    this.$router.push("/profile");
                 })
                 .catch(error => {
+                    alert('Auth Error !')
                     console.log(error);
                     this.$router.push("/login");
                 });
