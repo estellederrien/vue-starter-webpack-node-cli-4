@@ -222,9 +222,7 @@
                                 <tr v-for="file in user.filenames">
                                     <td>
                                         <i class="fas fa-file-alt"></i>
-                                        <a v-bind:href="server + 'files/' + file.filename">{{
-                        file.filename
-                      }}</a>
+                                        <a v-bind:href="server + 'files/' + file.filename">{{ file.filename }}</a>
                                     </td>
                                     <td>
                                         <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)"><i class="far fa-trash-alt"></i><br /></span>
@@ -236,7 +234,19 @@
                     <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
                       
                         <div class="row">
-                            <div class="col-md-6 tab-content-user" >  <label>Liste des droits</label>
+
+
+                            <div class="col-md-6 tab-content-user" >  
+                                 <label>Profil</label><br>
+                                    <select class="custom-select" v-model="user.role" disabled>
+                                        <option value="">--Please choose an option--</option>
+                                        <option value="viewer">Viewer</option>
+                                        <option value="user">User</option>
+                                        <option value="administrator">Administrator</option>
+  
+                                    </select>
+                                <br><br>
+                                <label>Liste des droits</label><br>
                                 <div v-for="p in user.permissions" >
                                       <span class="badge badge-warning  ">  {{p}}<br></span>
                                 </div>      
@@ -421,7 +431,8 @@ export default {
 <style>
 
 .tab-content-user{
-
+    padding : 10px;
+    margin:10px;
     height:50vh;
 }
 
