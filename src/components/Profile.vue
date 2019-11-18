@@ -60,7 +60,7 @@
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent" style="background-color : lightgrey">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
+                        <div class="row" v-if="!creationProcess">
                             <div class="col-md-2">
                                 <label>User Id </label>
                             </div>
@@ -95,10 +95,7 @@
                             </div>
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
                                 <p>
-                                    <input v-model="user.prenom" 
-                                    class="form-control" 
-                                    placeholder="modifiez-moi" 
-                                    v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+                                    <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
 
                                     <!-- ERRORS MESSAGES -->
                                     <div class="error" v-if="!$v.user.prenom.required">
@@ -119,10 +116,7 @@
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
                                 <p>
 
-                                    <input v-model="user.email" class="form-control" 
-                                    placeholder="modifiez-moi"
-                                     v-on:input="$v.user.email.$touch" 
-                                     v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+                                    <input v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
                                     <!-- ERRORS MESSAGES -->
                                     <div class="error" v-if="!$v.user.email.required">
                                         Le champs est nécessessaire
@@ -135,16 +129,26 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="row" v-if="creationProcess">
+                            <div class="col-md-2">
+                                <label>Password</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+
+                                    <input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
+
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-2">
                                 <label>Téléphone</label>
                             </div>
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
                                 <p>
-                                    <input v-model="user.phone" class="form-control" 
-                                    placeholder="modifiez-moi" 
-                                     v-on:input="$v.user.phone.$touch" 
-                                   v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}"  />
+                                    <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
                                     <!-- ERRORS MESSAGES -->
 
                                     <div class="error" v-if="!$v.user.phone.minLength">
@@ -153,7 +157,7 @@
                                     </div>
                                     <!--   <div class="error" v-if="!$v.user.phone.numeric">
                                         Le téléphone ne doit pas comporter de lettres
-                                       
+
                                     </div> -->
                                 </p>
                             </div>
@@ -168,8 +172,6 @@
                                 </p>
                             </div>
                         </div>
-
-
 
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -235,35 +237,40 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
-                      
-                        <div class="row">
-                             <div class="col-md-6 tab-content-user" >  
-                                 <label>Profil</label><br>
-                                    <select class="custom-select" v-model="user.role" :disabled="user.role !== 'administrator'">
-                                        <option value="">--Please choose an option--</option>
-                                        <option value="viewer">Viewer</option>
-                                        <option value="user">User</option>
-                                        <option value="administrator">Administrator</option>
-                                    </select>
+
+                        <div class="row tab-content-user">
+                            <div class="col-md-6 ">
+                                <label>Votre Profil</label><br>
+                                <select class="custom-select" v-model="user.role" :disabled="!creationProcess">
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="viewer">Viewer</option>
+                                    <option value="user">User</option>
+                                    <option value="administrator">Administrator</option>
+                                </select>
                                 <br><br>
-                                <label>Liste des droits</label><br>
-                                <div v-for="p in user.permissions" >
-                                      <span class="badge badge-warning  ">  {{p}}<br></span>
-                                </div>      
-                            </div> 
+
+                                <label v-if="!creationProcess">Liste des droits</label><br>
+                                <div v-for="p in user.permissions">
+                                    <span class="badge badge-warning  "> {{p}}<br></span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
-                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary btn-block">Mise à jour</span><br />
-                <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger btn-block">Supprimer</span><br />
-                <span><a class="btn btn-primary btn-block" v-on:click="show()">
-                        Message</a>
-                    <v-dialog /></span><br />
+                <div class="" v-if="!creationProcess">
+                    <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary btn-block">Mise à jour</span><br />
+                    <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger btn-block">Supprimer</span><br />
+                    <span><a class="btn btn-primary btn-block" v-on:click="showModal()">Message</a>
+                        <v-dialog /></span><br />
+                    <span v-if="auth" v-on:click="createUser()" class="btn btn-warning btn-block">Créer un utilisateur</span><br />
+                </div>
+                <uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
 
-                <upload @filename="onUpload" v-if="this.auth" style="margin-top:10px">
-                </upload>
+                <span v-if="creationProcess" v-on:click="insertUser()" class="btn btn-warning btn-block">Enregistrer utilisateur</span><br />
+
             </div>
         </div>
     </form>
@@ -273,7 +280,8 @@
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import Upload from "@/components/Upload.vue";
+import Uploadpicture from "@/components/Uploadpicture.vue";
+import newuser from "@/components/Newuser.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import {
     SidebarMenu
@@ -291,8 +299,8 @@ export default {
     data() {
         return {
             user: {
-                nom: "test",
-                prenom: "test",
+                nom: "",
+                prenom: "",
                 _id: "",
                 phone: "",
                 profession: "",
@@ -301,7 +309,8 @@ export default {
                 img: "",
                 filenames: []
             },
-            auth: false
+            auth: false,
+            creationProcess: false
         };
     },
 
@@ -323,12 +332,14 @@ export default {
                 minLength: minLength(2),
                 numeric: true
             }
+
         }
 
     },
     components: {
-        upload: Upload,
-        uploadfiles: Uploadfiles
+        uploadpicture: Uploadpicture,
+        uploadfiles: Uploadfiles,
+        newuser: newuser
     },
     methods: {
         deleteFile(file) {
@@ -344,8 +355,9 @@ export default {
                         self.user.filenames = self.user.filenames.filter(function (obj) {
                             return obj.filename !== file.filename;
                         });
-
-                        this.updateUser();
+                        if (!this.creationProcess) {
+                            this.updateUser();
+                        }
                     })
                     .catch(function (erreur) {
                         console.log(erreur);
@@ -369,9 +381,11 @@ export default {
                 self.user.filenames.push(value);
             });
 
-            this.updateUser();
+            if (!this.creationProcess) {
+                this.updateUser();
+            }
         },
-        show() {
+        showModal() {
             // this.$modal.show('hello-world');
             this.$modal.show("dialog", {
                 title: "Alert!",
@@ -433,10 +447,39 @@ export default {
                     });
             }
         },
+        createUser: function () {
+
+            this.creationProcess = true;
+            this.user = {
+                nom: "",
+                prenom: "",
+                phone: "",
+                profession: "",
+                email: "",
+                password: "",
+                img: "",
+                filenames: [],
+                role: "user"
+            }
+        },
+        insertUser: function () {
+
+            axios
+                .post(this.server + "insertUser", this.user)
+                .then(response => {
+                    alert("Added one user !");
+                    this.creationProcess = false;
+                    this.getActualSession()
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        },
         getActualSession: function () {
             axios
                 .post(this.server + "getActualSession", {
-   
+
                 })
                 .then(response => {
                     this.user = response.data;

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div v-for="user in users" class="col-sm col-xs-12">
-        <div class="card " style="margin-bottom : 20px">
+        <div class="card " style="margin-bottom : 20px;min-width: 18rem;">
           <img
             v-bind:src="server + 'img/' + user.img"
             @error="replaceByDefault"
