@@ -271,7 +271,7 @@
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import Upload from "@/components/Upload.vue";
+import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import {
     SidebarMenu
@@ -327,7 +327,7 @@ export default {
 
     },
     components: {
-        upload: Upload,
+        uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles
     },
     methods: {

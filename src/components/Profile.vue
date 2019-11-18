@@ -281,7 +281,7 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import Uploadpicture from "@/components/Uploadpicture.vue";
-import newuser from "@/components/Newuser.vue";
+
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import {
     SidebarMenu
