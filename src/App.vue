@@ -2,9 +2,9 @@
   <div id="app">
     <!-- --------------------------------------------- TOPBAR ------------------------------------------------------------ -->
 
-    <nav class="navbar navbar-expand-md navbar-custom navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
       <!-- Brand -->
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Vue-Node-Starter</a>
 
       <!-- Toggler/collapsibe Button -->
       <button
@@ -210,7 +210,7 @@
     />
 
     <!-- --------------------------------------------- VIEWS  ------------------------------------------------------------ -->
-    <router-view></router-view>
+    <div style="margin-top:60px"><router-view></router-view></div>
   </div>
 </template>
 
@@ -302,7 +302,7 @@ export default {
 }
 
 #navbarTop {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .v-sidebar-menu > .vsm--list {
