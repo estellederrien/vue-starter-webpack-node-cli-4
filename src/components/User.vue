@@ -169,8 +169,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
+                    <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row ">
                             <div class="col-md-2">
                                 <label>Experience</label>
                             </div>
@@ -212,12 +212,12 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row" style="height:400px">
+                        <div class="row" >
                            <!--  <div class="col-md-6">
                                 <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
                             </div> -->
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 tab-content-user" >
                                 <label>Liste</label><br />
                                 <tr v-for="file in user.filenames">
                                     <td>
@@ -233,7 +233,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab"></div>
+                    <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
+                      
+                        <div class="row">
+                            <div class="col-md-6 tab-content-user" >  <label>Liste des droits</label>
+                                <div v-for="p in user.permissions" >
+                                      <span class="badge badge-warning  ">  {{p}}<br></span>
+                                </div>      
+                            </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-2">
@@ -274,8 +283,8 @@ export default {
     data() {
         return {
             user: {
-                nom: "test",
-                prenom: "test",
+                nom: "",
+                prenom: "",
                 _id: "",
                 phone: "",
                 profession: "",
@@ -337,22 +346,6 @@ export default {
         },
         replaceByDefault(e) {
             e.target.src = this.server + "/img/defaut.png";
-        },
-        onUpload(value) {
-            // Pass Picture URL to the user object .
-            this.user.img = value;
-            console.log(this.user);
-        },
-        onFileUploads(values) {
-            console.log(values);
-
-            let self = this;
-
-            values.forEach(function (value) {
-                self.user.filenames.push(value);
-            });
-
-            this.updateUser();
         },
         show() {
             // this.$modal.show('hello-world');
@@ -426,6 +419,13 @@ export default {
 </script>
 
 <style>
+
+.tab-content-user{
+
+    height:50vh;
+}
+
+
 .error {
     border-color: red;
     background: #FDD;
