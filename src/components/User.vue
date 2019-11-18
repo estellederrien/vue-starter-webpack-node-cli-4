@@ -224,9 +224,7 @@
                                         <i class="fas fa-file-alt"></i>
                                         <a v-bind:href="server + 'files/' + file.filename">{{ file.filename }}</a>
                                     </td>
-                                    <td>
-                                        <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)"><i class="far fa-trash-alt"></i><br /></span>
-                                    </td>
+                                    
                                 </tr>
                             </div>
                         </div>
