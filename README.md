@@ -5,7 +5,9 @@ Please allow from 2 weeks to 1 month for it to get finished.
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .
 
-Testing: log in with -> login:admin@admin.com / password:admin
+The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/ <br />
+Testing: log in with -> login:admin@admin.com / password:admin <br />
+I will also publish it on google Cloud, and maybe AWS <br />
 
 Will Contains :<br /><br />
 
@@ -29,9 +31,7 @@ Will Contains :<br /><br />
 1 Linear multiple regression lib : https://github.com/luccastera/shaman
 <br /><br />
 
-The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/
 
-I will also publish it on google Cloud, and maybe AWS
 
 ## Project setup
 ```
