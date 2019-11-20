@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";
-import Users from "@/components/User.vue";
+import User from "@/components/User.vue";
 
 const wrapper = shallowMount(User);
 
@@ -10,6 +10,6 @@ describe("User test", () => {
   }); */
 
   it("user model is an object", () => {
-    expect(wrapper.vm.$data.users).to.be.an("object");
+    expect(wrapper.vm.$data.user).to.be.an("object");
   });
 });

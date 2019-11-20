@@ -12,6 +12,6 @@ describe("Users test", () => {
     expect(wrapper.vm.$data.users).to.be.an("array");
   });
   it("getUsers() to be a function", () => {
-    expect(wrapper.vm.$methods.getUsers()).to.be.a("function");
+    expect(wrapper.vm.getUsers).to.be.a("function");
   });
 });
