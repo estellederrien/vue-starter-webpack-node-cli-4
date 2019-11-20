@@ -22,11 +22,11 @@ describe("Register tests", () => {
    it("Should display an Email input", () => {
 		expect(wrapper.vm.$el.querySelector("input[type='email']") !== null).to.be.true
 	});
-	/* it("Should display a name input", () => {
+	it("Should display a name input", () => {
 		expect(wrapper.vm.$el.getElementById('nom') !== null).to.be.true
-	}); */
+	}); 
   
-  // it("should Button register fire function", () => {
-    // expect(wrapper.findAll('email').exists()).to.be(true)
-  // });
+   // it("should Button register fire function", () => {
+     // expect(wrapper.html()).toContain('<span class="count">0</span>')
+   // });
 });
