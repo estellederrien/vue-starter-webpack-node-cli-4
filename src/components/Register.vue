@@ -33,9 +33,7 @@
 						<input type="password" class="form-control form-control-user" name="password"value ="password" id="password" placeholder="Mot de passe">
 					  </div> -->
 					</div>
-					<a  v-on:click='register()' class="btn btn-primary btn-user btn-block" style="color:white">
-					  Enregistrement
-          </a>
+					<a  v-on:click='register()' class="btn btn-primary btn-user btn-block" style="color:white">Enregistrement</a>
          <span class="badge badge-danger btn-block" v-if="problem">vous avez oublié de renseigner un champ !</span>
 					<hr>
 					<!-- <a href="index.html" class="btn btn-google btn-user btn-block"> -->
