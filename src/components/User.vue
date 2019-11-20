@@ -95,10 +95,7 @@
                             </div>
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
                                 <p>
-                                    <input v-model="user.prenom" 
-                                    class="form-control" 
-                                    placeholder="modifiez-moi" 
-                                    v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+                                    <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
 
                                     <!-- ERRORS MESSAGES -->
                                     <div class="error" v-if="!$v.user.prenom.required">
@@ -119,10 +116,7 @@
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
                                 <p>
 
-                                    <input v-model="user.email" class="form-control" 
-                                    placeholder="modifiez-moi"
-                                     v-on:input="$v.user.email.$touch" 
-                                     v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+                                    <input v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
                                     <!-- ERRORS MESSAGES -->
                                     <div class="error" v-if="!$v.user.email.required">
                                         Le champs est nécessessaire
@@ -141,10 +135,7 @@
                             </div>
                             <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
                                 <p>
-                                    <input v-model="user.phone" class="form-control" 
-                                    placeholder="modifiez-moi" 
-                                     v-on:input="$v.user.phone.$touch" 
-                                   v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}"  />
+                                    <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
                                     <!-- ERRORS MESSAGES -->
 
                                     <div class="error" v-if="!$v.user.phone.minLength">
@@ -164,11 +155,11 @@
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                   
+
                                     <select class="form-control " v-model="user.job">
-                                    <option value="developper">Développeur</option>
-                                    <option value="cto">Cto</option>
-                                    <option value="gamer">Gamer</option>
+                                        <option value="developper">Développeur</option>
+                                        <option value="cto">Cto</option>
+                                        <option value="gamer">Gamer</option>
                                     </select>
                                     <br />
                                 </p>
@@ -218,43 +209,42 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row" >
-                           <!--  <div class="col-md-6">
+                        <div class="row">
+                            <!--  <div class="col-md-6">
                                 <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
                             </div> -->
 
-                            <div class="col-md-6 tab-content-user" >
+                            <div class="col-md-6 tab-content-user">
                                 <label>Liste</label><br />
                                 <tr v-for="file in user.filenames">
                                     <td>
                                         <i class="fas fa-file-alt"></i>
                                         <a v-bind:href="server + 'files/' + file.filename">{{ file.filename }}</a>
                                     </td>
-                                    
+
                                 </tr>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
-                      
+
                         <div class="row">
 
+                            <div class="col-md-6 tab-content-user">
+                                <label>Profil</label><br>
+                                <select class="custom-select" v-model="user.role" disabled>
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="viewer">Viewer</option>
+                                    <option value="user">User</option>
+                                    <option value="administrator">Administrator</option>
 
-                            <div class="col-md-6 tab-content-user" >  
-                                 <label>Profil</label><br>
-                                    <select class="custom-select" v-model="user.role" disabled>
-                                        <option value="">--Please choose an option--</option>
-                                        <option value="viewer">Viewer</option>
-                                        <option value="user">User</option>
-                                        <option value="administrator">Administrator</option>
-  
-                                    </select>
+                                </select>
                                 <br><br>
                                 <label>Liste des droits</label><br>
-                                <div v-for="p in user.permissions" >
-                                      <span class="badge badge-warning  ">  {{p}}<br></span>
-                                </div>      
-                            </div> 
+                                <div v-for="p in user.permissions">
+                                    <span class="badge badge-warning  "> {{p}}<br></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -291,7 +281,7 @@ import {
 export default {
     name: "User",
     props: ["id"],
-    beforeCreate: function() {
+    beforeCreate: function () {
         console.log(this.$userid)
     },
     data() {
@@ -337,7 +327,7 @@ export default {
         uploadfiles: Uploadfiles
     },
     methods: {
-        
+
         replaceByDefault(e) {
             e.target.src = this.server + "/img/defaut.png";
         },
@@ -378,35 +368,33 @@ export default {
                     console.log(erreur);
                 });
         },
-        disableAllinputs : function(){
+        disableAllinputs: function () {
 
-         let elems = document.getElementById('userDiv').getElementsByTagName('input');
-             for(let i = 0; i < elems.length; i++) {
+            let elems = document.getElementById('userDiv').getElementsByTagName('input');
+            for (let i = 0; i < elems.length; i++) {
                 elems[i].disabled = true;
             }
-        let selects = document.getElementById('userDiv').getElementsByTagName('select');
-            for(let i = 0; i < selects.length; i++) {
+            let selects = document.getElementById('userDiv').getElementsByTagName('select');
+            for (let i = 0; i < selects.length; i++) {
                 selects[i].disabled = true;
             }
         }
     },
     mounted: function () {
-   
+
         this.getUser(this.id);
         this.disableAllinputs();
-        
+
     }
 };
 </script>
 
 <style>
-
-.tab-content-user{
-    padding : 10px;
-    margin:10px;
-    height:50vh;
+.tab-content-user {
+    padding: 10px;
+    margin: 10px;
+    height: 50vh;
 }
-
 
 .error {
     border-color: red;

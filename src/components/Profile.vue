@@ -164,11 +164,17 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2">
-                                <label>Profession</label>
+                                <label>Job</label>
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                    <input v-model="user.job" class="form-control" placeholder="modifiez-moi" />
+
+                                    <select class="form-control " v-model="user.job">
+                                        <option value="developper">Développeur</option>
+                                        <option value="cto">Cto</option>
+                                        <option value="gamer">Gamer</option>
+                                    </select>
+                                    <br />
                                 </p>
                             </div>
                         </div>
