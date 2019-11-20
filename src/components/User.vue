@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid ">
+<div class="container-fluid " id="userDiv">
     <form method="post">
         <div class="row">
             <div class="col-md-2">
@@ -160,11 +160,17 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2">
-                                <label>Profession</label>
+                                <label>Job</label>
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                    <input v-model="user.job" class="form-control" placeholder="modifiez-moi" />
+                                   
+                                    <select class="form-control " v-model="user.job">
+                                    <option value="developper">Développeur</option>
+                                    <option value="cto">Cto</option>
+                                    <option value="gamer">Gamer</option>
+                                    </select>
+                                    <br />
                                 </p>
                             </div>
                         </div>
@@ -331,27 +337,7 @@ export default {
         uploadfiles: Uploadfiles
     },
     methods: {
-        deleteFile(file) {
-            let self = this;
-            if (confirm("Do you really want to delete?")) {
-                axios
-                    .post(this.server + "deleteFile", {
-                        name: file.filename
-                    })
-                    .then(response => {
-                        alert(" File has been deleted from server");
-
-                        self.user.filenames = self.user.filenames.filter(function (obj) {
-                            return obj.filename !== file.filename;
-                        });
-
-                        this.updateUser();
-                    })
-                    .catch(function (erreur) {
-                        console.log(erreur);
-                    });
-            }
-        },
+        
         replaceByDefault(e) {
             e.target.src = this.server + "/img/defaut.png";
         },
@@ -392,35 +378,22 @@ export default {
                     console.log(erreur);
                 });
         },
-        updateUser: function () {
-            axios
-                .post(this.server + "updateUser", this.user)
-                .then(response => {
-                    alert(" MAJ ok ! ");
-                    console.log(response);
-                })
-                .catch(function (erreur) {
-                    console.log(erreur);
-                });
-        },
-        deleteUser: function () {
-            if (confirm("Do you really want to delete?")) {
-                axios
-                    .post(this.server + "deleteUser", this.user)
-                    .then(response => {
-                        alert(" Votre compte a été supprimé ");
-                        router.push("/login");
-                        console.log(response);
-                    })
-                    .catch(function (erreur) {
-                        console.log(erreur);
-                    });
+        disableAllinputs : function(){
+
+         let elems = document.getElementById('userDiv').getElementsByTagName('input');
+             for(let i = 0; i < elems.length; i++) {
+                elems[i].disabled = true;
+            }
+        let selects = document.getElementById('userDiv').getElementsByTagName('select');
+            for(let i = 0; i < selects.length; i++) {
+                selects[i].disabled = true;
             }
         }
     },
     mounted: function () {
    
         this.getUser(this.id);
+        this.disableAllinputs();
         
     }
 };

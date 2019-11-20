@@ -19,13 +19,17 @@
             </select>
             <br />
 
-            <!--  <select class="form-control ">
-              <option>Small select</option> </select
-            ><br />
+            <label style="padding:5px"><b>Emploi</b></label>
+            <select class="form-control " v-model="filters.job">
+              <option value="viewer">Viewer</option>
+              <option value="user">User</option>
+              <option value="administrator">Administrator</option>
+            </select>
+            <br />
 
             <select class="form-control ">
               <option>Small select</option> </select
-            ><br /> -->
+            ><br />
             <button
               class="btn btn-warning float-right"
               v-on:click="filterNow()"
