@@ -11,22 +11,26 @@
         <label style="padding:5px"><b>Filtres</b></label>
         <div class="row">
           <div class="col-md-12 " style="padding:30px">
-            <select class="form-control ">
+            <label style="padding:5px"><b>Role</b></label>
+            <select class="form-control " v-model="filters.role">
+              <option value="viewer">Viewer</option>
+              <option value="user">User</option>
+              <option value="administrator">Administrator</option>
+            </select>
+            <br />
+
+            <!--  <select class="form-control ">
               <option>Small select</option> </select
             ><br />
 
             <select class="form-control ">
               <option>Small select</option> </select
-            ><br />
-
-            <select class="form-control ">
-              <option>Small select</option> </select
-            ><br />
+            ><br /> -->
             <button
               class="btn btn-warning float-right"
               v-on:click="filterNow()"
             >
-              Filter now !
+              Filtrer !
             </button>
           </div>
         </div>
@@ -65,6 +69,10 @@ export default {
   name: "Users",
 
   methods: {
+    filterNow: function() {
+      this.activeFilters = { role: this.filters.role };
+      this.getUsers();
+    },
     replaceByDefault(e) {
       e.target.src = this.server + "defaut.png";
     },
@@ -73,7 +81,7 @@ export default {
     },
     getUsers: function() {
       axios
-        .post(this.server + "getUsers")
+        .post(this.server + "getUsers", { filters: this.activeFilters })
         .then(response => {
           this.users = response.data;
         })
@@ -107,7 +115,9 @@ export default {
           id: "3",
           img: "img/h2.jpeg"
         }
-      ]
+      ],
+      filters: { role: "" },
+      activeFilters: {}
     };
   }
 };
