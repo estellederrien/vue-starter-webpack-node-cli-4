@@ -152,10 +152,9 @@
                             <div class="col-md-6">
                                 <p>
 
-                                     <select class="form-control " v-model="user.job">
-                                        <option  v-for="job in jobs"value="job.name">{{job.name}}</option>
-                                        
-                                    </select>
+                                      <select class="form-control " v-model="user.job">
+                                            <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
+                                        </select>
                                    
                                     <br />
                                 </p> 
