@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid ">
-    <form method="post">
+    <form method="post" v-on:submit.prevent>
         <div class="row">
             <div class="col-md-2">
                 <div class="profile-img">
@@ -187,17 +187,26 @@
                             <div class="col-md-2">
                                 <label>Job</label>
                             </div>
-                            <div class="col-md-6">
-                                <p>
+                            <div class="col-md-4">
+                                
 
                                     <select class="form-control " v-model="user.job">
-                                        <option value="developper">Développeur</option>
-                                        <option value="cto">Cto</option>
-                                        <option value="gamer">Gamer</option>
+                                        <option  v-for="job in jobs"value="job.name">{{job.name}}</option>
+                                        
                                     </select>
-                                    <br />
-                                </p>
-                            </div>
+                             </div>       
+                            <div class="col-md-4">
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary" type="button" id="button-addon1"  @click="insertJob()">+</button>
+                                    </div>
+                                        <input v-model="newJob" type="text" class="form-control" placeholder="" placeholder ="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1"  >
+                                    </div>
+
+                            </div>         
+                                    
+                            
                         </div>
 
                     </div>
@@ -339,7 +348,9 @@ export default {
                 age:""
             },
             auth: false,
-            creationProcess: false
+            creationProcess: false,
+            jobs:[],
+            newJob:""
         };
     },
 
@@ -527,11 +538,35 @@ export default {
             var diff = cur - birthdate; // This is the difference in milliseconds
             var age = Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25
             this.user.age = age;
+        },
+        getJobs: function() {
+            axios
+            .post(this.server + "getJobs")
+            .then(response => {
+             this.jobs = response.data;
+            })
+            .catch(function(error) {
+            console.log(error);
+            });
+        },
+        insertJob: function () {
+            alert ('ok');
+            axios
+            .post(this.server + "insertJob", {"name":this.newJob})
+            .then(response => {
+                alert("Added one job !");
+                this.getJobs()
+            })
+            .catch(function (error) {
+                console.log(error);
+            }); 
         }
 
     },
     mounted: function () {
+       
         this.getActualSession()
+         this.getJobs()
     }
 };
 </script>

@@ -156,13 +156,13 @@
                             <div class="col-md-6">
                                 <p>
 
-                                    <select class="form-control " v-model="user.job">
-                                        <option value="developper">Développeur</option>
-                                        <option value="cto">Cto</option>
-                                        <option value="gamer">Gamer</option>
+                                     <select class="form-control " v-model="user.job">
+                                        <option  v-for="job in jobs"value="job.name">{{job.name}}</option>
+                                        
                                     </select>
+                                   
                                     <br />
-                                </p>
+                                </p> 
                             </div>
                         </div>
                     </div>
@@ -378,11 +378,22 @@ export default {
             for (let i = 0; i < selects.length; i++) {
                 selects[i].disabled = true;
             }
+        },
+        getJobs: function() {
+            axios
+            .post(this.server + "getJobs")
+            .then(response => {
+             this.jobs = response.data;
+            })
+            .catch(function(error) {
+            console.log(error);
+            });
         }
     },
     mounted: function () {
 
         this.getUser(this.id);
+        this.getJobs();
         this.disableAllinputs();
 
     }
