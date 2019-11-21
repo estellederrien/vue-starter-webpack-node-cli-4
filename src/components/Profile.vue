@@ -162,6 +162,25 @@
                                 </p>
                             </div>
                         </div>
+
+                       <div class="row">
+                            <div class="col-md-2">
+                                <label>Date de naissance</label>
+                            </div>
+
+                        <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
+                            <p> 
+                             <input class="form-control" type="date" id="start" name="trip-start"
+                            value="2018-07-22"
+                            min="2018-01-01" max="2018-12-31">
+
+                         </p>
+                            </div>
+                        </div>
+
+
+
+
                         <div class="row">
                             <div class="col-md-2">
                                 <label>Job</label>
@@ -464,6 +483,7 @@ export default {
                 password: "",
                 img: "",
                 filenames: [],
+                job:"",
                 role: "user"
             }
         },
