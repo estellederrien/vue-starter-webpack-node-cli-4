@@ -12,11 +12,7 @@
                 <div class="profile-head">
                     <h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
                     <h6>
-                        Web Developer and Designeuses
-
-                        <!--   <modal name="hello-world">
-                            hello, world!
-                        </modal> -->
+                          {{user.mentra}}
                     </h6>
 
                     <p class="proile-rating">RANG : <span>8/10</span></p>

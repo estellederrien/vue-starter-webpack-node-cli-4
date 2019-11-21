@@ -24,12 +24,11 @@
             <label style="padding:5px"><b>Emploi</b></label>
 
             <select class="form-control " v-model="filters.job">
-              <option value="developper">Développeur</option>
-              <option value="cto">Cto</option>
-              <option value="gamer">Gamer</option>
+              <option v-for="job in jobs" :value="job.name">{{
+                job.name
+              }}</option>
             </select>
             <br />
-
             <button
               class="btn btn-warning float-right"
               v-on:click="filterNow()"
@@ -58,7 +57,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ user.nom }}</h5>
             <p class="card-text">
-              Voici la description de mon profil .<br />
+              {{ user.mentra }}<br />
               Age: {{ user.age }}
             </p>
             <a v-on:click="route(user._id)" class="btn btn-primary float-right"
@@ -84,6 +83,7 @@ export default {
 
   methods: {
     filterNow: function() {
+      console.log(this.filters);
       this.getUsers();
     },
     initializeFilters: function() {
@@ -108,10 +108,21 @@ export default {
     },
     openFilters: function() {
       this.$modal.show("filters");
+    },
+    getJobs: function() {
+      axios
+        .post(this.server + "getJobs")
+        .then(response => {
+          this.jobs = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   },
   created: function() {
     this.getUsers();
+    this.getJobs();
   },
   data() {
     return {
@@ -133,7 +144,8 @@ export default {
           img: "img/h2.jpeg"
         }
       ],
-      filters: {}
+      filters: {},
+      jobs: []
     };
   }
 };
