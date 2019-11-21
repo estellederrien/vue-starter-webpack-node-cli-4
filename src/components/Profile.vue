@@ -584,7 +584,7 @@ export default {
                 });
         }
     },
-    mounted: function () {
+    beforeMount: function () {
         this.getActualSession();
         this.getJobs();
     }

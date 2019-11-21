@@ -13,21 +13,36 @@
         >
         <div class="row">
           <div class="col-md-12 " style="padding:30px">
-            <label style="padding:5px"><b>Role</b></label>
-            <select class="form-control " v-model="filters.role">
-              <option value="viewer">Viewer</option>
-              <option value="user">User</option>
-              <option value="administrator">Administrator</option>
-            </select>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Role</label
+                >
+              </div>
+              <select class="form-control " v-model="filters.role">
+                <option value="">Choisir</option>
+                <option value="viewer">Viewer</option>
+                <option value="user">User</option>
+                <option value="administrator">Administrator</option>
+              </select>
+            </div>
             <br />
 
-            <label style="padding:5px"><b>Emploi</b></label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Emploi</label
+                >
+              </div>
+              <select class="form-control " v-model="filters.job">
+                <option value="">Choisir</option>
+                <option v-for="job in jobs" :value="job.name">{{
+                  job.name
+                }}</option>
+              </select>
+            </div>
+            <br />
 
-            <select class="form-control " v-model="filters.job">
-              <option v-for="job in jobs" :value="job.name">{{
-                job.name
-              }}</option>
-            </select>
             <br />
             <button
               class="btn btn-warning float-right"
@@ -63,10 +78,11 @@
             <a v-on:click="route(user._id)" class="btn btn-primary float-right"
               ><i class="fas fa-user"></i
             ></a>
-
-            <span class="badge badge-warning" v-for="f in user.filenames">
-              {{ f.filename }}</span
-            >
+            <div class="filesList">
+              <span class="badge badge-warning" v-for="f in user.filenames">
+                {{ f.filename }}</span
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -83,11 +99,10 @@ export default {
 
   methods: {
     filterNow: function() {
-      console.log(this.filters);
       this.getUsers();
     },
     initializeFilters: function() {
-      this.filters = {};
+      this.filters = { role: "", job: "" };
       this.getUsers();
     },
     replaceByDefault(e) {
@@ -144,7 +159,7 @@ export default {
           img: "img/h2.jpeg"
         }
       ],
-      filters: {},
+      filters: { role: "", job: "" },
       jobs: []
     };
   }
@@ -164,5 +179,11 @@ export default {
 
   padding: 15px;
   margin-left: 30px;
+}
+.filesList {
+  width: 200px;
+  max-width: 200px;
+  max-height: 50px;
+  overflow: auto;
 }
 </style>
