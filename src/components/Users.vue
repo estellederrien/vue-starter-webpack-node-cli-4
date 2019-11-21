@@ -56,11 +56,14 @@
             alt="..."
           />
           <div class="card-body">
-            <h5 class="card-title">{{ user.nom }} test</h5>
-            <p class="card-text">Voici la description de mon profil .</p>
+            <h5 class="card-title">{{ user.nom }}</h5>
+            <p class="card-text">
+              Voici la description de mon profil .<br />
+              Age: {{ user.age }}
+            </p>
             <a v-on:click="route(user._id)" class="btn btn-primary float-right"
-              >Profil</a
-            >
+              ><i class="fas fa-user"></i
+            ></a>
 
             <span class="badge badge-warning" v-for="f in user.filenames">
               {{ f.filename }}</span
