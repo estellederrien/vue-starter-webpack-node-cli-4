@@ -385,7 +385,7 @@ export default {
             });
         }
     },
-    mounted: function () {
+    beforeMount: function () {
 
         this.getUser(this.id);
         this.getJobs();
