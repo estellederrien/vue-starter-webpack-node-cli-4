@@ -3,12 +3,14 @@
     <div class="row">
       <div class="header">
         <button class="btn btn-warning " v-on:click="openFilters()">
-          Filtres
+          <i class="fas fa-filter"></i> Filtres
         </button>
       </div>
 
       <modal name="filters" :width="300" :height="400">
-        <label style="padding:5px"><b>Filtres</b></label>
+        <label style="padding:5px"
+          ><b><i class="fas fa-filter"></i> Filtres</b></label
+        >
         <div class="row">
           <div class="col-md-12 " style="padding:30px">
             <label style="padding:5px"><b>Role</b></label>
@@ -128,8 +130,7 @@ export default {
           img: "img/h2.jpeg"
         }
       ],
-      filters: {},
-      activeFilters: {}
+      filters: {}
     };
   }
 };
