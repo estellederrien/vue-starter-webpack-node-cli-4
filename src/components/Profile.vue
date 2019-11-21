@@ -197,7 +197,7 @@
 
                                     <div class="col-md-4">
                                         <select class="form-control " v-model="user.job">
-                                            <option v-for="job in jobs" value="job.name">{{job.name}}</option>
+                                            <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
                                         </select>
                                     </div>
 
