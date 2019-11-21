@@ -135,9 +135,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p>
-
-                                    <input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
-
+                                     <input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
                                 </p>
                             </div>
                         </div>
@@ -163,23 +161,27 @@
                             </div>
                         </div>
 
-                       <div class="row">
+                        <div class="row">
                             <div class="col-md-2">
                                 <label>Date de naissance</label>
                             </div>
 
-                        <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
-                            <p> 
-                             <input class="form-control" type="date" id="start" name="trip-start"
-                            value="2018-07-22"
-                            min="2018-01-01" max="2018-12-31">
-
-                         </p>
+                            <div class="col-md-2" >
+                                <p>
+                                    <input v-model="user.birthday" @change="getAge" class="form-control" type="date" >
+                                    <!-- <input v-model="user.birthday" @change="getAge" class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" > -->
+                                </p>
                             </div>
+                            <div class="col-md-2">
+                                <label>Age</label>
+                            </div>
+                           <div class="col-md-2" >
+                                <p>
+                                    <input  v-model="user.age" class="form-control" disabled></input>
+                                </p>
+                            </div>
+
                         </div>
-
-
-
 
                         <div class="row">
                             <div class="col-md-2">
@@ -326,13 +328,15 @@ export default {
             user: {
                 nom: "",
                 prenom: "",
-                _id: "",
                 phone: "",
                 profession: "",
                 email: "",
                 password: "",
                 img: "",
-                filenames: []
+                filenames: [],
+                job: "",
+                role: "user",
+                age:""
             },
             auth: false,
             creationProcess: false
@@ -431,7 +435,7 @@ export default {
                 ]
             });
         },
-        hide() {
+        hideModal() {
             this.$modal.hide("hello-world");
         },
         getUser: function () {
@@ -483,8 +487,9 @@ export default {
                 password: "",
                 img: "",
                 filenames: [],
-                job:"",
-                role: "user"
+                job: "",
+                role: "user",
+                age:""
             }
         },
         insertUser: function () {
@@ -514,7 +519,16 @@ export default {
                     console.log(error);
                     this.$router.push("/login");
                 });
+        },
+        getAge: function () {
+
+            var birthdate = new Date(this.user.birthday);
+            var cur = new Date();
+            var diff = cur - birthdate; // This is the difference in milliseconds
+            var age = Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25
+            this.user.age = age;
         }
+
     },
     mounted: function () {
         this.getActualSession()
