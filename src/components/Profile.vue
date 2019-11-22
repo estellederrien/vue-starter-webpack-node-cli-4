@@ -10,6 +10,8 @@
                 <div class="profile-img">
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
                 </div>
+                 <uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
+
             </div>
 
             <div class="col-md-8">
@@ -324,19 +326,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="" v-if="!creationProcess">
-                    <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary btn-block">Mise à jour</span><br />
-                    <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger btn-block">Supprimer</span><br />
-                    <span><a class="btn btn-primary btn-block" v-on:click="showModal()">Message</a>
-                        <v-dialog /></span><br />
-                    <span v-if="auth" v-on:click="createUser()" class="btn btn-warning btn-block">Créer un utilisateur</span><br />
-                </div>
-                <uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
-
-                <span v-if="creationProcess" v-on:click="insertUser()" class="btn btn-warning btn-block">Enregistrer utilisateur</span><br />
-            </div>
+            
         </div>
+        <div class = "row">
+            <div class="col-md-12">
+                  <div class="btn-group" role="group" aria-label="Basic example">  
+                    <div class="" v-if="!creationProcess">
+                       
+                        <v-dialog />
+                        <button class="btn btn-secondary" v-on:click="showModal()"><a  ><i class="fas fa-envelope"></i><span class="d-none d-sm-block ">Message interne</span></a></button>
+                        <button  type="button"  v-on:click="createUser()" class="btn btn-secondary"><i class="fas fa-user-plus"></i><span class="d-none d-sm-block ">Créer un utilisateur</span></button>
+                         <button  type="button"  v-on:click="deleteUser()" class="btn btn-danger"><i class="fas fa-user-minus"></i><span class="d-none d-sm-block ">Supprimer Compte</span></button>
+                         <button type="button"   v-on:click="updateUser()" class="btn btn-secondary"><i class="fas fa-save"></i> <span class="d-none d-sm-block ">Mise à jour</span></button>
+                    </div>
+                   
+                    <button type="button"  v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary"><i class="fas fa-user-plus"></i><span class="d-none d-sm-block ">Enregistrer utilisateur</span></button>
+                </div>
+            </div>
+
+        </div> 
     </form>
 </div>
 </div>

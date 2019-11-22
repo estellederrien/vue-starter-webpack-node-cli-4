@@ -2,7 +2,10 @@
   <!-- <a class="btn btn-primary btn-block" v-on:click="submitFile()">Télécharger</a> -->
 
   <span>
-    <label for="file" class="btn btn-secondary btn-block ">Avatar</label>
+    <label for="file" class="btn btn-secondary btn-block "
+      ><i class="fas fa-user-astronaut"></i
+      ><span class="d-none d-sm-block ">Modifier Avatar</span></label
+    >
     <input
       type="file"
       style="visibility:hidden;"
