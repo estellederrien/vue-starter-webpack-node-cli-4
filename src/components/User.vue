@@ -19,28 +19,28 @@
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i> A propos</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> Dernières infos</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> <span class="d-none d-sm-block ">Dernières infos</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> Fichiers</a>
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i> Autorisations</a>
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i> <span class="d-none d-sm-block ">Autorisations</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-                test
+               
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-2 d-none d-sm-block">
-                <div class="profile-work" style="background-color : lightgrey">
+            <div class="col-md-2 d-none d-md-block">
+                <div class="profile-work" >
                     <p>LIENS DE TRAVAIL</p>
                     <a href="">Website</a><br />
                     <a href="">Bootsnipp</a><br />
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent" style="background-color : lightgrey">
+                <div class="tab-content profile-tab" id="myTabContent" >
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
                             <div class="col-md-2">
@@ -152,10 +152,7 @@
                             <div class="col-md-6">
                                 <p>
 
-                                      <select class="form-control " v-model="user.job">
-                                            <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
-                                        </select>
-                                   
+                                     {{user.job}}
                                     <br />
                                 </p> 
                             </div>
@@ -210,14 +207,16 @@
                             </div> -->
 
                             <div class="col-md-6 tab-content-user">
-                                <label>Liste</label><br />
-                                <tr v-for="file in user.filenames">
+                               
+                                <table class="table">
+                                <tr v-for="file in user.filenames" >
                                     <td>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a v-bind:href="server + 'files/' + file.filename">{{ file.filename }}</a>
+                                        
+                                        <a class="float-left" v-bind:href="server + 'files/' + file.filename"><i class="fas fa-file-alt"></i> {{ file.filename }}</a>
                                     </td>
 
                                 </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -245,13 +244,12 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <span v-if="auth" v-on:click="updateUser()" class="btn btn-primary btn-block">Mise à jour</span><br />
-                <span v-if="auth" v-on:click="deleteUser()" class="btn btn-danger btn-block">Supprimer</span><br />
-                <span><a class="btn btn-primary btn-block" v-on:click="show()">
-                        Message</a>
-                    <v-dialog /></span><br />
 
-                <upload @filename="onUpload" v-if="this.auth" style="margin-top:10px">
+                <span><a class="btn btn-primary btn-block" v-on:click="show()">
+                        <i class="far fa-envelope"></i> <span class="d-none d-sm-block">Message</span></a>
+                    <v-dialog /></span>
+
+
                 </upload>
             </div>
         </div>
@@ -286,7 +284,6 @@ export default {
                 prenom: "",
                 _id: "",
                 phone: "",
-                profession: "",
                 email: "",
                 password: "",
                 img: "",
@@ -373,16 +370,6 @@ export default {
             for (let i = 0; i < selects.length; i++) {
                 selects[i].disabled = true;
             }
-        },
-        getJobs: function() {
-            axios
-            .post(this.server + "getJobs")
-            .then(response => {
-             this.jobs = response.data;
-            })
-            .catch(function(error) {
-            console.log(error);
-            });
         }
     },
     beforeMount: function () {

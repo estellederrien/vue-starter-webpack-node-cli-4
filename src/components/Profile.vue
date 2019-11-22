@@ -362,7 +362,7 @@ export default {
                 nom: "",
                 prenom: "",
                 phone: "",
-                profession: "",
+
                 email: "",
                 password: "",
                 img: "",
@@ -514,7 +514,7 @@ export default {
                 nom: "",
                 prenom: "",
                 phone: "",
-                profession: "",
+
                 email: "",
                 password: "",
                 img: "",
