@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid " id="userDiv">
+<div class="container-fluid " id="userDiv" v-show="loaded">
     <form method="post">
         <div class="row">
             <div class="col-md-2">
@@ -289,7 +289,8 @@ export default {
                 img: "",
                 filenames: []
             },
-            auth: false
+            auth: false,
+            loaded:false
         };
     },
 
@@ -355,6 +356,9 @@ export default {
                 })
                 .then(response => {
                     this.user = response.data;
+                     this.loaded  = true;
+                     this.disableAllinputs();
+                      
                 })
                 .catch(function (erreur) {
                     console.log(erreur);
@@ -366,19 +370,20 @@ export default {
             for (let i = 0; i < elems.length; i++) {
                 elems[i].disabled = true;
             }
-            let selects = document.getElementById('userDiv').getElementsByTagName('select');
+           /*  let selects = document.getElementById('userDiv').getElementsByTagName('select');
             for (let i = 0; i < selects.length; i++) {
                 selects[i].disabled = true;
-            }
+            } */
         }
     },
-    beforeMount: function () {
+    mounted: function () {
 
         this.getUser(this.id);
-        this.getJobs();
-        this.disableAllinputs();
-
-    }
+       
+      
+}
+       
+    
 };
 </script>
 
