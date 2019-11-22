@@ -393,7 +393,7 @@ export default {
 .tab-content-user {
     padding: 10px;
     margin: 10px;
-    height: 50vh;
+
 }
 
 .error {
