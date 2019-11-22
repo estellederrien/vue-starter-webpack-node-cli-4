@@ -302,6 +302,10 @@ export default {
   /* margin-top: 60px; */
 }
 
+.loader {
+  width: 300px;
+  height: 250px;
+}
 #navbarTop {
   margin-bottom: 60px;
 }
