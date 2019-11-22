@@ -1,5 +1,9 @@
 <template>
-<div class="container-fluid ">
+<div>
+    <div>
+        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"></src></span>
+    </div>
+<div class="container-fluid " v-show="loaded" >
     <form method="post" v-on:submit.prevent>
         <div class="row">
             <div class="col-md-2">
@@ -24,28 +28,28 @@
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i> A propos</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> Dernières infos</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i><span class="d-none d-sm-block ">Dernières infos </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> Fichiers</a>
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i> Autorisations</a>
+                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i><span class="d-none d-sm-block "> Autorisations </span></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-                test
+               
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-2 d-none d-sm-block">
-                <div class="profile-work" style="background-color : lightgrey">
+                <div class="profile-work" >
                     <p>LIENS DE TRAVAIL</p>
                     <a href="">Website</a><br />
                     <a href="">Bootsnipp</a><br />
@@ -59,7 +63,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent" style="background-color : lightgrey">
+                <div class="tab-content profile-tab" id="myTabContent" >
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row tab-content-user">
                             <div class="col-md-6">
@@ -285,17 +289,17 @@
 
                             <div class="col-md-6">
                                 <label>Liste</label><br />
+                                <table class="table">
                                 <tr v-for="file in user.filenames">
                                     <td>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a v-bind:href="server + 'files/' + file.filename">{{
-                        file.filename
-                      }}</a>
+                                       
+                                        <a class="float-left" v-bind:href="server + 'files/' + file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
                                     </td>
                                     <td>
                                         <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)"><i class="far fa-trash-alt"></i><br /></span>
                                     </td>
                                 </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -334,6 +338,7 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 </template>
 
@@ -374,7 +379,8 @@ export default {
             auth: false,
             creationProcess: false,
             jobs: [],
-            newJob: ""
+            newJob: "",
+            loaded: false
         };
     },
 
@@ -542,6 +548,7 @@ export default {
                 .then(response => {
                     this.user = response.data;
                     this.auth = true;
+                    this.loaded = true;
                 })
                 .catch(error => {
                     console.log(error);
