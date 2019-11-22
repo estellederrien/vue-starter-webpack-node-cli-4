@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-        <span v-if="!loaded"><img src="../assets/img/loader_800.gif"></src></span>
+        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"></src></span>
     </div>
     <div class="container-fluid " id="userDiv" v-show="loaded">
         <form method="post">
