@@ -1,5 +1,9 @@
 <template>
-  <div class="container-fluid">
+<div>
+    <div>
+        <span v-if="!loaded"><img src="../assets/img/loader_800.gif"></src></span>
+    </div>
+  <div class="container-fluid" v-show="loaded">
     <div class="row">
       <div class="header">
         <button class="btn btn-warning " v-on:click="openFilters()">
@@ -88,6 +92,7 @@
       </div>
     </div>
   </div>
+ </div> 
 </template>
 
 <script>
@@ -116,6 +121,7 @@ export default {
         .post(this.server + "getUsers", { filters: this.filters })
         .then(response => {
           this.users = response.data;
+          this.loaded = true;
         })
         .catch(function(error) {
           console.log(error);
@@ -160,7 +166,8 @@ export default {
         }
       ],
       filters: { role: "", job: "" },
-      jobs: []
+      jobs: [],
+       loaded: false
     };
   }
 };
