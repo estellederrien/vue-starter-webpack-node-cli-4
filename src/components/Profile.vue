@@ -334,7 +334,7 @@
                     <div class="" v-if="!creationProcess">
                        
                         <v-dialog />
-                        <button class="btn btn-secondary" v-on:click="showModal()"><a  ><i class="fas fa-envelope"></i><span class="d-none d-sm-block ">Message interne</span></a></button>
+                        <button class="btn btn-secondary" v-on:click="openMessageModal()"><a  ><i class="fas fa-envelope"></i><span class="d-none d-sm-block ">Message interne</span></a></button>
                         <button  type="button"  v-on:click="createUser()" class="btn btn-secondary"><i class="fas fa-user-plus"></i><span class="d-none d-sm-block ">Créer un utilisateur</span></button>
                          <button  type="button"  v-on:click="deleteUser()" class="btn btn-danger"><i class="fas fa-user-minus"></i><span class="d-none d-sm-block ">Supprimer Compte</span></button>
                          <button type="button"   v-on:click="updateUser()" class="btn btn-secondary"><i class="fas fa-save"></i> <span class="d-none d-sm-block ">Mise à jour</span></button>
@@ -347,15 +347,14 @@
         </div> 
     </form>
 </div>
+    <modal name="messageModal" :width="300" :height="400"><message :from="this.user._id" ></message></modal>
 </div>
 </template>
 
 <script>
+/* GITHUB COMPONENTS */
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import Uploadpicture from "@/components/Uploadpicture.vue";
-
-import Uploadfiles from "@/components/Uploadfiles.vue";
 import {
     SidebarMenu
 } from "vue-sidebar-menu";
@@ -364,6 +363,12 @@ import {
     minLength,
     between
 } from "vuelidate/lib/validators";
+
+/* PERSONNAL COMPONENTS */
+import Uploadpicture from "@/components/Uploadpicture.vue";
+import Uploadfiles from "@/components/Uploadfiles.vue";
+import Message from "@/components/Message.vue";
+
 
 export default {
     name: "Profile",
@@ -375,7 +380,6 @@ export default {
                 nom: "",
                 prenom: "",
                 phone: "",
-
                 email: "",
                 password: "",
                 img: "",
@@ -414,9 +418,13 @@ export default {
     },
     components: {
         uploadpicture: Uploadpicture,
-        uploadfiles: Uploadfiles
+        uploadfiles: Uploadfiles,
+        message:Message
     },
     methods: {
+        openMessageModal: function() {
+            this.$modal.show("messageModal");
+        },
         deleteFile(file) {
             let self = this;
             if (confirm("Do you really want to delete?")) {
@@ -463,7 +471,7 @@ export default {
         showModal() {
             // this.$modal.show('hello-world');
             this.$modal.show("dialog", {
-                title: "Alert!",
+                title: "Message",
                 text: "You are too awesome",
                 buttons: [{
                         title: "Deal with it",

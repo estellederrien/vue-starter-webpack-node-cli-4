@@ -30,12 +30,12 @@ Vue.use(Vuelidate);
 
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
 /* Localhost */
-// Vue.server = Vue.prototype.server = "http://localhost:80/";
+Vue.server = Vue.prototype.server = "http://localhost:80/";
 
 /* OPENODE.IO */
-Vue.server = Vue.prototype.server =
+/* Vue.server = Vue.prototype.server =
   "http://vue-starter-webpack-cli-4-node.openode.io/";
-
+ */
 /* Google cloud */
 /* Vue.server = Vue.prototype.server =
   "https://cedar-network-259109.appspot.com:8080/"; */
