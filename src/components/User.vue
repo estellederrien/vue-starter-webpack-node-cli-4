@@ -258,7 +258,12 @@
             </div>
         </form>
     </div>
+
+    
 </div>
+
+
+    
 </template>
 
 <script>
@@ -324,6 +329,7 @@ export default {
         uploadfiles: Uploadfiles
     },
     methods: {
+        
 
         replaceByDefault(e) {
             e.target.src = this.server + "/img/defaut.png";
