@@ -32,14 +32,18 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos </span></a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i><span class="d-none d-sm-block ">Dernières infos </span></a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages </span></a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i><span class="d-none d-sm-block "> Autorisations </span></a>
+                            <a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i><span class="d-none d-sm-block "> Autorisations </span></a>
                         </li>
                     </ul>
                 </div>
@@ -241,6 +245,19 @@
                         </div>
                         <!--  // FIN DU TAB -->
                     </div>
+
+
+
+                     <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                            <messages v-if="this.user._id" :_id="this.user._id"></messages>
+                    </div>
+
+
+
+
+
+
+
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row ">
                             <div class="col-md-2">
@@ -284,7 +301,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row" style="height:400px">
+                        <div class="row" style="height:300px">
                             <div class="col-md-6">
                                 <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
                             </div>
@@ -292,15 +309,15 @@
                             <div class="col-md-6">
                                 <label>Liste</label><br />
                                 <table class="table">
-                                <tr v-for="file in user.filenames">
-                                    <td>
-                                       
-                                        <a class="float-left" v-bind:href="server + 'files/' + file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
-                                    </td>
-                                    <td>
-                                        <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)"><i class="far fa-trash-alt"></i><br /></span>
-                                    </td>
-                                </tr>
+                                    <tr v-for="file in user.filenames">
+                                        <td>
+                                        
+                                            <a class="float-left" v-bind:href="server + 'files/' + file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                        </td>
+                                        <td>
+                                            <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)"><i class="far fa-trash-alt"></i><br /></span>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -347,7 +364,7 @@
         </div> 
     </form>
 </div>
-    <modal name="messageModal" :width="300" :height="400"><message :from="this.user._id" ></message></modal>
+    <modal name="messageModal" :width="350" :height="400"><message :user="this.user" ></message></modal>
 </div>
 </template>
 
@@ -368,7 +385,7 @@ import {
 import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import Message from "@/components/Message.vue";
-
+import Messages from "@/components/Messages.vue";
 
 export default {
     name: "Profile",
@@ -377,6 +394,7 @@ export default {
     data() {
         return {
             user: {
+               _id:"",
                 nom: "",
                 prenom: "",
                 phone: "",
@@ -419,9 +437,20 @@ export default {
     components: {
         uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles,
-        message:Message
+        message:Message,
+        messages:Messages
     },
     methods: {
+         getJobs: function() {
+        axios
+            .post(this.server + "getJobs")
+            .then(response => {
+            this.jobs = response.data;
+            })
+            .catch(function(error) {
+            console.log(error);
+            });
+        },
         openMessageModal: function() {
             this.$modal.show("messageModal");
         },

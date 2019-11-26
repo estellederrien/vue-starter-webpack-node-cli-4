@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <label style="padding:5px"
-      ><b><i class="fas fa-filter"></i> Message</b></label
+  <div style="padding:5px" >
+    <label 
+      ><b><i class="fas fa-envelope"></i> Message</b></label
     ></br>
-    
+    <div >
     DE {{ from }} à</br>
     A  
     <select class="form-control " v-model="message.to">
         <option value="">Choisir</option>
         <option v-for="u in users" :value="u._id">{{u.nom}}</option>
     </select>
-
+    <br>
     Message :
 
     <p>
@@ -18,7 +18,7 @@
     </p>
 
     <button class="float-right btn btn-primary" v-on:click = "insertMessage()">Send</button>
-
+    </div>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 export default {
   name: "message",
-  props: ["from"],
+  props: ["user"],
   data() {
     return {
       message: {
@@ -42,8 +42,9 @@ export default {
     
     insertMessage: function() {
 
-        this.message.from = this.from;
-        console.log(this.message);
+        this.message.from = this.user._id;
+        this.message.senderName = this.user.nom;
+        this.message.senderSurname = this.user.prenom;
 
       axios
         .post(this.server + "insertMessage", this.message)
@@ -70,7 +71,7 @@ export default {
     }
     },
    mounted: function() {
-console.log("comin from components");
+
     this.getUsers();
    
   }

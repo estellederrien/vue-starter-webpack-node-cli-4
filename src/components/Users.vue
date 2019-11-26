@@ -75,7 +75,8 @@ export default {
     },
     openFilters: function() {
       this.$modal.show("filters");
-    },
+    }
+  },
   
     components: {
         filters:Filters
