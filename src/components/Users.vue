@@ -76,17 +76,6 @@ export default {
     openFilters: function() {
       this.$modal.show("filters");
     },
-    getJobs: function() {
-      axios
-        .post(this.server + "getJobs")
-        .then(response => {
-          this.jobs = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  },
   
     components: {
         filters:Filters
