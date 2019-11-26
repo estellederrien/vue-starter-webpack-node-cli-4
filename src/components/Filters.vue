@@ -11,7 +11,7 @@
               >Role</label
             >
           </div>
-          <select class="form-control " v-model="filterschanged.role">
+          <select class="form-control " v-model="filtersChanged.role">
             <option value="">Choisir</option>
             <option value="viewer">Viewer</option>
             <option value="user">User</option>
@@ -26,7 +26,7 @@
               >Emploi</label
             >
           </div>
-          <select class="form-control " v-model="filterschanged.job">
+          <select class="form-control " v-model="filtersChanged.job">
             <option value="">Choisir</option>
             <option v-for="job in jobs" :value="job.name">{{
               job.name
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       jobs: [],
-      filterschanged: { role: "", job: "" }
+      filtersChanged: { role: "", job: "" }
     };
   },
 
@@ -75,13 +75,14 @@ export default {
         });
     },
     filterNow: function() {
-      /*   Executing the executeFilters parent function with filterschanged as parameters , 
+      /*   Executing the executeFilters parent function with filtersChanged as parameters , 
       the executefilters function needs to be called from the component call inside of the parent :  
       <filters  @filters="executeFilters" ></filters> */
-      this.$emit("filters", this.filterschanged);
+      this.$emit("filters", this.filtersChanged);
     },
     initializeFilters: function() {
-      this.filterschanged = { role: "", job: "" };
+      this.filtersChanged = { role: "", job: "" };
+      this.$emit("filters", this.filtersChanged);
     }
   },
   mounted: function() {

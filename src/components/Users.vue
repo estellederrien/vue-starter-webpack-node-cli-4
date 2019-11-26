@@ -78,9 +78,9 @@ export default {
     openFilters: function() {
       this.$modal.show("filters");
     },
-    executeFilters: function(filterschanged) {
-      this.filters = filterschanged;
-       this.getUsers();
+    executeFilters: function(filtersChanged) {
+      this.filters = filtersChanged;
+      this.getUsers();
     }
   },
   
@@ -95,7 +95,7 @@ export default {
     return {
       msg: "Welcome to Crypto Info",
       users: [],
-      filters: { role: "", job: "" },
+      filters: {},
       jobs: [],
       loaded: false
      
