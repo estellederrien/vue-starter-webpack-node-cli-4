@@ -578,16 +578,6 @@ export default {
             var age = Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25
             this.user.age = age;
         },
-        getJobs: function () {
-            axios
-                .post(this.server + "getJobs")
-                .then(response => {
-                    this.jobs = response.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
         insertJob: function () {
             if (this.newJob.length < 3) {
                 alert('trop court)')
