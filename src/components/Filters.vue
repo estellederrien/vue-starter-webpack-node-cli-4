@@ -11,7 +11,7 @@
               >Role</label
             >
           </div>
-          <select class="form-control " v-model="filters.role">
+          <select class="form-control " v-model="filterschanged.role">
             <option value="">Choisir</option>
             <option value="viewer">Viewer</option>
             <option value="user">User</option>
@@ -26,7 +26,7 @@
               >Emploi</label
             >
           </div>
-          <select class="form-control " v-model="filters.job">
+          <select class="form-control " v-model="filterschanged.job">
             <option value="">Choisir</option>
             <option v-for="job in jobs" :value="job.name">{{
               job.name
@@ -56,12 +56,10 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 export default {
   name: "filters",
-  props: ["from"],
   data() {
     return {
-      users: [],
       jobs: [],
-      filters: { role: "", job: "" }
+      filterschanged: { role: "", job: "" }
     };
   },
 
@@ -77,12 +75,13 @@ export default {
         });
     },
     filterNow: function() {
-      // this.$emit("filters", this.filters);
-      this.$parent.getUsers(this.filters);
+      /*   Executing the executeFilters parent function with filterschanged as parameters , 
+      the executefilters function needs to be called from the component call inside of the parent :  
+      <filters  @filters="executeFilters" ></filters> */
+      this.$emit("filters", this.filterschanged);
     },
     initializeFilters: function() {
-      this.filters = { role: "", job: "" };
-      this.getUsers();
+      this.filterschanged = { role: "", job: "" };
     }
   },
   mounted: function() {

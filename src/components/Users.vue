@@ -12,7 +12,7 @@
       </div>
 
       <modal name="filters" :width="300" :height="400">
-          <filters  @filters="getUsers"></filters>
+          <filters  @filters="executeFilters" ></filters>
       </modal>
 
       <div v-for="user in users" class="col-sm col-xs-12">
@@ -63,6 +63,8 @@ export default {
       this.$router.push("/user/" + _id);
     },
     getUsers: function() {
+      
+
       axios
         .post(this.server + "getUsers", { filters: this.filters })
         .then(response => {
@@ -75,6 +77,10 @@ export default {
     },
     openFilters: function() {
       this.$modal.show("filters");
+    },
+    executeFilters: function(filterschanged) {
+      this.filters = filterschanged;
+       this.getUsers();
     }
   },
   
@@ -82,8 +88,8 @@ export default {
         filters:Filters
     },
   created: function() {
-    this.getUsers();
-    this.getJobs();
+      this.getUsers();
+
   },
   data() {
     return {
@@ -92,6 +98,7 @@ export default {
       filters: { role: "", job: "" },
       jobs: [],
       loaded: false
+     
     };
   }
 };
