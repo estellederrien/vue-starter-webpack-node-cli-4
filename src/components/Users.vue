@@ -12,57 +12,7 @@
       </div>
 
       <modal name="filters" :width="300" :height="400">
-        <label style="padding:5px"
-          ><b><i class="fas fa-filter"></i> Filtres</b></label
-        >
-        <div class="row">
-          <div class="col-md-12 " style="padding:30px">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >Role</label
-                >
-              </div>
-              <select class="form-control " v-model="filters.role">
-                <option value="">Choisir</option>
-                <option value="viewer">Viewer</option>
-                <option value="user">User</option>
-                <option value="administrator">Administrator</option>
-              </select>
-            </div>
-            <br />
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >Emploi</label
-                >
-              </div>
-              <select class="form-control " v-model="filters.job">
-                <option value="">Choisir</option>
-                <option v-for="job in jobs" :value="job.name">{{
-                  job.name
-                }}</option>
-              </select>
-            </div>
-            <br />
-
-            <br />
-            <button
-              class="btn btn-warning float-right"
-              v-on:click="filterNow()"
-            >
-              Filtrer !
-            </button>
-
-            <button
-              class="btn btn-primary float-right"
-              v-on:click="initializeFilters()"
-            >
-              Initialiser
-            </button>
-          </div>
-        </div>
+          <filters  @filters="getUsers"></filters>
       </modal>
 
       <div v-for="user in users" class="col-sm col-xs-12">
@@ -99,17 +49,13 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
+import Filters from  "@/components/Filters.vue";
+
 export default {
   name: "Users",
 
   methods: {
-    filterNow: function() {
-      this.getUsers();
-    },
-    initializeFilters: function() {
-      this.filters = { role: "", job: "" };
-      this.getUsers();
-    },
+    
     replaceByDefault(e) {
       e.target.src = this.server + "defaut.png";
     },
@@ -141,6 +87,10 @@ export default {
         });
     }
   },
+  
+    components: {
+        filters:Filters
+    },
   created: function() {
     this.getUsers();
     this.getJobs();
@@ -148,26 +98,10 @@ export default {
   data() {
     return {
       msg: "Welcome to Crypto Info",
-      users: [
-        {
-          nom: "Derrien",
-          id: "1",
-          img: "img/h1.jpg"
-        },
-        {
-          nom: "Floril",
-          id: "2",
-          img: "img/f1.jpeg"
-        },
-        {
-          nom: "Daril",
-          id: "3",
-          img: "img/h2.jpeg"
-        }
-      ],
+      users: [],
       filters: { role: "", job: "" },
       jobs: [],
-       loaded: false
+      loaded: false
     };
   }
 };
