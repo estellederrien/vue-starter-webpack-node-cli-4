@@ -100,7 +100,8 @@ export default {
              axios
                 .post(this.server + "getAuth", this.user)
                 .then(response => {
-                    this.$userid =  response.data.$userid; // MONGODB ID USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
+                    console.log(response.data)
+                    this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
                    this.$router.push("/profile");
                 })
                 .catch(error => {

@@ -249,7 +249,7 @@
                 </div>
                 <div class="col-md-2">
 
-                    <span><a class="btn btn-primary btn-block" v-on:click="show()">
+                    <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
                             <i class="far fa-envelope"></i> <span class="d-none d-sm-block">Message</span></a>
                         <v-dialog /></span>
 
@@ -259,7 +259,7 @@
         </form>
     </div>
 
-    
+     <modal name="messageModal" :width="350" :height="400"><message :user="this.anonymous" ></message></modal>
 </div>
 
 
@@ -269,8 +269,7 @@
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import Uploadpicture from "@/components/Uploadpicture.vue";
-import Uploadfiles from "@/components/Uploadfiles.vue";
+
 import {
     SidebarMenu
 } from "vue-sidebar-menu";
@@ -279,6 +278,11 @@ import {
     minLength,
     between
 } from "vuelidate/lib/validators";
+
+/* IMPORTING PERSONNAL COMPONENTS */
+import Uploadpicture from "@/components/Uploadpicture.vue";
+import Uploadfiles from "@/components/Uploadfiles.vue";
+import Message from "@/components/Message.vue";
 
 export default {
     name: "User",
@@ -289,9 +293,19 @@ export default {
     data() {
         return {
             user: {
+                 _id: "",
                 nom: "",
-                prenom: "",
-                _id: "",
+                prenom: "",    
+                phone: "",
+                email: "",
+                password: "",
+                img: "",
+                filenames: []
+            },
+            anonymous:{
+                _id: "anonymous",
+                nom: "anonymous",
+                prenom: "anonymous",    
                 phone: "",
                 email: "",
                 password: "",
@@ -326,36 +340,19 @@ export default {
     },
     components: {
         uploadpicture: Uploadpicture,
-        uploadfiles: Uploadfiles
+        uploadfiles: Uploadfiles,
+         message:Message
     },
     methods: {
         
-
+        
+        openMessageModal: function() {
+            this.$modal.show("messageModal");
+        },
         replaceByDefault(e) {
             e.target.src = this.server + "/img/defaut.png";
         },
-        show() {
-            // this.$modal.show('hello-world');
-            this.$modal.show("dialog", {
-                title: "Alert!",
-                text: "You are too awesome",
-                buttons: [{
-                        title: "Deal with it",
-                        handler: () => {
-                            alert("Woot!");
-                        }
-                    },
-                    {
-                        title: "", // Button title
-                        default: true, // Will be triggered by default if 'Enter' pressed.
-                        handler: () => {} // Button click handler
-                    },
-                    {
-                        title: "Close"
-                    }
-                ]
-            });
-        },
+        
         hide() {
             this.$modal.hide("hello-world");
         },

@@ -1,7 +1,9 @@
 <template>
-  <div style="max-height:300px;overflow:auto">
-    <label> LISTE DE MES MESSAGES</label><br />
-    <table class="table">
+  <div
+    class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+    aria-labelledby="messagesDropdown"
+  >
+    <!--  <table class="table">
       <tr v-for="m in messages">
         <td>
           {{ m.date }}
@@ -12,15 +14,36 @@
         <td>
           {{ m.content }}
         </td>
-        <!-- <td>
-          <span
-            class="remove-file btn btn-primary"
-            v-on:click="deleteMessage(m)"
-            ><i class="far fa-trash-alt"></i><br
-          /></span>
-        </td> -->
       </tr>
-    </table>
+    </table> -->
+
+    <h6 class="dropdown-header">
+      Message Center
+    </h6>
+    <a
+      class="dropdown-item d-flex align-items-center"
+      href="#"
+      v-for="m in messages"
+    >
+      <div class="dropdown-list-image mr-3">
+        <img
+          class="rounded-circle"
+          src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
+          alt=""
+        />
+        <div class="status-indicator bg-success"></div>
+      </div>
+      <div class="font-weight-bold">
+        <div class="text-truncate">
+          {{ m.content }}
+        </div>
+        <div class="small text-gray-500">{{ m.senderName }} · {{ m.date }}</div>
+      </div>
+    </a>
+
+    <a class="dropdown-item text-center small text-gray-500" href="#"
+      >Read More Messages</a
+    >
   </div>
 </template>
 

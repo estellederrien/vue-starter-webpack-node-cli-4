@@ -35,10 +35,10 @@
                         <!-- <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i><span class="d-none d-sm-block ">Dernières infos </span></a>
                         </li> -->
-                        <li class="nav-item">
+                       <!--  <li class="nav-item">
                             <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages </span></a>
                         </li>
-
+ -->
                         <li class="nav-item">
                             <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers </span></a>
                         </li>
