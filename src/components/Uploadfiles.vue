@@ -108,6 +108,12 @@ export default {
     handleFileUploads: function() {
       /*Handles a change on the file upload*/
       this.files = this.$refs.files.files;
+      this.$notify({
+        type: 'success',
+        group: 'foo',
+        title: 'Bien choisis ! ',
+        text: 'Cliquez sur Soumettre pour placer les fichiers sur le serveur !'
+        });
     }
   }
 };
