@@ -16,6 +16,9 @@
         >Soumettre</a
       >
 
+      <!-- LOADING PIC -->
+      <img v-if="loading" style="width:100px" src="../assets/img/JointRevolvingAntelopegroundsquirrel-size_restricted.gif"></img>
+
       <!-- REALTIME FILE MANAGEMENT -->
       <table class="table  table-dark">
         <tbody>
@@ -46,11 +49,13 @@ export default {
   props: ["filenames"],
   data() {
     return {
-      files: ""
+      files: "",
+      loading: false
     };
   },
 
   methods: {
+    
     removeFile(key) {
       var newList = [];
 
@@ -62,6 +67,7 @@ export default {
       this.files = newList;
     },
     submitFiles: function() {
+      this.loading = true;
       /*Initialize the form data*/
       var formData = new FormData();
       var self = this;
@@ -86,10 +92,13 @@ export default {
           }
         })
         .then(function(response) {
-          // Send to filenames to the parent component, Displaying them in the user component
+           self.loading = false;
           alert("Files have been uploaded ");
-          // self.filenames = response.data;
+         
+          // Send to filenames to the parent component, Displaying them in the user component
           self.$emit("myfilenamesevent", response.data);
+          // INITIALIZING FILES TO GET READY TO UPLOADS SOME NEWS !
+          self.files = [];
         })
         .catch(function(error) {
           alert("Error : please contact an admin");
