@@ -129,7 +129,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
   position: fixed; /* fixing the position takes it out of html flow - knows
                    nothing about where to locate itself except by browser
@@ -147,5 +147,9 @@ export default {
   width: 100%;
   max-height: 100px;
   overflow: auto;
+}
+.tab-pane{
+  background-color:lightgrey;
+  min-height:100px
 }
 </style>
