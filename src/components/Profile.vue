@@ -26,7 +26,7 @@
                         </modal> -->
                     </h6>
 
-                    <p class="proile-rating">RANG : <span>8/10</span></p>
+                  <!--   <p class="proile-rating">RANG : <span>8/10</span></p> -->
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -628,7 +628,7 @@ export default {
         cancelInsertUser: function(){
                 this. creationProcess = false;
                  this.getActualSession();
-                 
+
         }
     },
     beforeMount: function () {
