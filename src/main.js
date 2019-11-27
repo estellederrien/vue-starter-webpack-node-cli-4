@@ -41,21 +41,21 @@ Vue.server = Vue.prototype.server = "http://localhost:80/";
   "https://cedar-network-259109.appspot.com:8080/"; */
 // "http://localhost:8080/";
 
-// ---------------------------------------------- STORING MONGODB ID AS GLOBAL FOR PROFILE , THIS VAR IS POPULATED WHEN A USER LOGS IN for the PROFILE MENU TO APPEAR IN THE TOPBAR
+// ---------------------------------------------- STORING MONGODB ID AS GLOBAL FOR PROFILE , THIS VAR IS POPULATED WHEN A USER LOGS IN INSIDE THE LOGIN COMPONENT for the PROFILE MENU TO APPEAR IN THE TOPBAR
 // ---------------------------------------------- VUEX WILL BE BETTER LATER
 
 let globalData = new Vue({
-  data: { $userid: "" }
+  data: { $user: {} }
 });
 
 Vue.mixin({
   computed: {
-    $userid: {
+    $user: {
       get: function() {
-        return globalData.$data.$userid;
+        return globalData.$data.$user;
       },
-      set: function(userid) {
-        globalData.$data.$userid = userid;
+      set: function(user) {
+        globalData.$data.$user = user;
       }
     }
   }

@@ -4,7 +4,7 @@
       ><b><i class="fas fa-envelope"></i> Message</b></label
     ></br>
     <div >
-    DE {{ from }} à</br>
+    DE {{ user.nom }} à</br>
     A  
     <select class="form-control " v-model="message.to">
         <option value="">Choisir</option>
