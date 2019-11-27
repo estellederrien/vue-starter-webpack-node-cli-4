@@ -24,13 +24,15 @@ Will Contains :<br /><br />
 1 File session store<br />
 1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver<br />
 1 Calendar lib<br />
-1 v-dialog lib<br />
+1 V-dialog lib<br />
 1 SOCKET.IO realtime evolutive system <br />
 1 Gps positionning lib <br />
 1 Effective multi selector <br />
 1 Linear multiple regression lib : https://github.com/luccastera/shaman
 <br /><br />
-
+Also ...
+1 Drag n drop lib 
+1 Notifier https://github.com/euvl/vue-notification
 
 
 ## Project setup
