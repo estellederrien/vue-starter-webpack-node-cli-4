@@ -356,7 +356,7 @@
                          <button  type="button"  v-on:click="deleteUser()" class="btn btn-danger"><i class="fas fa-user-minus"></i><span class="d-none d-sm-block ">Supprimer Compte</span></button>
                          <button type="button"   v-on:click="updateUser()" class="btn btn-secondary"><i class="fas fa-save"></i> <span class="d-none d-sm-block ">Mise à jour</span></button>
                     </div>
-                   
+                    <button type="button"  v-if="creationProcess" v-on:click="cancelInsertUser()" class="btn btn-secondary"><i class="fas fa-window-close"></i><span class="d-none d-sm-block ">Cancel</span></button>
                     <button type="button"  v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary"><i class="fas fa-user-plus"></i><span class="d-none d-sm-block ">Enregistrer utilisateur</span></button>
                 </div>
             </div>
@@ -624,6 +624,11 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        cancelInsertUser: function(){
+                this. creationProcess = false;
+                 this.getActualSession();
+                 
         }
     },
     beforeMount: function () {
