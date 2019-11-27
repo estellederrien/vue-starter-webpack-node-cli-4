@@ -17,18 +17,50 @@
 					<div class="form-group row">
 					  <div class="col-sm-6 mb-3 mb-sm-0">
 						<input type="text" class="form-control form-control-user"  min="1" v-model="user.prenom"  name="prenom" value ="prenom" id="prenom" placeholder="Prénom">
-					  </div>
+					    <!-- ERRORS MESSAGES -->
+                <div class="error" v-if="!$v.user.prenom.required">
+                     Le champs est nécessaire
+                </div>
+                <div class="error" v-if="!$v.user.prenom.minLength">
+                    Le prénom doit avoir au moins
+                    {{ $v.user.nom.$params.minLength.min }} letters.
+                </div>
+            </div>
 					  <div class="col-sm-6">
 						<input type="text" class="form-control form-control-user" min="1"  v-model="user.nom" name="nom" value ="nom" id="nom" placeholder="Nom">
-					  </div>
+					  <!-- ERRORS MESSAGES -->
+              <div class="error" v-if="!$v.user.nom.required">
+                  Le champs est nécessaire
+              </div>
+              <div class="error" v-if="!$v.user.nom.minLength">
+                  Le nom doit avoir au moins
+                  {{ $v.user.nom.$params.minLength.min }} letters.
+              </div>
+            </div>
 					</div>
 					<div class="form-group">
 					  <input type="email" class="form-control form-control-user" min="1"  v-model="user.email"  name="email" value ="email" id="email" placeholder="Email">
-					</div>
+            <!-- ERRORS MESSAGES -->
+            <div class="error" v-if="!$v.user.email.required">
+                  Le champs est nécessaire
+            </div>
+            <div class="error" v-if="!$v.user.email.minLength">
+                L'Email doit avoir au moins
+                {{ $v.user.nom.$params.minLength.min }} lettres.
+            </div>
+          </div>
 					<div class="form-group row">
 					  <div class="col-sm-6 mb-3 mb-sm-0">
 						<input type="password" class="form-control form-control-user" min="1"  v-model="user.password" value ="password" id="password" placeholder="Mot de passe">
-					  </div>
+					  <!-- ERRORS MESSAGES -->
+              <div class="error" v-if="!$v.user.password.required">
+                    Le champs est nécessaire
+              </div>
+              <div class="error" v-if="!$v.user.password.minLength">
+                  Le mot de passe doit avoir au moins
+                  {{ $v.user.password.$params.minLength.min }} lettres.
+              </div>
+            </div>
 					  <!-- <div class="col-sm-6">
 						<input type="password" class="form-control form-control-user" name="password"value ="password" id="password" placeholder="Mot de passe">
 					  </div> -->
@@ -44,11 +76,11 @@
 					<!-- </a> -->
               </form>
               <hr>
-              <div class="text-center" disabled>
+              <!-- <div class="text-center" disabled>
                 <a class="small" v-on:click='login()'>Mot de passe oublié?</a>
-              </div>
+              </div> -->
               <div class="text-center">
-                <a class="small"  v-on:click='login()'>Déjà un compte ? S'identifier</a>
+                <a class="small"  v-on:click='routeLogin()'>Déjà un compte ? S'identifier</a>
               </div>
             </div>
           </div>
@@ -60,11 +92,18 @@
 
 <script>
 import axios from "axios";
- 
+ import {
+    required,
+    minLength,
+    between
+} from "vuelidate/lib/validators";
  export default {
     name: 'Register',
     
     methods: {
+      routeLogin: function(){
+        this.$router.push("/login"); 
+      },
     register: function() {
 
 
@@ -107,11 +146,31 @@ import axios from "axios";
         nom: "",
         prenom: "",
         email: "",
-        password: "",
-        filenames:[]
+        password: ""
       },
       problem:false
       }
+    },
+
+    validations: {
+        user: {
+            nom: {
+                required,
+                minLength: minLength(2)
+            },
+            prenom: {
+                required,
+                minLength: minLength(2)
+            },
+            email: {
+                required,
+                minLength: minLength(2)
+            },
+            password: {
+                required,
+                minLength: minLength(2)
+            }
+        }
     }
   }
 </script>

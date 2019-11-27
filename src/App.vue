@@ -216,7 +216,15 @@ export default {
   padding-left: 50px;
   /* margin-top: 60px; */
 }
+a:hover {
+  color: red important!;
+  background-color: lightgrey;
+  cursor: pointer;
+}
 
+a {
+  color: blue;
+}
 .loader {
   width: 300px;
   height: 250px;
