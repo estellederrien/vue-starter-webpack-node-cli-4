@@ -540,7 +540,12 @@ export default {
             axios
                 .post(this.server + "updateUser", this.user)
                 .then(response => {
-                    alert(" MAJ ok ! ");
+                    this.$notify({
+                        type: 'success',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Update is ok !'
+                        });
                     console.log(response);
                 })
                 .catch(function (erreur) {
@@ -581,7 +586,12 @@ export default {
             axios
                 .post(this.server + "insertUser", this.user)
                 .then(response => {
-                    alert("Added one user !");
+                   this.$notify({
+                        type: 'success',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Added on user!'
+                        });
                     this.creationProcess = false;
                     this.getActualSession();
                 })

@@ -102,7 +102,13 @@ export default {
                 .then(response => {
                     console.log(response.data)
                     this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
+                     this.$notify({
+                        group: 'foo',
+                        title: 'Bienvenue dans l\'application ',
+                        text: 'Identification OK !'
+                        });
                    this.$router.push("/profile");
+                   
                 })
                 .catch(error => {
                     alert('Auth Error !')
@@ -116,9 +122,11 @@ export default {
         }
     },
     mounted: function () {
-     
-          
-           
+     this.$notify({
+        group: 'foo',
+        title: 'Bienvenue dans l\'application ',
+        text: 'Veillez à vous identifier.!'
+        });
              
     }
 };
@@ -127,7 +135,16 @@ export default {
 <style>
 
 
+a:hover {
+color:red;
+text-decoration:none;
+background-color:grey;
+cursor: pointer; 
+}
 
+a{
+    color:blue;
+}
 
 
 @media (max-width: 768px) {

@@ -116,7 +116,12 @@ import axios from "axios";
         !this.user.email
       ) {
         this.problem = true;
-
+       this.$notify({
+        type: 'error',
+        group: 'foo',
+        title: 'Hey! ',
+        text: 'manque un champs !'
+        });
         return;
       }
 
@@ -138,7 +143,12 @@ import axios from "axios";
     }
   },
     created: function() {
-       
+        this.$notify({
+        type: 'success',
+        group: 'foo',
+        title: 'Bonjour ! ',
+        text: 'Vous pouvez vous enregistrer !'
+        });
     },
     data () {
       return {

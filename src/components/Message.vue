@@ -49,10 +49,21 @@ export default {
       axios
         .post(this.server + "insertMessage", this.message)
         .then(response => {
-          alert("Added one message !");
+          this.$notify({
+            type: 'success',
+            group: 'foo',
+            title: 'Hey! ',
+            text: 'Message envoyé !'
+            });
           this.$emit("message", this.message);
         })
         .catch(function(error) {
+          this.$notify({
+            type: 'error',
+            group: 'foo',
+            title: 'Hey! ',
+            text: 'erreur lors de l\'envoi!'
+            });
           console.log(error);
         });
     },

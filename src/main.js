@@ -28,6 +28,9 @@ Vue.use(SmartTable);
 import Vuelidate from "vuelidate";
 Vue.use(Vuelidate);
 
+import Notifications from "vue-notification";
+Vue.use(Notifications);
+
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
 /* Localhost */
 /* Vue.server = Vue.prototype.server = "http://localhost:80/"; */
