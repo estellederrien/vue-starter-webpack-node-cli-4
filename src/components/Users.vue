@@ -26,8 +26,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ user.nom }}</h5>
             <p class="card-text">
-              {{ user.mentra }}<br />
-              Age: {{ user.age }}
+             
 
 <div class="nav nav nav-pills mb-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
   <a class="nav-link active" id="v-pills-home-tab " data-toggle="pill" :href="'#v-pills-home' + user._id" role="tab" :aria-controls="'v-pills-home' + user._id" aria-selected="true"><i class="fas fa-info"></i></a>
@@ -36,28 +35,24 @@
 </div>
 
 <div class="tab-content" id="v-pills-tabContent">
-  <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">{{ user.nom }}</div>
+  
+  <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
+     {{ user.mentra }}<br />
+      Age: {{ user.age }}
+  </div>
+
   <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab"> 
     <div class="filesList">
       <span class="badge badge-warning" v-for="f in user.filenames">
         {{ f.filename }}</span
       >
   </div>
+
   </div>
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-            </p>
+     </p>
             <a v-on:click="route(user._id)" class="btn btn-primary float-right"
               ><i class="fas fa-user"></i
             ></a>
@@ -131,25 +126,27 @@ export default {
 
 <style scoped>
 .header {
-  position: fixed; /* fixing the position takes it out of html flow - knows
-                   nothing about where to locate itself except by browser
-                   coordinates */
-  left: 0; /* top left corner should start at leftmost spot */
-  top: 50px; /* top left corner should start at topmost spot */
-  width: 100vw; /* take up the full browser width */
-  z-index: 200; /* high z index so other content scrolls underneath */
-  height: 20vh; /* define height for content */
+    position: fixed; /* fixing the position takes it out of html flow - knows
+                    nothing about where to locate itself except by browser
+                    coordinates */
+    left: 0; /* top left corner should start at leftmost spot */
+    top: 50px; /* top left corner should start at topmost spot */
+    width: 100vw; /* take up the full browser width */
+    z-index: 200; /* high z index so other content scrolls underneath */
+    height: 20vh; /* define height for content */
 
-  padding: 15px;
-  margin-left: 30px;
+    padding: 15px;
+    margin-left: 30px;
 }
 .filesList {
-  width: 100%;
-  max-height: 100px;
-  overflow: auto;
+    width: 100%;
+    max-height: 100px;
+    overflow: auto;
 }
 .tab-pane{
-  background-color:lightgrey;
-  min-height:100px
+    background-color:lightgrey;
+    min-height:100px;
+    height:100px;
+    overflow:auto;
 }
 </style>
