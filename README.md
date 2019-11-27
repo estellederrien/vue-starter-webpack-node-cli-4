@@ -31,8 +31,9 @@ Will Contains :<br /><br />
 1 Linear multiple regression lib : https://github.com/luccastera/shaman
 <br /><br />
 Also ...
-1 Drag n drop lib 
-1 Notifier https://github.com/euvl/vue-notification
+1 Drag n drop lib <br />
+1 Notifier https://github.com/euvl/vue-notification<br />
+<br /><br />
 
 
 ## Project setup
