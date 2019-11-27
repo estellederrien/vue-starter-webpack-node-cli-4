@@ -30,18 +30,18 @@ Vue.use(Vuelidate);
 
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
 /* Localhost */
-Vue.server = Vue.prototype.server = "http://localhost:80/";
+/* Vue.server = Vue.prototype.server = "http://localhost:80/"; */
 
 /* OPENODE.IO */
-// Vue.server = Vue.prototype.server =
-//   "http://vue-starter-webpack-cli-4-node.openode.io/";
+Vue.server = Vue.prototype.server =
+  "http://vue-starter-webpack-cli-4-node.openode.io/";
 
 /* Google cloud */
 /* Vue.server = Vue.prototype.server =
   "https://cedar-network-259109.appspot.com:8080/"; */
 // "http://localhost:8080/";
 
-// ---------------------------------------------- STORING MONGODB ID AS GLOBAL FOR PROFILE , THIS VAR IS POPULATED WHEN A USER LOGS IN INSIDE THE LOGIN COMPONENT for the PROFILE MENU TO APPEAR IN THE TOPBAR
+// ---------------------------------------------- STORING USER AS GLOBAL, THIS VAR IS POPULATED WHEN A USER LOGS IN INSIDE THE LOGIN COMPONENT for the PROFILE MENU TO APPEAR IN THE TOPBAR
 // ---------------------------------------------- VUEX WILL BE BETTER LATER
 
 let globalData = new Vue({
