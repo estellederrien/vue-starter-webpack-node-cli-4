@@ -308,7 +308,8 @@
 
                             <div class="col-md-6">
                                 <label>Liste</label><br />
-                                <table class="table">
+                                <div style="max-height:300px;overflow:auto">
+                                <table class="table" >
                                     <tr v-for="file in user.filenames">
                                         <td>
                                         
@@ -319,6 +320,7 @@
                                         </td>
                                     </tr>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
