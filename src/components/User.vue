@@ -6,6 +6,7 @@
     <div class="container-fluid " id="userDiv" v-show="loaded">
         <form method="post">
             <div class="row">
+                
                 <div class="col-md-2">
                     <div class="profile-img">
                         <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
@@ -19,7 +20,7 @@
                             {{user.mentra}}
                         </h6>
 
-                        <!-- <p class="proile-rating">RANG : <span>8/10</span></p> -->
+                        <!-- <p class="proile-rating"></p> -->
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -37,6 +38,7 @@
                         </ul>
                     </div>
                 </div>
+                
                 <div class="col-md-2">
 
                 </div>
@@ -206,14 +208,15 @@
                         </div>
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
-                                <!--  <div class="col-md-6">
-                                <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
-                            </div> -->
-
-                                <div class="col-md-6 tab-content-user">
+                                <div class="col-md-12 tab-content-user">
 
                                     <table class="table">
                                         <tr v-for="file in user.filenames">
+                                            <td>
+                                                    
+                                               Fichier 
+                                            </td>
+                                            
                                             <td>
 
                                                 <a class="float-left" v-bind:href="server + 'files/' + file.filename"><i class="fas fa-file-alt"></i> {{ file.filename }}</a>
@@ -228,8 +231,10 @@
 
                             <div class="row">
 
-                                <div class="col-md-6 tab-content-user">
-                                    <label>Profil</label><br>
+                                    <div class="col-md-2">
+                                        <label>Profil</label>
+                                    </div>
+                                    <div class="col-md-6">
                                     <select class="custom-select" v-model="user.role" disabled>
                                         <option value="">--Please choose an option--</option>
                                         <option value="viewer">Viewer</option>
@@ -237,12 +242,18 @@
                                         <option value="administrator">Administrator</option>
 
                                     </select>
-                                    <br><br>
-                                    <label>Liste des droits</label><br>
-                                    <div v-for="p in user.permissions">
-                                        <span class="badge badge-warning  "> {{p}}<br></span>
+                                   </div>
+                            </div><br>
+                             <div class="row">   
+
+                                     <div class="col-md-2">
+                                        <label>Liste des droits</label>
                                     </div>
-                                </div>
+
+                                     <div class="col-md-6">
+                                        <span class="badge badge-warning  badge-space" v-for="p in user.permissions" > {{p}}<br> </span>
+                                    </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -392,10 +403,16 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
+
+.badge-space{
+    min-width:150px
+}
+
 .tab-content-user {
     padding: 10px;
     margin: 10px;
+    margin-bottom:50px;
 
 }
 
