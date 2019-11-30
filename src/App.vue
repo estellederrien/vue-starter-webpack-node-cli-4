@@ -218,23 +218,9 @@ export default {
   /* margin-top: 60px; */
 }
 a:hover {
-  color: red important!;
   background-color: lightgrey;
   cursor: pointer;
 }
-
-.a {
-  color: maroon;
-}
-
-.loader {
-  width: 300px;
-  height: 250px;
-}
-#navbarTop {
-  margin-bottom: 60px;
-}
-
 @media (max-width: 768px) {
   .btn {
     font-size: 11px;
@@ -258,9 +244,21 @@ a:hover {
 
 @media (min-width: 1200px) {
   .btn {
-    padding: 10px 16px;
-    font-size: 18px;
+    padding: 4px 14px;
+
+    font-size: 16px;
   }
+}
+.a {
+  color: maroon;
+}
+
+.loader {
+  width: 300px;
+  height: 250px;
+}
+#navbarTop {
+  margin-bottom: 60px;
 }
 
 .v-sidebar-menu > .vsm--list {
