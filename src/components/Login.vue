@@ -135,45 +135,7 @@ export default {
 <style>
 
 
-a:hover {
-color:red;
-text-decoration:none;
-background-color:grey;
-cursor: pointer; 
-}
 
-a{
-    color:blue;
-}
-
-
-@media (max-width: 768px) {
-    .btn {
-        font-size: 11px;
-        padding: 4px 6px;
-    }
-}
-
-@media (min-width: 768px) {
-    .btn {
-        font-size: 12px;
-        padding: 6px 12px;
-    }
-}
-
-@media (min-width: 992px) {
-    .btn {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .btn {
-        padding: 10px 16px;
-        font-size: 18px;
-    }
-}
 
 
 </style>
