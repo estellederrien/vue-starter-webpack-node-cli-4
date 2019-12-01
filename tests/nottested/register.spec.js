@@ -1,26 +1,8 @@
-
-// THE ASSERTION LIBRARY
 import { expect } from "chai";
-
-// THE TESTING LIBRARY
-import { mount } from "@vue/test-utils";
-
-// THE COMPONENT THAT I WANT TO TEST
+import { shallowMount } from "@vue/test-utils";
 import Register from "@/components/Register.vue";
 
-// THE EXTERNAL COMPONENTS LINKED TO MY COMPONENT  THAT I NEED TO JOIN
-import Vue from 'vue';
-import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
- import {
-    required,
-    minLength,
-    between
-} from "vuelidate/lib/validators";
-
-
-// THE WRAPPER CONTAIN MY MOUNTED COMPONENT, JUST LIKE IN THE REAL LIFE
-const wrapper = mount(Register)
+const wrapper = shallowMount(Register);
 
 describe("Register tests", () => {
   
@@ -40,9 +22,9 @@ describe("Register tests", () => {
    it("Should display an Email input", () => {
 		expect(wrapper.vm.$el.querySelector("input[type='email']") !== null).to.be.true
 	});
-	// it("Should display a name input", () => {
-		// expect(wrapper.vm.$el.getElementById('nom') !== null).to.be.true
-	// }); 
+	it("Should display a name input", () => {
+		expect(wrapper.vm.$el.getElementById('nom') !== null).to.be.true
+	}); 
   
    // it("should Button register fire function", () => {
      // expect(wrapper.html()).toContain('<span class="count">0</span>')
