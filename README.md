@@ -14,7 +14,7 @@ Will Contains :<br /><br />
 1 Users CRUD<br />
 1 Auth system<br />
 1 Profiles and Permissions management system <br />
-1 Files management system by users<br />
+1 Files management - and permissions -system by users<br />
 1 Dashboard with some graphicals libs<br />
 1 Form validator : (https://vuelidate.js.org/#getting-started)<br />
 1 Internal Messaging CRUD<br />
