@@ -24,6 +24,7 @@ Vue.use(Notifications, { velocity });
 // THE WRAPPER CONTAIN MY MOUNTED COMPONENT, JUST LIKE IN THE REAL LIFE
 const wrapper = mount(Filters)
 
+// LETS START AND DO SOME TESTS ! - SIMPLY TYPE NPM RUN TEST INSIDE THE CONSOLE AT THE ROOT OF THE APP
 describe("Filters test", () => {
   
   // FUNCTIONS PRESENCE
