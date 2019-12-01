@@ -84,7 +84,7 @@
 													<div class="col-md-8" :class="{ 'form-group--error': $v.user.nom.$error }">
 														<p>
 															<input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
-															<!-- ERRORS MESSAGES -->
+															<!-- ERRORS MESSAGES t-->
 															<div class="error" v-if="!$v.user.nom.required">
                                                         Le champs est nécessessaire
                                                     </div>
