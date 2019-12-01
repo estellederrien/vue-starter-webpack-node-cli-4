@@ -12,8 +12,10 @@ import Users from "@/components/Users.vue";
 global.window = window
 global.$ = require('jquery');
 
+// THE WRAPPER CONTAIN MY MOUNTED COMPONENT, JUST LIKE IN THE REAL LIFE
 const wrapper = mount(Users);
 
+// LETS START AND DO SOME TESTS ! - SIMPLY TYPE NPM RUN TEST INSIDE THE CONSOLE AT THE ROOT OF THE APP
 describe("Users test", () => {
   
   it("Displays nice hello message", () => {

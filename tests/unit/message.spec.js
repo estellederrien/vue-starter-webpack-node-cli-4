@@ -29,6 +29,7 @@ const wrapper = mount(Message,{
   }
 })
 
+// LETS START AND DO SOME TESTS ! - SIMPLY TYPE NPM RUN TEST INSIDE THE CONSOLE AT THE ROOT OF THE APP
 describe("Message test", () => {
   
   // FUNCTIONS PRESENCE
