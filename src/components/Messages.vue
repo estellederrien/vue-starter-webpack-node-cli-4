@@ -15,35 +15,21 @@
           {{ m.content }}
         </td>
       </tr>
-    </table> -->
+    </table>-->
 
-    <h6 class="dropdown-header">
-      Message Center
-    </h6>
-    <a
-      class="dropdown-item d-flex align-items-center"
-      href="#"
-      v-for="m in messages"
-    >
+    <h6 class="dropdown-header">Message Center</h6>
+    <a class="dropdown-item d-flex align-items-center" href="#" v-for="m in messages">
       <div class="dropdown-list-image mr-3">
-        <img
-          class="rounded-circle"
-          src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
-          alt=""
-        />
+        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt />
         <div class="status-indicator bg-success"></div>
       </div>
       <div class="font-weight-bold">
-        <div class="text-truncate">
-          {{ m.content }}
-        </div>
+        <div class="text-truncate">{{ m.content }}</div>
         <div class="small text-gray-500">{{ m.senderName }} · {{ m.date }}</div>
       </div>
     </a>
 
-    <a class="dropdown-item text-center small text-gray-500" href="#"
-      >Read More Messages</a
-    >
+    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
   </div>
 </template>
 

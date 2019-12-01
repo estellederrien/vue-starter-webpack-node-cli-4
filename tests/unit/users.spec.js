@@ -12,7 +12,7 @@ import Users from "@/components/Users.vue";
 global.window = window
 global.$ = require('jquery');
 
-const wrapper = shallowMount(Users);
+const wrapper = mount(Users);
 
 describe("Users test", () => {
   

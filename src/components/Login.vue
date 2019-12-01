@@ -95,6 +95,7 @@ export default {
         register: function () {
               this.$router.push("/register");
         },
+        
         getAuth: function () {
            
              axios

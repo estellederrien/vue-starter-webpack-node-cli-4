@@ -24,7 +24,7 @@ const wrapper = mount(Register)
 
 describe("Register tests", () => {
   
-  // TESTING DATA
+  // TESTING DATA VARIABLES 
   it("User model is an object", () => {
     expect(wrapper.vm.$data.user).to.be.an("object");
   });

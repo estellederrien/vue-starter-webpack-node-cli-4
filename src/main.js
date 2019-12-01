@@ -1,4 +1,5 @@
 import Vue from "vue";
+
 import App from "./App.vue";
 import router from "./router";
 
@@ -29,7 +30,8 @@ import Vuelidate from "vuelidate";
 Vue.use(Vuelidate);
 
 import Notifications from "vue-notification";
-Vue.use(Notifications);
+import velocity      from 'velocity-animate'
+Vue.use(Notifications, { velocity });
 
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
 /* Localhost */
