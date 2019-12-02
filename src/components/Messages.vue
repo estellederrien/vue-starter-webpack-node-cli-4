@@ -54,13 +54,18 @@ export default {
         .then(response => {
           this.messages = response.data;
         })
-        .catch(function(error) {
+        .catch(error => {
           console.log(error);
+          this.$notify({
+            type: "error",
+            group: "foo",
+            title: "Hey! ",
+            text: error
+          });
         });
     }
   },
   mounted: function() {
-    console.log(this._id);
     this.getMessages();
   }
 };
