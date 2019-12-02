@@ -112,7 +112,12 @@ export default {
                    
                 })
                 .catch(error => {
-                    alert('Auth Error !')
+                     this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Login Error ! -> <br> '+error
+                        });
                     console.log(error);
                     this.$router.push("/login");
                 });
