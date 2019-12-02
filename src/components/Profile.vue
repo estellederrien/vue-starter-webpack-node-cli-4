@@ -386,11 +386,18 @@ export default {
         axios
             .post(this.server + "getJobs")
             .then(response => {
-            this.jobs = response.data;
+                this.jobs = response.data;
             })
-            .catch(function(error) {
-            console.log(error);
-            });
+           .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Permission is missing ! -> <br> '+error
+                        });
+                   
+                    });
         },
         openMessageModal: function() {
             this.$modal.show("messageModal");
@@ -412,8 +419,15 @@ export default {
                             this.updateUser();
                         }
                     })
-                    .catch(function (erreur) {
-                        console.log(erreur);
+                    .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Permission is missing ! -> <br> '+error
+                        });
+                   
                     });
             }
         },
@@ -471,9 +485,16 @@ export default {
                 .then(response => {
                     this.user = response.data;
                 })
-                .catch(function (erreur) {
-                    console.log(erreur);
-                });
+                .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Permission is missing ! -> <br> '+error
+                        });
+                   
+                    });
         },
         updateUser: function () {
             axios
@@ -487,8 +508,15 @@ export default {
                         });
                     console.log(response);
                 })
-                .catch(function (erreur) {
-                    console.log(erreur);
+                .catch(error => {
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> '+error
+                    });
+                   
                 });
         },
         deleteUser: function () {
@@ -497,11 +525,20 @@ export default {
                     .post(this.server + "deleteUser", this.user)
                     .then(response => {
                         alert(" Votre compte a été supprimé ");
-                        router.push("/login");
+                        this.$user = {};
+                        this.$router.push("/login");
+                        
                         console.log(response);
                     })
-                    .catch(function (erreur) {
-                        console.log(erreur);
+                     .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Permission is missing ! -> <br> '+error
+                        });
+                   
                     });
             }
         },
@@ -534,9 +571,16 @@ export default {
                     this.creationProcess = false;
                     this.getActualSession();
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Permission is missing ! -> <br> '+error
+                        });
+                   
+                    });
         },
         getActualSession: function () {
             axios
@@ -572,9 +616,16 @@ export default {
                     alert("Added one job !");
                     this.getJobs();
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Permission is missing ! -> <br> '+error
+                        });
+                   
+                    });
         },
         cancelInsertUser: function(){
                 this. creationProcess = false;
