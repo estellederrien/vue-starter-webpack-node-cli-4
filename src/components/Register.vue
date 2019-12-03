@@ -128,7 +128,7 @@ export default {
                     type: 'error',
                     group: 'foo',
                     title: 'Hey! ',
-                    text: 'manque un champs !'
+                    text: 'Something is wrong, please check the fields again !'
                 });
                 return;
             }
