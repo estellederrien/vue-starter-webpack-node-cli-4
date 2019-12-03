@@ -23,7 +23,7 @@
     </div>
 
     <div class="card-footer float-right">
-        <button class="btn btn-primary" v-on:click="insertMessage()">Send</button>
+        <button class="btn btn-primary float-right" v-on:click="insertMessage()">Send</button>
     </div>
     
 </div>
