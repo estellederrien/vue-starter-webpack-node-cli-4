@@ -1,23 +1,33 @@
 <template>
-<div style="padding:5px">
-    <label><b><i class="fas fa-envelope"></i> Message</b></label></br>
-    <div>
-        DE {{ user.nom }} à</br>
-        A
-        <select class="form-control " v-model="message.to">
-            <option value="">Choisir</option>
-            <option v-for="u in users" :value="u._id">{{u.nom}}</option>
-        </select>
-        <br>
-        Message :
+<div class="card mb-3 " style="padding:5px">
 
-        <p>
-            <textarea class="form-control" v-model="message.content" rows="3"></textarea>
-        </p>
-
-        <button class="float-right btn btn-primary" v-on:click="insertMessage()">Send</button>
+    <div class="card-header ">
+        <label><b><i class="fas fa-envelope"></i> Message</b></label>
+        <button @click="closeModal" class="btn btn-primary float-right">X</button>
     </div>
+
+    <div class="card-body d-flex flex-column">
+        <div class="row">
+            DE {{ user.nom }} à</br>
+            A
+            <select class="form-control " v-model="message.to">
+                <option value="">Choisir</option>
+                <option v-for="u in users" :value="u._id">{{u.nom}}</option>
+            </select>
+            <br><br>
+             <p>
+            Message :
+                <textarea class="form-control" v-model="message.content" rows="3"></textarea>
+            </p>
+        </div>
+    </div>
+
+    <div class="card-footer float-right">
+        <button class="btn btn-primary" v-on:click="insertMessage()">Send</button>
+    </div>
+    
 </div>
+
 </template>
 
 <script>
@@ -81,7 +91,10 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-        }
+        },
+    closeModal:function(){
+      this.$modal.hide("messageModal");
+    }
     },
     mounted: function () {
 
