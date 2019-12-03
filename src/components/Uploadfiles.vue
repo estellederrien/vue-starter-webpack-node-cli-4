@@ -29,7 +29,7 @@
                         </tr>
                     </tbody>
                 </table>
-                  <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.9em;">Ok, placer les fichiers  sur le serveur </a>
+                  <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.8em;">Ok, placer les fichiers  sur le serveur </a>
             </div>
             </div>
        </div>
