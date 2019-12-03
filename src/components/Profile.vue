@@ -210,15 +210,25 @@
 											</div>
 											<div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
 												<div class="row tab-content-user">
-													<div class="col-md-6">
+													<div class="col-md-12">
 														<uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
 													</div>
-													<div class="col-md-6">
-														<label>Liste</label>
+													<div class="col-md-12  border border-dark rounded">
+														 <p class="bg-warning">Liste</p>
 														<br />
-														<div style="max-height:400px;overflow:auto">
-															<table class="table">
-																<tr v-for="file in user.filenames">
+														<div style="max-height:400px;overflow:auto;  font-size:0.8em;">
+															<table class="table table-sm">
+																
+                                                                 <thead>
+                                                                    <tr>
+                                                                        <th>Nom</th>
+                                                                        <th>Supprimer</th>
+                                                                        <th>Permissions</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                
+                                                                
+                                                                <tr v-for="file in user.filenames">
 																	<td>
 																		<a class="float-left" v-bind:href="server + 'files/' + file.filename">
 																			<i class="fas fa-file-alt"></i> {{ file.filename }}
@@ -229,6 +239,12 @@
 																			<i class="far fa-trash-alt"></i>
 																			<br />
 																		</span>
+																	</td>
+                                                                    <td>
+																		<select class="form-control " v-model="file.permissions">
+                                                                            <option value="">Tous</option>
+                                                                            <option v-for="u in users" :value="u._id">{{u.nom}}</option>
+                                                                        </select>
 																	</td>
 																</tr>
 															</table>
@@ -351,7 +367,9 @@ export default {
             creationProcess: false,
             jobs: [],
             newJob: "",
-            loaded: false
+            loaded: false,
+            users:[],
+            filters:{}
         };
     },
 
@@ -631,11 +649,25 @@ export default {
                 this. creationProcess = false;
                  this.getActualSession();
 
+        },
+        getUsers: function () {
+
+            axios
+                .post(this.server + "getUsers", {
+                    filters: this.filters
+                })
+                .then(response => {
+                    this.users = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     },
     created: function () {
         this.getActualSession();
         this.getJobs();
+        this.getUsers();
     }
 };
 </script>
