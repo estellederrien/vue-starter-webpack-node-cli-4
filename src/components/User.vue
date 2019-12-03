@@ -239,7 +239,7 @@
                                         <option value="">--Please choose an option--</option>
                                         <option value="viewer">Viewer</option>
                                         <option value="user">User</option>
-                                        <option value="administrator">Administrator</option>
+                                        <option value="manager">Manager</option>
 
                                     </select>
                                    </div>
