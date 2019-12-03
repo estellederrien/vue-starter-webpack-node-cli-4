@@ -4,7 +4,7 @@
       <div class="card-header">
         <label style="padding:5px"
           ><b><i class="fas fa-filter"></i> Filtres</b></label
-        >
+        >       <button @click="closeModal" class="btn btn-primary float-right">X</button>
       </div>
       <div class="card-body d-flex flex-column">
         <div class="row">
@@ -57,6 +57,9 @@
         >
           Initialiser
         </button>
+      
+       
+   
       </div>
     </div>
   </div>
@@ -100,6 +103,9 @@ export default {
         job: ""
       };
       this.$emit("filters", this.filtersChanged);
+    },
+    closeModal:function(){
+      this.$modal.hide("filters");
     }
   },
   mounted: function() {
