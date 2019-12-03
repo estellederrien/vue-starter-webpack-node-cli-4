@@ -14,7 +14,7 @@
             <modal name="filters" :width="300" :height="400">
                 <filters @filters="executeFilters"></filters>
             </modal>
-
+            <div v-if="!users.length"><center><h1>Pas de résultats avec ce filtre !</h1></center></div>
             <div id="users" v-for="user in users" class="col-sm col-xs-12">
                 <div class="card " style="margin-bottom : 20px;min-width: 16rem;">
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
