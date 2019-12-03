@@ -101,9 +101,9 @@
 
               <div class="dropdown-divider"></div>
 
-              <router-link class="dropdown-item" to="/logout" disabled>
+              <div class="dropdown-item logout" @click="logout()" disabled>
                 <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>Sortir !
-              </router-link>
+              </div>
             </div>
           </li>
         </ul>
@@ -124,6 +124,8 @@
 <script>
 import { SidebarMenu } from "vue-sidebar-menu";
 import Messages from "@/components/Messages.vue";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export default {
   name: "App",
@@ -134,6 +136,23 @@ export default {
   methods: {
     profile() {
       this.$router.push("/profile");
+    },
+    logout() {
+      axios
+        .post(this.server + "logout", {})
+        .then(response => {
+          this.$user = {};
+          this.$notify({
+            type: "success",
+            group: "foo",
+            title: "Hey! ",
+            text: "Logged out!"
+          });
+          this.$router.push("/users");
+        })
+        .catch(error => {
+          this.$router.push("/login");
+        });
     }
   },
   data() {
@@ -211,6 +230,9 @@ export default {
 }
 a:hover {
   background-color: lightgrey;
+  cursor: pointer;
+}
+.logout {
   cursor: pointer;
 }
 @media (max-width: 768px) {
