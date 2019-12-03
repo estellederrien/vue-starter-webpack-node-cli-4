@@ -18,7 +18,7 @@
             <div v-if="!users.length"><center><h1>Pas de résultats avec ce filtre !</h1></center></div>
 
             <div id="users" v-for="user in users" class="col-sm col-xs-12">
-                <div class="card " style="margin-bottom : 20px;min-width: 16rem;">
+                <div class="card " style="margin-bottom : 20px;min-width: 16rem;max-width:50vh">
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">{{ user.nom }}</h5>
