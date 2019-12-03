@@ -1,27 +1,40 @@
-<template>
-<div class="container">
-    <div class="col-md-12">
-        <label>Fichiers multiples<br />
-            <input name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
-        </label>
-        <a v-on:click="submitFiles" class="btn btn-primary btn-block">Soumettre</a>
+<template >
 
-        <!-- LOADING PIC -->
-        <img v-if="loading" style="width:100px" src="../assets/img/JointRevolvingAntelopegroundsquirrel-size_restricted.gif"></img>
 
-        <!-- REALTIME FILE MANAGEMENT -->
-        <table class="table  table-dark">
-            <tbody>
-                <tr v-for="(file, key) in files" class="file-listing">
-                    <th>{{ file.name }}</th>
-                    <th>
-                        <span class="remove-file btn btn-primary" v-on:click="removeFile(key)">Remove</span>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+        <div class ="row border border-dark rounded type" >
+            
+            <div class="col-md-12">
+                <p class="bg-warning">Uploadeur de Fichiers multiples</p>
+            </div>
+            
+            <div class="col-md-6 ">
+                <div class="FileListDiv" >
+                 <input class ="float-left" name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
+                 <!-- LOADING PIC -->
+                <img v-if="loading" style="width:100px" src="../assets/img/JointRevolvingAntelopegroundsquirrel-size_restricted.gif"></img>
+              
+               
+                </div>
+            </div> 
+            <div class="col-md-6">
+                <label v-if="files">Preview :</label>
+                <!-- REALTIME FILE MANAGEMENT -->
+                <table class="table table-dark table-sm">
+                    <tbody>
+                        <tr v-for="(file, key) in files" >
+                            <th>{{ file.name }}</th>
+                            <th>
+                                <span class="remove-file btn btn-primary" v-on:click="removeFile(key)">-</span>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                  <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.9em;">Ok, placer les fichiers  sur le serveur </a>
+            </div>
+            </div>
+       </div>
+ 
+
 </template>
 
 <script>
@@ -118,3 +131,29 @@ export default {
     }
 };
 </script>
+<style scoped>
+
+.type{
+    font-size:0.8em;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .FileListDiv {
+    font-size: 11px;
+    padding: 4px 6px;
+    height:15px;
+  }
+  .tb{
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 768px) {
+  .FileListDiv {
+    font-size: 12px;
+    padding: 6px 12px;
+     height:200px;
+  }
+}
+</style>
