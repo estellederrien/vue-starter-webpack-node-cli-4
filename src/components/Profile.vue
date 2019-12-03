@@ -216,7 +216,7 @@
 													<div class="col-md-12  border border-dark rounded">
 														 <p class="bg-warning">Liste</p>
 														<br />
-														<div style="max-height:400px;overflow:auto;  font-size:0.8em;">
+														<div style=" font-size:0.8em;">
 															<table class="table table-sm">
 																
                                                                  <thead>
@@ -242,7 +242,7 @@
 																	</td>
                                                                     <td>
 																		<select class="form-control " v-model="file.permissions">
-                                                                            <option value="">Tous</option>
+                                                                            <option value="all">Tous</option>
                                                                             <option v-for="u in users" :value="u._id">{{u.nom}}</option>
                                                                         </select>
 																	</td>
@@ -258,16 +258,16 @@
 														<label>Profil</label>
 													</div>
 													<div class="col-md-6">
-														<select class="custom-select" v-model="user.role" disabled>
+														<select class="custom-select" v-model="user.role" :disabled="!creationProcess">
 															<option value="">--Please choose an option--</option>
 															<option value="viewer">Viewer</option>
 															<option value="user">User</option>
-															<option value="administrator">Administrator</option>
+															<option value="manager">Manager</option>
 														</select>
 													</div>
 												</div>
 												<br>
-													<div class="row">
+													<div class="row" v-if="!creationProcess">
 														<div class="col-md-2">
 															<label>Liste des droits</label>
 														</div>
@@ -458,11 +458,12 @@ export default {
             console.log(this.user);
         },
         onFileUploads(values) {
-            console.log(values);
-
+   
             let self = this;
 
             values.forEach(function (value) {
+                // Files permissions are ALL by default
+                value.permissions = "all";
                 self.user.filenames.push(value);
             });
 
