@@ -3,7 +3,9 @@
 Currently in DEV state !
 Please allow from 2 weeks to 2 months for it to get finished.
 
-Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .
+Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .<br />
+
+French : Le but de ce starter est de pouvoir commencer n'importe quel applciation Node.js + Vue.js avec tous les modèles de données généraiques déjà prêts, ainsi que des libs de data science déjà prêtesà être utilisées . <br />Pour l'instant, le fichier backend node  est "confidentiel" .<br />
 
 The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/ <br />
 Testing: log in with -> login:admin@admin.com / password:admin <br />
