@@ -5,11 +5,8 @@ Please allow from 2 weeks to 2 months for it to get finished.
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .<br />
 
-French : Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br />Pour l'instant, le fichier backend node  est "confidentiel". <br />
-
 The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/ <br />
 Testing: log in with -> login: admin@admin.com - password: admin <br />
-
 
 Will Contains :<br /><br />
 
@@ -43,7 +40,8 @@ Data science  ...<br />
 1 Kmeans lib : https://www.npmjs.com/package/node-kmeans<br />
 1 Random forest lib : https://github.com/mljs/random-forest<br />
 1 Python call some to some matplot scripts - pictures generators.<br />
-
+<br /><br />
+French : Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br />Pour l'instant, le fichier backend node  est "confidentiel". <br />
 
 ## Project setup
 ```
