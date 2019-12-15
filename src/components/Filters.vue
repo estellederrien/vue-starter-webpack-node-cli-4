@@ -19,25 +19,9 @@
               <option value>Choisir</option>
               <option value="viewer">Viewer</option>
               <option value="user">User</option>
-              <option value="administrator">Administrator</option>
+              <option value="manager">Manager</option>
             </select>
           </div>
-          <br />
-
-          <!--   <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >Emploi</label
-                >
-              </div>
-              <select class="form-control " v-model="filtersChanged.job2">
-                <option value="">Choisir</option>
-                <option v-for="job in jobs" :value="job.name">{{
-                  job.name
-                }}</option>
-              </select>
-              
-          </div>-->
           <br />
 
           <div class="input-group mb-3">
@@ -91,22 +75,7 @@ export default {
         role: "",
         jobs: []
       },
-      value: "",
-      options: [
-        "Select option",
-        "options",
-        "selected",
-        "mulitple",
-        "label",
-        "searchable",
-        "clearOnSelect",
-        "hideSelected",
-        "maxHeight",
-        "allowEmpty",
-        "showLabels",
-        "onChange",
-        "touched"
-      ]
+      value: ""
     };
   },
   components: {
