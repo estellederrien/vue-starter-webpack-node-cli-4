@@ -217,7 +217,8 @@ export default {
   }
 };
 </script>
-
+/* MULTISELECT GLOBAL CSS */
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -309,5 +310,12 @@ a:hover {
 .navbar-toggler {
   background-color: black;
   color: Red;
+}
+
+/* 
+CHANGE ALL MODALS BEHAVIOR */
+.v--modal-overlay .v--modal-box {
+  position: relative !important;
+  overflow: visible !important;
 }
 </style>

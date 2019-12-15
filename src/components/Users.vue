@@ -5,17 +5,26 @@
     </div>
     <div class="container-fluid" v-show="loaded">
         <div class="row">
+             <modal name="filters"   width="80%" height="auto" :scrollable="true">
+                <filters @filters="executeFilters"></filters>
+            </modal>
+
             <div class="header">
                 <button class="btn btn-warning " v-on:click="openFilters()">
                     <i class="fas fa-filter"></i> Filtres
                 </button>
             </div>
 
-            <modal name="filters" :width="300" :height="400" >   
-                <filters @filters="executeFilters"></filters>
-            </modal>
+           
 
-            <div v-if="!users.length"><center><h1>Pas de résultats avec ce filtre !</h1></center></div>
+            <div v-if="!users.length">
+                <center>
+                    <h1>Pas de résultats avec ce filtre !</h1>
+                </center>
+            </div>
+            <div>
+
+            </div>
 
             <div id="users" v-for="user in users" class="col-sm col-xs-12">
                 <div class="card " style="margin-bottom : 20px;min-width: 16rem;max-width:50vh">
@@ -59,9 +68,11 @@
 </template>
 
 <script>
+/* GITHUB COMPONENTS */
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
+/* PERSONNAL COMPONENTS */
 import Filters from "@/components/Filters.vue";
 
 export default {
@@ -95,7 +106,7 @@ export default {
         executeFilters: function (filtersChanged) {
             this.filters = filtersChanged;
             this.getUsers();
-           
+
         }
     },
 
@@ -151,4 +162,8 @@ export default {
     height: 100px;
     overflow: auto;
 }
+
+
+
+
 </style>
