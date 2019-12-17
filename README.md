@@ -5,8 +5,8 @@ Please allow from 2 weeks to 2 months for it to get finished.
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end .<br />
 
-The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/ <br />
-Testing: log in with -> login: admin@admin.com - password: admin <br />
+The demo will be available on : http://vue-starter-webpack-cli-4-node.openode.io/ <br /><br />
+Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 Will Contains :<br /><br />
 
