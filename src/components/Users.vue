@@ -31,6 +31,7 @@
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">{{ user.nom }}</h5>
+                        <h6 >{{ user.job}}</h6>
                         <p class="card-text">
 
                             <div class="nav nav nav-pills mb-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -163,6 +164,9 @@ export default {
     overflow: auto;
 }
 
+h6{
+    color:#0068d9
+}
 
 
 
