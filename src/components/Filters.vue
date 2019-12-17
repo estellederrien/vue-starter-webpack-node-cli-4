@@ -10,7 +10,7 @@
     </div>
     <div class="card-body d-flex flex-column">
       <div class="row">
-        <div class="col-md-12" style="padding:30px">
+        <div class="col-md-6" style="padding:30px">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Role</label>
@@ -37,7 +37,29 @@
                 :searchable="true"
                 :close-on-select="true"
                 :show-labels="false"
-                placeholder="Pick a value"
+                placeholder="Choix multiple"
+              ></multiselect>
+              <pre class="language-json"><code>{{ value }}</code></pre>
+            </div>
+
+            <br />
+          </div>
+        </div>
+        <div class="col-md-6" style="padding:30px">
+          <div class="input-group mb-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Utilisateur</label>
+              </div>
+              <multiselect
+                class="form-control"
+                v-model="filtersChanged.users"
+                :multiple="true"
+                :options="users"
+                :searchable="true"
+                :close-on-select="true"
+                :show-labels="false"
+                placeholder="Choix multiple"
               ></multiselect>
               <pre class="language-json"><code>{{ value }}</code></pre>
             </div>
@@ -71,9 +93,11 @@ export default {
   data() {
     return {
       jobs: [],
+      users: [],
       filtersChanged: {
         role: "",
-        jobs: []
+        jobs: [],
+        users: []
       },
       value: ""
     };
@@ -88,6 +112,16 @@ export default {
         .post(this.server + "getJobsForFilters")
         .then(response => {
           this.jobs = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    getUsers: function() {
+      axios
+        .post(this.server + "getUsersForFilters")
+        .then(response => {
+          this.users = response.data;
         })
         .catch(function(error) {
           console.log(error);
@@ -110,6 +144,7 @@ export default {
   },
   mounted: function() {
     this.getJobs();
+    this.getUsers();
   }
 };
 </script>
