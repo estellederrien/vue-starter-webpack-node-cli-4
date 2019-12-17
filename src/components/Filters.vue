@@ -15,7 +15,7 @@
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Role</label>
             </div>
-            <select class="form-control" v-model="filtersChanged.role">
+            <select class="form-control" v-model="modifiedFilters.role">
               <option value>Choisir</option>
               <option value="viewer">Viewer</option>
               <option value="user">User</option>
@@ -31,7 +31,7 @@
               </div>
               <multiselect
                 class="form-control"
-                v-model="filtersChanged.jobs"
+                v-model="modifiedFilters.jobs"
                 :multiple="true"
                 :options="jobs"
                 :searchable="true"
@@ -52,7 +52,7 @@
             </div>
             <multiselect
               class="form-control"
-              v-model="filtersChanged.users"
+              v-model="modifiedFilters.users"
               :multiple="true"
               :options="users"
               :searchable="true"
@@ -109,7 +109,7 @@ export default {
       agevalue: [18, 60],
       jobs: [],
       users: [],
-      filtersChanged: {
+      modifiedFilters: {
         role: "",
         jobs: [],
         users: []
@@ -144,15 +144,15 @@ export default {
         });
     },
     filterNow: function() {
-      /*   Executing the executeFilters parent function with filtersChanged as parameters , 
+      /*   Executing the executeFilters parent function with modifiedFilters as parameters , 
             the executefilters function needs to be called from the component call inside of the parent :  
             <filters  @filters="executeFilters" ></filters> */
 
-      this.$emit("filters", this.filtersChanged);
+      this.$emit("filters", this.modifiedFilters);
     },
     initializeFilters: function() {
-      this.filtersChanged = {};
-      this.$emit("filters", this.filtersChanged);
+      this.modifiedFilters = {};
+      this.$emit("filters", this.modifiedFilters);
     },
     closeModal: function() {
       this.$modal.hide("filters");
