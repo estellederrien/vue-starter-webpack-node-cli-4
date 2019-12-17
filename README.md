@@ -31,6 +31,7 @@ Will Contains :<br /><br />
 Also ...<br />
 1 Drag n drop lib <br />
 1 Notifier https://github.com/euvl/vue-notification<br />
+1 Node worker-thread ready to go system.
 <br /><br />
 Data science  ...<br />
 1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver<br />
