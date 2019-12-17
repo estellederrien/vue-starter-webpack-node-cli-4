@@ -47,24 +47,33 @@
         </div>
         <div class="col-md-6" style="padding:30px">
           <div class="input-group mb-3">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Utilisateur</label>
-              </div>
-              <multiselect
-                class="form-control"
-                v-model="filtersChanged.users"
-                :multiple="true"
-                :options="users"
-                :searchable="true"
-                :close-on-select="true"
-                :show-labels="false"
-                placeholder="Choix multiple"
-              ></multiselect>
-              <pre class="language-json"><code>{{ value }}</code></pre>
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Utilisateur</label>
             </div>
+            <multiselect
+              class="form-control"
+              v-model="filtersChanged.users"
+              :multiple="true"
+              :options="users"
+              :searchable="true"
+              :close-on-select="true"
+              :show-labels="false"
+              placeholder="Choix multiple"
+            ></multiselect>
+            <pre class="language-json"><code>{{ value }}</code></pre>
+          </div>
 
-            <br />
+          <br />
+
+          <div class="mb-3">
+            <vue-range-slider
+              v-model="agevalue"
+              :min="min"
+              :max="max"
+              :formatter="formatter"
+              :tooltip-merge="tooltipMerge"
+              :enable-cross="enableCross"
+            ></vue-range-slider>
           </div>
         </div>
       </div>
@@ -86,12 +95,18 @@
 /* GITHUB COMPONENTS */
 import axios from "axios";
 axios.defaults.withCredentials = true;
+
 import Multiselect from "vue-multiselect";
+
+// https://github.com/xwpongithub/vue-range-slider
+import "vue-range-component/dist/vue-range-slider.css";
+import VueRangeSlider from "vue-range-component";
 
 export default {
   name: "filters",
   data() {
     return {
+      agevalue: [18, 60],
       jobs: [],
       users: [],
       filtersChanged: {
@@ -103,7 +118,8 @@ export default {
     };
   },
   components: {
-    multiselect: Multiselect
+    Multiselect,
+    VueRangeSlider
   },
 
   methods: {
@@ -145,11 +161,23 @@ export default {
   mounted: function() {
     this.getJobs();
     this.getUsers();
+    this.min = 0;
+    this.max = 100;
+    this.enableCross = false;
+    this.tooltipMerge = false;
+    this.formatter = value => `Age : ${value}`;
   }
 };
 </script>
 <style scoped>
 .multiselect--active {
   z-index: 10000;
+}
+.slider {
+  /* overwrite slider styles */
+  width: 400px;
+}
+.app-content {
+  padding: 40px 15px;
 }
 </style>
