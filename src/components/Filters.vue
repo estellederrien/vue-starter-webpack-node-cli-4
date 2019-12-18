@@ -78,8 +78,12 @@
         </div>
       </div>
       <div class="card-footer float-right">
+         <!-- LOADING PIC -->
+       
+        
         <button class="btn btn-warning float-right mt-auto" v-on:click="filterNow()">
           <i class="fas fa-filter"></i> Filtrer !
+           <img v-if="loading" style="width:30px" src="../assets/img/loader_def.gif"></img>
         </button>
 
         <button
@@ -104,6 +108,7 @@ import VueRangeSlider from "vue-range-component";
 
 export default {
   name: "filters",
+  props: ["loading"],
   data() {
     return {
       jobs: [],
@@ -115,6 +120,7 @@ export default {
         users: []
       },
       value: "",
+      loading: true,
 
       /* Age range filter */
       min: 0,
@@ -154,8 +160,9 @@ export default {
       /*   Executing the executeFilters parent function with modifiedFilters as parameters , 
             the executefilters function needs to be called from the component call inside of the parent :  
             <filters  @filters="executeFilters" ></filters> */
-
+       this.loading = true;
       this.$emit("filters", this.modifiedFilters);
+     
     },
     initializeFilters: function() {
       this.modifiedFilters = {};
