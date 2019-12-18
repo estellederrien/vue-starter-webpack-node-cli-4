@@ -67,7 +67,7 @@
 
           <div class="mb-3">
             <vue-range-slider
-              v-model="agevalue"
+              v-model="modifiedFilters.ageValues"
               :min="min"
               :max="max"
               :formatter="formatter"
@@ -106,15 +106,22 @@ export default {
   name: "filters",
   data() {
     return {
-      agevalue: [18, 60],
       jobs: [],
       users: [],
       modifiedFilters: {
+        ageValues: [18, 60],
         role: "",
         jobs: [],
         users: []
       },
-      value: ""
+      value: "",
+
+      /* Age range filter */
+      min: 0,
+      max: 100,
+      enableCross: false,
+      tooltipMerge: false,
+      formatter: value => `Age : ${value}`
     };
   },
   components: {
@@ -161,11 +168,6 @@ export default {
   mounted: function() {
     this.getJobs();
     this.getUsers();
-    this.min = 0;
-    this.max = 100;
-    this.enableCross = false;
-    this.tooltipMerge = false;
-    this.formatter = value => `Age : ${value}`;
   }
 };
 </script>
