@@ -27,9 +27,9 @@
             </div>
 
             <div id="users" v-for="user in users" class="col-sm col-xs-12">
-                <div class="card " style="margin-bottom : 20px;min-width: 16rem;max-width:50vh">
+                <div class="card cardList " >
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h5 class="card-title">{{ user.nom }}</h5>
                         <h6 >{{ user.job}}</h6>
                         <p class="card-text">
@@ -151,8 +151,16 @@ export default {
     margin-left: 30px;
 }
 
+.cardList{
+    margin-bottom : 20px;
+    min-width: 16rem;
+    max-width:40vh !important;
+
+}
+
 .filesList {
-    width: 100%;
+    width:100% !important;
+    max-width:100% !important;
     max-height: 100px;
     overflow: auto;
 }
@@ -162,6 +170,7 @@ export default {
     min-height: 100px;
     height: 100px;
     overflow: auto;
+
 }
 
 h6{
