@@ -1,389 +1,305 @@
 <template>
 	<div>
-		<div>
-			<span v-if="!loaded">
+		<div>	<span v-if="!loaded">
 				<img src="../assets/img/loader_800.gif" class="loader">
 				</src>
 			</span>
 		</div>
-		
-        
-        <div class="container-fluid " v-show="loaded">
-			
-            <form method="post" v-on:submit.prevent>
-				
-                <div class="row">
-					 <!-- START COL MD 2  LEFT SCREEN   -->
-                    <div class="col-md-2">
-                        
-                        <div class="profile-img">
-                            <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
-                            <uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
-                        </div>
-                        
-                        
-                        <div class="profile-work col-md-2 d-none d-md-block">
-                            <p>LIENS DE TRAVAIL</p>
-                            <a href="">Website</a>
-                            <br />
-                            <a href="">Bootsnipp</a>
-                            <br />
-                            <a href="">Bootply</a>
-                            <br>
-                            <br>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a>
-                            <br />
-                            <a href="">Web Developer</a>
-                            <br />
-                            <a href="">WordPress</a>
-                            <br />
-                            <a href="">WooCommerce</a>
-                            <br />
-                            <a href="">PHP, .Net</a>
-                            <br />
-                        </div>
-                    <!-- END COL MD 2     -->
-                    </div>
-
-
-                     <!-- START COL MD 8  CENTER SCREEN   -->
-                    <div class="col-md-8">
-                        
-                        
-                        
-                        <div class="profile-head">
-                            
-                            <!-- MISCELLANOUS -->
-                            <h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
-                            <h6>
-                                <input v-model="user.mentra" class="form-control" placeholder="Entrez ici le mentra de l'employé" />
-                            </h6>
-                            <!-- END MISCELLANOUS -->
-
-                            <!-- TABS MENUS -->
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                                        <i class="fas fa-home"></i>
-                                        <span class="d-none d-sm-block "> A propos </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">
-                                        <i class="fas fa-file-alt"></i>
-                                        <span class="d-none d-sm-block ">Fichiers </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false">
-                                        <i class="fas fa-users-cog"></i>
-                                        <span class="d-none d-sm-block "> Autorisations </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">
-                                        <i class="fas fa-users-cog"></i>
-                                        <span class="d-none d-sm-block "> Groupes</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!-- END TABS MENUS -->
-                        
-                        <!-- TABS CONTENT -->
-                        <div class="tab-content profile-tab" id="myTabContent">
-                        
-                                <!-- TABS 1 -->   
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row tab-content-user">
-                                    <div class="col-md-6">
-                                        <div class="row" v-if="!creationProcess">
-                                            <div class="col-md-2">
-                                            <label>User Id </label>
-                                            </div>
-                                            <div class="col-md-8">
-                                            <p>
-                                                <input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled />
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                            <label>Nom</label>
-                                            </div>
-                                            <div class="col-md-8" :class="{ 'form-group--error': $v.user.nom.$error }">
-                                            <p>
-                                                <input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
-                                                <!-- ERRORS MESSAGES t-->
-                                            <div class="error" v-if="!$v.user.nom.required">
-                                                Le champs est nécessessaire
-                                            </div>
-                                            <div class="error" v-if="!$v.user.nom.minLength">
-                                                Le nom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.
-                                            </div>
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                            <label>Prénom</label>
-                                            </div>
-                                            <div class="col-md-8" :class="{ 'form-group--error': $v.user.prenom.$error }">
-                                            <p>
-                                                <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
-                                                <!-- ERRORS MESSAGES -->
-                                            <div class="error" v-if="!$v.user.prenom.required">
-                                                Le champs est nécessessaire
-                                            </div>
-                                            <div class="error" v-if="!$v.user.prenom.minLength">
-                                                Le prénom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.
-                                            </div>
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                            <label>Email</label>
-                                            </div>
-                                            <div class="col-md-8" :class="{ 'form-group--error': $v.user.email.$error }">
-                                            <p>
-                                                <input v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
-                                                <!-- ERRORS MESSAGES -->
-                                            <div class="error" v-if="!$v.user.email.required">
-                                                Le champs est nécessessaire
-                                            </div>
-                                            <div class="error" v-if="!$v.user.email.minLength">
-                                                L'Email doit avoir au moins {{ $v.user.nom.$params.minLength.min }} lettres.
-                                            </div>
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <div class="row" v-if="creationProcess">
-                                            <div class="col-md-2">
-                                            <label>Password</label>
-                                            </div>
-                                            <div class="col-md-4">
-                                            <p>
-                                                <input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                            <label>Téléphone</label>
-                                            </div>
-                                            <div class="col-md-8" :class="{ 'form-group--error': $v.user.phone.$error }">
-                                            <p>
-                                                <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
-                                                <!-- ERRORS MESSAGES -->
-                                            <div class="error" v-if="!$v.user.phone.minLength">
-                                                Le téléphone doit avoir au moins {{ $v.user.phone.$params.minLength.min }} chiffres.
-                                            </div>
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <!--   FIND DE COLONNE 2-->
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                            <label>Date de naissance</label>
-                                            </div>
-                                            <div class="col-md-10">
-                                            <p>
-                                                <input v-model="user.birthday" @change="getAge" class="form-control" type="date">
-                                                <!-- <input v-model="user.birthday" @change="getAge" class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" > -->
-                                            </p>
-                                            </div>
-                                            <div class="col-md-2">
-                                            <label>Age</label>
-                                            </div>
-                                            <div class="col-md-10">
-                                            <p>
-                                                <input v-model="user.age" class="form-control" disabled></input>
-                                            </p>
-                                            </div>
-                                            <div class="col-md-2">
-                                            <label>Job</label>
-                                            </div>
-                                            <div class="col-md-4">
-                                            <select class="form-control " v-model="user.job">
-                                                <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="insertJob()">+</button>
-                                                </div>
-                                                <input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                            </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                            <label>Description </label>
-                                            </div>
-                                            <div class="col-md-10">
-                                            <p>
-                                                <textarea class="form-control" rows="3"></textarea>
-                                            </p>
-                                            </div>
-                                        </div>
-                                        <!--   FIND DE COLONNE 1-->
-                                    </div>
-                                    <!-- </FIN DE ROW 1> -->
-                                </div> 
-                            </div>
-                            <!-- END TABS 1 -->         
-
-                            <!-- TABS 2 -->   
-                            <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                                 <div class="row tab-content-user">
-                                    <div class="col-md-12">
-                                        <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
-                                    </div>
-                                    <div class="col-md-12  border border-dark rounded">
-                                        <p class="bg-warning">Liste</p>
-                                        <br />
-                                        <div style=" font-size:0.8em;">
-                                            <table class="table table-sm">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nom</th>
-                                                    <th>Supprimer</th>
-                                                    <th>Permissions</th>
-                                                </tr>
-                                            </thead>
-                                            <tr v-for="file in user.filenames">
-                                                <td>
-                                                    <a class="float-left" v-bind:href="server + 'files/' + file.filename">
-                                                    <i class="fas fa-file-alt"></i> {{ file.filename }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
-                                                    <i class="far fa-trash-alt"></i>
-                                                    <br />
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <select class="form-control " v-model="file.permissions">
-                                                        <option value="all">Tous</option>
-                                                        <option v-for="u in users" :value="u._id">{{u.nom}}</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            <!-- TABS 3 -->  
-                            <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
-                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <label>Profil</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <select class="custom-select" v-model="user.role" :disabled="!creationProcess">
-                                            <option value="">--Please choose an option--</option>
-                                            <option value="viewer">Viewer</option>
-                                            <option value="user">User</option>
-                                            <option value="manager">Manager</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row" v-if="!creationProcess">
-                                    <div class="col-md-2">
-                                        <label>Liste des droits</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}
-                                        <br>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END TABS 3 -->  
-
-                            <!-- TABS 4 -->  
-                            <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
-                                 <div class="row">
-                                    test
-                                </div>
-                            </div>
-                            <!-- END TABS 4 --> 
-                        
-                        
-
-                        <!-- END TABS CONTENT -->
-                        </div>
-                   
-                    <!-- END COL MD 8 -->
-                    </div>          
-
-
-                <!-- COL MD 2 RIGHT SCREEN -->
-                 <div class="col-md-2">
-                </div>
-            
-            <!-- END ROW -->
-            </div>
-
-
-
-            <!-- FOOTER AND BUTTONS -->
-            <div class="footer fixed-bottom">
-                <div class="col-md-12 text-right">
-                    <div class="btn-group text-left" role="group" aria-label="Basic example">
-                        <div class="" v-if="!creationProcess">
-                            
-                            <button class="btn btn-secondary" v-on:click="openMessageModal()">
-                                <a>
-                                    <i class="fas fa-envelope"></i>
-                                    <span class="d-none d-sm-block ">Message interne</span>
-                                </a>
-                            </button>
-                            <button type="button" v-on:click="createUser()" class="btn btn-secondary">
-                                <i class="fas fa-user-plus"></i>
-                                <span class="d-none d-sm-block ">Créer un utilisateur</span>
-                            </button>
-                            <button type="button" v-on:click="deleteUser()" class="btn btn-danger">
-                                <i class="fas fa-user-minus"></i>
-                                <span class="d-none d-sm-block ">Supprimer Compte</span>
-                            </button>
-                            <button type="button" v-on:click="updateUser()" class="btn btn-secondary">
-                                <i class="fas fa-save"></i>
-                                <span class="d-none d-sm-block ">Mise à jour</span>
-                            </button>
-                        </div>
-                        <button type="button" v-if="creationProcess" v-on:click="cancelInsertUser()" class="btn btn-secondary">
-                            <i class="fas fa-window-close"></i>
-                            <span class="d-none d-sm-block ">Cancel</span>
-                        </button>
-                        <button type="button" v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary">
-                            <i class="fas fa-user-plus"></i>
-                            <span class="d-none d-sm-block ">Enregistrer utilisateur</span>
-                        </button>
-                    </div>
-                </div>
-                <!-- END FOOTER AND BUTTONS -->
-            </div>
-        </form>
-
-         <!-- END CONTAINER FLUID   -->
-        </div>
-
-        <!-- MODAL -->
-        <modal name="messageModal" :width="350" :height="400">
-            <message :user="this.user"></message>
-        </modal>
-    <!--  END MAIN DIV    -->
-    </div>
+		<div class="container-fluid " v-show="loaded">
+			<form method="post" v-on:submit.prevent>
+				<div class="row">
+					<div class="col-md-2">
+						<div class="profile-img">
+							<img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
+							<uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
+						</div>
+						<div class="profile-work col-md-2 d-none d-md-block">
+							<p>LIENS DE TRAVAIL</p>	<a href="">Website</a>
+							<br />	<a href="">Bootsnipp</a>
+							<br />	<a href="">Bootply</a>
+							<br>
+							<br>
+							<p>SKILLS</p>	<a href="">Web Designer</a>
+							<br />	<a href="">Web Developer</a>
+							<br />	<a href="">WordPress</a>
+							<br />	<a href="">WooCommerce</a>
+							<br />	<a href="">PHP, .Net</a>
+							<br />
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="profile-head">
+							<h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
+							<h6>
+							<input v-model="user.mentra" class="form-control" placeholder="Entrez ici le mentra de l'employé" />
+							</h6>
+							<!-- TABS MENUS -->
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">	<i class="fas fa-home"></i>
+										<span class="d-none d-sm-block "> A propos </span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">	<i class="fas fa-file-alt"></i>
+										<span class="d-none d-sm-block ">Fichiers </span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false">	<i class="fas fa-users-cog"></i>
+										<span class="d-none d-sm-block "> Autorisations </span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">	<i class="fas fa-users-cog"></i>
+										<span class="d-none d-sm-block "> Groupes</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!-- END TABS MENUS -->
+						<!-- TABS INTRO -->
+						<div class="tab-content profile-tab" id="myTabContent">
+							<!-- TABS 1 -->
+							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+								<div class="row tab-content-user">
+									<div class="col-md-6">
+										<div class="row" v-if="!creationProcess">
+											<div class="col-md-2">
+												<label>User Id</label>
+											</div>
+											<div class="col-md-8">
+												<p>
+													<input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled />
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2">
+												<label>Nom</label>
+											</div>
+											<div class="col-md-8" :class="{ 'form-group--error': $v.user.nom.$error }">
+												<p>
+													<input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
+													<!-- ERRORS MESSAGES t-->
+													<div class="error" v-if="!$v.user.nom.required">Le champs est nécessessaire</div>
+													<div class="error" v-if="!$v.user.nom.minLength">Le nom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2">
+												<label>Prénom</label>
+											</div>
+											<div class="col-md-8" :class="{ 'form-group--error': $v.user.prenom.$error }">
+												<p>
+													<input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+													<!-- ERRORS MESSAGES -->
+													<div class="error" v-if="!$v.user.prenom.required">Le champs est nécessessaire</div>
+													<div class="error" v-if="!$v.user.prenom.minLength">Le prénom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2">
+												<label>Email</label>
+											</div>
+											<div class="col-md-8" :class="{ 'form-group--error': $v.user.email.$error }">
+												<p>
+													<input v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+													<!-- ERRORS MESSAGES -->
+													<div class="error" v-if="!$v.user.email.required">Le champs est nécessessaire</div>
+													<div class="error" v-if="!$v.user.email.minLength">L'Email doit avoir au moins {{ $v.user.nom.$params.minLength.min }} lettres.</div>
+												</p>
+											</div>
+										</div>
+										<div class="row" v-if="creationProcess">
+											<div class="col-md-2">
+												<label>Password</label>
+											</div>
+											<div class="col-md-4">
+												<p>
+													<input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2">
+												<label>Téléphone</label>
+											</div>
+											<div class="col-md-8" :class="{ 'form-group--error': $v.user.phone.$error }">
+												<p>
+													<input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
+													<!-- ERRORS MESSAGES -->
+													<div class="error" v-if="!$v.user.phone.minLength">Le téléphone doit avoir au moins {{ $v.user.phone.$params.minLength.min }} chiffres.</div>
+												</p>
+											</div>
+										</div>
+										<!--   FIND DE COLONNE 2-->
+									</div>
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-2">
+												<label>Date de naissance</label>
+											</div>
+											<div class="col-md-10">
+												<p>
+													<input v-model="user.birthday" @change="getAge" class="form-control" type="date">
+													<!-- <input v-model="user.birthday" @change="getAge" class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" > -->
+												</p>
+											</div>
+											<div class="col-md-2">
+												<label>Age</label>
+											</div>
+											<div class="col-md-10">
+												<p>
+													<input v-model="user.age" class="form-control" disabled></input>
+												</p>
+											</div>
+											<div class="col-md-2">
+												<label>Job</label>
+											</div>
+											<div class="col-md-4">
+												<select class="form-control " v-model="user.job">
+													<option v-for="job in jobs" :value="job.name">{{job.name}}</option>
+												</select>
+											</div>
+											<div class="col-md-6">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="insertJob()">+</button>
+													</div>
+													<input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
+												</div>
+											</div>
+											<div class="col-md-2">
+												<label>Description</label>
+											</div>
+											<div class="col-md-10">
+												<p>
+													<textarea class="form-control" rows="3"></textarea>
+												</p>
+											</div>
+										</div>
+										<!--   FIND DE COLONNE 1-->
+									</div>
+									<!-- </FIN DE ROW 1> -->
+								</div>
+								<!-- END TABS 1 -->
+							</div>
+							<!-- TABS 2 -->
+							<div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
+								<div class="row tab-content-user">
+									<div class="col-md-12">
+										<uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
+									</div>
+									<div class="col-md-12  border border-dark rounded">
+										<p class="bg-warning">Liste</p>
+										<br />
+										<div style=" font-size:0.8em;">
+											<table class="table table-sm">
+												<thead>
+													<tr>
+														<th>Nom</th>
+														<th>Supprimer</th>
+														<th>Permissions</th>
+													</tr>
+												</thead>
+												<tr v-for="file in user.filenames">
+													<td>
+														<a class="float-left" v-bind:href="server + 'files/' + file.filename">	<i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+													</td>
+													<td>	<span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
+									<i class="far fa-trash-alt"></i>
+									<br />
+									</span>
+													</td>
+													<td>
+														<select class="form-control " v-model="file.permissions">
+															<option value="all">Tous</option>
+															<option v-for="u in users" :value="u._id">{{u.nom}}</option>
+														</select>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- TABS 3 -->
+							<div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
+								<div class="row">
+									<div class="col-md-2">
+										<label>Profil</label>
+									</div>
+									<div class="col-md-6">
+										<select class="custom-select" v-model="user.role" :disabled="!creationProcess">
+											<option value="">--Please choose an option--</option>
+											<option value="viewer">Viewer</option>
+											<option value="user">User</option>
+											<option value="manager">Manager</option>
+										</select>
+									</div>
+								</div>
+								<br>
+								<div class="row" v-if="!creationProcess">
+									<div class="col-md-2">
+										<label>Liste des droits</label>
+									</div>
+									<div class="col-md-6">	<span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}
+										<br>
+									</span>
+									</div>
+								</div>
+								<!-- END TABS 3 -->
+							</div>
+							<!-- TABS 4 -->
+							<div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+								<div class="row">test</div>
+								<!-- END TABS 4 -->
+							</div>
+							<!-- END TABS INTRO -->
+						</div>
+						<!-- END COL MD 8 -->
+					</div>
+					<!-- END ROW -->
+				</div>
+				<!-- FOOTER AND BUTTONS -->
+				<div class="footer fixed-bottom">
+					<div class="col-md-12 text-right">
+						<div class="btn-group text-left" role="group" aria-label="Basic example">
+							<div class="" v-if="!creationProcess">
+								<button class="btn btn-secondary" v-on:click="openMessageModal()">
+									<a>	<i class="fas fa-envelope"></i>
+										<span class="d-none d-sm-block ">Message interne</span>
+									</a>
+								</button>
+								<button type="button" v-on:click="createUser()" class="btn btn-secondary">	<i class="fas fa-user-plus"></i>
+									<span class="d-none d-sm-block ">Créer un utilisateur</span>
+								</button>
+								<button type="button" v-on:click="deleteUser()" class="btn btn-danger">	<i class="fas fa-user-minus"></i>
+									<span class="d-none d-sm-block ">Supprimer Compte</span>
+								</button>
+								<button type="button" v-on:click="updateUser()" class="btn btn-secondary">	<i class="fas fa-save"></i>
+									<span class="d-none d-sm-block ">Mise à jour</span>
+								</button>
+							</div>
+							<button type="button" v-if="creationProcess" v-on:click="cancelInsertUser()" class="btn btn-secondary">	<i class="fas fa-window-close"></i>
+								<span class="d-none d-sm-block ">Cancel</span>
+							</button>
+							<button type="button" v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary">	<i class="fas fa-user-plus"></i>
+								<span class="d-none d-sm-block ">Enregistrer utilisateur</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- MODAL -->
+		<modal name="messageModal" :width="350" :height="400">
+			<message :user="this.user"></message>
+		</modal>
+	</div>
 </template>
 
 <script>
