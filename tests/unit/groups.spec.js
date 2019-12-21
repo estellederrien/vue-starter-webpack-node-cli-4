@@ -38,6 +38,9 @@ describe("Groups tests ", () => {
   it("readGroups() to be a function", () => {
     expect(wrapper.vm.readGroups).to.be.a("function");
   });
+  it("newOne() to be a function", () => {
+    expect(wrapper.vm.newOne).to.be.a("function");
+  });
 
   // DATA VARIABLES  FORMAT
   it("group is an object", () => {
@@ -48,6 +51,13 @@ describe("Groups tests ", () => {
   });
   it("value to be a string", () => {
     expect(wrapper.vm.$data.value).to.be.an("string");
+  });
+
+  it("updateMode to be a bool", () => {
+    expect(wrapper.vm.$data.value).to.be.an("boolean");
+  });
+  it("groups is an array", () => {
+    expect(wrapper.vm.$data.groups).to.be.an("array");
   });
 
   // DATA VARIABLES PRESENCE
