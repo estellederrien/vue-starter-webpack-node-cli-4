@@ -35,7 +35,7 @@ Also ...<br />
 1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider
 <br /><br />
 Data science  ...<br />
-1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver<br />
+1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver and/or https://github.com/jvail/glpk.js<br />
 1 Linear multiple regression lib : https://github.com/luccastera/shaman<br />
 1 Neural network  : https://github.com/BrainJS/brain.js<br />
 1 Probability distribution lib : https://www.npmjs.com/package/probability-distributions<br />
