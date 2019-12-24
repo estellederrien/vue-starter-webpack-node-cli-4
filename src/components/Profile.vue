@@ -170,7 +170,7 @@
 											<div class="col-md-6">
 												<div class="input-group mb-3">
 													<div class="input-group-prepend">
-														<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="insertJob()">+</button>
+														<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="createJob()">+</button>
 													</div>
 													<input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
 												</div>
@@ -403,9 +403,9 @@ export default {
         groups:Groups
     },
     methods: {
-         getJobs: function() {
+         readJobs: function() {
         axios
-            .post(this.server + "getJobs")
+            .post(this.server + "readJobs")
             .then(response => {
                 this.jobs = response.data;
             })
@@ -641,19 +641,19 @@ export default {
             var age = Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25
             this.user.age = age;
         },
-        insertJob: function () {
+        createJob: function () {
             if (this.newJob.length < 3) {
                 alert('trop court)')
                 return;
             }
 
             axios
-                .post(this.server + "insertJob", {
+                .post(this.server + "createJob", {
                     name: this.newJob
                 })
                 .then(response => {
                     alert("Added one job !");
-                    this.getJobs();
+                    this.readJobs();
                 })
                 .catch(error => {
                         console.log(error);
@@ -661,7 +661,7 @@ export default {
                             type: 'error',
                             group: 'foo',
                             title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> '+error
+                            text: error
                         });
                    
                     });
@@ -687,7 +687,7 @@ export default {
     },
     created: function () {
         this.getActualSession();
-        this.getJobs();
+        this.readJobs();
         this.getUsers();
     }
 };
