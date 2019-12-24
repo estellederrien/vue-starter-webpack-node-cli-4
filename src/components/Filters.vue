@@ -144,9 +144,9 @@ export default {
   },
 
   methods: {
-    getJobs: function() {
+    readJobsForFilters: function() {
       axios
-        .post(this.server + "getJobsForFilters")
+        .post(this.server + "readJobsForFilters")
         .then(response => {
           this.jobs = response.data;
         })
@@ -181,7 +181,7 @@ export default {
     }
   },
   mounted: function() {
-     this.getJobs();
+     this.readJobsForFilters();
      this.getUsers();
   }
 };
