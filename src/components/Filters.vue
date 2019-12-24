@@ -187,7 +187,7 @@ export default {
 };
 </script>
 <style scoped>
-/* .multiselect--active {
+.multiselect--active {
   z-index: 10000;
 }
 .slider {
@@ -195,5 +195,5 @@ export default {
 }
 .app-content {
   padding: 40px 15px;
-} */
+} 
 </style>

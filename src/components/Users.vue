@@ -26,12 +26,12 @@
 
             <div id="users" v-for="user in users" class="col-lg-3">
             
-                <div class="card  " >
+                <div class="card  cardList" >
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.nom }}</h5>
-                        <h6 >{{ user.job}}</h6>
-                        <p class="card-text">
+                       
+                       <p class="card-text">
 
                             <div class="nav nav nav-pills mb-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab " data-toggle="pill" :href="'#v-pills-home' + user._id" role="tab" :aria-controls="'v-pills-home' + user._id" aria-selected="true"><i class="fas fa-info"></i></a>
@@ -42,12 +42,16 @@
                             <div class="tab-content" id="v-pills-tabContent">
 
                                 <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                    <h6 >{{ user.job }}</h6>
                                     {{ user.mentra }}<br />
                                     Age: {{ user.age }}
+
+
+                                    
                                 </div>
 
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                    <div class="filesList">
+                                    <div >
                                         <span class="badge badge-warning" v-for="f in user.filenames">
                                             {{ f.filename }}</span>
                                     </div>
@@ -56,7 +60,7 @@
 
                             </div>
 
-                        </p>
+                        </p> 
                         <a v-on:click="route(user._id)" class="btn btn-primary float-right"><i class="fas fa-user"></i></a>
 
                     </div>
@@ -150,13 +154,23 @@ export default {
     padding: 15px;
     margin-left: 30px;
 }
+.tab-content{
+    max-height:10px !important;
+}
 
- /* .cardList{
+.tab-pane {
+    background-color: wheat;
+    min-height: 50px;
+    height: 80px;
+    overflow: auto;
+
+}
+  .cardList{
     margin-bottom : 20px;
-    min-width: 20rem;
-    max-width:40vh !important;
+/*     min-width: 20rem;
+    max-width:40vh !important; */
 
-}  */
+}  
 /* 
 .row > div[class*='col-'] {
   display: flex;
@@ -170,18 +184,18 @@ export default {
     overflow: auto;
 }
 
-.tab-pane {
-    background-color: lightgrey;
-    min-height: 100px;
-    height: 100px;
-    overflow: auto;
 
-}
 
 h6{
     color:#0068d9
 }
 
+
+.card:hover{
+     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0.8;
+  transition: opacity 0.8s ease-in-out;
+}
 
 
 </style>
