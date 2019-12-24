@@ -22,12 +22,11 @@
                     <h1>Pas de résultats avec ce filtre !</h1>
                 </center>
             </div>
-            <div>
+         
 
-            </div>
-
-            <div id="users" v-for="user in users" class="col-sm col-xs-12">
-                <div class="card cardList " >
+            <div id="users" v-for="user in users" class="col-lg-3">
+            
+                <div class="card  " >
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.nom }}</h5>
@@ -62,6 +61,7 @@
 
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -151,12 +151,17 @@ export default {
     margin-left: 30px;
 }
 
-.cardList{
+ /* .cardList{
     margin-bottom : 20px;
-    min-width: 16rem;
+    min-width: 20rem;
     max-width:40vh !important;
 
-}
+}  */
+/* 
+.row > div[class*='col-'] {
+  display: flex;
+  flex:1 0 auto;
+} */
 
 .filesList {
     width:100% !important;
