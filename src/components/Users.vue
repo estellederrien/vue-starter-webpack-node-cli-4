@@ -29,7 +29,7 @@
                 <div class="card  cardList" >
                     <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body ">
-                        <h5 class="card-title">{{ user.nom }}</h5>
+                        <h5 class="card-title">{{ user.prenom }} {{ user.nom }}</h5>
                        
                        <p class="card-text">
 
