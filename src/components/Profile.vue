@@ -106,10 +106,10 @@
 											</div>
 											<div class="col-md-8" :class="{ 'form-group--error': $v.user.email.$error }">
 												<p>
-													<input v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+													<input v-model="user.email" type="email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
 													<!-- ERRORS MESSAGES -->
 													<div class="error" v-if="!$v.user.email.required">Le champs est nécessessaire</div>
-													<div class="error" v-if="!$v.user.email.minLength">L'Email doit avoir au moins {{ $v.user.nom.$params.minLength.min }} lettres.</div>
+													<div class="error" v-if="!$v.user.email.minLength">L'Email doit avoir au moins {{ $v.user.email.$params.minLength.min }} lettres.</div>
 												</p>
 											</div>
 										</div>
@@ -120,6 +120,9 @@
 											<div class="col-md-4">
 												<p>
 													<input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
+                                                    <!-- ERRORS MESSAGES -->
+													<div class="error" v-if="!$v.user.password.required">Le champs est nécessessaire</div>
+													<div class="error" v-if="!$v.user.password.minLength">L'Email doit avoir au moins {{ $v.user.password.$params.minLength.min }} lettres.</div>
 												</p>
 											</div>
 										</div>
@@ -327,7 +330,7 @@ import {
 import {
     required,
     minLength,
-    between
+    between,email
 } from "vuelidate/lib/validators";
 
 /* PERSONNAL COMPONENTS */
@@ -378,7 +381,13 @@ export default {
             },
             email: {
                 required,
-                minLength: minLength(2)
+                minLength: minLength(2),
+                email
+            },
+            
+            password: {
+                minLength: minLength(2),
+                required
             },
             phone: {
                 minLength: minLength(2),
@@ -561,7 +570,6 @@ export default {
                 nom: "",
                 prenom: "",
                 phone: "",
-
                 email: "",
                 password: "",
                 img: "",
@@ -572,6 +580,24 @@ export default {
             };
         },
         insertUser: function () {
+            
+            if (
+                !this.user.password ||
+                !this.user.prenom ||
+                !this.user.nom ||
+                !this.user.email||
+                this.$v.user.email.$error
+            ) {
+
+            
+                this.$notify({
+                    type: 'error',
+                    group: 'foo',
+                    title: 'Hey! ',
+                    text: 'Something is wrong, please check the fields again !'
+                });
+                return;
+            }
             axios
                 .post(this.server + "insertUser", this.user)
                 .then(response => {
