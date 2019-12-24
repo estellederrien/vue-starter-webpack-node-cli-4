@@ -194,7 +194,7 @@ export default {
         });
     },
     newOne: function() {
-      this.updateMode == false;
+      this.updateMode = false;
       this.group = {
         name: "",
         users: []
