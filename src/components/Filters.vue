@@ -13,7 +13,7 @@
         <div class="col-md-6" style="padding:30px">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Role</label>
+              <label class="input-group-text" >Role</label>
             </div>
             <select class="form-control" v-model="modifiedFilters.role">
               <option value>Choisir</option>
@@ -27,7 +27,7 @@
           <div class="input-group mb-3">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Jobs</label>
+                <label class="input-group-text" >Jobs</label>
               </div>
               <multiselect
                 class="form-control"
@@ -48,7 +48,7 @@
         <div class="col-md-6" style="padding:30px">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Utilisateur</label>
+              <label class="input-group-text" >Utilisateur</label>
             </div>
             <multiselect
               class="form-control"
@@ -66,14 +66,17 @@
           <br />
 
           <div class="mb-3">
-            <vue-range-slider
-              v-model="modifiedFilters.ageValues"
-              :min="min"
-              :max="max"
-              :formatter="formatter"
-              :tooltip-merge="tooltipMerge"
-              :enable-cross="enableCross"
-            ></vue-range-slider>
+             <div >
+             <div class="input-group-prepend">
+              <label class="input-group-text" >Age</label>
+            </div>
+            <vue-slider 
+            v-model="modifiedFilters.ageValues"
+            :tooltip="'always'"
+            :enable-cross="false"
+            ></vue-slider>
+            </div>
+         
           </div>
         </div>
       </div>
@@ -102,9 +105,13 @@ axios.defaults.withCredentials = true;
 
 import Multiselect from "vue-multiselect";
 
-// https://github.com/xwpongithub/vue-range-slider
-import "vue-range-component/dist/vue-range-slider.css";
-import VueRangeSlider from "vue-range-component";
+// import https://github.com/xwpongithub/vue-range-slider THIS ONE DOESNT WORK 
+// import "vue-range-component/dist/vue-range-slider.css";
+// import VueRangeSlider from "vue-range-component";
+
+// https://nightcatsama.github.io/vue-slider-component/#/basics/simple
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
 
 export default {
   name: "filters",
@@ -120,7 +127,6 @@ export default {
         users: []
       },
       value: "",
-      loading: true,
 
       /* Age range filter */
       min: 0,
@@ -132,7 +138,8 @@ export default {
   },
   components: {
     Multiselect,
-    VueRangeSlider
+    // VueRangeSlider,
+    VueSlider
   },
 
   methods: {
@@ -173,20 +180,19 @@ export default {
     }
   },
   mounted: function() {
-    this.getJobs();
-    this.getUsers();
+     this.getJobs();
+     this.getUsers();
   }
 };
 </script>
 <style scoped>
-.multiselect--active {
+/* .multiselect--active {
   z-index: 10000;
 }
 .slider {
-  /* overwrite slider styles */
   width: 400px;
 }
 .app-content {
   padding: 40px 15px;
-}
+} */
 </style>
