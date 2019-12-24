@@ -18,50 +18,58 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" min="1" v-model="user.prenom" name="prenom" value="prenom" id="prenom" placeholder="Prénom">
                                     <!-- ERRORS MESSAGES -->
-                                    <div class="error" v-if="!$v.user.prenom.required">
-                                        Le champs est nécessaire
-                                    </div>
-                                    <div class="error" v-if="!$v.user.prenom.minLength">
-                                        Le prénom doit avoir au moins
-                                        {{ $v.user.nom.$params.minLength.min }} letters.
+                                     <div v-if="cliqued ">
+                                        <div class="error" v-if="!$v.user.prenom.required">
+                                            Le champs est nécessaire
+                                        </div>
+                                        <div class="error" v-if="!$v.user.prenom.minLength">
+                                            Le prénom doit avoir au moins
+                                            {{ $v.user.nom.$params.minLength.min }} letters.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" min="1" v-model="user.nom" name="nom" value="nom" id="nom" placeholder="Nom">
                                     <!-- ERRORS MESSAGES -->
-                                    <div class="error" v-if="!$v.user.nom.required">
-                                        Le champs est nécessaire
-                                    </div>
-                                    <div class="error" v-if="!$v.user.nom.minLength">
-                                        Le nom doit avoir au moins
-                                        {{ $v.user.nom.$params.minLength.min }} letters.
+                                    <div v-if="cliqued ">
+                                        <div class="error" v-if="!$v.user.nom.required">
+                                            Le champs est nécessaire
+                                        </div>
+                                        <div class="error" v-if="!$v.user.nom.minLength">
+                                            Le nom doit avoir au moins
+                                            {{ $v.user.nom.$params.minLength.min }} letters.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user" min="1" v-model="user.email" name="email" value="email" id="email" placeholder="Email">
                                 <!-- ERRORS MESSAGES -->
-                                <div class="error" v-if="!$v.user.email.required">
-                                    Le champs est nécessaire
-                                </div>
-                                <div class="error" v-if="!$v.user.email.minLength">
-                                    L'Email doit avoir au moins
-                                    {{ $v.user.email.$params.minLength.min }} lettres.
-                                </div>
-                                <div class="error" v-if="!$v.user.email.email">
-                                    L'Email doit être valide
+                                 <div v-if="cliqued ">
+                                    <div class="error" v-if="!$v.user.email.required">
+                                        Le champs est nécessaire
+                                    </div>
+                                    <div class="error" v-if="!$v.user.email.minLength">
+                                        L'Email doit avoir au moins
+                                        {{ $v.user.email.$params.minLength.min }} lettres.
+                                    </div>
+                                    <div class="error" v-if="!$v.user.email.email">
+                                        L'Email doit être valide
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user" min="1" v-model="user.password" value="password" id="password" placeholder="Mot de passe">
                                     <!-- ERRORS MESSAGES -->
-                                    <div class="error" v-if="!$v.user.password.required">
-                                        Le champs est nécessaire
-                                    </div>
-                                    <div class="error" v-if="!$v.user.password.minLength">
-                                        Le mot de passe doit avoir au moins
-                                        {{ $v.user.password.$params.minLength.min }} lettres.
+                                     <div v-if="cliqued ">
+                                        <div class="error" v-if="!$v.user.password.required">
+                                            Le champs est nécessaire
+                                        </div>
+                                        <div class="error" v-if="!$v.user.password.minLength">
+                                            Le mot de passe doit avoir au moins
+                                            {{ $v.user.password.$params.minLength.min }} lettres.
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="col-sm-6">
@@ -105,13 +113,47 @@ import {
 } from "vuelidate/lib/validators";
 export default {
     name: 'Register',
+    data() {
+        return {
+            user: {
+                nom: "",
+                prenom: "",
+                email: "",
+                password: ""
+            },
+            problem: false,
+            cliqued:false
+        }
+    },
+
+    validations: {
+        user: {
+            nom: {
+                required,
+                minLength: minLength(2)
+            },
+            prenom: {
+                required,
+                minLength: minLength(2)
+            },
+            email: {
+                required,
+                minLength: minLength(2),
+                email
+            },
+            password: {
+                required,
+                minLength: minLength(2)
+            }
+        }
+    },
 
     methods: {
         routeLogin: function () {
             this.$router.push("/login");
         },
         register: function () {
-
+             this.cliqued = true;  
             console.log(this.user);
 
             if (
@@ -165,46 +207,15 @@ export default {
                 });
         }
     },
+    
     created: function () {
+        this.cliqued = false;
         this.$notify({
             type: 'success',
             group: 'foo',
             title: 'Bonjour ! ',
             text: 'Vous pouvez vous enregistrer !'
         });
-    },
-    data() {
-        return {
-            user: {
-                nom: "",
-                prenom: "",
-                email: "",
-                password: ""
-            },
-            problem: false
-        }
-    },
-
-    validations: {
-        user: {
-            nom: {
-                required,
-                minLength: minLength(2)
-            },
-            prenom: {
-                required,
-                minLength: minLength(2)
-            },
-            email: {
-                required,
-                minLength: minLength(2),
-                email
-            },
-            password: {
-                required,
-                minLength: minLength(2)
-            }
-        }
     }
 }
 </script>
