@@ -1,265 +1,271 @@
 <template>
-<div class="container-fluid">
-
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-md col-xs-12">
-            <div class="card " style="margin-bottom : 20px">
-
-                <div class="card-body">
-                    <h5 class="card-title">Indices de ventes</h5>
-                    <p class="card-text">Ventes totales .</p>
-                    <div>
-                        <apexchart type="bar" :options="options_1" :series="series_1"></apexchart>
-                    </div>
-                </div>
+      <div class="col-md col-xs-12">
+        <div class="card" style="margin-bottom : 20px">
+          <div class="card-body">
+            <h5 class="card-title">Indices de ventes</h5>
+            <p class="card-text">Ventes totales .</p>
+            <div>
+              <apexchart type="bar" :options="options_1" :series="series_1"></apexchart>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="col-md col-xs-12">
-
-            <div class="card " style="margin-bottom : 20px">
-
-                <div class="card-body">
-                    <h5 class="card-title">Ventes</h5>
-                    <p class="card-text">Indice des ventes total.</p>
-                    <div id="wrapper">
-
-                        <apexchart type="line" :options="options_2" :series="series_2"></apexchart>
-
-                    </div>
-                </div>
+      <div class="col-md col-xs-12">
+        <div class="card" style="margin-bottom : 20px">
+          <div class="card-body">
+            <h5 class="card-title">Ventes</h5>
+            <p class="card-text">Indice des ventes total.</p>
+            <div id="wrapper">
+              <apexchart type="line" :options="options_2" :series="series_2"></apexchart>
             </div>
-
+          </div>
         </div>
-
+      </div>
     </div>
 
     <div class="row">
-        <div class="col-sm col-xs-12">
-
-            <div class="card " style="margin-bottom : 20px">
-
-                <div class="card-body">
-                    <h5 class="card-title">Distribution</h5>
-                    <p class="card-text">Distribution par pays.</p>
-                    <div>
-                        <apexchart type="bar" :options="options_3" :series="series_3"></apexchart>
-                    </div>
-                </div>
+      <div class="col-sm col-xs-12">
+        <div class="card" style="margin-bottom : 20px">
+          <div class="card-body">
+            <h5 class="card-title">Distribution</h5>
+            <p class="card-text">Distribution par pays.</p>
+            <div>
+              <apexchart type="bar" :options="options_3" :series="series_3"></apexchart>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="col-sm col-xs-12">
-
-            <div class="card " style="margin-bottom : 20px">
-
-                <div class="card-body">
-                    <h5 class="card-title">Indice fromage</h5>
-                    <p class="card-text">Fromage.</p>
-                    <div>
-                        <apexchart type="donut" :options="options_4" :series="series_4"></apexchart>
-                    </div>
-                </div>
+      <div class="col-sm col-xs-12">
+        <div class="card" style="margin-bottom : 20px">
+          <div class="card-body">
+            <h5 class="card-title">Indice fromage</h5>
+            <p class="card-text">Fromage.</p>
+            <div>
+              <apexchart type="donut" :options="options_4" :series="series_4"></apexchart>
             </div>
+          </div>
         </div>
-
+      </div>
     </div>
 
     <div class="row">
-        <div class="col-lg col-xs-12">
-            <div class="card " style="margin-bottom : 20px">
-
-                <div class="card-body">
-                    <h5 class="card-title">Zooming</h5>
-                    <div id="chart">
-                        <div class="toolbar">
-                            <button @click="updateData('one_month')" id="one_month" :class="{active: selection==='one_month'}">1M</button>
-                            <button @click="updateData('six_months')" id="six_months" :class="{active: selection==='six_months'}">6M</button>
-                            <button @click="updateData('one_year')" id="one_year" :class="{active: selection==='one_year'}">1Y</button>
-                            <button @click="updateData('ytd')" id="ytd" :class="{active: selection==='ytd'}">YTD</button>
-                            <button @click="updateData('all')" id="all" :class="{active: selection==='all'}">ALL</button>
-                        </div>
-                        <apexchart type=area height=350 :options="chartOptions" :series="series_6" />
-                    </div>
-                </div>
+      <div class="col-lg col-xs-12">
+        <div class="card" style="margin-bottom : 20px">
+          <div class="card-body">
+            <h5 class="card-title">Zooming</h5>
+            <div id="chart">
+              <div class="toolbar">
+                <button
+                  @click="updateData('one_month')"
+                  id="one_month"
+                  :class="{active: selection==='one_month'}"
+                >1M</button>
+                <button
+                  @click="updateData('six_months')"
+                  id="six_months"
+                  :class="{active: selection==='six_months'}"
+                >6M</button>
+                <button
+                  @click="updateData('one_year')"
+                  id="one_year"
+                  :class="{active: selection==='one_year'}"
+                >1Y</button>
+                <button @click="updateData('ytd')" id="ytd" :class="{active: selection==='ytd'}">YTD</button>
+                <button @click="updateData('all')" id="all" :class="{active: selection==='all'}">ALL</button>
+              </div>
+              <apexchart type="area" height="350" :options="chartOptions" :series="series_6" />
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
-</div>
+  </div>
 </template>
 
 <script>
+import Vue from "vue";
+import VueApexCharts from "vue-apexcharts";
+Vue.component("apexchart", VueApexCharts);
+
 export default {
-    name: 'Dashboard',
-    data: function () {
-        return {
+  name: "Dashboard",
+  data: function() {
+    return {
+      // CHART 1
+      options_1: {
+        chart: {
+          id: "vuechart-example",
+          foreColor: "#ccc",
+          toolbar: {
+            show: false,
+            autoSelected: "pan"
+          }
+        },
+        colors: ["#00BAEC"],
+        stroke: {
+          width: 3
+        },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+        }
+      },
+      series_1: [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91]
+        }
+      ],
+      // CHART 2
+      options_2: {
+        chart: {
+          id: "vuechart-example2",
+          type: "line",
+          height: 230,
+          foreColor: "#ccc",
+          toolbar: {
+            autoSelected: "pan",
+            show: false
+          }
+        },
+        colors: ["#00BAEC"],
+        stroke: {
+          width: 3
+        },
+        xaxis: {
+          type: "datetime"
+        },
+        markers: {
+          size: 5,
+          colors: ["#000524"],
+          strokeColor: "#00BAEC",
+          strokeWidth: 3
+        },
+        tooltip: {
+          theme: "dark"
+        },
+        grid: {
+          borderColor: "#555",
+          clipMarkers: false,
+          yaxis: {
+            lines: {
+              show: false
+            }
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        fill: {
+          gradient: {
+            enabled: true,
+            opacityFrom: 0.55,
+            opacityTo: 0
+          }
+        },
+        markers: {
+          size: 5,
+          colors: ["#000524"],
+          strokeColor: "#00BAEC",
+          strokeWidth: 3
+        },
+        yaxis: {
+          tickAmount: 3,
+          labels: {
+            show: false
+          }
+        }
+      },
+      series_2: [
+        {
+          name: "series-2",
+          data: this.generateDayWiseTimeSeries(
+            new Date("22 Apr 2017").getTime(),
+            20,
+            {
+              min: 30,
+              max: 90
+            }
+          )
+        }
+      ],
 
-            // CHART 1
-            options_1: {
-                chart: {
-                    id: "vuechart-example",
-                    foreColor: "#ccc",
-                    toolbar: {
-                        show: false,
-                        autoSelected: "pan"
-                    }
-                },
-                colors: ["#00BAEC"],
-                stroke: {
-                    width: 3
-                },
-                xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-                }
-            },
-            series_1: [{
-                name: "series-1",
-                data: [30, 40, 45, 50, 49, 60, 70, 91]
-            }],
-            // CHART 2
-            options_2: {
-                chart: {
-                    id: "vuechart-example2",
-                    type: "line",
-                    height: 230,
-                    foreColor: "#ccc",
-                    toolbar: {
-                        autoSelected: "pan",
-                        show: false
-                    }
-                },
-                colors: ["#00BAEC"],
-                stroke: {
-                    width: 3
-                },
-                xaxis: {
-                    type: "datetime"
-                },
-                markers: {
-                    size: 5,
-                    colors: ["#000524"],
-                    strokeColor: "#00BAEC",
-                    strokeWidth: 3
-                },
-                tooltip: {
-                    theme: "dark"
-                },
-                grid: {
-                    borderColor: "#555",
-                    clipMarkers: false,
-                    yaxis: {
-                        lines: {
-                            show: false
-                        }
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                fill: {
-                    gradient: {
-                        enabled: true,
-                        opacityFrom: 0.55,
-                        opacityTo: 0
-                    }
-                },
-                markers: {
-                    size: 5,
-                    colors: ["#000524"],
-                    strokeColor: "#00BAEC",
-                    strokeWidth: 3
-                },
-                yaxis: {
-                    tickAmount: 3,
-                    labels: {
-                        show: false
-                    }
-                }
-            },
-            series_2: [{
-                name: "series-2",
-                data: this.generateDayWiseTimeSeries(
-                    new Date("22 Apr 2017").getTime(),
-                    20, {
-                        min: 30,
-                        max: 90
-                    }
-                )
-            }],
+      // CHART 3
+      options_3: {
+        chart: {
+          width: "100%",
+          height: 380,
+          type: "bar"
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 1,
+          colors: ["#fff"]
+        },
+        legend: {
+          position: "right",
+          verticalAlign: "top",
+          containerMargin: {
+            left: 35,
+            right: 60
+          }
+        },
+        xaxis: {
+          categories: [
+            "Korea",
+            "Canada",
+            "Poland",
+            "Italy",
+            "France",
+            "Japan",
+            "China"
+          ]
+        }
+      },
+      series_3: [
+        {
+          data: [44, 55, 41, 64, 22, 43, 21]
+        },
+        {
+          data: [53, 32, 33, 52, 13, 44, 32]
+        }
+      ],
+      // CHART 4
+      options_4: {
+        chart: {
+          width: 380,
+          type: "donut"
+        },
+        dataLabels: {
+          enabled: false
+        },
 
-            // CHART 3
-            options_3: {
-                chart: {
-                    width: "100%",
-                    height: 380,
-                    type: "bar"
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: true
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    width: 1,
-                    colors: ["#fff"]
-                },
-                legend: {
-                    position: "right",
-                    verticalAlign: "top",
-                    containerMargin: {
-                        left: 35,
-                        right: 60
-                    }
-                },
-                xaxis: {
-                    categories: [
-                        "Korea",
-                        "Canada",
-                        "Poland",
-                        "Italy",
-                        "France",
-                        "Japan",
-                        "China"
-                    ]
-                }
-            },
-            series_3: [{
-                    data: [44, 55, 41, 64, 22, 43, 21]
-                },
-                {
-                    data: [53, 32, 33, 52, 13, 44, 32]
-                }
-            ],
-            // CHART 4
-            options_4: {
-                chart: {
-                    width: 380,
-                    type: "donut"
-                },
-                dataLabels: {
-                    enabled: false
-                },
-
-                fill: {
-                    type: "gradient"
-                },
-                legend: {
-                    formatter: function (val, opts) {
-                        return val + " - " + opts.w.globals.series[opts.seriesIndex];
-                    }
-                }
-            },
-            series_4: [44, 55, 41, 17, 15],
-            series_5: [
-              this.generateDayWiseTimeSeries(new Date("22 Apr 2017").getTime(), 115, {
-                min: 30,
-                max: 90
-              })
-            ],
+        fill: {
+          type: "gradient"
+        },
+        legend: {
+          formatter: function(val, opts) {
+            return val + " - " + opts.w.globals.series[opts.seriesIndex];
+          }
+        }
+      },
+      series_4: [44, 55, 41, 17, 15],
+      series_5: [
+        this.generateDayWiseTimeSeries(new Date("22 Apr 2017").getTime(), 115, {
+          min: 30,
+          max: 90
+        })
+      ],
       series_6: [
         {
           data: [
@@ -489,76 +495,74 @@ export default {
           }
         }
       }
-    }
-        
+    };
+  },
+  methods: {
+    generateDayWiseTimeSeries: function(baseval, count, yrange) {
+      var i = 0;
+      var series = [];
+      while (i < count) {
+        var x = baseval;
+        var y =
+          Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
+          yrange.min;
+
+        series.push([x, y]);
+        baseval += 86400000;
+        i++;
+      }
+      return series;
     },
-    methods: {
-        generateDayWiseTimeSeries: function (baseval, count, yrange) {
-            var i = 0;
-            var series = [];
-            while (i < count) {
-                var x = baseval;
-                var y =
-                    Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
-                    yrange.min;
+    updateData: function(timeline) {
+      this.selection = timeline;
 
-                series.push([x, y]);
-                baseval += 86400000;
-                i++;
+      switch (timeline) {
+        case "one_month":
+          this.chartOptions = {
+            xaxis: {
+              min: new Date("28 Jan 2013").getTime(),
+              max: new Date("27 Feb 2013").getTime()
             }
-            return series;
-        },
-        updateData: function (timeline) {
-            this.selection = timeline;
-
-            switch (timeline) {
-                case "one_month":
-                    this.chartOptions = {
-                        xaxis: {
-                            min: new Date("28 Jan 2013").getTime(),
-                            max: new Date("27 Feb 2013").getTime()
-                        }
-                    };
-                    break;
-                case "six_months":
-                    this.chartOptions = {
-                        xaxis: {
-                            min: new Date("27 Sep 2012").getTime(),
-                            max: new Date("27 Feb 2013").getTime()
-                        }
-                    };
-                    break;
-                case "one_year":
-                    this.chartOptions = {
-                        xaxis: {
-                            min: new Date("27 Feb 2012").getTime(),
-                            max: new Date("27 Feb 2013").getTime()
-                        }
-                    };
-                    break;
-                case "ytd":
-                    this.chartOptions = {
-                        xaxis: {
-                            min: new Date("01 Jan 2013").getTime(),
-                            max: new Date("27 Feb 2013").getTime()
-                        }
-                    };
-                    break;
-                case "all":
-                    this.chartOptions = {
-                        xaxis: {
-                            min: undefined,
-                            max: undefined
-                        }
-                    };
-                    break;
-                default:
+          };
+          break;
+        case "six_months":
+          this.chartOptions = {
+            xaxis: {
+              min: new Date("27 Sep 2012").getTime(),
+              max: new Date("27 Feb 2013").getTime()
             }
-        }
+          };
+          break;
+        case "one_year":
+          this.chartOptions = {
+            xaxis: {
+              min: new Date("27 Feb 2012").getTime(),
+              max: new Date("27 Feb 2013").getTime()
+            }
+          };
+          break;
+        case "ytd":
+          this.chartOptions = {
+            xaxis: {
+              min: new Date("01 Jan 2013").getTime(),
+              max: new Date("27 Feb 2013").getTime()
+            }
+          };
+          break;
+        case "all":
+          this.chartOptions = {
+            xaxis: {
+              min: undefined,
+              max: undefined
+            }
+          };
+          break;
+        default:
+      }
     }
-}
+  }
+};
 </script>
 
 <style>
-
 </style>
