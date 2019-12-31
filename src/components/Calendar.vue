@@ -1,46 +1,31 @@
 <template>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"><h5>Entrer un nouvel évènement</h5>
-            
+        <div class="col-md-2">
+            <h5>Entrer un nouvel évènement</h5>
+
             <label>Début</label> <br>
-            <datetime  placeholder ="Entrez un créneau" v-model="newEvent.start" 
-            type="datetime" 
-            :minute-step="30" 
-            
-            :phrases="{ok: 'Ok', cancel: 'Annuler'}"
-            title="Debut du rendez vous "
-            ></datetime>
+            <datetime placeholder="Entrez un créneau" v-model="newEvent.start" type="datetime" :minute-step="30" :phrases="{ok: 'Ok', cancel: 'Annuler'}" title="Debut du rendez vous "></datetime>
             <br>
 
             <label>Fin</label> <br>
-            <datetime  placeholder ="Entrez un créneau"  v-model="newEvent.end" type="datetime" :minute-step="30" ></datetime>
-          <br>
-           <label>Titre</label> <br>
-           <input v-model="newEvent.title" class="form-control"  type = "text"></input>
-          <br>
-           <label>Description</label> <br>
-           <textarea v-model="newEvent.contentFull" class="form-control"  ></textarea>
+            <datetime placeholder="Entrez un créneau" v-model="newEvent.end" type="datetime" :minute-step="30"></datetime>
             <br>
-          <button @click="createEvent()" class="btn btn-primary">Ajouter</button>
+            <label>Titre</label> <br>
+            <input v-model="newEvent.title" class="form-control" type="text"></input>
+            <br>
+            <label>Description</label> <br>
+            <textarea v-model="newEvent.contentFull" class="form-control"></textarea>
+            <br>
+            <button @click="createEvent()" class="btn btn-primary">Ajouter</button>
         </div>
         <div class="col-md-10">
-            <vue-cal style="height: 800px" locale="fr" 
-            ref="vuecal"
-            :cell-click-hold="false"
-            @cell-dblclick="$refs.vuecal.createEvent($event, { title: 'New Event', classes: ['blue-event'] })"
-            hide-weekends :disable-views="['years', 'year']" 
-            events-on-month-view="short" 
-            editable-events resize-x :events="events" 
-            :on-event-click="onEventClick" :time-step="30" 
-            hide-weekends></vue-cal>
-            <!-- :time-from="8 * 60" :time-to="19 * 60"  -->
+            <vue-cal style="height: 800px" locale="fr" ref="vuecal" :cell-click-hold="false" @cell-dblclick="$refs.vuecal.createEvent($event, { title: 'New Event', classes: ['blue-event'] })" hide-weekends :disable-views="['years', 'year']" events-on-month-view="short" editable-events resize-x :events="events" :on-event-click="onEventClick" :time-step="30" hide-weekends :time-from="8 * 60" :time-to="19 * 60"></vue-cal>
+            <!--   -->
         </div>
     </div>
 
- 
-
-    <modal name="eventModal" width="80%" height="auto" :scrollable="true"  @before-open="beforeOpen">
+    <modal name="eventModal" width="80%" height="auto" :scrollable="true" @before-open="beforeOpen">
 
         <div class="card mb-3 text-center">
             <div class="card-header">
@@ -55,14 +40,12 @@
             <div class="card-body d-flex flex-column">
                 start <strong>{{selectedEvent.startDate}}</strong>
                 {{selectedEvent.content}}
-              
+
             </div>
             <div class="card-footer float-right">
-                
 
             </div>
         </div>
-   
 
     </modal>
 
@@ -70,7 +53,6 @@
 </template>
 
 <script>
-
 /* PRO COMPONENTS */
 
 // CALENDAR : https://antoniandre.github.io/vue-cal/#ex--more-advanced-event-creation
@@ -79,9 +61,13 @@ import "vue-cal/dist/i18n/fr.js";
 import "vue-cal/dist/vuecal.css";
 
 // DATETIMEPICKER  https://www.npmjs.com/package/vue-datetime
-import { Datetime } from 'vue-datetime';
+import {
+    Datetime
+} from 'vue-datetime';
 import 'vue-datetime/dist/vue-datetime.css'
-import { Settings } from 'luxon'
+import {
+    Settings
+} from 'luxon'
 Settings.defaultLocale = 'fr'
 
 // https://momentjs.com/
@@ -104,8 +90,8 @@ export default {
             contentFull: 'My shopping list is rather long:<br><ul><li>Avocadoes</li><li>Tomatoes</li><li>Potatoes</li><li>Mangoes</li></ul>', // Custom attribute.
             class: 'leisure'
         }],
-        newEvent:{
-          class: 'leisure'
+        newEvent: {
+            class: 'leisure'
         }
     }),
     name: "Calendar",
@@ -113,49 +99,50 @@ export default {
         msg: String
     },
     methods: {
-        createEvent(){
-          
-          //Convert  start date to calendar format
-          let start = moment(this.newEvent.start).utcOffset(this.newEvent.start)
-         
+        createEvent() {
 
-          // Convert end date to calendar format
-          let end = moment(this.newEvent.end).utcOffset(this.newEvent.end)
-         
+            // Creating a copy to avoid some 2 ways bindings conflicts
+            var myEvent = Object.assign({}, this.newEvent); 
+            
+            // Converting datetime picker date format to calendar date format
+            myEvent.start = this.convertUtcDateToCalFormat(myEvent.start)
+            myEvent.end   = this.convertUtcDateToCalFormat(myEvent.end)
 
-          if (start > end) {
-            // date is past
-            alert("La date de début est incorrecte")
-            return;
-          } else {
-            // date is future
-          }
+           // Checking if dates are correct
+           if (myEvent.start > myEvent.end) {
+                //date is past
+                alert("La date de début est incorrecte")
+                return;
+            } else {
+                //date is future
+            }
 
-          var defStart = start.format('YYYY-MM-DD HH:mm')
-          this.newEvent.start = defStart;
-
-           var defEnd = end.format('YYYY-MM-DD HH:mm')
-          this.newEvent.end = defEnd;
-
-          //Pushing
-          this.events.push(this.newEvent);
+            //Pushing into the calendar
+            this.events.push(myEvent);
 
         },
-        readEvent(){},
-        updateEvent(){},
-        deleteevent(){},
+        readEvent() {},
+        updateEvent() {},
+        deleteEvent() {},
+        // Convert from Datetime with TIMEZONE format to YYYY-MM-DD HH:mm
+        convertUtcDateToCalFormat(date) {
+            let dt = moment(date).utcOffset(date)
+            var defDate = dt.format('YYYY-MM-DD HH:mm')
+            return defDate;
+        },
+
         onEventClick(event, e) {
             this.$modal.show("eventModal", event);
             // Prevent navigating to narrower view (default vue-cal behavior).
             // e.stopPropagation()
         },
-          beforeOpen (event) {
+        beforeOpen(event) {
             console.log(event);
             this.selectedEvent = event.params;
-          },
-          closeModal: function () {
-              this.$modal.hide("eventModal");
-          }
+        },
+        closeModal: function () {
+            this.$modal.hide("eventModal");
+        }
     },
     created: function () {
 
@@ -166,8 +153,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style>
-
-
 /* Different color for different event types. */
 .vuecal__event.leisure {
     background-color: rgba(253, 156, 66, 0.9);
