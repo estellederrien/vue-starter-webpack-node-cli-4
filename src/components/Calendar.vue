@@ -4,17 +4,17 @@
         <div class="col-md-2"><h5>Entrer un nouvel évènement</h5>
             
             <label>Début</label> <br>
-            <datetime  v-model="newEvent.start" 
+            <datetime  placeholder ="Entrez un créneau" v-model="newEvent.start" 
             type="datetime" 
             :minute-step="30" 
-            :format="DATETIME_MED_WITH_SECONDS"
+            
             :phrases="{ok: 'Ok', cancel: 'Annuler'}"
             title="Debut du rendez vous "
             ></datetime>
             <br>
 
             <label>Fin</label> <br>
-            <datetime  v-model="newEvent.end" type="datetime" :minute-step="30" :format="DATETIME_MED_WITH_SECONDS"></datetime>
+            <datetime  placeholder ="Entrez un créneau"  v-model="newEvent.end" type="datetime" :minute-step="30" ></datetime>
           <br>
            <label>Titre</label> <br>
            <input v-model="newEvent.title" class="form-control"  type = "text"></input>
@@ -32,8 +32,9 @@
             hide-weekends :disable-views="['years', 'year']" 
             events-on-month-view="short" 
             editable-events resize-x :events="events" 
-            :on-event-click="onEventClick" :time-from="8 * 60" :time-to="19 * 60" :time-step="30" 
+            :on-event-click="onEventClick" :time-step="30" 
             hide-weekends></vue-cal>
+            <!-- :time-from="8 * 60" :time-to="19 * 60"  -->
         </div>
     </div>
 
@@ -83,6 +84,9 @@ import 'vue-datetime/dist/vue-datetime.css'
 import { Settings } from 'luxon'
 Settings.defaultLocale = 'fr'
 
+// https://momentjs.com/
+import moment from 'moment';
+
 export default {
     components: {
         VueCal,
@@ -100,7 +104,9 @@ export default {
             contentFull: 'My shopping list is rather long:<br><ul><li>Avocadoes</li><li>Tomatoes</li><li>Potatoes</li><li>Mangoes</li></ul>', // Custom attribute.
             class: 'leisure'
         }],
-        newEvent:{}
+        newEvent:{
+          class: 'leisure'
+        }
     }),
     name: "Calendar",
     props: {
@@ -108,9 +114,32 @@ export default {
     },
     methods: {
         createEvent(){
-          console.log(this.newEvent)
-            this.events.push(this.newEvent);
-            console.log(this.events);
+          
+          //Convert  start date to calendar format
+          let start = moment(this.newEvent.start).utcOffset(this.newEvent.start)
+         
+
+          // Convert end date to calendar format
+          let end = moment(this.newEvent.end).utcOffset(this.newEvent.end)
+         
+
+          if (start > end) {
+            // date is past
+            alert("La date de début est incorrecte")
+            return;
+          } else {
+            // date is future
+          }
+
+          var defStart = start.format('YYYY-MM-DD HH:mm')
+          this.newEvent.start = defStart;
+
+           var defEnd = end.format('YYYY-MM-DD HH:mm')
+          this.newEvent.end = defEnd;
+
+          //Pushing
+          this.events.push(this.newEvent);
+
         },
         readEvent(){},
         updateEvent(){},
@@ -127,6 +156,9 @@ export default {
           closeModal: function () {
               this.$modal.hide("eventModal");
           }
+    },
+    created: function () {
+
     }
 };
 </script>
