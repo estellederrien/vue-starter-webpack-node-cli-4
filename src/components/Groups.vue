@@ -39,6 +39,8 @@
                 :close-on-select="true"
                 :show-labels="false"
                 placeholder="Choix multiple"
+                track-by="_id"
+                label="nom"
               ></multiselect>
               <pre class="language-json"><code>{{ value }}</code></pre>
             </div>
@@ -80,7 +82,7 @@
                   <span v-for="user in group.users" class="badge badge-primary">
                     -
                     <i class="far fa-user"></i>
-                    {{user}} -
+                    {{user.nom}} -
                   </span>
                 </th>
                 <th>{{group.date_creation}}</th>
@@ -130,6 +132,7 @@ export default {
               title: "Hey! ",
               text: "Groupe created"
             });
+            this.readGroups();
           })
           .catch(error => {
             console.log(error);
@@ -226,7 +229,7 @@ export default {
     },
     getUsersForFilters: function() {
       axios
-        .post(this.server + "getUsersForFilters")
+        .post(this.server + "getUsers", {})
         .then(response => {
           this.users = response.data;
         })
