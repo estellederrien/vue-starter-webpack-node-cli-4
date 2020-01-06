@@ -40,9 +40,31 @@
                 :show-labels="false"
                 placeholder="Choix multiple"
                 track-by="_id"
-                label="nom"
-              ></multiselect>
-              <pre class="language-json"><code>{{ value }}</code></pre>
+                :custom-label="customLabel"
+              >
+                <template slot="singleLabel" slot-scope="props">
+                  <img
+                    class="option__image"
+                    :src="server + 'img/' + props.option.img"
+                    alt="No Man’s Sky"
+                  />
+                  <span class="option__desc">
+                    <span class="option__title">{{ props.option.prenom}} {{ props.option.nom}}</span>
+                  </span>
+                </template>
+                <template slot="option" slot-scope="props">
+                  <img
+                    class="option__image"
+                    :src="server + 'img/' + props.option.img"
+                    alt="No Man’s Sky"
+                  />
+                  <div class="option__desc">
+                    <span class="option__title">{{ props.option.prenom}} {{ props.option.nom}}</span>
+                    <span class="option__small">{{ props.option.desc }}</span>
+                  </div>
+                </template>
+              </multiselect>
+              <pre class="language-json"><code>{{ value }} </code></pre>
             </div>
           </div>
           <br />
@@ -117,6 +139,9 @@ export default {
     };
   },
   methods: {
+    customLabel({ nom, prenom }) {
+      return `${prenom}  ${nom}  `;
+    },
     createGroup: function() {
       if (this.updateMode == true) {
         this.updateGroup();
@@ -132,7 +157,7 @@ export default {
               title: "Hey! ",
               text: "Groupe created"
             });
-            this.readGroups();
+            this.groups.push(this.group);
           })
           .catch(error => {
             console.log(error);
@@ -251,11 +276,15 @@ export default {
   }
 };
 </script>
-<style >
+<style scoped>
 .groups-table {
   display: block;
   border: 1px solid green;
   height: 400px;
   overflow-y: scroll;
+}
+
+.option__image {
+  width: 80px;
 }
 </style>
