@@ -173,7 +173,9 @@ export default {
      
     },
     initializeFilters: function() {
-      this.modifiedFilters = {};
+      this.modifiedFilters = {
+        ageValues: [18, 60]
+      };
       this.$emit("filters", this.modifiedFilters);
     },
     closeModal: function() {
