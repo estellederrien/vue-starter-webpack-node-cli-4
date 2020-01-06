@@ -36,7 +36,7 @@
                             <div class="nav nav nav-pills mb-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab " data-toggle="pill" :href="'#v-pills-home' + user._id" role="tab" :aria-controls="'v-pills-home' + user._id" aria-selected="true"><i class="fas fa-info"></i></a>
                                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" :href="'#v-pills-profile' + user._id" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-file"></i></a>
-
+                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" :href="'#v-pills-groups' + user._id" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-users"></i></a>
                             </div>
 
                             <div class="tab-content" id="v-pills-tabContent">
@@ -51,9 +51,19 @@
                                 </div>
 
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                    <div >
+                                     <label > Fichiers </label><br>
                                         <span class="badge badge-warning" v-for="f in user.filenames">
-                                            {{ f.filename }}</span>
+                                            <i class="fas fa-file"></i> {{ f.filename }}</span>
+                                    
+
+                                </div>
+
+                                <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                    <div >
+                                        <label > Groupes </label><br>
+                                        <div class="badge badge-success" v-for="g in user.groups">
+                                            <i class="fas fa-users"></i> {{ g.name }}
+                                        </div>
                                     </div>
 
                                 </div>
@@ -163,9 +173,11 @@ export default {
     min-height: 50px;
     height: 80px;
     overflow: auto;
+    font-size:0.9em;
 
 }
-  .cardList{
+
+.cardList{
     margin-bottom : 20px;
 /*     min-width: 20rem;
     max-width:40vh !important; */
