@@ -119,6 +119,7 @@ export default {
             this.$modal.show("filters");
         },
         executeFilters: function (filtersChanged) {
+            // filtersChanged is coming from the filters component, when a user has chosen some filters
             this.filters = filtersChanged;
             this.getUsers();
 
