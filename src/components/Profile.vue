@@ -55,6 +55,9 @@
 										<span class="d-none d-sm-block "> Groupes</span>
 									</a>
 								</li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"  ><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages</span></a>
+                                </li>
 							</ul>
 						</div>
 						<!-- END TABS MENUS -->
@@ -273,9 +276,13 @@
 							<!-- TABS 4 -->
 							<div   class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
 								<groups v-if="!creationProcess"></groups>
-							
+                            </div>
                             <!-- END TABS 4 -->
-							</div>
+                            <!-- TABS 5 MESSAGES LIST-->
+                             <div class="tab-pane fade" id="messageslist" role="tabpanel" >
+                                <messageslist v-if="user._id"  :_id="user._id"></messageslist>
+                            </div>
+                             <!-- END TABS 5 -->
 							<!-- END TABS INTRO -->
 						</div>
 						<!-- END COL MD 8 -->
@@ -339,6 +346,7 @@ import Uploadfiles from "@/components/Uploadfiles.vue";
 import Message from "@/components/Message.vue";
 import Messages from "@/components/Messages.vue";
 import Groups from "@/components/Groups.vue";
+import MessagesList from "@/components/MessagesList.vue";
 
 export default {
     name: "Profile",
@@ -400,7 +408,8 @@ export default {
         uploadfiles: Uploadfiles,
         message:Message,
         messages:Messages,
-        groups:Groups
+        groups:Groups,
+        messageslist:MessagesList
     },
     methods: {
          readJobs: function() {
