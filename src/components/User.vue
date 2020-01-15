@@ -24,17 +24,19 @@
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos</span></a>
+                                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos</span></a>
                             </li>
                           <!--   <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> <span class="d-none d-sm-block ">Dernières infos</span></a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#files" role="tab" ><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="files-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"><i class="fas fa-users-cog"></i> <span class="d-none d-sm-block ">Autorisations</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"  ><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Permissions</span></a>
                             </li>
+                            
+
                         </ul>
                     </div>
                 </div>
@@ -256,6 +258,9 @@
                                
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="messageslist" role="tabpanel" >
+                                test
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -294,6 +299,7 @@ import {
 import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import Message from "@/components/Message.vue";
+
 
 export default {
     name: "User",
@@ -352,7 +358,7 @@ export default {
     components: {
         uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles,
-         message:Message
+        message:Message
     },
     methods: {
         
