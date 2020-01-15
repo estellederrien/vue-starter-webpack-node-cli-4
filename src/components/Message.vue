@@ -53,6 +53,7 @@ export default {
             this.message.from = this.user._id;
             this.message.senderName = this.user.nom;
             this.message.senderSurname = this.user.prenom;
+            this.message.img = this.user.img;
 
             axios
                 .post(this.server + "insertMessage", this.message)
@@ -78,12 +79,7 @@ export default {
         },
         getUsers: function () {
             axios
-                .post(this.server + "getUsers", {
-                    filters: {
-                        role: "",
-                        job: ""
-                    }
-                })
+                .post(this.server + "getUsers")
                 .then(response => {
                     this.users = response.data;
 
