@@ -111,14 +111,29 @@ export default {
            // Checking if dates are correct
            if (myEvent.start > myEvent.end) {
                 //date is past
-                alert("La date de début est incorrecte")
+                  this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'La date de début est incorrecte'
+                        });
                 return;
             } else {
                 //date is future
             }
 
+        
+
+
             //Pushing into the calendar
             this.events.push(myEvent);
+
+              this.$notify({
+                            type: 'success',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: 'Date added '
+                        });
 
         },
         readEvent() {},

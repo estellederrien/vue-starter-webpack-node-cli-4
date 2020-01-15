@@ -19,7 +19,7 @@
       <!-- Navbar links -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item">
@@ -27,7 +27,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
-          </li>
+          </li>-->
         </ul>
 
         <!-- RIGHT -->
@@ -102,7 +102,7 @@
               <div class="dropdown-divider"></div>
 
               <div class="dropdown-item logout" @click="logout()" disabled>
-                <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>Sortir !
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Sortir !
               </div>
             </div>
           </li>
