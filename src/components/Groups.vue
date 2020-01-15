@@ -254,7 +254,7 @@ export default {
     },
     getUsersForFilters: function() {
       axios
-        .post(this.server + "getUsers", {})
+        .post(this.server + "getUsers")
         .then(response => {
           this.users = response.data;
         })
