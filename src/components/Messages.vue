@@ -20,7 +20,13 @@
     <h6 class="dropdown-header">Message Center</h6>
     <a class="dropdown-item d-flex align-items-center" href="#" v-for="m in messages">
       <div class="dropdown-list-image mr-3">
-        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt />
+        <img
+          class="rounded-circle"
+          src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
+          :src="server + 'img/' + m.img"
+          @error="replaceByDefault"
+          alt
+        />
         <div class="status-indicator bg-success"></div>
       </div>
       <div class="font-weight-bold">
@@ -63,6 +69,9 @@ export default {
             text: error
           });
         });
+    },
+    replaceByDefault(e) {
+      e.target.src = this.server + "defaut.png";
     }
   },
   mounted: function() {
