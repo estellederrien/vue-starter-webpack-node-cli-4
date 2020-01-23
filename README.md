@@ -43,7 +43,7 @@ Data science  ...<br />
 1 Random forest lib : https://github.com/mljs/random-forest<br />
 1 AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
-French : Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br />Pour l'instant, le fichier backend node  est "confidentiel". <br />
+French : Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques .  <br />
 
 ## Project setup
 ```
