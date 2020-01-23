@@ -695,7 +695,16 @@ export default {
         }
     },
     created: function () {
-        this.getActualSession();
+        console.log(this.$user);
+         if(this.$user){
+            console.log(this.$user);
+                this.user = this.$user;
+                this.auth = true;
+                this.loaded = true;
+            }else{
+                this.$router.push("/login");
+            }
+    //    this.getActualSession();
         this.readJobs();
         this.getUsers();
     }
