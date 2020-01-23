@@ -29,9 +29,19 @@ Vue.use(Notifications, { velocity });
 Vue.component("multiselect", Multiselect);
 import Multiselect from "vue-multiselect";
 
+// ------------------------------------SETTINGS -------------------------------------------
+
+// SI ON METS EN PRODUCTION, INTIALISER LOCALHOST A FALSE
+const localhost = true;
+
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
 /* Localhost */
-Vue.server = Vue.prototype.server = "http://localhost:80/";
+if (localhost) {
+  Vue.server = Vue.prototype.server = "http://localhost:80/";
+} else {
+  // Azure
+  Vue.server = Vue.prototype.server = "https://starter1000.azurewebsites.net/";
+}
 
 /* OPENODE.IO */
 // Vue.server = Vue.prototype.server =
@@ -41,9 +51,6 @@ Vue.server = Vue.prototype.server = "http://localhost:80/";
 /* Vue.server = Vue.prototype.server =
   "https://cedar-network-259109.appspot.com:8080/"; */
 // "http://localhost:8080/";
-
-// Azure
-// Vue.server = Vue.prototype.server = "https://starter1000.azurewebsites.net/";
 
 // ---------------------------------------------- STORING USER AS GLOBAL, THIS VAR IS POPULATED WHEN A USER LOGS IN INSIDE THE LOGIN COMPONENT for the PROFILE MENU TO APPEAR IN THE TOPBAR
 // ---------------------------------------------- VUEX WILL BE BETTER LATER
