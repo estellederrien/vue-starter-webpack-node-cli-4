@@ -6,9 +6,19 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node server.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "javascript-lp-solver": "^0.4.5",
+    "mongodb": "^3.3.2",
+    "multer": "^1.4.2",
+    "sharp": "^0.23.0",
     "@jeremyhamm/vue-slider": "^0.1.16",
     "apexcharts": "^3.10.1",
     "axios": "^0.19.0",

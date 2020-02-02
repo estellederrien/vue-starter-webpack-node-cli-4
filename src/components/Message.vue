@@ -56,7 +56,7 @@ export default {
             this.message.img = this.user.img;
 
             axios
-                .post(this.server + "insertMessage", this.message)
+                .post("/insertMessage", this.message)
                 .then(response => {
                     this.$notify({
                         type: 'success',
@@ -79,7 +79,7 @@ export default {
         },
         getUsers: function () {
             axios
-                .post(this.server + "getUsers")
+                .post("/getUsers")
                 .then(response => {
                     this.users = response.data;
 

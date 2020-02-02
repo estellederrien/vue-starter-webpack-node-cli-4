@@ -83,7 +83,7 @@ export default {
     methods: {
         logOut: function () {
             axios
-                .post(this.server + "logout")
+                .post("/logout")
                 .then(function (reponse) {
                     alert("logout ok");
                 })
@@ -99,7 +99,7 @@ export default {
         getAuth: function () {
            
              axios
-                .post(this.server + "getAuth", this.user)
+                .post("/getAuth", this.user)
                 .then(response => {
                     console.log(response.data)
                     this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS

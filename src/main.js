@@ -32,20 +32,21 @@ import Multiselect from "vue-multiselect";
 // ------------------------------------SETTINGS -------------------------------------------
 
 // SI ON METS EN PRODUCTION, INTIALISER LOCALHOST A FALSE
-const localhost = true;
+const localhost = false;
 
 // ---------------------------------------------- LINK TO THE Node.JS SERVER ------------------------------------------------------------
 /* Localhost */
-if (localhost) {
-  Vue.server = Vue.prototype.server = "http://localhost:80/";
-} else {
-  // Azure
-  Vue.server = Vue.prototype.server = "https://starter1000.azurewebsites.net/";
-}
+// if (localhost) {
+//   Vue.server = Vue.prototype.server = "http://localhost:80/";
+// } else {
+// Vue.server = Vue.prototype.server = "http://vuestarter.openode.io/";
+// Vue.server = Vue.prototype.server = "https://vuestarter.herokuapp.com/";
+
+  
+// }
 
 /* OPENODE.IO */
-// Vue.server = Vue.prototype.server =
-//   "http://vue-starter-webpack-cli-4-node.openode.io/";
+// Vue.server = Vue.prototype.server = "https://starter1000.azurewebsites.net/";
 
 /* Google cloud */
 /* Vue.server = Vue.prototype.server =

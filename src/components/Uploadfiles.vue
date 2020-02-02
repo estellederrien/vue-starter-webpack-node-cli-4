@@ -83,7 +83,7 @@ export default {
 
             /*Make the request to the POST /multiple-files URL*/
             axios
-                .post(this.server + "files", formData, {
+                .post("/files", formData, {
                     headers: {
                         crossdomain: true,
                         "Content-Type": "undefined"

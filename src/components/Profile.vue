@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-md-2">
 						<div class="profile-img">
-							<img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
+							<img v-bind:src="'/img/' + user.img" @error="replaceByDefault" style="width:150px" />
 							<uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
 						</div>
 						<div class="profile-work col-md-2 d-none d-md-block">
@@ -217,7 +217,7 @@
 												</thead>
 												<tr v-for="file in user.filenames">
 													<td>
-														<a class="float-left" v-bind:href="server + 'files/' + file.filename">	<i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+														<a class="float-left" v-bind:href="'/files/' + file.filename">	<i class="fas fa-file-alt"></i> {{ file.filename }}</a>
 													</td>
 													<td>	<span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
                                                     <i class="far fa-trash-alt"></i>
@@ -414,7 +414,7 @@ export default {
     methods: {
          readJobs: function() {
         axios
-            .post(this.server + "readJobs")
+            .post("readJobs")
             .then(response => {
                 this.jobs = response.data;
             })
@@ -436,7 +436,7 @@ export default {
             let self = this;
             if (confirm("Do you really want to delete?")) {
                 axios
-                    .post(this.server + "deleteFile", {
+                    .post("deleteFile", {
                         name: file.filename
                     })
                     .then(response => {
@@ -462,7 +462,7 @@ export default {
             }
         },
         replaceByDefault(e) {
-            e.target.src = this.server + "/img/defaut.png";
+            e.target.src = "/img/defaut.png";
         },
         onUpload(value) {
             // Pass Picture URL to the user object .
@@ -510,7 +510,7 @@ export default {
         },
         getUser: function () {
             axios
-                .post(this.server + "getUser", {
+                .post("/getUser", {
                     id: this.id
                 })
                 .then(response => {
@@ -529,7 +529,7 @@ export default {
         },
         updateUser: function () {
             axios
-                .post(this.server + "updateUser", this.user)
+                .post("/updateUser", this.user)
                 .then(response => {
                     this.$notify({
                         type: 'success',
@@ -553,7 +553,7 @@ export default {
         deleteUser: function () {
             if (confirm("Do you really want to delete?")) {
                 axios
-                    .post(this.server + "deleteUser", this.user)
+                    .post("/deleteUser", this.user)
                     .then(response => {
                         alert(" Votre compte a été supprimé ");
                         this.$user = {};
@@ -608,7 +608,7 @@ export default {
                 return;
             }
             axios
-                .post(this.server + "insertUser", this.user)
+                .post("/insertUser", this.user)
                 .then(response => {
                    this.$notify({
                         type: 'success',
@@ -632,7 +632,7 @@ export default {
         },
         getActualSession: function () {
             axios
-                .post(this.server + "getActualSession", {})
+                .post("/getActualSession", {})
                 .then(response => {
                     this.user = response.data;
                     this.auth = true;
@@ -657,7 +657,7 @@ export default {
             }
 
             axios
-                .post(this.server + "createJob", {
+                .post("/createJob", {
                     name: this.newJob
                 })
                 .then(response => {
@@ -683,7 +683,7 @@ export default {
         getUsers: function () {
 
             axios
-                .post(this.server + "getUsers", {
+                .post("/getUsers", {
                     filters: this.filters
                 })
                 .then(response => {

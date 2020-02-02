@@ -45,7 +45,7 @@
                 <template slot="singleLabel" slot-scope="props">
                   <img
                     class="option__image"
-                    :src="server + 'img/' + props.option.img"
+                    :src="'/img/' + props.option.img"
                     alt="No Man’s Sky"
                   />
                   <span class="option__desc">
@@ -55,7 +55,7 @@
                 <template slot="option" slot-scope="props">
                   <img
                     class="option__image"
-                    :src="server + 'img/' + props.option.img"
+                    :src="'/img/' + props.option.img"
                     alt="No Man’s Sky"
                   />
                   <div class="option__desc">
@@ -148,7 +148,7 @@ export default {
         return;
       } else {
         axios
-          .post(this.server + "createGroup", this.group)
+          .post("/createGroup", this.group)
           .then(response => {
             this.groups.push(this.group);
             this.$notify({
@@ -173,7 +173,7 @@ export default {
     readGroup: function(group) {
       console.log(group);
       axios
-        .post(this.server + "readGroup", {
+        .post("/readGroup", {
           _id: group._id
         })
         .then(response => {
@@ -192,7 +192,7 @@ export default {
     },
     updateGroup: function() {
       axios
-        .post(this.server + "updateGroup", this.group)
+        .post("/updateGroup", this.group)
         .then(response => {
           this.$notify({
             type: "success",
@@ -215,7 +215,7 @@ export default {
     deleteGroup: function() {
       if (confirm("Do you really want to delete?")) {
         axios
-          .post(this.server + "deleteGroup", this.group)
+          .post("/deleteGroup", this.group)
           .then(response => {
             this.$notify({
               type: "success",
@@ -238,7 +238,7 @@ export default {
     },
     readGroups: function() {
       axios
-        .post(this.server + "readGroups")
+        .post("/readGroups")
         .then(response => {
           this.groups = response.data;
         })
@@ -254,7 +254,7 @@ export default {
     },
     getUsersForFilters: function() {
       axios
-        .post(this.server + "getUsers")
+        .post("/getUsers")
         .then(response => {
           this.users = response.data;
         })

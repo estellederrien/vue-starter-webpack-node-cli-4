@@ -9,7 +9,7 @@
                 
                 <div class="col-md-2">
                     <div class="profile-img">
-                        <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" style="width:150px" />
+                        <img v-bind:src="'img/' + user.img" @error="replaceByDefault" style="width:150px" />
                     </div>
                 </div>
 
@@ -221,7 +221,7 @@
                                             
                                             <td>
 
-                                                <a class="float-left" v-bind:href="server + 'files/' + file.filename"><i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                <a class="float-left" v-bind:href="'files/' + file.filename"><i class="fas fa-file-alt"></i> {{ file.filename }}</a>
                                             </td>
 
                                         </tr>
@@ -367,7 +367,7 @@ export default {
             this.$modal.show("messageModal");
         },
         replaceByDefault(e) {
-            e.target.src = this.server + "/img/defaut.png";
+            e.target.src = "/img/defaut.png";
         },
         
         hide() {
@@ -375,7 +375,7 @@ export default {
         },
         getUser: function () {
             axios
-                .post(this.server + "getUser", {
+                .post("getUser", {
                     id: this.id
                 })
                 .then(response => {

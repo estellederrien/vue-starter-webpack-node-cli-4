@@ -1,0 +1,33 @@
+COMMANDES HEROKU
+
+BUILD COMPRESSED VUE APP 
+npm run build
+
+UPDATE APP
+git add . && git commit -a -m "Adding files."
+
+SEND APP TO HEROKU
+
+Git push heroku master
+
+STORING PICS 
+https://elements.heroku.com/addons/cloudinary
+
+NEW DEPOT INIT
+https://devcenter.heroku.com/articles/git
+
+cd myapp
+
+git init
+Initialized empty Git repository in .git/
+
+git add .
+
+git commit -m "My first commit"
+Created initial commit 5df2d09: My first commit
+ 44 files changed, 8393 insertions(+), 0 deletions(-)
+ create mode 100644 README
+ create mode 100644 Procfile
+ create mode 100644 app/controllers/source_file
+...
+
