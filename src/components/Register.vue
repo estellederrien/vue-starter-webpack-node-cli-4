@@ -180,7 +180,7 @@ export default {
             //if (!$v.user.email.email) return;
 
             axios
-                .post(this.server + "registerUser", this.user)
+                .post("/registerUser", this.user)
                 .then(response => {
                     if (response.data.problem) {
                         alert(response.data.problem);

@@ -146,7 +146,7 @@ export default {
   methods: {
     readJobsForFilters: function() {
       axios
-        .post(this.server + "readJobsForFilters")
+        .post("/readJobsForFilters")
         .then(response => {
           this.jobs = response.data;
         })
@@ -156,7 +156,7 @@ export default {
     },
     getUsers: function() {
       axios
-        .post(this.server + "getUsersForFilters")
+        .post("/getUsersForFilters")
         .then(response => {
           this.users = response.data;
         })

@@ -1,5 +1,9 @@
 .DS_Store
 node_modules
+/cruds
+/appSystem
+/uploads
+/node_module
 /dist
 
 # local env files

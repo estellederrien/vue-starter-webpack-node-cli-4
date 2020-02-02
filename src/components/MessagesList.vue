@@ -10,7 +10,7 @@
           <img
             class="rounded-circle"
             src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
-            :src="server + 'img/' + m.img"
+            :src="'/img/' + m.img"
             @error="replaceByDefault"
             alt
           />
@@ -43,11 +43,11 @@ export default {
 
   methods: {
     replaceByDefault(e) {
-      e.target.src = this.server + "defaut.png";
+      e.target.src = "/img/defaut.png";
     },
     getMessages: function() {
       axios
-        .post(this.server + "getUserMessages", {
+        .post("/getUserMessages", {
           _id: this._id
         })
         .then(response => {

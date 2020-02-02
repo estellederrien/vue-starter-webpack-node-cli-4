@@ -139,7 +139,7 @@ export default {
     },
     logout() {
       axios
-        .post(this.server + "logout", {})
+        .post("logout", {})
         .then(response => {
           this.$user = {};
           this.$notify({

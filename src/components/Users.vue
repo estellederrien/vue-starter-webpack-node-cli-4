@@ -18,6 +18,9 @@
            
 
             <div v-if="!users.length">
+
+
+                
                 <center>
                     <h1>Pas de résultats avec ce filtre !</h1>
                 </center>
@@ -27,7 +30,7 @@
             <div id="users" v-for="user in users" class="col-lg-3">
             
                 <div class="card  cardList" >
-                    <img v-bind:src="server + 'img/' + user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
+                    <img v-bind:src="'/img/' + user.img"  class="card-img-top" alt="..." />
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.prenom }} {{ user.nom }}</h5>
                        
@@ -96,7 +99,7 @@ export default {
     methods: {
 
         replaceByDefault(e) {
-            e.target.src = this.server + "defaut.png";
+            e.target.src = "/img/defaut.png";
         },
         route: function (_id) {
             this.$router.push("/user/" + _id);
@@ -104,7 +107,7 @@ export default {
         getUsers: function () {
 
             axios
-                .post(this.server + "getUsers", {
+                .post("getUsers", {
                     filters: this.filters
                 })
                 .then(response => {
