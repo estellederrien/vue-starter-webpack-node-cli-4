@@ -5,7 +5,7 @@ Please allow from 2 weeks to 2 months for it to get finished.
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js-mongoDb back end . My node back end is private and available on demand.<br />
 
-The demo will be available on Microsoft Azure : https://starter1000.azurewebsites.net/<br /><br />
+The demo will be available on Openode : http://vuestarter.openode.io/<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 Will Contains :<br /><br />
