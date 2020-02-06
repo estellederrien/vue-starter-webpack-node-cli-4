@@ -10,7 +10,7 @@ and on HEROKU : https://vuestarter2.herokuapp.com/#/users<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 <b>Won't contains :</b><br />
-VUEX : It is another starter in another depot of mine<br />
+VUEX : It is another starter in another GIT depot of mine<br />
 
 <b>Will Contains :</b><br />
 
