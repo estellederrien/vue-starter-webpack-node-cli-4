@@ -9,6 +9,9 @@ The demo will be available on Openode : http://vuestarter.openode.io/<br /><br /
 and on HEROKU : https://vuestarter2.herokuapp.com/#/users<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
+Won't contains :<br /><br />
+VUEX : It is another starter in another depot of mine<br />
+
 Will Contains :<br /><br />
 
 1 Users CRUD<br />
