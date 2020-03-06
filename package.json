@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev":"node server.js --port 80 "
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
