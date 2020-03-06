@@ -40,14 +40,18 @@ Vue.mixin({
   computed: {
     $user: {
       get: function() {
-        return globalData.$data.$user;
+        console.log( localStorage.getItem('user'))
+        return  JSON.parse(localStorage.getItem('user'))
+        // return globalData.$data.$user;
       },
       set: function(user) {
         globalData.$data.$user = user;
+        localStorage.setItem('user', JSON.stringify(user));
       }
     }
   }
 });
+
 
 new Vue({
   router,

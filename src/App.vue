@@ -142,6 +142,7 @@ export default {
         .post("logout", {})
         .then(response => {
           this.$user = {};
+           localStorage.removeItem('user');
           this.$notify({
             type: "success",
             group: "foo",
