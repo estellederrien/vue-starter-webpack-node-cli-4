@@ -54,9 +54,9 @@ French : Le but de ce starter est de pouvoir commencer n'importe quel applicatio
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development on PORT 80 localhost windows
 ```
-npm run serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
