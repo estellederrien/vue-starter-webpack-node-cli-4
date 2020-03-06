@@ -40,13 +40,15 @@ Vue.mixin({
   computed: {
     $user: {
       get: function() {
-        console.log( localStorage.getItem('user'))
-        return  JSON.parse(localStorage.getItem('user'))
-        // return globalData.$data.$user;
+        if(localStorage.getItem('user')){
+         return  JSON.parse(localStorage.getItem('user'))
+        }else{
+            return globalData.$data.$user;
+        }      
       },
       set: function(user) {
         globalData.$data.$user = user;
-        localStorage.setItem('user', JSON.stringify(user));
+       localStorage.setItem('user', JSON.stringify(user));
       }
     }
   }
