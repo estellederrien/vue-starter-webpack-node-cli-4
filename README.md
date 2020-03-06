@@ -54,15 +54,20 @@ French : Le but de ce starter est de pouvoir commencer n'importe quel applicatio
 npm install
 ```
 
-### Compiles and hot-reloads for development on PORT 80 localhost windows
+### Compiles and hot-reloads for development on port 8080
 ```
-npm run dev
+npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
 npm run build
 ```
+### Run build on port 80
+```
+npm run start
+```
+
 
 ### Run your unit tests
 ```
