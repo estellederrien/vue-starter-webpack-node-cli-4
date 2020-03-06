@@ -546,7 +546,8 @@ export default {
                         title: 'Hey! ',
                         text: 'Update is ok !'
                         });
-                    console.log(response);
+
+                      this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
                 })
                 .catch(error => {
                     console.log(error);
@@ -703,19 +704,18 @@ export default {
                 });
         }
     },
-    created: function () {
-        console.log(this.$user);
-         if(this.$user){
-            console.log(this.$user);
-                this.user = this.$user;
-                this.auth = true;
-                this.loaded = true;
-            }else{
-                this.$router.push("/login");
-            }
-    //    this.getActualSession();
+    beforeCreate: function () {
+
+
+    },
+    created: function(){
+
+         this.user = this.$user;
+        this.auth = true;
+        this.loaded = true;
         this.readJobs();
         this.getUsers();
+
     }
 };
 </script>
