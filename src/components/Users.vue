@@ -47,8 +47,7 @@
                                 <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                     <h6 >{{ user.job }}</h6>
                                     {{ user.mentra }}<br />
-                                    Age: {{ user.age }}
-
+                                    <span v-if = " user.age">Age: {{ user.age }}</span>
 
                                     
                                 </div>
