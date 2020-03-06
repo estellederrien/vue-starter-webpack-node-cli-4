@@ -56,7 +56,7 @@
 									</a>
 								</li>
                                  <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"  ><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages</span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"  ><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages  <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
                                 </li>
 							</ul>
 						</div>
@@ -280,7 +280,7 @@
                             <!-- END TABS 4 -->
                             <!-- TABS 5 MESSAGES LIST-->
                              <div class="tab-pane fade" id="messageslist" role="tabpanel" >
-                                <messageslist v-if="user._id"  :_id="user._id"></messageslist>
+                                <messageslist v-if="user._id"  :_id="user._id" @mymcevent="onMessagesCount"></messageslist>
                             </div>
                              <!-- END TABS 5 -->
 							<!-- END TABS INTRO -->
@@ -373,7 +373,8 @@ export default {
             newJob: "",
             loaded: false,
             users:[],
-            filters:{}
+            filters:{},
+            messagesCount:"12"
         };
     },
 
@@ -483,6 +484,14 @@ export default {
                 this.updateUser();
             }
         },
+        onMessagesCount(value) {
+            console.log(value)
+            console.log("onmc")
+            this.messagesCount = value;
+        },
+
+
+
         showModal() {
             // this.$modal.show('hello-world');
             this.$modal.show("dialog", {

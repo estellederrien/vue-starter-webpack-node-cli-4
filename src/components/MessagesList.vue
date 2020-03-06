@@ -52,6 +52,7 @@ export default {
         })
         .then(response => {
           this.messages = response.data;
+          this.$emit("mymcevent",this.messages.length);
         })
         .catch(error => {
           console.log(error);
