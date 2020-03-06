@@ -46,7 +46,7 @@
             >
               <i class="fas fa-envelope fa-fw"></i>
               <!-- Counter - Messages -->
-              <span class="badge badge-danger badge-counter">7</span>
+              <span class="badge badge-danger badge-counter"></span>
             </a>
             <messages :_id="$user._id"></messages>
           </li>
