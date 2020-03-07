@@ -33,8 +33,8 @@ const wrapper = mount(Message,{
 describe("Message test", () => {
   
   // FUNCTIONS PRESENCE
-  it("getUsers() to be a function", () => {
-    expect(wrapper.vm.getUsers).to.be.a("function");
+  it("readUsers() to be a function", () => {
+    expect(wrapper.vm.readUsers).to.be.a("function");
   });
   it("insertMessage() to be a function", () => {
     expect(wrapper.vm.insertMessage).to.be.a("function");

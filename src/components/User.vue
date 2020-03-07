@@ -373,9 +373,9 @@ export default {
         hide() {
             this.$modal.hide("hello-world");
         },
-        getUser: function () {
+        readUser: function () {
             axios
-                .post("getUser", {
+                .post("readUser", {
                     id: this.id
                 })
                 .then(response => {
@@ -402,7 +402,7 @@ export default {
     },
     mounted: function () {
 
-        this.getUser(this.id);
+        this.readUser(this.id);
 
     }
 

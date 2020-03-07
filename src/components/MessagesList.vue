@@ -45,9 +45,9 @@ export default {
     replaceByDefault(e) {
       e.target.src = "/img/defaut.png";
     },
-    getMessages: function() {
+    readMessages: function() {
       axios
-        .post("/getUserMessages", {
+        .post("/readUserMessages", {
           _id: this._id
         })
         .then(response => {
@@ -66,7 +66,7 @@ export default {
     }
   },
   created: function() {
-    this.getMessages();
+    this.readMessages();
   }
 };
 </script>

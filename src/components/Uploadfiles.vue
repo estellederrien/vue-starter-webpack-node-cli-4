@@ -6,34 +6,29 @@
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">Maintenez la touche TAB enfoncée...</h6>
         <div class="row">
-       
-           
-                <input  name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
-                <!-- LOADING PIC -->
-                <img v-if="loading" style="width:100px" src="../assets/img/JointRevolvingAntelopegroundsquirrel-size_restricted.gif"></img>
 
-            
-        
-        <label v-if="files">Preview :</label>
-        <!-- REALTIME FILE MANAGEMENT -->
-        <table class="table table-dark table-sm">
-            <tbody>
-                <tr v-for="(file, key) in files">
-                    <th>{{ file.name }}</th>
-                    <th>
-                        <span class="remove-file btn btn-primary" v-on:click="removeFile(key)">-</span>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-        <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.8em;">Ok, placer les fichiers sur le serveur </a>
-      
+            <input name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
+            <!-- LOADING PIC -->
+            <img v-if="loading" style="width:100px" src="../assets/img/JointRevolvingAntelopegroundsquirrel-size_restricted.gif"></img>
+
+            <label v-if="files">Preview :</label>
+            <!-- REALTIME FILE MANAGEMENT -->
+            <table class="table table-dark table-sm">
+                <tbody>
+                    <tr v-for="(file, key) in files">
+                        <th>{{ file.name }}</th>
+                        <th>
+                            <span class="remove-file btn btn-primary" v-on:click="removeFile(key)">-</span>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.8em;">Ok, placer les fichiers sur le serveur </a>
+
         </div>
     </div>
 
 </div>
-
-
 </template>
 
 <script>

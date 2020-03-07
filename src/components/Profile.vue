@@ -517,9 +517,9 @@ export default {
         hideModal() {
             this.$modal.hide("hello-world");
         },
-        getUser: function () {
+        readUser: function () {
             axios
-                .post("/getUser", {
+                .post("/readUser", {
                     id: this.id
                 })
                 .then(response => {
@@ -546,8 +546,7 @@ export default {
                         title: 'Hey! ',
                         text: 'Update is ok !'
                         });
-
-                      this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
+                    console.log(response);
                 })
                 .catch(error => {
                     console.log(error);
@@ -618,7 +617,7 @@ export default {
                 return;
             }
             axios
-                .post("/insertUser", this.user)
+                .post("/createUser", this.user)
                 .then(response => {
                    this.$notify({
                         type: 'success',
@@ -690,10 +689,10 @@ export default {
                  this.getActualSession();
 
         },
-        getUsers: function () {
+        readUsers: function () {
 
             axios
-                .post("/getUsers", {
+                .post("/readUsers", {
                     filters: this.filters
                 })
                 .then(response => {
@@ -714,7 +713,7 @@ export default {
         this.auth = true;
         this.loaded = true;
         this.readJobs();
-        this.getUsers();
+        this.readUsers();
 
     }
 };
@@ -746,16 +745,6 @@ export default {
     outline-color: #8e8;
 }
 
-/* change all .btn to .btn-sm size on xs */
-@include media-breakpoint-between(xs, sm) {
-    .btn {
-        @include button-size($input-btn-padding-y-sm,
-            $input-btn-padding-x-sm,
-            $font-size-sm,
-            $line-height-sm,
-            $btn-border-radius-sm);
-    }
-}
 
 /* ---------------------------------------------------
  PROFILE
@@ -767,6 +756,7 @@ margin-bottom:100px !important;
 
 }
 
+ 
 
 .emp-profile {
     padding: 3%;

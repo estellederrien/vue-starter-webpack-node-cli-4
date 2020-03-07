@@ -58,8 +58,8 @@ describe("Profile test", () => {
   it("hideModa()  to be a function", () => {
     expect(wrapper.vm.hideModal).to.be.a("function");
   });
-   it("getUser()  to be a function", () => {
-    expect(wrapper.vm.getUser).to.be.a("function");
+   it("readUser()  to be a function", () => {
+    expect(wrapper.vm.readUser).to.be.a("function");
   });
   it("updateUser()  to be a function", () => {
     expect(wrapper.vm.updateUser).to.be.a("function");

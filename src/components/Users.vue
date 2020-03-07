@@ -103,10 +103,10 @@ export default {
         route: function (_id) {
             this.$router.push("/user/" + _id);
         },
-        getUsers: function () {
+        readUsers: function () {
 
             axios
-                .post("getUsers", {
+                .post("readUsers", {
                     filters: this.filters
                 })
                 .then(response => {
@@ -123,7 +123,7 @@ export default {
         executeFilters: function (filtersChanged) {
             // filtersChanged is coming from the filters component, when a user has chosen some filters
             this.filters = filtersChanged;
-            this.getUsers();
+            this.readUsers();
 
         }
     },
@@ -132,7 +132,7 @@ export default {
         filters: Filters
     },
     created: function () {
-        this.getUsers();
+        this.readUsers();
 
     },
     data() {

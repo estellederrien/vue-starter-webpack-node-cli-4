@@ -25,8 +25,8 @@ describe("Users test", () => {
   it("users model is an array", () => {
     expect(wrapper.vm.$data.users).to.be.an("array");
   });
-  it("getUsers() to be a function", () => {
-    expect(wrapper.vm.getUsers).to.be.a("function");
+  it("readUsers() to be a function", () => {
+    expect(wrapper.vm.readUsers).to.be.a("function");
   });
   
    
