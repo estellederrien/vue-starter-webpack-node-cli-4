@@ -9,6 +9,8 @@ DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
 and can be set on heroku, azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
+![Screenshot](example.jpeg)
+
 <b>Won't contains :</b><br />
 VUEX : It is another starter in another GIT depot of mine<br />
 
