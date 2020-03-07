@@ -221,6 +221,8 @@ export default {
 /* MULTISELECT GLOBAL CSS */
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
+
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -228,51 +230,106 @@ export default {
   text-align: center;
   color: #2c3e50;
   padding-left: 50px;
-  /* margin-top: 60px; */
 }
-a:hover {
-  background-color: lightgrey;
-  cursor: pointer;
+
+
+/* -----------------------------------------------------------------------MEDIAS QUERIES --------------------------------------------------------------------- */
+
+
+/* SMARTPHONES PORTRAIT */
+@media only screen and (max-width: 300px) {
+
+
 }
-.logout {
-  cursor: pointer;
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (max-width: 480px) {
+
 }
-@media (max-width: 768px) {
+
+/* TABLETS PORTRAIT */
+@media only screen and (max-width: 768px) {
+
+#app {
+     font-size: 14px !important;
+  }
+ 
+ label {
+    font-size: 12px ;
+  }
   .btn {
-    font-size: 11px;
+    font-size: 12px !important;
     padding: 4px 6px;
+
+  }
+  .label {
+    font-size: 12px !important;
   }
 }
 
-@media (min-width: 768px) {
-  .btn {
-    font-size: 12px;
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (max-width: 1024px) {
+   #app {
+     font-size: 12px ;
+  }
+  label {
+    font-size: 14px !important;
+  }
+   .btn {
+    font-size: 14px;
     padding: 6px 12px;
   }
+
+ 
+}    
+
+/* ----------------------------------------------------------------------- END MEDIAS QUERIES --------------------------------------------------------------------- */
+
+
+/* -----------------------------------------------------------------------  MOST COMMON CSS --------------------------------------------------------------------- */
+
+/* Buttons */
+.btn{
+  color:white !important;
 }
 
-@media (min-width: 992px) {
-  .btn {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
+/* change all .btn to .btn-sm size on xs */
+@include media-breakpoint-between(xs, sm) {
+    .btn {
+        @include button-size($input-btn-padding-y-sm,
+            $input-btn-padding-x-sm,
+            $font-size-sm,
+            $line-height-sm,
+            $btn-border-radius-sm);
+    }
 }
 
-@media (min-width: 1200px) {
-  .btn {
-    padding: 4px 14px;
 
-    font-size: 16px;
-  }
-}
+/* Links  */
 .a {
   color: maroon;
 }
 
+a:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+
+
+
+
+/* ---------------------------------------------------------------------------GRAPHICAL ELEMENTS -----------------------------------------------*/
 .loader {
   width: 300px;
   height: 250px;
 }
+
+.logout {
+  cursor: pointer;
+}
+
 #navbarTop {
   margin-bottom: 60px;
 }
