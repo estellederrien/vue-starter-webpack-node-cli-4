@@ -56,7 +56,7 @@ npm install
 
 ### Compiles and hot-reloads for development on port 8080
 ```
-npm run serve
+npm run serve ( the dev env) , then, npm run start (the node server)
 ```
 
 ### Compiles and minifies for production
