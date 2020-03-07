@@ -23,7 +23,7 @@
     </div>
 
     <div class="card-footer float-right">
-        <button class="btn btn-primary float-right" v-on:click="insertMessage()">Send</button>
+        <button class="btn btn-primary float-right" v-on:click="createMessage()">Send</button>
     </div>
     
 </div>
@@ -48,7 +48,7 @@ export default {
 
     methods: {
 
-        insertMessage: function () {
+        createMessage: function () {
 
             this.message.from = this.user._id;
             this.message.senderName = this.user.nom;
@@ -56,7 +56,7 @@ export default {
             this.message.img = this.user.img;
 
             axios
-                .post("/insertMessage", this.message)
+                .post("/createMessage", this.message)
                 .then(response => {
                     this.$notify({
                         type: 'success',

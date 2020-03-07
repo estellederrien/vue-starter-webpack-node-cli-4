@@ -54,7 +54,7 @@ export default {
   methods: {
     getMessages: function() {
       axios
-        .post("/getUserMessages", {
+        .post("/readUserMessages", {
           _id: this._id
         })
         .then(response => {
