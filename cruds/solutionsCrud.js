@@ -1,7 +1,7 @@
-// -----------------------------------SOlutions CRUD -------------------------------------------
+// -----------------------------------SOlutions CRUD (LINEAR SOLVER) -------------------------------------------
 module.exports = function(app, db) {
   // GET SOLUTIONS
-  app.post("/getSolutions", function(req, res, next) {
+  app.post("/readSolutions", function(req, res, next) {
     MongoClient.connect(url, (err, client) => {
       var db = client.db("solutions");
 
@@ -15,7 +15,7 @@ module.exports = function(app, db) {
     });
   });
 
-  app.get("/getSolution", function(req, res, next) {
+  app.get("/readSolution", function(req, res, next) {
     // PARAMETRES
     identifiant = req.param("id");
 
@@ -66,7 +66,7 @@ module.exports = function(app, db) {
     );
   });
 
-  app.post("/insertSolution", function(req, res, next) {
+  app.post("/createSolution", function(req, res, next) {
     solution = req.body;
     MongoClient.connect(url, (err, client) => {
       try {
@@ -78,7 +78,7 @@ module.exports = function(app, db) {
     });
   });
 
-  app.get("/getSolutionsCount", function(req, res, next) {
+  app.get("/readSolutionsCount", function(req, res, next) {
     MongoClient.connect(url, (err, client) => {
       db.collection("clubs")
         .countDocuments()
