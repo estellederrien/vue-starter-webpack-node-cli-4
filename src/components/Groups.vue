@@ -252,9 +252,9 @@ export default {
           });
         });
     },
-    getUsersForFilters: function() {
+    readUsersForFilters: function() {
       axios
-        .post("/getUsers")
+        .post("/readUsers")
         .then(response => {
           this.users = response.data;
         })
@@ -271,7 +271,7 @@ export default {
     }
   },
   mounted: function() {
-    this.getUsersForFilters();
+    this.readUsersForFilters();
     this.readGroups();
   }
 };

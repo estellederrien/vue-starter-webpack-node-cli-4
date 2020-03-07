@@ -77,9 +77,9 @@ export default {
 
                 });
         },
-        getUsers: function () {
+        readUsers: function () {
             axios
-                .post("/getUsers")
+                .post("/readUsers")
                 .then(response => {
                     this.users = response.data;
 
@@ -94,7 +94,7 @@ export default {
     },
     mounted: function () {
 
-        this.getUsers();
+        this.readUsers();
 
     }
 };
