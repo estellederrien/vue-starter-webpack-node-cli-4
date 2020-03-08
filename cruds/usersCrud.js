@@ -82,24 +82,15 @@ module.exports = function(app, db, permissions, bcrypt) {
          // GETTIN DATA FROM FRONTEND
          var user = req.body;
 
-        // PERMISSION CONTROL
-        // if (!permissions.permission_valid("UPDATE_USER", req)) {
-        //     console.log(" NO PERMISSIONS");
-        //     res.status(403).send({ errorCode: "403" });
-        //     return;
-        // }
-
-        // RECUPERATION DU user provenant du front end
-       
-
-        // On évite tout hacking
+        // On évite tout hacking, du coup on prends le'id et le password de la sessions (Pas besoin de prendre celui du front end)
         user._id = req.session.user._id;
         user.password = req.session.user.password;
         user.last_update = new Date();
 
-        // MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE
+        // MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
         req.session.user = user;
 
+        // RECORDING PHASE
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(user._id);
 
