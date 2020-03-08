@@ -35,7 +35,7 @@
       </div>
     </a>
 
-    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+    <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a> -->
   </div>
 </template>
 
