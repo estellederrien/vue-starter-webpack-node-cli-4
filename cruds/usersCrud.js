@@ -5,20 +5,25 @@ module.exports = function(app, db, permissions, bcrypt) {
      *
      */
     app.post("/createUser", permissions.requiresLoggedIn,permissions.permission_valid("CREATE_USER"), function(req, res) {
+        
+        // gettin data from front end 
         var user = req.body;
 
-        // CONTROLE DES CHAMPS OBLIGATOIRES
+       
+        // Checking mandatory fields  // CONTROLE DES CHAMPS OBLIGATOIRES
         if (!user.prenom || !user.email || !user.password || !user.nom || user.password == "") {
             res.status(403).send({ errorCode: "403" });
             return;
         }
 
+         // Creating the user's permissions
         user.permissions = permissions.create_permissions(user);
 
-        // Setting empty user files
-        user.filenames = [];
+         // Setting a new empty user files array
+         user.filenames = [];
 
         // CONTROLE DE DOUBLONS EMAIL
+        // Checking if no email duplicate
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
             if (!result) {
                 execute();
@@ -31,6 +36,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         function execute() {
             // HASCHAGE BCRYPT DU PASSWORD
+            // HASCHING THE USER PASSWORD
             var hash = bcrypt.hashSync(user.password, 10);
             user.password = hash;
 
@@ -52,9 +58,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     app.post("/readUser", function(req, res) {
         var identifiant = req.param("id");
-
-        var ObjectId = require("mongodb").ObjectID; //working
-        var idObj = ObjectId(identifiant); //working
+        var ObjectId = require("mongodb").ObjectID; 
+        var idObj = ObjectId(identifiant); 
 
         db.collection("users").findOne({ _id: idObj }, function(findErr, result) {
             if (findErr) throw findErr;
@@ -73,12 +78,14 @@ module.exports = function(app, db, permissions, bcrypt) {
          // GETTIN DATA FROM FRONTEND
          var user = req.body;
 
-        // On évite tout hacking, du coup on prends le'id et le password de la sessions (Pas besoin de prendre celui du front end)
+        // On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
+        // Avoidning hacking by keeping the id and password from the session, not from the front end
         user._id = req.session.user._id;
         user.password = req.session.user.password;
         user.last_update = new Date();
 
         // MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
+        // Updateing session user object with the new data
         req.session.user = user;
 
         // RECORDING PHASE
@@ -86,6 +93,7 @@ module.exports = function(app, db, permissions, bcrypt) {
         var idObj = ObjectId(user._id);
 
         // OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
+        // This is mandatory, to avoid conflict
         delete user._id;
 
         try {
@@ -103,6 +111,8 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/registerUser", function(req, res) {
+        
+        // gettin data from front end 
         var user = req.body;
 
         // CONTROLE DES CHAMPS OBLIGATOIRES
@@ -111,15 +121,19 @@ module.exports = function(app, db, permissions, bcrypt) {
             return;
         }
 
-        // IP FLOODING CONTROL
-        // TODO
-
-        //  PERMISSIONS
+        // IP FLOODING CONTROL    // TODO
+     
 
         //ANONYMOUS ACCOUNT CREATION
 
+        // Creating the user's permissions
         user.role = "user";
+s
+        // Creating the user's permissions
         user.permissions = permissions.create_permissions(user);
+
+        // Setting a new empty user files array
+        user.filenames = [];
 
         // CONTROLE DE DOUBLONS EMAIL
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
@@ -356,8 +370,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
 
     /**
-     * Async call to know what group a user belongs to .
-     *  
+     * Async call in the purpose to know  which groups a user belongs to .
+     * Pour retrouver les groupes d'un user
      */
     // CHAINER PLUSIEURS COLLECTIONS CALL EN MODE ASYNC
     async function getUsersGroups(users, req) {
