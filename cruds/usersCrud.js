@@ -4,7 +4,7 @@ module.exports = function(app, db, permissions, bcrypt) {
      * Creating a user
      *
      */
-    app.post("/createUser", function(req, res) {
+    app.post("/createUser", permissions.requiresLoggedIn,permissions.permission_valid("CREATE_USER"), function(req, res) {
         var user = req.body;
 
         // CONTROLE DES CHAMPS OBLIGATOIRES
@@ -13,19 +13,10 @@ module.exports = function(app, db, permissions, bcrypt) {
             return;
         }
 
-        user.permissions = create_permissions(user);
+        user.permissions = permissions.create_permissions(user);
 
         // Setting empty user files
         user.filenames = [];
-
-        //  PERMISSIONS
-
-        // PERMISSION CONTROL
-        if (!permissions.permission_valid("CREATE_USER", req)) {
-            console.log(" NO PERMISSIONS");
-
-            return;
-        }
 
         // CONTROLE DE DOUBLONS EMAIL
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
