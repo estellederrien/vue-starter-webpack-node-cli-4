@@ -57,6 +57,8 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login
+    
+   
   },
   {
     path: "/calendar",
@@ -71,8 +73,22 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
-    component: Profile
+    component: Profile 
+    
+    ,
+    beforeEnter: (to, from, next) => {
+      
+       if(localStorage.getItem('user')){
+         console.log(localStorage.getItem('user'));
+            next()
+        }else{
+
+            $router.push("/login");
+            }
+        }
+    
   }
+  
 ];
 
 const router = new VueRouter({

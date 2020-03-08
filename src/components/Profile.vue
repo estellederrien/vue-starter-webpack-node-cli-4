@@ -708,8 +708,12 @@ export default {
 
     },
     created: function(){
-
-         this.user = this.$user;
+        if(localStorage.getItem('user')){
+            this.user =  JSON.parse(localStorage.getItem('user'))
+        }else{
+            this.user = this.$user;
+        }  
+        
         this.auth = true;
         this.loaded = true;
         this.readJobs();
