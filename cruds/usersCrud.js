@@ -255,11 +255,13 @@ module.exports = function(app, db, permissions, bcrypt) {
         } else if (Object.entries(req.body.filters).length !== 0 && req.body.filters.constructor === Object) {
             // ------------------------------- AVEC FILTRES :
 
+            // Gettin filters from front end
             var myFilters = req.body.filters;
 
             cleanFilters(myFilters);
+           
+             // Applying filters
             var find = {};
-
             find.$and = [];
 
             if (myFilters.role) {
@@ -276,6 +278,7 @@ module.exports = function(app, db, permissions, bcrypt) {
                 find.$and.push({ age: { $gt: myFilters.ageValues[0] } }, { age: { $lt: myFilters.ageValues[1] } });
             }
 
+             // Call
             db.collection("users")
                 .find(find)
 
