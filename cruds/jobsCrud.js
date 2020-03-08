@@ -45,19 +45,8 @@ module.exports = function(app, db, permissions) {
         });
     });
 
-    app.post("/updateJob", function(req, res) {
-        // LOGGED IN CONTROL
-        if (!req.session.loggedIn) {
-            console.log(" FORBIDDEN ");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
-
-        if (!permissions.permission_valid("UPDATE_JOB", req)) {
-            console.log(" NO RIGHTS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
+    app.post("/updateJob", permissions.requiresLoggedIn,permissions.permission_valid("UPDATE_JOB"), function(req, res) {
+      
 
         // GETTIN DATA FROM FRONTEND
         var job = req.body;
@@ -77,20 +66,9 @@ module.exports = function(app, db, permissions) {
         }
     });
 
-    app.post("/deleteJob", function(req, res) {
-        // LOGGED IN CONTROL
-        if (!req.session.loggedIn) {
-            console.log(" FORBIDDEN ");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
+    app.post("/deleteJob", permissions.requiresLoggedIn,permissions.permission_valid("DELETE_JOB"), function(req, res) {
+       
 
-        // CONTROLE DE LA PERMISSION
-        if (!permissions.permission_valid("DELETE_JOB", req)) {
-            console.log(" NO RIGHTS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
 
         var user = req.body;
         var ObjectId = require("mongodb").ObjectID;
