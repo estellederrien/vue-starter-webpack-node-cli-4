@@ -36,19 +36,18 @@ let globalData = new Vue({
   data: { $user: {} }
 });
 
+
 Vue.mixin({
   computed: {
     $user: {
       get: function() {
-        if(localStorage.getItem('user')){
-         return  JSON.parse(localStorage.getItem('user'))
-        }else{
+
             return globalData.$data.$user;
-        }      
+    
       },
       set: function(user) {
+
         globalData.$data.$user = user;
-       localStorage.setItem('user', JSON.stringify(user));
       }
     }
   }

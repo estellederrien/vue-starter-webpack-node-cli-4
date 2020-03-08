@@ -82,9 +82,11 @@ export default {
     },
     methods: {
         logOut: function () {
+
             axios
                 .post("/logout")
                 .then(function (reponse) {
+                      localStorage.deleteItem('user');
                     alert("logout ok");
                 })
                 .catch(function (erreur) {
@@ -108,6 +110,7 @@ export default {
                         title: 'Bienvenue dans l\'application ',
                         text: 'Identification OK !'
                         });
+                         localStorage.setItem('user', JSON.stringify(response.data));
                    this.$router.push("/profile");
                    
                 })

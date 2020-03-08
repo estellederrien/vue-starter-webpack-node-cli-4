@@ -74,7 +74,7 @@
               class="submenu dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="userDropdown"
             >
-              <router-link v-if="$user._id" class="dropdown-item" to="/profile">
+              <router-link v-if="$user._id" class="dropdown-item" to="/profile"  >
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Mon
                 profil
               </router-link>
@@ -129,6 +129,7 @@ axios.defaults.withCredentials = true;
 
 export default {
   name: "App",
+  props: ["loggedin"],
   components: {
     SidebarMenu,
     messages: Messages
@@ -138,11 +139,14 @@ export default {
       this.$router.push("/profile");
     },
     logout() {
+      
+ 
       axios
         .post("logout", {})
         .then(response => {
           this.$user = {};
-           localStorage.removeItem('user');
+          localStorage.removeItem('user');
+         
           this.$notify({
             type: "success",
             group: "foo",
