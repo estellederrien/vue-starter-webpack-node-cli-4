@@ -201,7 +201,7 @@
 									</div>
                                     <div class="col-md-6">
 									<div class="card ">
-                                    <div class="card-body">
+                                    <div class="card-body" style ="overflow:auto;">
                                     <h5 class="card-title">
                                         <i class="fas fa-file-alt"></i> Liste des fichiers
                                     </h5>
