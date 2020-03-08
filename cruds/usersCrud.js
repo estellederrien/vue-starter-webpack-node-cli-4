@@ -16,7 +16,7 @@ module.exports = function(app, db, permissions, bcrypt) {
             return;
         }
 
-         // Creating the user's permissions
+         // Creating the user's permissions ( Chosen by the front end , inside of user.role)
         user.permissions = permissions.create_permissions(user);
 
          // Setting a new empty user files array
@@ -76,13 +76,13 @@ module.exports = function(app, db, permissions, bcrypt) {
         
 
          // GETTIN DATA FROM FRONTEND
-         var user = req.body;
+         var user           = req.body;
 
         // On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
         // Avoidning hacking by keeping the id and password from the session, not from the front end
-        user._id = req.session.user._id;
-        user.password = req.session.user.password;
-        user.last_update = new Date();
+        user._id            = req.session.user._id;
+        user.password       = req.session.user.password;
+        user.last_update    = new Date();
 
         // MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
         // Updateing session user object with the new data
@@ -126,7 +126,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         //ANONYMOUS ACCOUNT CREATION
 
-        // Creating the user's permissions
+        // Creating the user's role
         user.role = "user";
 s
         // Creating the user's permissions
