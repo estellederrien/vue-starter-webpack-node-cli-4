@@ -4,17 +4,20 @@
         <div class="col-md-2">
             <h5>Entrer un nouvel évènement</h5>
 
-            <label>Début</label> <br>
+             <label>Mon nom : </label> <br>
+            <span class = "badge badge-primary">{{$user.nom || "Anonyme"}}</span><br><br>
+
+            <label>Début : </label> <br>
             <datetime placeholder="Entrez un créneau" v-model="newEvent.start" type="datetime" :minute-step="30" :phrases="{ok: 'Ok', cancel: 'Annuler'}" title="Debut du rendez vous "></datetime>
             <br>
 
-            <label>Fin</label> <br>
+            <label>Fin : </label> <br>
             <datetime placeholder="Entrez un créneau" v-model="newEvent.end" type="datetime" :minute-step="30"></datetime>
             <br>
-            <label>Titre</label> <br>
+            <label>Titre : </label> <br>
             <input v-model="newEvent.title" class="form-control" type="text"></input>
             <br>
-            <label>Description</label> <br>
+            <label>Description : </label> <br>
             <textarea v-model="newEvent.contentFull" class="form-control"></textarea>
             <br>
             <button @click="createEvent()" class="btn btn-primary">Ajouter</button>
@@ -122,18 +125,15 @@ export default {
                 //date is future
             }
 
-        
-
-
             //Pushing into the calendar
             this.events.push(myEvent);
 
-              this.$notify({
-                            type: 'success',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: 'Date added '
-                        });
+            this.$notify({
+                type: 'success',
+                group: 'foo',
+                title: 'Hey! ',
+                text: 'Date added '
+            });
 
         },
         readEvent() {},
