@@ -76,24 +76,21 @@ module.exports = function(app, db, permissions, bcrypt) {
      *
      */
 
-    app.post("/updateUser", function(req, res) {
-        // LOGGED IN CONTROL
-        if (!req.session.loggedIn) {
-            console.log(" FORBIDDEN ");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
+    app.post("/updateUser", permissions.requiresLoggedIn,permissions.permission_valid("UPDATE_USER"),function(req, res) {
+        
+
+         // GETTIN DATA FROM FRONTEND
+         var user = req.body;
 
         // PERMISSION CONTROL
-        if (!permissions.permission_valid("UPDATE_USER", req)) {
-            console.log(" NO PERMISSIONS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
+        // if (!permissions.permission_valid("UPDATE_USER", req)) {
+        //     console.log(" NO PERMISSIONS");
+        //     res.status(403).send({ errorCode: "403" });
+        //     return;
+        // }
 
         // RECUPERATION DU user provenant du front end
-        // GETTIN DATA FROM FRONTEND
-        var user = req.body;
+       
 
         // On évite tout hacking
         user._id = req.session.user._id;
@@ -174,20 +171,8 @@ module.exports = function(app, db, permissions, bcrypt) {
      *
      */
 
-    app.post("/deleteUser", function(req, res) {
-        // LOGGED IN CONTROL
-        if (!req.session.loggedIn) {
-            console.log(" FORBIDDEN ");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
-
-        // PERMISSION CONTROL
-        if (!permissions.permission_valid("DELETE_USER", req)) {
-            console.log(" NO RIGHTS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
+    app.post("/deleteUser", permissions.requiresLoggedIn,permissions.permission_valid("DELETE_USER"), function(req, res) {
+        
 
         var user = req.body;
         var ObjectId = require("mongodb").ObjectID;
