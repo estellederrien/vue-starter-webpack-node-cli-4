@@ -6,7 +6,7 @@ Please allow from 2 months to 6 months for it to get finished.
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . My node 'appSystem' directory is private and available on demand, and needed for the app to work.<br />
 
 DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
-and can be set on heroku, azure and google cloud<br /><br />
+and can be set on heroku (https://vuestarter2.herokuapp.com/ no file uploads for now), azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ![Screenshot](example.jpeg)
