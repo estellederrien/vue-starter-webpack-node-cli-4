@@ -83,3 +83,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+<a href="https://www.openode.io/">Sponsored and hosted by opeNode.io</a>
