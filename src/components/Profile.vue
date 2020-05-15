@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-md-2">
 						<div class="profile-img">
-							<img v-bind:src="'/img/' + user.img" @error="replaceByDefault" style="width:150px" />
+							<img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
 							<uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
 						</div>
 						<div class="profile-work col-md-2 d-none d-md-block">
