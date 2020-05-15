@@ -1,20 +1,131 @@
 // ----------------------------------- UPLOADING IMAGES AND FILES-------------------------------------------
 
 module.exports = function(app, db, permissions) {
-    
 
-    // -------------------------------------------------------- PARAMS 
-    var multer = require("multer");
-    const sharp = require("sharp"); // Resize pictures module 
-    var fs = require("fs");
-    const bodyParser = require("body-parser");
+/* ************************************* NODE MODULES ****************************************************** */
+
+var cloudinary    = require('cloudinary'); // Managing the cloudinary server pictures storing
+var Client        = require('ssh2-sftp-client'); // Managing the SFTP server connexion
+var multer        = require("multer"); // Managing multiples files uploads
+const sharp       = require("sharp"); // Resizing pictures module 
+var fs            = require("fs"); // Managing the file system
+const bodyParser  = require("body-parser");
+
+
+/* ************************************* CONFIGS ****************************************************** */
+
+
+/* 
+          CLOUDINARY 
+          'STORING PICTURES ON THE CLOUD' 
+*/
+
+cloudinary.config({ 
+  cloud_name: 'ddq5asuy2', 
+  api_key: '354237299578646', 
+  api_secret: '3UWkrND91MW3jhmGecvp77uetvQ' 
+});
+
+
+/* 
+          FTP SERVERS CONNEXIONS
+          'STORING FILES AND PICTURES ON THE CLOUD'  
+
+*/
+
+
+// 1. NODE MODULE : FTP
+/*  var Client = require('ftp');
+ let config = {
+  host: "ftpupload.net",
+  user: "epiz_25107181",
+  password: "uk7HxjN7vmR1",
+  port: 21
+};
+  var c = new Client();
+  c.on('ready', function() {
+    c.list(function(err, list) {
+      if (err) throw err;
+      console.dir(list);
+      c.end();
+    });
+  });
+
+  c.connect(config); */
+
+// 2. NODE MODULE : SFTP : ssh2-sftp-client
+
+let sftp = new Client();
+
+sftp.connect({
+   host: "test.rebex.net",
+    user: "demo",
+    password: "password",
+    port:22
+}).then(() => {
+  return sftp.list('/');
+}).then(data => {
+  console.log(data, 'the data info');
+}).catch(err => {
+  console.log(err, 'catch error');
+});
+
+
+// 3. NODE MODULE : multer-ftp NOT WORKING
+ /*    var FTPStorage = require('multer-ftp')
+
+    var  storage = new FTPStorage({
+        basepath: '/htdocs/files',
+        ftp: {
+            host: "ftpupload.net",
+            user: "epiz_25107181",
+            password: "xxxxxxx",
+            secure: false
+        }
+    }) */
+// end multer-ftp
+
+
+// 4. NODE MODULE : multer-sftp NOT WORKING
+
+/* var sftpStorage = require('multer-sftp')
+ 
+var storage = sftpStorage({
+  sftp: {
+     host: "test.rebex.net",
+    user: "demo",
+    password: "password",
+    port:22
+  },
+  destination: function (req, file, cb) {
+    cb(null, '/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+}) */
+
+
+
+ /* ************************************* FILE HANDLINGS ****************************************************** */  
 
     var storageImages = multer.diskStorage({
         destination: function(req, file, cb) {
             cb(null, "./uploads/img");
         },
         filename: function(req, file, cb) {
-            cb(null, file.originalname + "-" + Date.now() + ".jpg");
+            let ext = file.originalname.substring(file.originalname.lastIndexOf("."), file.originalname.length);
+            let myUniqueFileName = file.originalname + "-" + Date.now() + ext ;
+            cb(null,myUniqueFileName);
+            
+            // ALSO STORING THE PICTURE ON CLOUDINARY https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
+            // {"use_filename": true, "unique_filename": false}, NOT WORKING 
+          cloudinary.uploader.upload("./uploads/img/"+ myUniqueFileName,
+            function(result) { 
+              console.log('moncloudinary')
+              console.log(result) ;
+              console.log(result.url) ;
+            })
         }
     });
 
@@ -28,18 +139,18 @@ module.exports = function(app, db, permissions) {
         }
     });
 
+
     var uploadFiles = multer({ storage: storageFiles });
+
     var uploadImages = multer({ storage: storageImages });
-     // -------------------------------------------------------- ENDING PARAMS 
 
 
-
-    // -------------------------------------------------------- CRUD 
+    // ******************************************************** CRUD ****************************************************** */  
 
     app.post("/images", uploadImages.single("file"), function(req, res, next) {
         console.log(req.file);
 
-        sharp(req.file.path)
+        sharp(req.file.path) // reducing picture size
             .resize(200, 200)
             .toBuffer(function(err, buffer) {
                 fs.writeFile(req.file.path, buffer, function(e) {});
