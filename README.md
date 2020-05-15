@@ -1,7 +1,7 @@
 # STARTER  : Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
 Currently in DEV state !
-Please allow from 2 months to 6 months for it to get finished.
+Please allow from 1 month to 3 months for it to get finished.
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . My node 'appSystem' directory is private and available on demand, and needed for the app to work.<br />
 
