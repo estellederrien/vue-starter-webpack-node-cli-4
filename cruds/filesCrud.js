@@ -118,14 +118,7 @@ var storage = sftpStorage({
             let myUniqueFileName = file.originalname + "-" + Date.now() + ext ;
             cb(null,myUniqueFileName);
             
-            // ALSO STORING THE PICTURE ON CLOUDINARY https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
-            // {"use_filename": true, "unique_filename": false}, NOT WORKING 
-          cloudinary.uploader.upload("./uploads/img/"+ myUniqueFileName,
-            function(result) { 
-              console.log('moncloudinary')
-              console.log(result) ;
-              console.log(result.url) ;
-            })
+          
         }
     });
 
@@ -149,13 +142,27 @@ var storage = sftpStorage({
 
     app.post("/images", uploadImages.single("file"), function(req, res, next) {
         console.log(req.file);
-
-        sharp(req.file.path) // reducing picture size
+        
+        // STEP 1 : reducing picture size
+        sharp(req.file.path) 
             .resize(200, 200)
             .toBuffer(function(err, buffer) {
                 fs.writeFile(req.file.path, buffer, function(e) {});
             });
-        res.send({ filename: req.file.filename });
+
+          // STEP 2 : CLOUDINARY STORING
+          // ALSO STORING THE PICTURE ON CLOUDINARY https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
+            // {"use_filename": true, "unique_filename": false}, NOT WORKING 
+          cloudinary.uploader.upload("./uploads/img/"+ req.file.filename,
+            function(result) { 
+              console.log('moncloudinary')
+              console.log(result.url) ;
+              // SENDING THE CLOUDINARY URL FOR FRONT END DISPLAYING
+              res.send({ filename: result.url});
+            })
+            // SENDING THE UPLOADS URL FOR DISPLAYING
+              // res.send({ filename: req.file.filename});
+    
         // res.sendStatus(200);
     });
 
