@@ -6,7 +6,7 @@ Please allow from 1 month to 3 months for it to get finished.<br>
 <b>NEWS ! 
   <br>
  08-03-2020 : I will add 3 ways of uploading pics and files : By ftp, on cloudinary, and on the node local server, and also do a global code standardisation 
-<br>
+I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
   08-03-2020 : I will finally publish the whole code including my 'secret' permissions builder directory.
 </b> 
 
