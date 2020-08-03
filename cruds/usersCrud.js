@@ -190,58 +190,27 @@ s
 
     /*
      *  Read all users
+     *  @req.body.filters json array
      *  return json array
      */
 
     app.post("/readUsers", function(req, res) {
-        console.log(req.sessionID);
-        console.log(req.body.filters);
-        console.log(typeof req.body.filters);
-        console.log(myFilters);
 
-        // ------------------------------- SANS FILTRES :
-        if (req.body.filters === undefined) {
-            console.log("no filters");
-            db.collection("users")
-                .find()
-                .toArray(function(err, docs) {
-                    if (err) throw err;
-                    console.log(err);
-                    docs = FilterByFilesPermissions(docs, req);
-                    getUsersGroups(docs, req)
-                        .then(users => {
-                            res.send(users);
-                        })
-                        .catch(error => {
-                            // if you have an error
-                        });
-                });
-        } else if (Object.entries(req.body.filters).length === 0 && req.body.filters.constructor === Object) {
-            console.log("no filters");
-            db.collection("users")
-                .find()
-                .toArray(function(err, docs) {
-                    if (err) throw err;
-                    console.log(err);
-                    docs = FilterByFilesPermissions(docs, req);
-                    getUsersGroups(docs, req)
-                        .then(users => {
-                            res.send(users);
-                        })
-                        .catch(error => {
-                            // if you have an error
-                        });
-                });
+        // Init variables :
+        var find = {};
+
+        // QUERY WITH NO FILTERS :
+        if (req.body.filters === undefined || (Object.entries(req.body.filters).length === 0 && req.body.filters.constructor === Object)) {
+
+        // QUERY WITH FILTERS
         } else if (Object.entries(req.body.filters).length !== 0 && req.body.filters.constructor === Object) {
-            // ------------------------------- AVEC FILTRES :
-
+           
             // Gettin filters from front end
             var myFilters = req.body.filters;
 
             cleanFilters(myFilters);
            
              // Applying filters
-            var find = {};
             find.$and = [];
 
             if (myFilters.role) {
@@ -257,24 +226,32 @@ s
             if (myFilters.ageValues) {
                 find.$and.push({ age: { $gt: myFilters.ageValues[0] } }, { age: { $lt: myFilters.ageValues[1] } });
             }
-
-             // Call
-            db.collection("users")
-                .find(find)
-
-                .toArray(function(err, docs) {
-                    if (err) throw err;
-                    console.log(err);
-                    docs = FilterByFilesPermissions(docs, req);
-                    getUsersGroups(docs, req)
-                        .then(users => {
-                            res.send(users);
-                        })
-                        .catch(error => {
-                            // if you have an error
-                        });
-                });
+            
         }
+
+         // FINAL USERS READ
+        db.collection("users")
+            // find holds the front end filters
+            .find(find)
+
+            .toArray(function(err, docs) {
+                if (err) throw err;
+                console.log(err);
+
+                // Getting the user files
+                docs = FilterByFilesPermissions(docs, req);
+
+                // Getting the user groups
+                getUsersGroups(docs, req)
+                    .then(users => {
+                        res.send(users);
+                    })
+                    .catch(error => {
+                        // if you have an error
+                        console.log(error);
+                    });
+            });
+
     });
 
     /*
@@ -382,7 +359,7 @@ s
                     .toArray()
                     .then(group => {
                         user.groups = group;
-                        console.log(group);
+                        // console.log(group);
                     });
             })
         );
