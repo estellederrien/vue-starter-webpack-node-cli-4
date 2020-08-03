@@ -1,5 +1,18 @@
 // ----------------------------------- UPLOADING IMAGES AND FILES-------------------------------------------
 
+/* INTRODUCTION 
+
+  THERE ARE 3 WAYS TO STORE PICTURES AND FILES :
+  1. CLOUDINARY SERVER 
+  2. THE NODE SERVER
+  3. AN FTP SERVER .
+
+  AS LONGAS YOU CHOOSE AN OPTION, YOU HAVE TO CHANGE SEVERAL THINGS IN THE FRONT END VUE.JS APP TOO !
+  IM CURRENTLY BUILDING THIS TRYING TO MAKE IT THE SIMPLIER AS POSSIBLE  !
+
+  NICOLAS ESTELLE HULEUX
+*/
+
 module.exports = function(app, db, permissions) {
 
 /* ************************************* NODE MODULES ****************************************************** */
@@ -12,12 +25,13 @@ var fs            = require("fs"); // Managing the file system
 const bodyParser  = require("body-parser");
 
 
-/* ************************************* CONFIGS ****************************************************** */
+/* ************************************* STORAGE SERVERS CONNEXIONS PARAMS ****************************************************** */
 
 
 /* 
-          CLOUDINARY 
-          'STORING PICTURES ON THE CLOUD' 
+   CLOUDINARY PARAMS
+  'STORING PICTURES ON THE CLOUD' 
+   YOU HAVE TO OWN A CLOUDINARY ACCOUNT 
 */
 
 cloudinary.config({ 
@@ -28,9 +42,9 @@ cloudinary.config({
 
 
 /* 
-          FTP SERVERS CONNEXIONS
-          'STORING FILES AND PICTURES ON THE CLOUD'  
-
+  FTP SERVER PARAMS
+  'STORING FILES AND PICTURES ON MY PERSONNAL FTP' 
+  YOU HAVE TO OWN A FTP SERVER
 */
 
 
@@ -51,9 +65,10 @@ cloudinary.config({
     });
   });
 
-  c.connect(config); */
+  c.connect(config); 
+*/
 
-// 2. NODE MODULE : SFTP : ssh2-sftp-client
+
 
 let sftp = new Client();
 
@@ -109,7 +124,9 @@ var storage = sftpStorage({
 
  /* ************************************* FILE HANDLINGS ****************************************************** */  
 
-    var storageImages = multer.diskStorage({
+    
+  // MULTER PARAMS FOR IMAGES STORAGE
+  var storageImages = multer.diskStorage({
         destination: function(req, file, cb) {
             cb(null, "./uploads/img");
         },
@@ -122,6 +139,7 @@ var storage = sftpStorage({
         }
     });
 
+    // MULTER PARAMS FOR FILES STORAGE
     var storageFiles = multer.diskStorage({
         destination: function(req, file, cb) {
             cb(null, "./uploads/files");
@@ -138,8 +156,11 @@ var storage = sftpStorage({
     var uploadImages = multer({ storage: storageImages });
 
 
-    // ******************************************************** CRUD ****************************************************** */  
 
+    // ******************************************************** BACK END CRUD WEB SERVICES ****************************************************** */  
+
+    
+    // STORING PICTURES ON CLOUDINARY
     app.post("/images", uploadImages.single("file"), function(req, res, next) {
         console.log(req.file);
         
@@ -166,6 +187,8 @@ var storage = sftpStorage({
         // res.sendStatus(200);
     });
 
+
+    // STORING FILES ON THE NODE SERVER
     app.post("/createFiles", uploadFiles.array("file", 10), function(req, res, err) {
         if (err) {
             console.log(err);
