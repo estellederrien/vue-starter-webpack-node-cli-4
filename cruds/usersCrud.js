@@ -196,41 +196,14 @@ s
 
     app.post("/readUsers", function(req, res) {
 
-        // Init variables :
-        var find = {}; // This will contains the filters params coming from the front end.
-
-        // QUERY WITH NO FILTERS :
-        if (req.body.filters === undefined || (Object.entries(req.body.filters).length === 0 && req.body.filters.constructor === Object)) {
-
-        // QUERY WITH FILTERS
-        } else if (Object.entries(req.body.filters).length !== 0 && req.body.filters.constructor === Object) {
-           
-
-            cleanFilters(req.body.filters);
-           
-             // Applying filters
-            find.$and = [];
-
-            if (req.body.filters.role) {
-                find.$and.push({ role: req.body.filters.role });
-            }
-            if (req.body.filters.jobs) {
-                find.$and.push({ job: { $in: req.body.filters.jobs } });
-            }
-
-            if (req.body.filters.users) {
-                find.$and.push({ nom: { $in: req.body.filtersusers } });
-            }
-            if (req.body.filters.ageValues) {
-                find.$and.push({ age: { $gt: req.body.filters.ageValues[0] } }, { age: { $lt: req.body.filters.ageValues[1] } });
-            }
-            
-        }
+        // We receive front end filters params, and we need to structure them, before using the .find() mongoDb function
+        var filters = structureFilters(req.body.filters) 
+   
 
          // FINAL USERS READ
         db.collection("users")
             // find holds the front end filters
-            .find(find)
+            .find(filters)
 
             .toArray(function(err, docs) {
                 if (err) throw err;
@@ -251,6 +224,8 @@ s
             });
 
     });
+
+
 
     /*
      * Read all users for filters : Read Less data
@@ -304,6 +279,52 @@ s
     });
 
     // ----------------------------------------------------------------- HELPER FUNCTIONS ------------------------------------------------
+
+    
+    /*
+     *  Structuring front end filters, for the .find mongodDb function
+     *  @req.body.filters json array
+     *  return json array
+     */
+
+    function structureFilters (frontEndFilters){
+         var find = {};
+
+             // QUERY WITH NO FILTERS :
+        if (frontEndFilters === undefined || (Object.entries(frontEndFilters).length === 0 && frontEndFilters.constructor === Object)) {
+            return find;
+        // QUERY WITH FILTERS
+        } else if (Object.entries(frontEndFilters).length !== 0 && frontEndFilters.constructor === Object) {
+           
+
+            cleanFilters(frontEndFilters);
+           
+             // Applying filters
+            find.$and = [];
+
+            if (frontEndFilters.role) {
+                find.$and.push({ role: frontEndFilters.role });
+            }
+            if (frontEndFilters.jobs) {
+                find.$and.push({ job: { $in: frontEndFilters.jobs } });
+            }
+
+            if (frontEndFilters.users) {
+                find.$and.push({ nom: { $in: frontEndFiltersusers } });
+            }
+            if (frontEndFilters.ageValues) {
+                find.$and.push({ age: { $gt: frontEndFilters.ageValues[0] } }, { age: { $lt: frontEndFilters.ageValues[1] } });
+            }
+            
+            return find;
+        }
+
+
+    }
+
+
+
+
 
     /* HELPER
      * Cleaning empty objects and array
