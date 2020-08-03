@@ -197,7 +197,7 @@ s
     app.post("/readUsers", function(req, res) {
 
         // Init variables :
-        var find = {};
+        var find = {}; // This will contains the filters params coming from the front end.
 
         // QUERY WITH NO FILTERS :
         if (req.body.filters === undefined || (Object.entries(req.body.filters).length === 0 && req.body.filters.constructor === Object)) {
@@ -205,26 +205,24 @@ s
         // QUERY WITH FILTERS
         } else if (Object.entries(req.body.filters).length !== 0 && req.body.filters.constructor === Object) {
            
-            // Gettin filters from front end
-            var myFilters = req.body.filters;
 
-            cleanFilters(myFilters);
+            cleanFilters(req.body.filters);
            
              // Applying filters
             find.$and = [];
 
-            if (myFilters.role) {
-                find.$and.push({ role: myFilters.role });
+            if (req.body.filters.role) {
+                find.$and.push({ role: req.body.filters.role });
             }
-            if (myFilters.jobs) {
-                find.$and.push({ job: { $in: myFilters.jobs } });
+            if (req.body.filters.jobs) {
+                find.$and.push({ job: { $in: req.body.filters.jobs } });
             }
 
-            if (myFilters.users) {
-                find.$and.push({ nom: { $in: myFilters.users } });
+            if (req.body.filters.users) {
+                find.$and.push({ nom: { $in: req.body.filtersusers } });
             }
-            if (myFilters.ageValues) {
-                find.$and.push({ age: { $gt: myFilters.ageValues[0] } }, { age: { $lt: myFilters.ageValues[1] } });
+            if (req.body.filters.ageValues) {
+                find.$and.push({ age: { $gt: req.body.filters.ageValues[0] } }, { age: { $lt: req.body.filters.ageValues[1] } });
             }
             
         }
