@@ -279,15 +279,7 @@ export default {
 
 /* Buttons */
 .btn {
-    color: white !important; 
-      /* background-color: #ddd; */
-   background-color: #ddd;
-  border: none;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
+ 
   transition: 0.3s !important;
 }
 
