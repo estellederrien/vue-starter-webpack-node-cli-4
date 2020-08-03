@@ -2,14 +2,13 @@
 module.exports = function(app, db, permissions, bcrypt) {
     /*
      * Creating a user
-     *
+     * return return Status 200 or 400
      */
     app.post("/createUser", permissions.requiresLoggedIn,permissions.permission_valid("CREATE_USER"), function(req, res) {
         
         // gettin data from front end 
         var user = req.body;
 
-       
         // Checking mandatory fields  // CONTROLE DES CHAMPS OBLIGATOIRES
         if (!user.prenom || !user.email || !user.password || !user.nom || user.password == "") {
             res.status(403).send({ errorCode: "403" });
@@ -53,7 +52,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Reading a user
-     *
+     * return Object
      */
 
     app.post("/readUser", function(req, res) {
@@ -68,8 +67,8 @@ module.exports = function(app, db, permissions, bcrypt) {
     });
 
     /*
-     * Updating a user
-     *
+     *  Updating a user
+     *  return Status 200 or 400
      */
 
     app.post("/updateUser", permissions.requiresLoggedIn,permissions.permission_valid("UPDATE_USER"),function(req, res) {
@@ -106,8 +105,8 @@ module.exports = function(app, db, permissions, bcrypt) {
     });
 
     /*
-     * Register a user
-     *
+     * Register an anonymous user
+     * return Status 200 or 400
      */
 
     app.post("/registerUser", function(req, res) {
@@ -163,8 +162,8 @@ s
     });
 
     /*
-     * Delete a user
-     *
+     *  Delete a user
+     *  return Status 200 or 400
      */
 
     app.post("/deleteUser", permissions.requiresLoggedIn,permissions.permission_valid("DELETE_USER"), function(req, res) {
@@ -190,8 +189,8 @@ s
 
 
     /*
-     * Read all users
-     *
+     *  Read all users
+     *  return json array
      */
 
     app.post("/readUsers", function(req, res) {
@@ -280,7 +279,7 @@ s
 
     /*
      * Read all users for filters : Read Less data
-     *
+     *  return array
      */
     // .find( {},{"projection":{"_id":1, "nom": 1,"img":1,"longitude":1,"latitude":1,"categorie":1,"selectionneurPseudo":1,"selectionneurId":1}} )
     app.post("/readUsersForFilters", function(req, res) {
@@ -300,7 +299,7 @@ s
 
      /*
      * Search user by pseudo
-     *
+     *  return json array
      */
 
     app.get("/searchUsers", function(req, res) {
@@ -317,8 +316,8 @@ s
 
 
     /*
-     * Get the number of users
-     *
+     * Counting users
+     *  return json object
      */
 
     app.get("/getUsersCount", function(req, res) {
