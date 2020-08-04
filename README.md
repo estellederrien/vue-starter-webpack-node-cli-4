@@ -5,7 +5,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <b>NEWS ! 
   <br>
- 08-04-2020 : This app is now automatically synchorinzed to heroku, when commiting, its so easy to use !
+ 08-04-2020 : This app is now automatically sync to heroku, when commiting, its so easy to use !
  08-04-2020 : I'm on  file and pictures refactoring , untill its finished, uploading wont work.<br>
  08-03-2020 : I will add 3 ways of uploading pics and files : By ftp, on cloudinary, and on the node local server, and also do a global code standardisation 
 I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
