@@ -1,23 +1,23 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import Home from "../views/Home.vue";
+
 import HelloWorld from "@/components/HelloWorld";
-import About from "@/components/About";
-const AsyncUsers = () => import ("../components/Users.vue");
 import User from "@/components/User";
 import Register from "@/components/Register";
-import Dashboard from "@/components/Dashboard";
 import Login from "@/components/Login";
-const AsyncCalendar = () => import ("../components/Calendar.vue");
 import Table from "@/components/Table";
 
+
+// ASYNC COMPONENT LOADINGS
+const AsyncUsers = () => import ("../components/Users.vue");
 const AsyncProfile = () => import ("../components/Profile.vue");
+const AsyncDashboard = () => import ("../components/Dashboard.vue");
+const AsyncCalendar = () => import ("../components/Calendar.vue");
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-// Checking if user has logged in on the node server
-function logged_in() {}
+
 
 Vue.use(VueRouter);
 
@@ -51,7 +51,7 @@ const routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: Dashboard
+    component: AsyncDashboard
   },
   {
     path: "/login",
