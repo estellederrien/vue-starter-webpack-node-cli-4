@@ -18,7 +18,7 @@ Desc : This starter aims is to be able to start any web-app, with all ready gene
 
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
 DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
-and can be set on heroku (https://vuestartergit.herokuapp.com/  azure and google cloud<br /><br />
+It can also run on azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ![Screenshot](example.jpeg)
