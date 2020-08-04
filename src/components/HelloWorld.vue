@@ -21,7 +21,9 @@
 				I will try the make the code as easy and clear as possible !
 				<br />
 				Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicola HULEUX
+
 				<br />
+				<span style="color:red">Testing: log in with -> login: admin@admin.com -> password: admin </span>
 				<br />
 			</h5>
 		</div>
