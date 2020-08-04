@@ -77,7 +77,7 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development on port 8080
-<br /> When you want to develop the vue.js application, run these 2 commands.
+When you want to develop the vue.js application, run these 2 commands.
 <br /> Then, go in your browser to localhost: 8080, and modify the files in the \ SRC directory
 <br /> To modify the BACK END, it is rather in the CRUDS directory
 <br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes .
@@ -88,24 +88,24 @@ npm run serve ( the dev env) , then, npm run start (the node server)
 ```
 
 ### Compiles and minifies for production
-<br />When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.
+When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.
 <br />Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 ```
 npm run build
 ```
 ### Run build on port 80
-<br />To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!
+To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!
 <br />Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
 
 ```
 npm run start
 ```
 ### Publishing on HEROKU
-<br /> it is so simple and automatic, 1. Clone this depot in you github, 2. simply go to heroku and go to the deploy tab then Manually deploy your app.
+It is so simple and automatic, 1. Clone this depot in you github, 2. simply go to heroku and go to the deploy tab then Manually deploy your app.
 <br />c'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application.
 
 ### Creating your MONGODB ATLAS ACCOUNT
-<br /> PLease don't use my mongoDb atlas db, open yourself an account ...
+PLease don't use my mongoDb atlas db, open yourself an account ...
 
 ### Run your unit tests
 ```
