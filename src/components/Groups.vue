@@ -55,8 +55,8 @@
                 <template slot="option" slot-scope="props">
                   <img
                     class="option__image"
-                    :src="'/img/' + props.option.img"
-                    alt="No Man’s Sky"
+                    :src="props.option.img"
+                    alt="Missing picture !"
                   />
                   <div class="option__desc">
                     <span class="option__title">{{ props.option.prenom}} {{ props.option.nom}}</span>
