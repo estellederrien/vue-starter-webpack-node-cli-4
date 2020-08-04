@@ -3,7 +3,7 @@
 Currently in DEV state !
 Please allow from 1 month to 3 months for it to get finished. t<br>
 
-<b>NEWS ! 
+<b>LATEST STARTER NEWS ! </b>
   <br>
   08-04-2020 : I'm currently focused on performance issues ( initial loading is too slow)<br>
  08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
@@ -12,7 +12,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
  08-03-2020 : I will add 3 ways of uploading pics and files : By ftp, on cloudinary, and on the node local server, and also do a global code standardisation 
 I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
   08-03-2020 : I will finally publish the whole code including my 'secret' permissions builder directory.
-</b> 
+ 
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br />
 
