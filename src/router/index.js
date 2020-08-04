@@ -28,11 +28,6 @@ const routes = [
     component: HelloWorld
   },
   {
-    path: "/about",
-    name: "About",
-    component: About
-  },
-  {
     path: "/users",
     name: "Users",
     component: AsyncUsers
