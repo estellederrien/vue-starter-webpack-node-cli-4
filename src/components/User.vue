@@ -367,7 +367,7 @@ export default {
             this.$modal.show("messageModal");
         },
         replaceByDefault(e) {
-            e.target.src = "/img/defaut.png";
+            e.target.src = "defaut.jpg";
         },
         
         hide() {

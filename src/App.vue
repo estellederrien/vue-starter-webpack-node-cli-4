@@ -60,7 +60,7 @@
                             <!-- <img
                       class="img-profile rounded-circle "
                       style="width:40px"
-                     src="assets/img/defaut.png" 
+                     src="assetsdefaut.jpg" 
               />-->
                             <i class="fa fa-user fa-fw"></i>
                         </a>
