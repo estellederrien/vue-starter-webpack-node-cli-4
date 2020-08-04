@@ -43,7 +43,7 @@ export default {
 
       /*Make the request to the POST /single-file URL*/
       axios
-        .post("/images", formData, {
+        .post("/createCloudinaryImage", formData, {
           crossdomain: true,
           headers: {
             "Content-Type": "multipart/form-data"
