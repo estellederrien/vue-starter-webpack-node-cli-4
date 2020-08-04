@@ -97,6 +97,9 @@ npm run start
 ### Cloning on HEROKU
 <br /> it is so simple and automatic, siply go to heroku and clone this depot online
 
+### Creating your MONGODB ATLAS ACCOUNT
+<br /> PLease don't use my mongoDb atlas db, open yourself an account ...
+
 ### Run your unit tests
 ```
 npm run test:unit
