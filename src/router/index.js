@@ -11,6 +11,7 @@ import Login from "@/components/Login";
 import Calendar from "@/components/Calendar";
 import Table from "@/components/Table";
 import Profile from "@/components/Profile";
+const AsyncProfile = () => import ("../components/Profile.vue");
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -77,7 +78,7 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
-    component: Profile 
+    component: AsyncProfile
     
     ,
     beforeEnter: (to, from, next) => {
