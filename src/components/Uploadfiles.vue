@@ -9,7 +9,7 @@
 
             <input name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
             <!-- LOADING PIC -->
-            <img v-if="loading" style="width:100px" src="../assets/img/JointRevolvingAntelopegroundsquirrel-size_restricted.gif"></img>
+            <img v-if="loading" style="width:100px" src="../assets/img/loader_def.gif"></img>
 
             <label v-if="files">Preview :</label>
             <!-- REALTIME FILE MANAGEMENT -->
