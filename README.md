@@ -13,7 +13,7 @@ I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
   08-03-2020 : I will finally publish the whole code including my 'secret' permissions builder directory.
 </b> 
 
-Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . Feel free to clone it<br />
+Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br />
 
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
 DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
@@ -61,7 +61,7 @@ Data science  ...<br />
 1 AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
 French : 
-Cet app est directement mise à jour sur HEROKU quand je commite des mises à jour, vous pouvez aussi vous la télécharger dessus à partir de ce dépot , c'est très pratique !
+Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.
 Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br />
 
 ## Project setup
