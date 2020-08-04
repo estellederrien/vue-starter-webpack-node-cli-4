@@ -11,7 +11,7 @@
 					<div class="col-md-2">
 						<div class="profile-img">
 							<img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
-							<uploadpicture @filename="onUpload" v-if="this.auth" style="margin-top:10px"></uploadpicture>
+							<uploadpicture @filename="onUploadPicture" v-if="this.auth" style="margin-top:10px"></uploadpicture>
 						</div>
 						<div class="profile-work col-md-2 d-none d-md-block">
 							<p>LIENS DE TRAVAIL</p>	<a href="">Website</a>
@@ -465,7 +465,7 @@ export default {
         replaceByDefault(e) {
             e.target.src = "/img/defaut.png";
         },
-        onUpload(value) {
+        onUploadPicture(value) {
             // Pass Picture URL to the user object .
             this.user.img = value;
             console.log(this.user);

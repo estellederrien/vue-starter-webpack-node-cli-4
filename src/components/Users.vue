@@ -30,7 +30,7 @@
             <div id="users" v-for="user in users" class="col-lg-3">
             
                 <div class="card  cardList" >
-                    <img v-bind:src="'/img/' + user.img"  @error="replaceByDefault" class="card-img-top" alt="..." />
+                    <img v-bind:src="user.img"  @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.prenom }} {{ user.nom }}</h5>
                        

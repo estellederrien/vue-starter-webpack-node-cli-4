@@ -10,7 +10,7 @@
           <img
             class="rounded-circle"
             src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
-            :src="'/img/' + m.img"
+            :src="m.img"
             @error="replaceByDefault"
             alt
           />

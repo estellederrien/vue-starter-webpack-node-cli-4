@@ -79,10 +79,10 @@ module.exports = function (app, db, permissions) {
   // ******************************************************** BACK END CRUD CLOUDINARY IMAGE STORING WEB SERVICE ****************************************************** */
 
   // CREATE A PICTURE ON CLOUDINARY
-  app.post("/images", uploadImages.single("file"), function (req, res, next) {
+  app.post("/createCloudinaryImage", uploadImages.single("file"), function (req, res, next) {
     console.log(req.file)
 
-    // STEP 1 : reducing picture size
+    // STEP 1 : REDUCING PICTURE SIZE
     sharp(req.file.path)
       .resize(200, 200)
       .toBuffer(function (err, buffer) {
@@ -90,30 +90,26 @@ module.exports = function (app, db, permissions) {
       })
 
     // STEP 2 : CLOUDINARY STORING
-    // ALSO STORING THE PICTURE ON CLOUDINARY https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
-    // {"use_filename": true, "unique_filename": false}, NOT WORKING
+    //  https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
     cloudinary.uploader.upload("./uploads/img/" + req.file.filename, function (result) {
-      console.log("moncloudinary")
-      console.log(result.url)
-      // SENDING THE CLOUDINARY URL FOR FRONT END DISPLAYING
+      // SENDING BACK THE CLOUDINARY URL FOR FRONT END DISPLAYING and DATABASE URL STORAGE
       res.send({ filename: result.url })
     })
-    // SENDING THE UPLOADS URL FOR DISPLAYING
-    // res.send({ filename: req.file.filename});
+
   })
 
   // READ A PICTURE ON CLOUDINARY
-  app.post("/readImage", function (req, res, next) {
+  app.post("/readCloudinaryImage", function (req, res, next) {
     // TO DO
   })
 
   // UPDATE A PICTURE ON CLOUDINARY
-  app.post("/updateImage", function (req, res, next) {
+  app.post("/updateCloudinaryImage", function (req, res, next) {
     // TO DO
   })
 
   // DELETE A PICTURE ON CLOUDINARY
-  app.post("/deleteImage", function (req, res, next) {
+  app.post("/deleteCloudinaryImage", function (req, res, next) {
     // TO DO
   })
 
@@ -138,6 +134,31 @@ module.exports = function (app, db, permissions) {
   app.post("/deleteFtpImage", function (req, res, next) {
     // TO DO
   })
+
+  // ******************************************************** BACK END NODE JS IMAGE STORING WEB SERVICE ****************************************************** */
+
+  // CREATE A PICTURE ON FTP
+  app.post("/createNodeimage", function (req, res, next) {
+    // TO DO
+    // SENDING THE UPLOADS URL FOR DISPLAYING
+    // res.send({ filename: req.file.filename});
+  })
+
+  // READ A PICTURE ON FTP
+  app.post("/readNodeImage", function (req, res, next) {
+    // TO DO
+  })
+
+  // UPDATE A PICTURE ON FTP
+  app.post("/updateNodeImage", function (req, res, next) {
+    // TO DO
+  })
+
+  // DELETE A PICTURE ON FTP
+  app.post("/deleteNodeImage", function (req, res, next) {
+    // TO DO
+  })
+
 
 
   // ----------------------------------- END UPLOADING IMAGES  -----------------------------------
