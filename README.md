@@ -1,4 +1,4 @@
-# STARTER  : Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
+# MY FULL STACK STARTER APP ! : Vue.2.0 + Node Express mongoDb back End + CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
 Currently in DEV state !
 Please allow from 1 month to 3 months for it to get finished. t<br>
