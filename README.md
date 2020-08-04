@@ -1,15 +1,17 @@
 # MY FULL STACK STARTER APP ! : Vue.2.0 + Node Express mongoDb back End 
 
 <br>
+## Desc
 CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib <br>
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
 
+## Demos
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
 DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
 It can also run on azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
-<b>LATEST STARTER NEWS ! </b>
+## LATEST STARTER NEWS ! 
   <br>
   08-04-2020 : I'm currently focused on performance issues ( initial loading is too slow)<br>
  08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
@@ -23,15 +25,12 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
  
 
 <br />
-
-
-
 ![Screenshot](example.jpeg)
 
-<b>Won't contains :</b><br />
+## Won't contains :
 VUEX : It is another starter in another GIT depot of mine<br />
 
-<b>Will Contains :</b><br />
+## Will Contains :
 
 1 Users CRUD<br />
 1 Auth system<br />
@@ -51,7 +50,7 @@ VUEX : It is another starter in another GIT depot of mine<br />
 1 multi selector : https://vue-multiselect.js.org/ <br />
 
 <br /><br />
-Also ...<br />
+## Also ...
 1 Drag n drop lib <br />
 1 Notifier https://github.com/euvl/vue-notification<br />
 1 Node worker-thread ready to go system.<br />
@@ -66,7 +65,7 @@ Data science  ...<br />
 1 Random forest lib : https://github.com/mljs/random-forest<br />
 1 AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
-French : 
+## French : 
 Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.
 Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ...<br />
 
