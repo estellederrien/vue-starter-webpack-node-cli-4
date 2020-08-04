@@ -9,7 +9,7 @@
                 
                 <div class="col-md-2">
                     <div class="profile-img">
-                        <img v-bind:src="'img/' + user.img" @error="replaceByDefault" style="width:150px" />
+                        <img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
                     </div>
                 </div>
 
