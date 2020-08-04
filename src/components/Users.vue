@@ -1,6 +1,6 @@
 <template>
 <div>
-    <!-- <div>
+    <!-- <div>ftest
         <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"></src></span>
     </div> -->
     <div class="container-fluid" v-show="loaded">
