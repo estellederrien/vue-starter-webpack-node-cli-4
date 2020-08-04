@@ -91,7 +91,7 @@ module.exports = function (app, db, permissions) {
     //  https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
     cloudinary.uploader.upload("./uploads/img/" + req.file.filename, function (result) {
       // SENDING BACK THE CLOUDINARY URL FOR FRONT END DISPLAYING and DATABASE URL STORAGE
-      res.send({ filename: result.url })
+      res.send({ filename: result.secure_url })
     })
 
   })
