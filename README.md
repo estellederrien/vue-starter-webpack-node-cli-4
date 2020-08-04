@@ -5,6 +5,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <b>NEWS ! 
   <br>
+ 08-04-2020 : This app is now automatically synchorinzed to heroku, when commiting, its so easy to use !
  08-04-2020 : I'm on  file and pictures refactoring , untill its finished, uploading wont work.<br>
  08-03-2020 : I will add 3 ways of uploading pics and files : By ftp, on cloudinary, and on the node local server, and also do a global code standardisation 
 I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
@@ -13,8 +14,9 @@ I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
 
 Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . My node 'appSystem' directory is private and available on demand, and needed for the app to work.<br />
 
+DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically syncs !=)
 DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
-and can be set on heroku (https://vuestarter2.herokuapp.com/ no file uploads for now), azure and google cloud<br /><br />
+and can be set on heroku (https://vuestartergit.herokuapp.com/  azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ![Screenshot](example.jpeg)
@@ -57,7 +59,9 @@ Data science  ...<br />
 1 Random forest lib : https://github.com/mljs/random-forest<br />
 1 AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
-French : Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . Le back end étant confidentiel, je le fournis sur demande. <br />
+French : 
+Cet app est directement mise à jour sur HEROKU quand je commite des mises à jour, vous pouvez aussi vous la télécharger dessus à partir de ce dépot , c'est très pratique !
+Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br />
 
 ## Project setup
 ```
