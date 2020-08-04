@@ -5,7 +5,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <b>NEWS ! 
   <br>
- 08-04-2020 : This app is now automatically sync to heroku, when commiting, its so easy to use !<br>
+ 08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
  08-04-2020 : Pictures are now stored on cloudinary, i'm trying to use the lazy loading module<br>
  08-04-2020 : I'm on  files uploading code refactoring , untill its finished, uploading wont work.<br>
  08-03-2020 : I will add 3 ways of uploading pics and files : By ftp, on cloudinary, and on the node local server, and also do a global code standardisation 
