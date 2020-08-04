@@ -5,6 +5,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <b>NEWS ! 
   <br>
+  08-04-2020 : I'm currently focused on performance issues ( initial loading is too slow)
  08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
  08-04-2020 : Pictures are now stored on cloudinary, i'm trying to use the lazy loading module<br>
  08-04-2020 : I'm on  files uploading code refactoring , untill its finished, uploading wont work.<br>
