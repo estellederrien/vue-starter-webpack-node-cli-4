@@ -1,10 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 // import Home from "../views/Home.vue";
-
 import HelloWorld from "@/components/HelloWorld";
 import About from "@/components/About";
-import Users from "@/components/Users";
+const AsyncUsers = () => import ("../components/Users.vue");
 import User from "@/components/User";
 import Register from "@/components/Register";
 import Dashboard from "@/components/Dashboard";
@@ -35,7 +34,7 @@ const routes = [
   {
     path: "/users",
     name: "Users",
-    component: Users
+    component: AsyncUsers
   },
   {
     path: "/user/:id",
@@ -70,6 +69,11 @@ const routes = [
     name: "Table",
     component: Table
   },
+{
+    path :'*',
+    component: HelloWorld
+},
+
   {
     path: "/profile",
     name: "Profile",
