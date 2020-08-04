@@ -1,9 +1,8 @@
 # MY FULL STACK STARTER APP ! : Vue.2.0 + Node Express mongoDb back End 
+CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
-<br>
 ## Desc
-CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib <br>
-Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
+This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
 
 ## Demos
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
