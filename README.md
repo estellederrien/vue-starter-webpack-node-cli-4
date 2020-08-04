@@ -94,8 +94,9 @@ npm run build
 ```
 npm run start
 ```
-### Cloning on HEROKU
-<br /> it is so simple and automatic, siply go to heroku and clone this depot online
+### Publishing on HEROKU
+<br /> it is so simple and automatic, 1. Clone this depot in you github, 2. simply go to heroku and go to the deploy tab then Manually deploy your app.
+<br />c'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application.
 
 ### Creating your MONGODB ATLAS ACCOUNT
 <br /> PLease don't use my mongoDb atlas db, open yourself an account ...
