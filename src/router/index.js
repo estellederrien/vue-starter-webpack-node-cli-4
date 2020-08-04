@@ -8,9 +8,9 @@ import User from "@/components/User";
 import Register from "@/components/Register";
 import Dashboard from "@/components/Dashboard";
 import Login from "@/components/Login";
-import Calendar from "@/components/Calendar";
+const AsyncCalendar = () => import ("../components/Calendar.vue");
 import Table from "@/components/Table";
-import Profile from "@/components/Profile";
+
 const AsyncProfile = () => import ("../components/Profile.vue");
 
 import axios from "axios";
@@ -63,7 +63,7 @@ const routes = [
   {
     path: "/calendar",
     name: "Calendar",
-    component: Calendar
+    component: AsyncCalendar
   },
   {
     path: "/table",
