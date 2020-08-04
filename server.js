@@ -103,16 +103,16 @@ MongoClient.connect(url, function(err, client) {
 
         require("./cruds/usersCrud.js")(app, db, permissions, bcrypt);
         require("./cruds/filesCrud.js")(app, db, permissions);
-        require("./cruds/imagesCrud.js")(app, db, permissions);
+        require("./cruds/picturesCrud.js")(app, db, permissions);
         require("./cruds/jobsCrud.js")(app, db, permissions);
         require("./cruds/groupsCrud.js")(app, db, permissions);
         require("./cruds/messagesCrud.js")(app, db, permissions);
 
-        // FRESH INSTALL : IF THERE IS NO ADMIN WE NEED TO CREATE ONE
+        // FRESH INSTALL CONTROL: IF THERE IS NO ADMIN WE NEED TO CREATE ONE
         var freshInstall = require("./appSystem/initialiseApp.js");
         freshInstall.insertAdmin(permissions, bcrypt, db);
         
-        // FRESH INSTALL :IF THERE ARE NO STANDARD JOBS LIST WE NEED TO CREATE ONE
+        // FRESH INSTALL CONTROL :IF THERE ARE NO STANDARD JOBS LIST WE NEED TO CREATE ONE
         freshInstall.insertJobs(permissions, db);
     }
 });
