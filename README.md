@@ -2,7 +2,7 @@
 CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
 ## Desc
-This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
+This 2020 starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
 
 ## Demos
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
