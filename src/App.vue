@@ -44,7 +44,7 @@
                             <span class="badge badge-danger badge-counter"></span>
                         </a>
                         <messages :_id="$user._id"></messages>
-                    </li>
+                    </li>s
                     <!-- -----------------------------------------------------------DROPOWN MENU------------------------------------------------------------------------ -->
                     <li class="nav-item dropdown no-arrow">
                         <a
@@ -60,7 +60,7 @@
                             <!-- <img
                       class="img-profile rounded-circle "
                       style="width:40px"
-                     src="assetsdefaut.jpg" 
+                     src="defaut.jpg" 
               />-->
                             <i class="fa fa-user fa-fw"></i>
                         </a>
