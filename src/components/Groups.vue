@@ -45,7 +45,7 @@
                 <template slot="singleLabel" slot-scope="props">
                   <img
                     class="option__image"
-                    :src="'/img/' + props.option.img"
+                    :src="props.option.img"
                     alt="No Man’s Sky"
                   />
                   <span class="option__desc">

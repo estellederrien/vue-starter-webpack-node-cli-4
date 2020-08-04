@@ -1,8 +1,8 @@
 <template>
 <div>
-    <!-- <div>ftest
+    <div>
         <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"></src></span>
-    </div> -->
+    </div> 
     <div class="container-fluid" v-show="loaded">
         <div class="row">
              <modal name="filters"   width="80%" height="auto" :scrollable="true">
