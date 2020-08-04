@@ -1,11 +1,11 @@
 <template>
 <div class="container">
 
-    <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card o-hidden border-0 shadow-lg " style = "margin-top:20%">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-5 mx-auto d-none d-lg-block ">
+                <div class="col-lg-5 mx-auto d-none d-lg-block " >
                     <div class="text-center"><img src="../assets/img/aph_refait.jpg" style="width:200px;height:150px;margin-top:150px"></img></div>
                 </div>
                 <div class="col-lg-7">
