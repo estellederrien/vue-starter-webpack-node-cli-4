@@ -10,6 +10,8 @@ DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
 It can also run on azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
+![ScreenShot](example.jpeg)
+
 ## LATEST STARTER NEWS ! 
   <br>
   08-04-2020 : I'm currently focused on performance issues ( initial loading is too slow)<br>
@@ -25,7 +27,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <br />
 
-[Screenshot](example.jpeg)
+
 
 ## Won't contains :
 VUEX : It is another starter in another GIT depot of mine<br />
