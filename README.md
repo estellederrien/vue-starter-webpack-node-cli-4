@@ -24,7 +24,8 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
  
 
 <br />
-![Screenshot](example.jpeg)
+
+[Screenshot](example.jpeg)
 
 ## Won't contains :
 VUEX : It is another starter in another GIT depot of mine<br />
