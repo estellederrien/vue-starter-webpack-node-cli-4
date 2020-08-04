@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div>
+    <!-- <div>
         <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"></src></span>
-    </div>
+    </div> -->
     <div class="container-fluid" v-show="loaded">
         <div class="row">
              <modal name="filters"   width="80%" height="auto" :scrollable="true">
@@ -30,7 +30,7 @@
             <div id="users" v-for="user in users" class="col-lg-3">
             
                 <div class="card  cardList" >
-                    <img v-bind:src="user.img"  @error="replaceByDefault" class="card-img-top" alt="..." />
+                    <img v-lazy="user.img"  @error="replaceByDefault" class="card-img-top" alt="..." />
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.prenom }} {{ user.nom }}</h5>
                        

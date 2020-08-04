@@ -29,6 +29,18 @@ Vue.use(Notifications, { velocity });
 Vue.component("multiselect", Multiselect);
 import Multiselect from "vue-multiselect";
 
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload)
+
+// or with options
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '../assets/img/error.png',
+  loading: '../assets/img/loader_gif.gif',
+  attempt: 1
+})
+
 // ---------------------------------------------- STORING USER AS GLOBAL, THIS VAR IS POPULATED WHEN A USER LOGS IN INSIDE THE LOGIN COMPONENT for the PROFILE MENU TO APPEAR IN THE TOPBAR
 // ---------------------------------------------- VUEX WILL BE BETTER LATER
 
