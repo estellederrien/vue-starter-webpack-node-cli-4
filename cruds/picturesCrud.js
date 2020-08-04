@@ -35,7 +35,7 @@ module.exports = function (app, db, permissions) {
   })
 
 	/* FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONNAL FTP'  YOU HAVE TO OWN A FTP SERVER*/
-  let sftp = new Client()s
+  let sftp = new Client()
 
   sftp.connect({
     host: "test.rebex.net",

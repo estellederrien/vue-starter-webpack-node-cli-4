@@ -1,7 +1,6 @@
 .DS_Store
 node_modules
 /cruds
-/appSystem
 /uploads
 /node_module
 /dist
@@ -23,3 +22,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+/server.js

@@ -112,6 +112,7 @@ export default {
                 .then(response => {
                     this.users = response.data;
                     this.loaded = true;
+                    console.log(this.users);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -124,6 +125,7 @@ export default {
             // filtersChanged is coming from the filters component, when a user has chosen some filters
             this.filters = filtersChanged;
             this.readUsers();
+        
 
         }
     },
@@ -133,6 +135,7 @@ export default {
     },
     created: function () {
         this.readUsers();
+        
 
     },
     data() {
