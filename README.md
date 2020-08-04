@@ -71,24 +71,31 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development on port 8080
-### Quand vous voulez developper l'application vue.js, executez ces 2 commandes .
-### Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
-### Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
+<br /> When you want to develop the vue.js application, run these 2 commands.
+<br /> Then, go in your browser to localhost: 8080, and modify the files in the \ SRC directory
+<br /> To modify the BACK END, it is rather in the CRUDS directory
+<br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes .
+<br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
+<br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```
 npm run serve ( the dev env) , then, npm run start (the node server)
 ```
 
 ### Compiles and minifies for production
-### Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
+<br />When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.
+<br />Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 ```
 npm run build
 ```
 ### Run build on port 80
-### Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
+<br />To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!
+<br />Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
+
 ```
 npm run start
 ```
-
+### Cloning on HEROKU
+<br /> it is so simple and automatic, siply go to heroku and clone this depot online
 
 ### Run your unit tests
 ```
