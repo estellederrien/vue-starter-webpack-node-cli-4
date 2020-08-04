@@ -2,8 +2,12 @@
 
 <br>
 CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib <br>
-Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br>
+Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
 
+DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
+DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
+It can also run on azure and google cloud<br /><br />
+Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 <b>LATEST STARTER NEWS ! </b>
   <br>
@@ -20,10 +24,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <br />
 
-DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
-DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
-It can also run on azure and google cloud<br /><br />
-Testing: log in with -> login: admin@admin.com -> password: admin <br />
+
 
 ![Screenshot](example.jpeg)
 
