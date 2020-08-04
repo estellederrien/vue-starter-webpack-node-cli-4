@@ -1,4 +1,4 @@
-// ----------------------------------- UPLOADING IMAGES AND FILES-------------------------------------------
+// ----------------------------------- UPLOADING PICTURES -------------------------------------------
 
 /* INTRODUCTION 
 
@@ -8,8 +8,8 @@
   2. THE NODE SERVER
   3. AN FTP SERVER .
 
-  AS LONGAS YOU CHOOSE AN OPTION, YOU HAVE TO CHANGE SEVERAL THINGS IN THE FRONT END VUE.JS APP TOO !
-  IM CURRENTLY BUILDING THIS TRYING TO MAKE IT THE SIMPLIER AS POSSIBLE  !
+  AS LONG AS YOU CHOOSE AN OPTION, YOU HAVE TO CHANGE SEVERAL THINGS IN THE FRONT END VUE.JS APP TOO !
+  IM CURRENTLY BUILDING THIS TRYING TO MAKE IT THE SIMPLIER AS POSSIBLE , AND THE ABILITY TO SWITCH EASILY BETWEEN THE 3 OPTIONS !
 
 
 */
@@ -34,10 +34,8 @@ module.exports = function (app, db, permissions) {
     api_secret: "3UWkrND91MW3jhmGecvp77uetvQ",
   })
 
-	/* 
-  FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONNAL FTP'  YOU HAVE TO OWN A FTP SERVER
-*/
-  let sftp = new Client()
+	/* FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONNAL FTP'  YOU HAVE TO OWN A FTP SERVER*/
+  let sftp = new Client()s
 
   sftp.connect({
     host: "test.rebex.net",
@@ -137,24 +135,24 @@ module.exports = function (app, db, permissions) {
 
   // ******************************************************** BACK END NODE JS IMAGE STORING WEB SERVICE ****************************************************** */
 
-  // CREATE A PICTURE ON FTP
+  // CREATE A PICTURE ON THE NODE SERVER
   app.post("/createNodeimage", function (req, res, next) {
     // TO DO
     // SENDING THE UPLOADS URL FOR DISPLAYING
     // res.send({ filename: req.file.filename});
   })
 
-  // READ A PICTURE ON FTP
+  // READ A PICTURE ON THE NODE SERVER
   app.post("/readNodeImage", function (req, res, next) {
     // TO DO
   })
 
-  // UPDATE A PICTURE ON FTP
+  // UPDATE A PICTURE ON THE NODE SERVER
   app.post("/updateNodeImage", function (req, res, next) {
     // TO DO
   })
 
-  // DELETE A PICTURE ON FTP
+  // DELETE A PICTURE ON THE NODE SERVER
   app.post("/deleteNodeImage", function (req, res, next) {
     // TO DO
   })
