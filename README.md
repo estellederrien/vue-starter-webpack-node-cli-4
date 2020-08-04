@@ -71,18 +71,20 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development on port 8080
-### Quand vous voulez developpez l'application vue.js, executez ces 2 commandes .
+### Quand vous voulez developper l'application vue.js, executez ces 2 commandes .
+### Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
+### Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```
 npm run serve ( the dev env) , then, npm run start (the node server)
 ```
 
 ### Compiles and minifies for production
-### Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé.
+### Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 ```
 npm run build
 ```
 ### Run build on port 80
-### Pour tester votre BUILD sur le port 80 , exécutez cette commande ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
+### Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
 ```
 npm run start
 ```
