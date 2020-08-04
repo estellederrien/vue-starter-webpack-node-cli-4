@@ -13,7 +13,7 @@ I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
   08-03-2020 : I will finally publish the whole code including my 'secret' permissions builder directory.
 </b> 
 
-Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . My node 'appSystem' directory is private and available on demand, and needed for the app to work.<br />
+Desc : This starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . Feel free to clone it<br />
 
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
 DEMO (Openode) : http://vuestarter.openode.io/<br /><br />
