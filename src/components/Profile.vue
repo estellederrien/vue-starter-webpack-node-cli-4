@@ -463,7 +463,7 @@ export default {
             }
         },
         replaceByDefault(e) {
-            e.target.src = "defaut.jpg";
+            e.target.src = "defaut.png";
         },
         onUploadPicture(value) {
             // Pass Picture URL to the user object .
