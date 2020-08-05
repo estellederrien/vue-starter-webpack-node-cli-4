@@ -42,7 +42,7 @@
                                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" :href="'#v-pills-groups' + user._id" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-users"></i></a>
                             </div>
 
-                            <div class="tab-content" id="v-pills-tabContent" style="min-height:100px;">
+                            <div class="tab-content" id="v-pills-tabContent" style="min-height:70px;">
 
                                 <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                     <h6 >{{ user.job }}</h6>
