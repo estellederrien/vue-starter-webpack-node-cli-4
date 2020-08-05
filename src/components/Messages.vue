@@ -71,7 +71,7 @@ export default {
         });
     },
     replaceByDefault(e) {
-      e.target.src = "defaut.jpg";
+      e.target.src = "defaut.png";
     }
   },
   mounted: function() {

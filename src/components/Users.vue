@@ -98,7 +98,7 @@ export default {
     methods: {
 
         replaceByDefault(e) {
-            e.target.src = "defaut.jpg";
+            e.target.src = "defaut.png";
         },
         route: function (_id) {
             this.$router.push("/user/" + _id);
