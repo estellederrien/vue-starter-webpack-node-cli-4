@@ -1,4 +1,4 @@
-# MY FULL STACK STARTER APP ! : Vue.2.0 + Node Express mongoDb back End 
+# Vue.2.0 + Node Express mongoDb back End FULL STACK STARTER 
 CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
 ## Desc
