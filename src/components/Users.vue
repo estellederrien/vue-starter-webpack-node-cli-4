@@ -34,7 +34,7 @@
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.prenom }} {{ user.nom }}</h5>
                        
-                       <p class="card-text">
+                       <p class="card-text" >
 
                             <div class="nav nav nav-pills mb-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab " data-toggle="pill" :href="'#v-pills-home' + user._id" role="tab" :aria-controls="'v-pills-home' + user._id" aria-selected="true"><i class="fas fa-info"></i></a>
@@ -42,7 +42,7 @@
                                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" :href="'#v-pills-groups' + user._id" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-users"></i></a>
                             </div>
 
-                            <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-content" id="v-pills-tabContent" style="min-height:100px;">
 
                                 <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                     <h6 >{{ user.job }}</h6>
@@ -73,8 +73,11 @@
                             </div>
 
                         </p> 
-                        <a v-on:click="route(user._id)" class="btn btn-primary float-right"><i class="fas fa-user"></i></a>
+                       
 
+                    </div>
+                    <div class = "card-footer">
+                         <a v-on:click="route(user._id)" class="btn btn-primary float-right"><i class="fas fa-user"></i></a>
                     </div>
                 </div>
             </div>
@@ -172,6 +175,10 @@ export default {
 }
 .tab-content{
     max-height:10px !important;
+}
+
+.card-body{
+    padding: 1px !important;
 }
 
 .tab-pane {
