@@ -14,7 +14,7 @@ Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ## LATEST STARTER NEWS ! 
   <br>
-  08-05-2020 : Uploadings pics is now active on heroku, switching to the tmp directory.<br>
+  08-05-2020 : Uploadings pics is now active on heroku, switching to the tmp directory. next step is activating the ftp files uploading<br>
   08-04-2020 : I'm currently focused on performance issues ( initial loading is too slow)<br>
  08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
  08-04-2020 : Pictures are now stored on cloudinary, i'm trying to use the lazy loading module<br>
