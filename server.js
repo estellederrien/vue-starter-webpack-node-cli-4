@@ -56,7 +56,7 @@ var sess = {};
 app.use(serveStatic(__dirname + "/dist"));
 
 // UPLOADS : IMAGES AND FILES STORING DIRECTORY
-app.use(express.static(__dirname + "/uploads"));
+app.use(express.static(__dirname + "/tmp"));
 
 // ----------------------------------- MANAGING JSON AND BODY PARSER PARAMS -----------------------------------
 const bodyParser = require("body-parser");
