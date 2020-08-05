@@ -60,7 +60,7 @@ module.exports = function (app, db, permissions) {
   // MULTER PARAMS FOR IMAGES STORAGE
   var storageImages = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "./uploads/img")
+      cb(null, "./tmp/img")
     },
     filename: function (req, file, cb) {
       let ext = file.originalname.substring(
@@ -89,7 +89,7 @@ module.exports = function (app, db, permissions) {
 
     // STEP 2 : CLOUDINARY STORING
     //  https://support.cloudinary.com/hc/en-us/articles/202520762-How-to-upload-images-while-keeping-their-original-filenames-
-    cloudinary.uploader.upload("./uploads/img/" + req.file.filename, function (result) {
+    cloudinary.uploader.upload("./tmp/img/" + req.file.filename, function (result) {
       // SENDING BACK THE CLOUDINARY URL FOR FRONT END DISPLAYING and DATABASE URL STORAGE
       res.send({ filename: result.secure_url })
     })
