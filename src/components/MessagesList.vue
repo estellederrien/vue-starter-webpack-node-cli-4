@@ -43,7 +43,7 @@ export default {
 
   methods: {
     replaceByDefault(e) {
-      e.target.src = "defaust.jpg";
+      e.target.src = "defaut.png";
     },
     readMessages: function() {
       axios
