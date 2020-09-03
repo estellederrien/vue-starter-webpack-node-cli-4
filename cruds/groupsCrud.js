@@ -1,20 +1,18 @@
 // ---------------------------------- GROUP CRUD -------------------------------------------
 module.exports = function(app, db, permissions) {
-    
-  app.post("/createGroup", function(req, res) {
+    /*
+     * Creating a group
+     * @return Status 200
+     * @error  Status 400
+     */
+    app.post("/createGroup", function(req, res) {
         var group = req.body;
 
         group.creation_date = new Date();
 
-        if (!permissions.permission_valid("CREATE_GROUP", req)) {
-            console.log(" NO RIGHTS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
+        // DUPLICATE CONTROL - CONTROLE DE DOUBLONS
 
-        // CONTROLE DE DOUBLONS
-
-              /*   db.collection("groups").findOne({ name:group.name }, function(
+        /*   db.collection("groups").findOne({ name:group.name }, function(
           findErr,
           result
         ) {
@@ -35,6 +33,12 @@ module.exports = function(app, db, permissions) {
         }
     });
 
+    /*
+     * Reading a group
+     * @return JSON OBJECT
+     * @error
+     */
+
     app.post("/readGroup", function(req, res) {
         var identifiant = req.param("_id");
         var ObjectId = require("mongodb").ObjectID; //working
@@ -46,9 +50,13 @@ module.exports = function(app, db, permissions) {
         });
     });
 
-    app.post("/updateGroup", permissions.requiresLoggedIn,permissions.permission_valid("UPDATE_GROUP"), function(req, res) {
-    
+    /*
+     * Update a group
+     * @return 200
+     * @error  400
+     */
 
+    app.post("/updateGroup", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_GROUP"), function(req, res) {
         // GETTIN DATA FROM FRONTEND
         var group = req.body;
 
@@ -67,16 +75,13 @@ module.exports = function(app, db, permissions) {
         }
     });
 
-    app.post("/deleteGroup", permissions.requiresLoggedIn,permissions.permission_valid("DELETE_GROUP"), function(req, res) {
-       
+    /*
+     * Delete a group
+     * @return 200
+     * @error  400
+     */
 
-        // CONTROLE DE LA PERMISSION
-        if (!permissions.permission_valid("DELETE_GROUP", req)) {
-            console.log(" NO RIGHTS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
-
+    app.post("/deleteGroup", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_GROUP"), function(req, res) {
         var group = req.body;
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(group._id);
@@ -91,6 +96,12 @@ module.exports = function(app, db, permissions) {
         }
     });
 
+    /*
+     * Delete a group
+     * @return json ARRAY
+     * @error
+     */
+
     app.post("/readGroups", function(req, res) {
         db.collection("groups")
             .find()
@@ -101,6 +112,12 @@ module.exports = function(app, db, permissions) {
                 res.send(docs);
             });
     });
+
+    /*
+     * Read a group for filters
+     * @return json ARRAY
+     * @error
+     */
 
     // TOO COSTY ADD A PROJECTION
     // .find( {},{"projection":{"_id":1, "nom": 1,"img":1,"longitude":1,"latitude":1,"categorie":1,"selectionneurPseudo":1,"selectionneurId":1}} )
@@ -119,6 +136,12 @@ module.exports = function(app, db, permissions) {
             });
     });
 
+    /*
+     * Search a group
+     * @return json ARRAY
+     * @error
+     */
+
     app.get("/searchGroups", function(req, res) {
         var groupSearch = req.param("groups");
 
@@ -131,10 +154,16 @@ module.exports = function(app, db, permissions) {
             });
     });
 
+    /*
+     * Read group count
+     * @return json OBJECT
+     * @error
+     */
+
     app.get("/readGroupsCount", function(req, res) {
         db.collection("groups")
             .countDocuments()
-            .then(count => {
+            .then((count) => {
                 res.send({ result: count });
             });
     });
