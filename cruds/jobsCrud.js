@@ -1,17 +1,16 @@
 // ---------------------------------- JOBS CRUD -------------------------------------------
 module.exports = function(app, db, permissions) {
-    app.post("/createJob", function(req, res) {
+    /*
+     * Creating a job
+     * @return Status 200
+     * @error  Status 400
+     */
+    app.post("/createJob", permissions.permission_valid("CREATE_JOB"), function(req, res) {
         var job = req.body;
 
         job.creation_date = new Date();
 
-        if (!permissions.permission_valid("CREATE_JOB", req)) {
-            console.log(" NO RIGHTS");
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
-
-        // CONTROLE DE DOUBLONS JOBS
+        // DUPLICATE CONTROL - TODO : ADD TO THE MIDDLEWARE - CONTROLE DE DOUBLONS JOBS
 
         db.collection("jobs").findOne({ name: job.name }, function(findErr, result) {
             if (!result) {
@@ -25,7 +24,7 @@ module.exports = function(app, db, permissions) {
         function execute() {
             try {
                 db.collection("jobs").insertOne(job);
-                console.log("added on job");
+                console.log("added one job");
                 res.sendStatus(200);
             } catch (e) {
                 console.log(e);
@@ -33,6 +32,12 @@ module.exports = function(app, db, permissions) {
             }
         }
     });
+
+    /*
+     * Reading a job
+     * @return JSON OBJECT
+     * @error
+     */
 
     app.post("/readJob", function(req, res) {
         var identifiant = req.param("id");
@@ -45,9 +50,13 @@ module.exports = function(app, db, permissions) {
         });
     });
 
-    app.post("/updateJob", permissions.requiresLoggedIn,permissions.permission_valid("UPDATE_JOB"), function(req, res) {
-      
+    /*
+     * Update a job
+     * @return 200
+     * @error  400
+     */
 
+    app.post("/updateJob", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_JOB"), function(req, res) {
         // GETTIN DATA FROM FRONTEND
         var job = req.body;
 
@@ -66,10 +75,13 @@ module.exports = function(app, db, permissions) {
         }
     });
 
-    app.post("/deleteJob", permissions.requiresLoggedIn,permissions.permission_valid("DELETE_JOB"), function(req, res) {
-       
+    /*
+     * Delete a job
+     * @return 200
+     * @error  400
+     */
 
-
+    app.post("/deleteJob", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_JOB"), function(req, res) {
         var user = req.body;
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(user._id);
@@ -88,6 +100,12 @@ module.exports = function(app, db, permissions) {
         }
     });
 
+    /*
+     * Read jobs
+     * @return JSON ARRAY
+     * @error  
+     */
+
     app.post("/readJobs", function(req, res) {
         db.collection("jobs")
             .find()
@@ -99,6 +117,11 @@ module.exports = function(app, db, permissions) {
             });
     });
 
+    /*
+     * Read jobs for filters
+     * @return json ARRAY
+     * @error
+     */
     app.post("/readJobsForFilters", function(req, res) {
         db.collection("jobs")
             .find()
@@ -114,6 +137,12 @@ module.exports = function(app, db, permissions) {
             });
     });
 
+    /*
+     * Search a job
+     * @return json ARRAY
+     * @error
+     */
+
     app.get("/searchJobs", function(req, res) {
         var jobSearch = req.param("job");
 
@@ -126,10 +155,16 @@ module.exports = function(app, db, permissions) {
             });
     });
 
+    /*
+     * Read jobs count
+     * @return json OBJECT
+     * @error
+     */
+
     app.get("/readJobsCount", function(req, res) {
         db.collection("jobs")
             .countDocuments()
-            .then(count => {
+            .then((count) => {
                 res.send({ result: count });
             });
     });

@@ -4,8 +4,8 @@ module.exports = function(app, db, permissions, bcrypt) {
      * Creating a user
      * return return Status 200 or 400
      */
-    app.post("/createUser", permissions.requiresLoggedIn,permissions.permission_valid("CREATE_USER"), function(req, res) {
-        
+    app.post("/createUser", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_USER"), function(req, res) {
+
         // gettin data from front end 
         var user = req.body;
 
@@ -15,11 +15,11 @@ module.exports = function(app, db, permissions, bcrypt) {
             return;
         }
 
-         // Creating the user's permissions ( Chosen by the front end , inside of user.role)
+        // Creating the user's permissions ( Chosen by the front end , inside of user.role)
         user.permissions = permissions.create_permissions(user);
 
-         // Setting a new empty user files array
-         user.filenames = [];
+        // Setting a new empty user files array
+        user.filenames = [];
 
         // CONTROLE DE DOUBLONS EMAIL
         // Checking if no email duplicate
@@ -57,8 +57,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     app.post("/readUser", function(req, res) {
         var identifiant = req.param("id");
-        var ObjectId = require("mongodb").ObjectID; 
-        var idObj = ObjectId(identifiant); 
+        var ObjectId = require("mongodb").ObjectID;
+        var idObj = ObjectId(identifiant);
 
         db.collection("users").findOne({ _id: idObj }, function(findErr, result) {
             if (findErr) throw findErr;
@@ -71,17 +71,17 @@ module.exports = function(app, db, permissions, bcrypt) {
      *  return Status 200 or 400
      */
 
-    app.post("/updateUser", permissions.requiresLoggedIn,permissions.permission_valid("UPDATE_USER"),function(req, res) {
-        
+    app.post("/updateUser", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_USER"), function(req, res) {
 
-         // GETTIN DATA FROM FRONTEND
-         var user           = req.body;
+
+        // GETTIN DATA FROM FRONTEND
+        var user = req.body;
 
         // On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
         // Avoidning hacking by keeping the id and password from the session, not from the front end
-        user._id            = req.session.user._id;
-        user.password       = req.session.user.password;
-        user.last_update    = new Date();
+        user._id = req.session.user._id;
+        user.password = req.session.user.password;
+        user.last_update = new Date();
 
         // MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
         // Updateing session user object with the new data
@@ -110,7 +110,7 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/registerUser", function(req, res) {
-        
+
         // gettin data from front end 
         var user = req.body;
 
@@ -121,13 +121,13 @@ module.exports = function(app, db, permissions, bcrypt) {
         }
 
         // IP FLOODING CONTROL    // TODO
-     
+
 
         //ANONYMOUS ACCOUNT CREATION
 
         // Creating the user's role
         user.role = "user";
-s
+        s
         // Creating the user's permissions
         user.permissions = permissions.create_permissions(user);
 
@@ -166,8 +166,8 @@ s
      *  return Status 200 or 400
      */
 
-    app.post("/deleteUser", permissions.requiresLoggedIn,permissions.permission_valid("DELETE_USER"), function(req, res) {
-        
+    app.post("/deleteUser", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_USER"), function(req, res) {
+
 
         var user = req.body;
         var ObjectId = require("mongodb").ObjectID;
@@ -197,31 +197,31 @@ s
     app.post("/readUsers", function(req, res) {
 
         // We receive front end filters params, and we need to structure them, before using the .find() mongoDb function
-        var filters = structureFilters(req.body.filters) 
-   
+        var filters = structureFilters(req.body.filters)
 
-         // FINAL USERS READ
+
+        // FINAL USERS READ
         db.collection("users")
             // find holds the front end filters
             .find(filters)
 
-            .toArray(function(err, docs) {
-                if (err) throw err;
-                console.log(err);
+        .toArray(function(err, docs) {
+            if (err) throw err;
+            console.log(err);
 
-                // Getting the user files
-                docs = FilterByFilesPermissions(docs, req);
+            // Getting the user files
+            docs = FilterByFilesPermissions(docs, req);
 
-                // Getting the user groups
-                getUsersGroups(docs, req)
-                    .then(users => {
-                        res.send(users);
-                    })
-                    .catch(error => {
-                        // if you have an error
-                        console.log(error);
-                    });
-            });
+            // Getting the user groups
+            getUsersGroups(docs, req)
+                .then(users => {
+                    res.send(users);
+                })
+                .catch(error => {
+                    // if you have an error
+                    console.log(error);
+                });
+        });
 
     });
 
@@ -247,7 +247,7 @@ s
             });
     });
 
-     /*
+    /*
      * Search user by pseudo
      *  return json array
      */
@@ -280,26 +280,26 @@ s
 
     // ----------------------------------------------------------------- HELPER FUNCTIONS ------------------------------------------------
 
-    
+
     /*
      *  Structuring front end filters, for the .find mongodDb function
      *  @req.body.filters json array
      *  return json array
      */
 
-    function structureFilters (frontEndFilters){
-         var find = {};
+    function structureFilters(frontEndFilters) {
+        var find = {};
 
-             // QUERY WITH NO FILTERS :
+        // QUERY WITH NO FILTERS :
         if (frontEndFilters === undefined || (Object.entries(frontEndFilters).length === 0 && frontEndFilters.constructor === Object)) {
             return find;
-        // QUERY WITH FILTERS
+            // QUERY WITH FILTERS
         } else if (Object.entries(frontEndFilters).length !== 0 && frontEndFilters.constructor === Object) {
-           
+
 
             cleanFilters(frontEndFilters);
-           
-             // Applying filters
+
+            // Applying filters
             find.$and = [];
 
             if (frontEndFilters.role) {
@@ -315,7 +315,7 @@ s
             if (frontEndFilters.ageValues) {
                 find.$and.push({ age: { $gt: frontEndFilters.ageValues[0] } }, { age: { $lt: frontEndFilters.ageValues[1] } });
             }
-            
+
             return find;
         }
 

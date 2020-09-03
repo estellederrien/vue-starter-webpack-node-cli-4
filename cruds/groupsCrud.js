@@ -114,7 +114,7 @@ module.exports = function(app, db, permissions) {
     });
 
     /*
-     * Read a group for filters
+     * Read groups for filters
      * @return json ARRAY
      * @error
      */
@@ -155,7 +155,7 @@ module.exports = function(app, db, permissions) {
     });
 
     /*
-     * Read group count
+     * Read groups count
      * @return json OBJECT
      * @error
      */
