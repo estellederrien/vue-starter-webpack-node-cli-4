@@ -10,7 +10,7 @@ module.exports = function(app, db, permissions) {
 
         group.creation_date = new Date();
 
-        // DUPLICATE CONTROL - CONTROLE DE DOUBLONS
+        // DUPLICATE CONTROL - CONTROLE DE DOUBLONS MOOVE IT TO THE MIDDLWARE URGENT
 
         /*   db.collection("groups").findOne({ name:group.name }, function(
           findErr,

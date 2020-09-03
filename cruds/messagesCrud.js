@@ -1,5 +1,11 @@
 // ---------------------------------- MESSAGES CRUD -------------------------------------------
 module.exports = function(app, db) {
+
+    /*
+     * Creating a message
+     * @return Status 200
+     * @error  Status 400
+     */
     app.post("/createMessage", function(req, res, next) {
         var message = req.body;
         console.log(message);
@@ -13,6 +19,11 @@ module.exports = function(app, db) {
         }
     });
 
+    /*
+     * Read user's messages
+     * @return JSON ARRAY
+     * @error  
+     */
     app.post("/readUserMessages", function(req, res, next) {
         var data = req.body;
         var id = data._id;
