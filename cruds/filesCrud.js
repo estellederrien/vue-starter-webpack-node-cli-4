@@ -58,7 +58,7 @@ module.exports = function(app, db, permissions) {
     // MULTER PARAMS FOR FILES STORAGE
     var storageFiles = multer.diskStorage({
         destination: function(req, file, cb) {
-            cb(null, "./tmp/files")
+            cb(null, "./files")
         },
         filename: function(req, file, cb) {
             let ext = file.originalname.substring(
@@ -102,7 +102,7 @@ module.exports = function(app, db, permissions) {
 
             try {
                 var fs = require("fs")
-                var filePath = "./tmp/files/" + file
+                var filePath = "./files/" + file
                 fs.unlinkSync(filePath)
 
                 res.sendStatus(200)

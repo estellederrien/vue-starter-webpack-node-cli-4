@@ -57,7 +57,8 @@ app.use(serveStatic(__dirname + "/dist"));
 
 // UPLOADS : IMAGES AND FILES STORING DIRECTORY
 app.use(express.static(__dirname + "/tmp"));
-
+// app.use(express.static(__dirname + "/tmp/files"));
+app.use(express.static(__dirname + "/files"));
 // ----------------------------------- MANAGING JSON AND BODY PARSER PARAMS -----------------------------------
 const bodyParser = require("body-parser");
 
@@ -87,7 +88,7 @@ MongoClient.connect(url, function(err, client) {
     if (err) {
         console.log(err);
     } else {
-        
+
         console.log("Connexion is OK !!");
 
         // SETTING THE DB NAME WE USE ONLINE
@@ -96,7 +97,7 @@ MongoClient.connect(url, function(err, client) {
         // WE LOAD THE PERMISSIONS CONTROL AND LOGGED IN CONTROL MIDDLEWARE
         var permissions = require("./appSystem/permissions.js");
 
-         // WE LOAD THE AUTHENTFICATION SYSTEM
+        // WE LOAD THE AUTHENTFICATION SYSTEM
         require("./appSystem/auth.js")(app, db, session, bcrypt);
 
         // NOW WE LOAD CRUDS SEPARATLY
@@ -111,7 +112,7 @@ MongoClient.connect(url, function(err, client) {
         // FRESH INSTALL CONTROL: IF THERE IS NO ADMIN WE NEED TO CREATE ONE
         var freshInstall = require("./appSystem/initialiseApp.js");
         freshInstall.insertAdmin(permissions, bcrypt, db);
-        
+
         // FRESH INSTALL CONTROL :IF THERE ARE NO STANDARD JOBS LIST WE NEED TO CREATE ONE
         freshInstall.insertJobs(permissions, db);
     }
@@ -127,5 +128,3 @@ console.log("server started " + port);
 // app.listen(8080, "0.0.0.0"); Azure needs this port
 
 // ----------------------------------END STARTING SERVER   -------------------------------------------
-
-
