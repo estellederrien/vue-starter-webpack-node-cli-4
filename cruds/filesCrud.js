@@ -3,11 +3,11 @@
 /* INTRODUCTION 
 
   THERE ARE 3 WAYS TO STORE  FILES :
-  1. CLOUDINARY SERVER 
-  2. THE NODE SERVER
-  3. AN FTP SERVER .
+  1. THE NODE SERVER
+  2. AN FTP SERVER 
+  3. SOMEWHERE ON THE CLOUD
 
-  AS LONGAS YOU CHOOSE AN OPTION, YOU HAVE TO CHANGE SEVERAL THINGS IN THE FRONT END VUE.JS APP TOO !
+  AS LONG AS YOU CHOOSE AN OPTION, YOU HAVE TO CHANGE SEVERAL THINGS IN THE FRONT END VUE.JS APP TOO !
   IM CURRENTLY BUILDING THIS TRYING TO MAKE IT THE SIMPLIER AS POSSIBLE  !
 
 */
@@ -24,17 +24,7 @@ module.exports = function(app, db, permissions) {
 
     /* ************************************* STORAGE SERVERS CONNEXIONS PARAMS ****************************************************** */
 
-    /*  CLOUDINARY PARAMS 'STORING PICTURES ON THE CLOUD' YOU HAVE TO OWN A CLOUDINARY ACCOUNT */
-
-    cloudinary.config({
-        cloud_name: "ddq5asuy2",
-        api_key: "354237299578646",
-        api_secret: "3UWkrND91MW3jhmGecvp77uetvQ",
-    })
-
-    /* 
-  FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONNAL FTP'  YOU HAVE TO OWN A FTP SERVER
-*/
+    /* FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONAL FTP'  YOU HAVE TO OWN A FTP SERVER*/
     let sftp = new Client()
 
     sftp.connect({
@@ -71,7 +61,8 @@ module.exports = function(app, db, permissions) {
 
     var uploadFiles = multer({ storage: storageFiles })
 
-    // ******************************************************** BACK END CRUD NODE SERVER FILES WEB SERVICE ****************************************************** */
+    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES (Bad practise)****************************************************** */
+    // ********************************** CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE  ****************************************************** */
 
     // CREATE MULTIPLE FILES
     app.post("/createFiles", uploadFiles.array("file", 10), function(req, res, err) {
@@ -86,12 +77,7 @@ module.exports = function(app, db, permissions) {
         res.send(filenames)
     })
 
-    // READ A FILE ON FTP
-    app.post("/readFile", function(req, res, next) {
-        // TO DO
-    })
-
-    // UPDATE A FILE ON FTP
+    // READ A FILE ON THE NODE SERVER
     app.post("/updateFile", function(req, res, next) {
         // TO DO
     })
@@ -117,5 +103,62 @@ module.exports = function(app, db, permissions) {
         },
     )
 
-    // ----------------------------------- END UPLOADING IMAGES AND FILES -----------------------------------
+    // ******************************************************** BACK END CRUD FTP FILES STORING WEB SERVICES ****************************************************** */
+
+
+
+    // CREATE A File ON FTP WEB SERVICE
+    app.post("/createFtpFile", function(req, res, next) {
+        // TO DO
+    })
+
+    // READ A PICTURE ON FTP WEB SERVICE
+    app.post("/readFtpFile", function(req, res, next) {
+        // TO DO
+    })
+
+    // UPDATE A PICTURE ON FTP WEB SERVICE
+    app.post("/updateFtpFile", function(req, res, next) {
+        // TO DO
+    })
+
+    // DELETE A PICTURE ON FTP WEB SERVICE
+    app.post("/deleteFtpFile", function(req, res, next) {
+        // TO DO
+    })
+
+    // ******************************************************** BACK END CLOUD FILES STORING WEB SERVICES ****************************************************** */
+
+    // CREATE A PICTURE ON THE CLOUD SERVER
+    app.post("/createCloudFile", function(req, res, next) {
+        // TO DO
+        // SENDING THE UPLOADS URL FOR DISPLAYING
+        // res.send({ filename: req.file.filename});
+    })
+
+    // READ A PICTURE ON THE Cloud SERVER
+    app.post("/readCloudFile", function(req, res, next) {
+        // TO DO
+    })
+
+    // UPDATE A PICTURE ON THE Cloud SERVER
+    app.post("/updateCloudFile", function(req, res, next) {
+        // TO DO
+    })
+
+    // DELETE A PICTURE ON THE Cloud SERVER
+    app.post("/deleteCloudFile", function(req, res, next) {
+        // TO DO
+    })
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------- END UPLOADING FileS AND FILES -----------------------------------
 }
