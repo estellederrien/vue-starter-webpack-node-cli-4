@@ -55,9 +55,10 @@ var sess = {};
 // VUE APP DIRECTORY ( GENERATED WITH NPM RUN BUILD )
 app.use(serveStatic(__dirname + "/dist"));
 
-// UPLOADS : IMAGES AND FILES STORING DIRECTORY
+// UPLOADS : IMAGES STORING DIRECTORY
 app.use(express.static(__dirname + "/tmp"));
-// app.use(express.static(__dirname + "/tmp/files"));
+
+// UPLOADS : FILES STORING DIRECTORY
 app.use(express.static(__dirname + "/files"));
 // ----------------------------------- MANAGING JSON AND BODY PARSER PARAMS -----------------------------------
 const bodyParser = require("body-parser");
@@ -79,6 +80,7 @@ app.use(
         strict: false
     })
 );
+
 
 // ----------------------------------- POOL CONNEXION DATABASE -------------------------------------------
 
