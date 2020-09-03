@@ -2,11 +2,11 @@
 module.exports = function(app, db, permissions, bcrypt) {
     /*
      * Creating a user
-     * return return Status 200 or 400
+     * @return Status 200
+     * @error  Status 400
      */
     app.post("/createUser", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_USER"), function(req, res) {
-
-        // gettin data from front end 
+        // gettin data from front end
         var user = req.body;
 
         // Checking mandatory fields  // CONTROLE DES CHAMPS OBLIGATOIRES
@@ -52,7 +52,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Reading a user
-     * return Object
+     * @return JSON OBJECT
+     * @error
      */
 
     app.post("/readUser", function(req, res) {
@@ -68,12 +69,11 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      *  Updating a user
-     *  return Status 200 or 400
+     *  @return 200
+     *  @error 400
      */
 
     app.post("/updateUser", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_USER"), function(req, res) {
-
-
         // GETTIN DATA FROM FRONTEND
         var user = req.body;
 
@@ -106,12 +106,12 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Register an anonymous user
-     * return Status 200 or 400
+     * @return 200
+     * @error  400
      */
 
     app.post("/registerUser", function(req, res) {
-
-        // gettin data from front end 
+        // gettin data from front end
         var user = req.body;
 
         // CONTROLE DES CHAMPS OBLIGATOIRES
@@ -122,12 +122,11 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         // IP FLOODING CONTROL    // TODO
 
-
         //ANONYMOUS ACCOUNT CREATION
 
         // Creating the user's role
         user.role = "user";
-        s
+        s;
         // Creating the user's permissions
         user.permissions = permissions.create_permissions(user);
 
@@ -163,12 +162,11 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      *  Delete a user
-     *  return Status 200 or 400
+     * @return 200
+     * @error  400
      */
 
     app.post("/deleteUser", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_USER"), function(req, res) {
-
-
         var user = req.body;
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(user._id);
@@ -187,18 +185,17 @@ module.exports = function(app, db, permissions, bcrypt) {
         }
     });
 
-
     /*
      *  Read all users
-     *  @req.body.filters json array
-     *  return json array
+     *
+     *  @return json array
+     *  @error
      */
 
     app.post("/readUsers", function(req, res) {
-
         // We receive front end filters params, and we need to structure them, before using the .find() mongoDb function
-        var filters = structureFilters(req.body.filters)
-
+        // ON reçoits les filtres du front end, on doi les strcturer pour ensuite exéctuer mongoDB .find() avec les filtres en paramêtres
+        var filters = structureFilters(req.body.filters);
 
         // FINAL USERS READ
         db.collection("users")
@@ -214,22 +211,20 @@ module.exports = function(app, db, permissions, bcrypt) {
 
             // Getting the user groups
             getUsersGroups(docs, req)
-                .then(users => {
+                .then((users) => {
                     res.send(users);
                 })
-                .catch(error => {
+                .catch((error) => {
                     // if you have an error
                     console.log(error);
                 });
         });
-
     });
-
-
 
     /*
      * Read all users for filters : Read Less data
-     *  return array
+     *  @return json array
+     *  @error
      */
     // .find( {},{"projection":{"_id":1, "nom": 1,"img":1,"longitude":1,"latitude":1,"categorie":1,"selectionneurPseudo":1,"selectionneurId":1}} )
     app.post("/readUsersForFilters", function(req, res) {
@@ -249,7 +244,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Search user by pseudo
-     *  return json array
+     *  @return json array
+     *  @error
      */
 
     app.get("/searchUsers", function(req, res) {
@@ -264,27 +260,26 @@ module.exports = function(app, db, permissions, bcrypt) {
             });
     });
 
-
     /*
      * Counting users
-     *  return json object
+     *  @return json object
      */
 
     app.get("/getUsersCount", function(req, res) {
         db.collection("users")
             .countDocuments()
-            .then(count => {
+            .then((count) => {
                 res.send({ result: count });
             });
     });
 
     // ----------------------------------------------------------------- HELPER FUNCTIONS ------------------------------------------------
 
-
     /*
      *  Structuring front end filters, for the .find mongodDb function
-     *  @req.body.filters json array
-     *  return json array
+     *
+     *  @return JSON OBJECT find
+     *  @error
      */
 
     function structureFilters(frontEndFilters) {
@@ -295,8 +290,6 @@ module.exports = function(app, db, permissions, bcrypt) {
             return find;
             // QUERY WITH FILTERS
         } else if (Object.entries(frontEndFilters).length !== 0 && frontEndFilters.constructor === Object) {
-
-
             cleanFilters(frontEndFilters);
 
             // Applying filters
@@ -318,17 +311,13 @@ module.exports = function(app, db, permissions, bcrypt) {
 
             return find;
         }
-
-
     }
-
-
-
-
 
     /* HELPER
      * Cleaning empty objects and array
      * Delete any empty array or object from object
+     * @return none
+     * @error none
      */
 
     function cleanFilters(obj) {
@@ -339,9 +328,12 @@ module.exports = function(app, db, permissions, bcrypt) {
         }
     }
 
-    /**
+    /*
+     * 
+     * FILTER TO CHECK IF A USER HAS THE PERMISSION TO DO SOMTHING
      * Filtre les documents des utilisateurs si ils ont la permission ou pas
-     *  FILTER TO CHECK IF A USER HAS THE PERMISSION TO DO SOMTHING
+     * @return JSON ARRAY docs
+     * @error none
      */
     function FilterByFilesPermissions(docs, req) {
         docs.forEach(function(doc) {
@@ -363,20 +355,21 @@ module.exports = function(app, db, permissions, bcrypt) {
         return docs;
     }
 
-
-    /**
+    /*
      * Async call in the purpose to know  which groups a user belongs to .
      * Pour retrouver les groupes d'un user
+     * @return JSON ARRAY users including his groups
+     * @error none
      */
     // CHAINER PLUSIEURS COLLECTIONS CALL EN MODE ASYNC
     async function getUsersGroups(users, req) {
         await Promise.all(
-            users.map(user => {
+            users.map((user) => {
                 return db
                     .collection("groups")
                     .find({ "users._id": String(user._id) })
                     .toArray()
-                    .then(group => {
+                    .then((group) => {
                         user.groups = group;
                         // console.log(group);
                     });
