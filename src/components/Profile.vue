@@ -1,330 +1,330 @@
 <template>
-	<div>
-		<div>	<span v-if="!loaded">
-				<img src="../assets/img/loader_800.gif" class="loader">
-				</src>
-			</span>
-		</div>
-		<div class="container-fluid " v-show="loaded">
-			<form method="post" v-on:submit.prevent>
-				<div class="row">
-					<div class="col-md-2">
-						<div class="profile-img">
-							<img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
-							<uploadpicture @filename="onUploadPicture" v-if="this.auth" style="margin-top:10px"></uploadpicture>
-						</div>
-						<div class="profile-work col-md-2 d-none d-md-block">
-							<p>LIENS DE TRAVAIL</p>	<a href="">Website</a>
-							<br />	<a href="">Bootsnipp</a>
-							<br />	<a href="">Bootply</a>
-							<br>
-							<br>
-							<p>SKILLS</p>	<a href="">Web Designer</a>
-							<br />	<a href="">Web Developer</a>
-							<br />	<a href="">WordPress</a>
-							<br />	<a href="">WooCommerce</a>
-							<br />	<a href="">PHP, .Net</a>
-							<br />
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="profile-head">
-							<h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
-							<h6>
-							<input v-model="user.mentra" class="form-control" placeholder="Entrez ici le mentra de l'employé" />
-							</h6>
-							<!-- TABS MENUS -->
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">	<i class="fas fa-home"></i>
-										<span class="d-none d-sm-block "> A propos </span>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">	<i class="fas fa-file-alt"></i>
-										<span class="d-none d-sm-block ">Fichiers </span>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false">	<i class="fas fa-lock"></i>
-										<span class="d-none d-sm-block "> Permissions </span>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">	<i class="fas fa-users-cog"></i>
-										<span class="d-none d-sm-block "> Groupes</span>
-									</a>
-								</li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"  ><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages  <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
-                                </li>
-							</ul>
-						</div>
-						<!-- END TABS MENUS -->
-						<!-- TABS INTRO -->
-						<div class="tab-content profile-tab" id="myTabContent">
-							<!-- TABS 1 -->
-							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-								<div class="row tab-content-user">
-									<div class="col-md-6">
-										<div class="row" v-if="!creationProcess">
-											<div class="col-md-2">
-												<label>User Id</label>
-											</div>
-											<div class="col-md-8">
-												<p>
-													<input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled />
-												</p>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2">
-												<label>Nom</label>
-											</div>
-											<div class="col-md-8" :class="{ 'form-group--error': $v.user.nom.$error }">
-												<p>
-													<input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
-													<!-- ERRORS MESSAGES t-->
-													<div class="error" v-if="!$v.user.nom.required">Le champs est nécessessaire</div>
-													<div class="error" v-if="!$v.user.nom.minLength">Le nom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
-												</p>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2">
-												<label>Prénom</label>
-											</div>
-											<div class="col-md-8" :class="{ 'form-group--error': $v.user.prenom.$error }">
-												<p>
-													<input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
-													<!-- ERRORS MESSAGES -->
-													<div class="error" v-if="!$v.user.prenom.required">Le champs est nécessessaire</div>
-													<div class="error" v-if="!$v.user.prenom.minLength">Le prénom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
-												</p>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2">
-												<label>Email</label>
-											</div>
-											<div class="col-md-8" :class="{ 'form-group--error': $v.user.email.$error }">
-												<p>
-													<input v-model="user.email" type="email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
-													<!-- ERRORS MESSAGES -->
-													<div class="error" v-if="!$v.user.email.required">Le champs est nécessessaire</div>
-													<div class="error" v-if="!$v.user.email.minLength">L'Email doit avoir au moins {{ $v.user.email.$params.minLength.min }} lettres.</div>
-												</p>
-											</div>
-										</div>
-										<div class="row" v-if="creationProcess">
-											<div class="col-md-2">
-												<label>Password</label>
-											</div>
-											<div class="col-md-4">
-												<p>
-													<input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
-                                                    <!-- ERRORS MESSAGES -->
-													<div class="error" v-if="!$v.user.password.required">Le champs est nécessessaire</div>
-													<div class="error" v-if="!$v.user.password.minLength">L'Email doit avoir au moins {{ $v.user.password.$params.minLength.min }} lettres.</div>
-												</p>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2">
-												<label>Téléphone</label>
-											</div>
-											<div class="col-md-8" :class="{ 'form-group--error': $v.user.phone.$error }">
-												<p>
-													<input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
-													<!-- ERRORS MESSAGES -->
-													<div class="error" v-if="!$v.user.phone.minLength">Le téléphone doit avoir au moins {{ $v.user.phone.$params.minLength.min }} chiffres.</div>
-												</p>
-											</div>
-										</div>
-										<!--   FIND DE COLONNE 2-->
-									</div>
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-md-2">
-												<label>Date de naissance</label>
-											</div>
-											<div class="col-md-10">
-												<p>
-													<input v-model="user.birthday" @change="getAge" class="form-control" type="date">
-													<!-- <input v-model="user.birthday" @change="getAge" class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" > -->
-												</p>
-											</div>
-											<div class="col-md-2">
-												<label>Age</label>
-											</div>
-											<div class="col-md-10">
-												<p>
-													<input v-model="user.age" class="form-control" disabled></input>
-												</p>
-											</div>
-											<div class="col-md-2">
-												<label>Job</label>
-											</div>
-											<div class="col-md-4">
-												<select class="form-control " v-model="user.job">
-													<option v-for="job in jobs" :value="job.name">{{job.name}}</option>
-												</select>
-											</div>
-											<div class="col-md-6">
-												<div class="input-group mb-3">
-													<div class="input-group-prepend">
-														<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="createJob()">+</button>
-													</div>
-													<input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
-												</div>
-											</div>
-											<div class="col-md-2">
-												<label>Description</label>
-											</div>
-											<div class="col-md-10">
-												<p>
-													<textarea class="form-control" rows="3"></textarea>
-												</p>
-											</div>
-										</div>
-										<!--   FIND DE COLONNE 1-->
-									</div>
-									<!-- </FIN DE ROW 1> -->
-								</div>
-								<!-- END TABS 1 -->
-							</div>
-							<!-- TABS 2 -->
-							<div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-								<div class="row tab-content-user">
-									<div class="col-md-6">
-										<uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
-									</div>
-                                    <div class="col-md-6">
-									<div class="card ">
-                                    <div class="card-body" style ="overflow:auto;">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-file-alt"></i> Liste des fichiers
-                                    </h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Gérez</h6>
-										<div style=" font-size:0.8em;">
-											<table class="table table-sm">
-												<thead>
-													<tr>
-														<th>Nom</th>
-														<th>Supprimer</th>
-														<th>Permissions</th>
-													</tr>
-												</thead>
-												<tr v-for="file in user.filenames">
-													<td>
-														<a class="float-left" v-bind:href="'/files/' + file.filename">	<i class="fas fa-file-alt"></i> {{ file.filename }}</a>
-													</td>
-													<td>	<span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
-                                                    <i class="far fa-trash-alt"></i>
-                                                    <br />
-                                                    </span>
-													</td>
-													<td>
-														<select class="form-control " v-model="file.permissions">
-															<option value="all">Tous</option>
-															<option v-for="u in users" :value="u._id">{{u.nom}}</option>
-														</select>
-													</td>
-												</tr>
-											</table>
-										</div>
-									</div>
+<div>
+    <div> <span v-if="!loaded">
+            <img src="../assets/img/loader_800.gif" class="loader">
+            </src>
+        </span>
+    </div>
+    <div class="container-fluid " v-show="loaded">
+        <form method="post" v-on:submit.prevent>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="profile-img">
+                        <img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
+                        <uploadpicture @filename="onUploadPicture" v-if="this.auth" style="margin-top:10px"></uploadpicture>
+                    </div>
+                    <div class="profile-work col-md-2 d-none d-md-block">
+                        <p>LIENS DE TRAVAIL</p> <a href="">Website</a>
+                        <br /> <a href="">Bootsnipp</a>
+                        <br /> <a href="">Bootply</a>
+                        <br>
+                        <br>
+                        <p>SKILLS</p> <a href="">Web Designer</a>
+                        <br /> <a href="">Web Developer</a>
+                        <br /> <a href="">WordPress</a>
+                        <br /> <a href="">WooCommerce</a>
+                        <br /> <a href="">PHP, .Net</a>
+                        <br />
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="profile-head">
+                        <h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
+                        <h6>
+                            <input v-model="user.mentra" class="form-control" placeholder="Entrez ici le mentra de l'employé" />
+                        </h6>
+                        <!-- TABS MENUS -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> <i class="fas fa-home"></i>
+                                    <span class="d-none d-sm-block "> A propos </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"> <i class="fas fa-file-alt"></i>
+                                    <span class="d-none d-sm-block ">Fichiers </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"> <i class="fas fa-lock"></i>
+                                    <span class="d-none d-sm-block "> Permissions </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false"> <i class="fas fa-users-cog"></i>
+                                    <span class="d-none d-sm-block "> Groupes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END TABS MENUS -->
+                    <!-- TABS INTRO -->
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <!-- TABS 1 -->
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row tab-content-user">
+                                <div class="col-md-6">
+                                    <div class="row" v-if="!creationProcess">
+                                        <div class="col-md-2">
+                                            <label>User Id</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>
+                                                <input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled />
+                                            </p>
+                                        </div>
                                     </div>
-									</div>
-								</div>
-							</div>
-							<!-- TABS 3 -->
-							<div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
-								 <div class="card">
-                                    <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Nom</label>
+                                        </div>
+                                        <div class="col-md-8" :class="{ 'form-group--error': $v.user.nom.$error }">
+                                            <p>
+                                                <input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
+                                                <!-- ERRORS MESSAGES t-->
+                                                <div class="error" v-if="!$v.user.nom.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.nom.minLength">Le nom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Prénom</label>
+                                        </div>
+                                        <div class="col-md-8" :class="{ 'form-group--error': $v.user.prenom.$error }">
+                                            <p>
+                                                <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+                                                <!-- ERRORS MESSAGES -->
+                                                <div class="error" v-if="!$v.user.prenom.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.prenom.minLength">Le prénom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-8" :class="{ 'form-group--error': $v.user.email.$error }">
+                                            <p>
+                                                <input v-model="user.email" type="email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+                                                <!-- ERRORS MESSAGES -->
+                                                <div class="error" v-if="!$v.user.email.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.email.minLength">L'Email doit avoir au moins {{ $v.user.email.$params.minLength.min }} lettres.</div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row" v-if="creationProcess">
+                                        <div class="col-md-2">
+                                            <label>Password</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>
+                                                <input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
+                                                <!-- ERRORS MESSAGES -->
+                                                <div class="error" v-if="!$v.user.password.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.password.minLength">L'Email doit avoir au moins {{ $v.user.password.$params.minLength.min }} lettres.</div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Téléphone</label>
+                                        </div>
+                                        <div class="col-md-8" :class="{ 'form-group--error': $v.user.phone.$error }">
+                                            <p>
+                                                <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
+                                                <!-- ERRORS MESSAGES -->
+                                                <div class="error" v-if="!$v.user.phone.minLength">Le téléphone doit avoir au moins {{ $v.user.phone.$params.minLength.min }} chiffres.</div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--   FIND DE COLONNE 2-->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Date de naissance</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                <input v-model="user.birthday" @change="getAge" class="form-control" type="date">
+                                                <!-- <input v-model="user.birthday" @change="getAge" class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" > -->
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Age</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                <input v-model="user.age" class="form-control" disabled></input>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Job</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control " v-model="user.job">
+                                                <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="createJob()">+</button>
+                                                </div>
+                                                <input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Description</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                <textarea class="form-control" rows="3"></textarea>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--   FIND DE COLONNE 1-->
+                                </div>
+                                <!-- </FIN DE ROW 1> -->
+                            </div>
+                            <!-- END TABS 1 -->
+                        </div>
+                        <!-- TABS 2 -->
+                        <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row tab-content-user">
+                                <div class="col-md-6">
+                                    <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card ">
+                                        <div class="card-body" style="overflow:auto;">
+                                            <h5 class="card-title">
+                                                <i class="fas fa-file-alt"></i> Liste des fichiers
+                                            </h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Gérez</h6>
+                                            <div style=" font-size:0.8em;">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nom</th>
+                                                            <th>Supprimer</th>
+                                                            <th>Permissions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr v-for="file in user.filenames">
+                                                        <td>
+                                                            <a class="float-left" v-bind:href="'/tmp/files/' + file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                        </td>
+                                                        <td> <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
+                                                                <i class="far fa-trash-alt"></i>
+                                                                <br />
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control " v-model="file.permissions">
+                                                                <option value="all">Tous</option>
+                                                                <option v-for="u in users" :value="u._id">{{u.nom}}</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TABS 3 -->
+                        <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
+                            <div class="card">
+                                <div class="card-body">
                                     <h5 class="card-title">
                                         <i class="fas fa-lock"></i> Gérer les permissions
                                     </h5>
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <label>Profil</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <select class="custom-select" v-model="user.role" :disabled="!creationProcess">
-                                                        <option value="">--Please choose an option--</option>
-                                                        <option value="viewer">Viewer</option>
-                                                        <option value="user">User</option>
-                                                        <option value="manager">Manager</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row" v-if="!creationProcess">
-                                                <div class="col-md-2">
-                                                    <label>Liste des droits</label>
-                                                </div>
-                                                <div class="col-md-6">	<span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}
-                                                    <br>
-                                                </span>
-                                                </div>
-                                            </div>
-
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Profil</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="custom-select" v-model="user.role" :disabled="!creationProcess">
+                                                <option value="">--Please choose an option--</option>
+                                                <option value="viewer">Viewer</option>
+                                                <option value="user">User</option>
+                                                <option value="manager">Manager</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>    
-								<!-- END TABS 3 -->
-							</div>
-							<!-- TABS 4 -->
-							<div   class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
-								<groups v-if="!creationProcess"></groups>
+                                    <br>
+                                    <div class="row" v-if="!creationProcess">
+                                        <div class="col-md-2">
+                                            <label>Liste des droits</label>
+                                        </div>
+                                        <div class="col-md-6"> <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}
+                                                <br>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <!-- END TABS 4 -->
-                            <!-- TABS 5 MESSAGES LIST-->
-                             <div class="tab-pane fade" id="messageslist" role="tabpanel" >
-                                <messageslist v-if="user._id"  :_id="user._id" @mymcevent="onMessagesCount"></messageslist>
-                            </div>
-                             <!-- END TABS 5 -->
-							<!-- END TABS INTRO -->
-						</div>
-						<!-- END COL MD 8 -->
-					</div>
-					<!-- END ROW -->
-				</div>
-				<!-- FOOTER AND BUTTONS -->
-				<div class="footer fixed-bottom">
-					<div class="col-md-12 text-right">
-						<div class="btn-group text-left" role="group" aria-label="Basic example">
-							<div class="" v-if="!creationProcess">
-								<button class="btn btn-secondary" v-on:click="openMessageModal()">
-									<a>	<i class="fas fa-envelope"></i>
-										<span class="d-none d-sm-block ">Message interne</span>
-									</a>
-								</button>
-								<button type="button" v-on:click="createUser()" class="btn btn-secondary">	<i class="fas fa-user-plus"></i>
-									<span class="d-none d-sm-block ">Créer un utilisateur</span>
-								</button>
-								<button type="button" v-on:click="deleteUser()" class="btn btn-danger">	<i class="fas fa-user-minus"></i>
-									<span class="d-none d-sm-block ">Supprimer Compte</span>
-								</button>
-								<button type="button" v-on:click="updateUser()" class="btn btn-secondary">	<i class="fas fa-save"></i>
-									<span class="d-none d-sm-block ">Mise à jour</span>
-								</button>
-							</div>
-							<button type="button" v-if="creationProcess" v-on:click="cancelInsertUser()" class="btn btn-secondary">	<i class="fas fa-window-close"></i>
-								<span class="d-none d-sm-block ">Cancel</span>
-							</button>
-							<button type="button" v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary">	<i class="fas fa-user-plus"></i>
-								<span class="d-none d-sm-block ">Enregistrer utilisateur</span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-		<!-- MODAL -->
-		<modal name="messageModal" :width="350" :height="400">
-			<message :user="this.user"></message>
-		</modal>
-	</div>
+                            <!-- END TABS 3 -->
+                        </div>
+                        <!-- TABS 4 -->
+                        <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+                            <groups v-if="!creationProcess"></groups>
+                        </div>
+                        <!-- END TABS 4 -->
+                        <!-- TABS 5 MESSAGES LIST-->
+                        <div class="tab-pane fade" id="messageslist" role="tabpanel">
+                            <messageslist v-if="user._id" :_id="user._id" @mymcevent="onMessagesCount"></messageslist>
+                        </div>
+                        <!-- END TABS 5 -->
+                        <!-- END TABS INTRO -->
+                    </div>
+                    <!-- END COL MD 8 -->
+                </div>
+                <!-- END ROW -->
+            </div>
+            <!-- FOOTER AND BUTTONS -->
+            <div class="footer fixed-bottom">
+                <div class="col-md-12 text-right">
+                    <div class="btn-group text-left" role="group" aria-label="Basic example">
+                        <div class="" v-if="!creationProcess">
+                            <button class="btn btn-secondary" v-on:click="openMessageModal()">
+                                <a> <i class="fas fa-envelope"></i>
+                                    <span class="d-none d-sm-block ">Message interne</span>
+                                </a>
+                            </button>
+                            <button type="button" v-on:click="createUser()" class="btn btn-secondary"> <i class="fas fa-user-plus"></i>
+                                <span class="d-none d-sm-block ">Créer un utilisateur</span>
+                            </button>
+                            <button type="button" v-on:click="deleteUser()" class="btn btn-danger"> <i class="fas fa-user-minus"></i>
+                                <span class="d-none d-sm-block ">Supprimer Compte</span>
+                            </button>
+                            <button type="button" v-on:click="updateUser()" class="btn btn-secondary"> <i class="fas fa-save"></i>
+                                <span class="d-none d-sm-block ">Mise à jour</span>
+                            </button>
+                        </div>
+                        <button type="button" v-if="creationProcess" v-on:click="cancelInsertUser()" class="btn btn-secondary"> <i class="fas fa-window-close"></i>
+                            <span class="d-none d-sm-block ">Cancel</span>
+                        </button>
+                        <button type="button" v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary"> <i class="fas fa-user-plus"></i>
+                            <span class="d-none d-sm-block ">Enregistrer utilisateur</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- MODAL -->
+    <modal name="messageModal" :width="350" :height="400">
+        <message :user="this.user"></message>
+    </modal>
+</div>
 </template>
 
 <script>
@@ -337,7 +337,8 @@ import {
 import {
     required,
     minLength,
-    between,email
+    between,
+    email
 } from "vuelidate/lib/validators";
 
 /* PERSONNAL COMPONENTS */
@@ -355,7 +356,7 @@ export default {
     data() {
         return {
             user: {
-               _id:"",
+                _id: "",
                 nom: "",
                 prenom: "",
                 phone: "",
@@ -372,9 +373,9 @@ export default {
             jobs: [],
             newJob: "",
             loaded: false,
-            users:[],
-            filters:{},
-            messagesCount:"12"
+            users: [],
+            filters: {},
+            messagesCount: "12"
         };
     },
 
@@ -393,7 +394,7 @@ export default {
                 minLength: minLength(2),
                 email
             },
-            
+
             password: {
                 minLength: minLength(2),
                 required
@@ -407,30 +408,30 @@ export default {
     components: {
         uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles,
-        message:Message,
-        messages:Messages,
-        groups:Groups,
-        messageslist:MessagesList
+        message: Message,
+        messages: Messages,
+        groups: Groups,
+        messageslist: MessagesList
     },
     methods: {
-         readJobs: function() {
-        axios
-            .post("readJobs")
-            .then(response => {
-                this.jobs = response.data;
-            })
-           .catch(error => {
-                        console.log(error);
-                        this.$notify({
-                            type: 'error',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> '+error
-                        });
-                   
+        readJobs: function () {
+            axios
+                .post("readJobs")
+                .then(response => {
+                    this.jobs = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> ' + error
                     });
+
+                });
         },
-        openMessageModal: function() {
+        openMessageModal: function () {
             this.$modal.show("messageModal");
         },
         deleteFile(file) {
@@ -456,9 +457,9 @@ export default {
                             type: 'error',
                             group: 'foo',
                             title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> '+error
+                            text: 'Permission is missing ! -> <br> ' + error
                         });
-                   
+
                     });
             }
         },
@@ -471,7 +472,7 @@ export default {
             console.log(this.user);
         },
         onFileUploads(values) {
-   
+
             let self = this;
 
             values.forEach(function (value) {
@@ -489,8 +490,6 @@ export default {
             console.log("onmc")
             this.messagesCount = value;
         },
-
-
 
         showModal() {
             // this.$modal.show('hello-world');
@@ -526,15 +525,15 @@ export default {
                     this.user = response.data;
                 })
                 .catch(error => {
-                        console.log(error);
-                        this.$notify({
-                            type: 'error',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> '+error
-                        });
-                   
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> ' + error
                     });
+
+                });
         },
         updateUser: function () {
             axios
@@ -545,7 +544,7 @@ export default {
                         group: 'foo',
                         title: 'Hey! ',
                         text: 'Update is ok !'
-                        });
+                    });
                     console.log(response);
                 })
                 .catch(error => {
@@ -554,9 +553,9 @@ export default {
                         type: 'error',
                         group: 'foo',
                         title: 'Hey! ',
-                        text: 'Permission is missing ! -> <br> '+error
+                        text: 'Permission is missing ! -> <br> ' + error
                     });
-                   
+
                 });
         },
         deleteUser: function () {
@@ -567,18 +566,18 @@ export default {
                         alert(" Votre compte a été supprimé ");
                         this.$user = {};
                         this.$router.push("/login");
-                        
+
                         console.log(response);
                     })
-                     .catch(error => {
+                    .catch(error => {
                         console.log(error);
                         this.$notify({
                             type: 'error',
                             group: 'foo',
                             title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> '+error
+                            text: 'Permission is missing ! -> <br> ' + error
                         });
-                   
+
                     });
             }
         },
@@ -598,16 +597,15 @@ export default {
             };
         },
         insertUser: function () {
-            
+
             if (
                 !this.user.password ||
                 !this.user.prenom ||
                 !this.user.nom ||
-                !this.user.email||
+                !this.user.email ||
                 this.$v.user.email.$error
             ) {
 
-            
                 this.$notify({
                     type: 'error',
                     group: 'foo',
@@ -619,25 +617,25 @@ export default {
             axios
                 .post("/createUser", this.user)
                 .then(response => {
-                   this.$notify({
+                    this.$notify({
                         type: 'success',
                         group: 'foo',
                         title: 'Hey! ',
                         text: 'Added on user!'
-                        });
+                    });
                     this.creationProcess = false;
                     this.getActualSession();
                 })
                 .catch(error => {
-                        console.log(error);
-                        this.$notify({
-                            type: 'error',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> '+error
-                        });
-                   
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> ' + error
                     });
+
+                });
         },
         getActualSession: function () {
             axios
@@ -674,19 +672,19 @@ export default {
                     this.readJobs();
                 })
                 .catch(error => {
-                        console.log(error);
-                        this.$notify({
-                            type: 'error',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: error
-                        });
-                   
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: error
                     });
+
+                });
         },
-        cancelInsertUser: function(){
-                this. creationProcess = false;
-                 this.getActualSession();
+        cancelInsertUser: function () {
+            this.creationProcess = false;
+            this.getActualSession();
 
         },
         readUsers: function () {
@@ -705,15 +703,14 @@ export default {
     },
     beforeCreate: function () {
 
-
     },
-    created: function(){
-        if(localStorage.getItem('user')){
-            this.user =  JSON.parse(localStorage.getItem('user'))
-        }else{
+    created: function () {
+        if (localStorage.getItem('user')) {
+            this.user = JSON.parse(localStorage.getItem('user'))
+        } else {
             this.user = this.$user;
-        }  
-        
+        }
+
         this.auth = true;
         this.loaded = true;
         this.readJobs();
@@ -724,12 +721,12 @@ export default {
 </script>
 
 <style>
-.footer{
-  background-color:#2a2a2e;
-  border-color: #337ab7;
-  color: #FFFFFF;
+.footer {
+    background-color: #2a2a2e;
+    border-color: #337ab7;
+    color: #FFFFFF;
 
- }
+}
 
 .error {
     border-color: red;
@@ -749,18 +746,15 @@ export default {
     outline-color: #8e8;
 }
 
-
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
 
-.tab-content{
+.tab-content {
 
-margin-bottom:100px !important;
+    margin-bottom: 100px !important;
 
 }
-
- 
 
 .emp-profile {
     padding: 3%;
@@ -834,7 +828,7 @@ margin-bottom:100px !important;
 .profile-head .nav-tabs .nav-link {
     font-weight: 600;
     border: none;
-    color:maroon;
+    color: maroon;
 }
 
 .profile-head .nav-tabs .nav-link.active {
@@ -881,8 +875,6 @@ margin-bottom:100px !important;
     height: 15vw;
     object-fit: cover;
 }
-
-
 
 /* TOPBAR */
 .rounded-circle {
