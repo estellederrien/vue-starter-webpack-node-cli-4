@@ -73,6 +73,7 @@ Ce starter est directement mis à jour sur HEROKU quand je commite des mises à 
 Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ...<br />
 
 ## Project setup
+Clone the depot using smargit, then install libs :
 ```
 npm install
 ```
