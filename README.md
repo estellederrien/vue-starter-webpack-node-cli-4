@@ -10,7 +10,7 @@ DEMO : OPENODE : http://vuestarter.openode.io/<br /><br />
 It can also run on azure and google cloud<br /><br />
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
-![ScreenShot](screenshot1.jpeg)
+![ScreenShot](screenshot1.jpg)
 
 ## LATEST STARTER NEWS ! 
   <br>
