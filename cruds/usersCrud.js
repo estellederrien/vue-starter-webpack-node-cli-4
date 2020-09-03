@@ -310,7 +310,7 @@ s
             }
 
             if (frontEndFilters.users) {
-                find.$and.push({ nom: { $in: frontEndFiltersusers } });
+                find.$and.push({ nom: { $in: frontEndFilters.users } });
             }
             if (frontEndFilters.ageValues) {
                 find.$and.push({ age: { $gt: frontEndFilters.ageValues[0] } }, { age: { $lt: frontEndFilters.ageValues[1] } });
