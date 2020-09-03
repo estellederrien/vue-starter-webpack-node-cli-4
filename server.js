@@ -59,7 +59,7 @@ app.use(serveStatic(__dirname + "/dist"));
 app.use(express.static(__dirname + "/tmp"));
 
 // UPLOADS : FILES STORING DIRECTORY
-app.use(express.static(__dirname + "/files"));
+app.use(express.static(__dirname + "/tmp/files"));
 // ----------------------------------- MANAGING JSON AND BODY PARSER PARAMS -----------------------------------
 const bodyParser = require("body-parser");
 
