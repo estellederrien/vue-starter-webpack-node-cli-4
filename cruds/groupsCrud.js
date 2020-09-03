@@ -97,7 +97,7 @@ module.exports = function(app, db, permissions) {
     });
 
     /*
-     * Delete a group
+     * Read groups
      * @return json ARRAY
      * @error
      */
