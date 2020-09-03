@@ -126,7 +126,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         // Creating the user's role
         user.role = "user";
-        s;
+
         // Creating the user's permissions
         user.permissions = permissions.create_permissions(user);
 
