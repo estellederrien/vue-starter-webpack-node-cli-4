@@ -7,7 +7,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 ## Demos
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
 DEMO : OPENODE : http://vuestarter.openode.io/<br /><br />
-It can also run on azure and google cloud<br /><br />
+
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ![ScreenShot](screenshot1.jpeg)
