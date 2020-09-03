@@ -103,8 +103,8 @@ To test your BUILD on port 80, just type localhost: 80 in your browser! In fact,
 npm run start
 ```
 ### Publishing on HEROKU
-It is so simple and automatic, 1. Clone this depot in you github, 2. simply go to heroku and go to the deploy tab then Manually deploy your app.
-<br />c'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application.
+It is so simple and automatic, 1. Clone this depot in you github, 2. Simply go to heroku and go to the deploy tab then Manually deploy your app. 3. DOn't even sync the \dist directory, Heroku does it for you !
+<br />c'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. Allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application. 3. Même pas besoin de taper NPM RUN BUILD, Heroku le fait automatiquement pour vous. Pour gérer cela, c'est sous l'onglet DEPLOY, c'est trop pratique, tout se fait tout seul, on peut ^même paramétrer en SYNC automatique dès qu'on fait un commit, l'app se mets à jour toute seule !.
 
 ### Creating your MONGODB ATLAS ACCOUNT
 PLease don't use my mongoDb atlas db, open yourself an account ...
