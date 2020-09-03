@@ -217,7 +217,7 @@
                                                     </thead>
                                                     <tr v-for="file in user.filenames">
                                                         <td>
-                                                            <a class="float-left" v-bind:href="'/files/' + file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                            <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
                                                         </td>
                                                         <td> <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
                                                                 <i class="far fa-trash-alt"></i>
