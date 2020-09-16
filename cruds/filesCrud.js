@@ -77,10 +77,10 @@ module.exports = function(app, db, permissions) {
    * @return ARRAY - Filenames
    * @error   STATUS 400
    */
-    app.post("/createFiles", uploadFiles.array("file", 10), function(req, res, err) {
+    app.post("/createFiles", permissions.permission_valid("CREATE_FILE"), uploadFiles.array("file", 10), function(req, res, err) {
         if (err) {
             console.log(err)
-            res.sendStatus(400)
+            //res.sendStatus(400)
         }
         // Getting the Multer modified filenames, then send them back to the front end - ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
         var filenames = []
