@@ -84,7 +84,7 @@ module.exports = function(app, db, permissions) {
         }
         // Getting the Multer modified filenames, then send them back to the front end - ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
         var filenames = []
-        
+
         req.files.forEach(function(file) {
             filenames.push(file)
         })
@@ -167,7 +167,7 @@ module.exports = function(app, db, permissions) {
     // UPDATE A FILE  ON THE Cloud SERVER
     app.post("/updateCloudFile", function(req, res, next) {
         // TO DO
-    })s
+    })
 
     // DELETE A FILE ON THE Cloud SERVER
     app.post("/deleteCloudFile", function(req, res, next) {
