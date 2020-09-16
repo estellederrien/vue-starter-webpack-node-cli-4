@@ -51,7 +51,7 @@ module.exports = function(app, db, permissions) {
             console.log(err, "catch error")
         })
 
-    /* ************************************* NODE.JS MULTER FILE HANDLINGS ****************************************************** */
+    /* ************************************* NODE.JS SERVER MULTER FILE HANDLINGS ****************************************************** */
 
     // If we store our files on our node.js server, then we have to use MULTER . - Si on stocke nos fichiers sur le server node, alors, il faut utiliser MULTER
     var storageFiles = multer.diskStorage({
@@ -69,21 +69,23 @@ module.exports = function(app, db, permissions) {
 
     var uploadFiles = multer({ storage: storageFiles })
 
-    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES - CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE ****************************************************** */
+    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES   - CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE ****************************************************** */
 
    /*
    * Create multiples files on the node server - Créer des fichiers multiples en provenance du front end .
    * @params Multiples files received from the front end  - In the FormData() format -  headers: {crossdomain: true,"Content-Type": "undefined"}
    * @return ARRAY - Filenames
-   * @error  NONE
+   * @error   STATUS 400
    */
     app.post("/createFiles", uploadFiles.array("file", 10), function(req, res, err) {
         if (err) {
             console.log(err)
+            res.sendStatus(400)
         }
+        // Getting the Multer modified filenames, then send them back to the front end - ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
         var filenames = []
+        
         req.files.forEach(function(file) {
-            console.log(file)
             filenames.push(file)
         })
         res.send(filenames)
@@ -101,7 +103,7 @@ module.exports = function(app, db, permissions) {
 
    /*
    * Delete a file FROM the node server - Supprimer un fichier sur le serveur node.
-   * @params JSON OBJECT - NAME
+   * @params JSON OBJECT - EXAMPLE : {'NAME':'myfilename'}
    * @return  STATUS 200 
    * @error   STATUS 400
    */
