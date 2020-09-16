@@ -1,12 +1,20 @@
 // ----------------------------------- MONGODB AUTH USER  -------------------------------------------
 module.exports = function(app, db, session, bcrypt) {
+ 
+  /*
+     * Auth a user on MONGODB ATLAS
+     * @params JSON OBJECT 
+     * @return Status 200
+     * @error  Status 400
+     */
+  
   app.post("/getAuth", function(req, res) {
-    console.log(req.body);
-    console.log(req.sessionID);
-    // RECHERCHE DU USER SUR MONGODB
-    var identifier = req.body;
 
-    db.collection("users").findOne({ email: identifier.email }, function(
+    // 1. Getting front end DATA - On récupère log in et mot de passe du front end
+    var user = req.body;
+
+    // 2. FINDING EMAIL IN DATABASE - ON cherche l'email dans la db
+    db.collection("users").findOne({ email: user.email }, function(
       findErr,
       result
     ) {
@@ -15,19 +23,21 @@ module.exports = function(app, db, session, bcrypt) {
       if (!result) {
         res.status(403).send({ errorCode: "403" });
       } else {
-        if (bcrypt.compareSync(identifier.password, result.password)) {
+        // 3. COMPARING PASSWORDS  - ON compare le password entré et celui de la database
+        if (bcrypt.compareSync(user.password, result.password)) {
           // Passwords match
 
           console.log("reqsessionId ; " + req.sessionID);
 
-          // AJOUT DES DATAS DU USER A LA SESSION ET LE FAIT QUIL EST LOGGE
+          // 4. BUILDING THE BACKEND USER SESSION - AJOUT DES DATAS DU USER A LA SESSION ET LE FAIT QUIL EST LOGGE
           req.session.loggedIn = true;
           req.session.user = result;
 
-          // ENVOI DU USER AU FRONT END
+          // 5. SENDING USER DATA TO FRONT END ENVOI DU USER AU FRONT END
           res.send(result);
+          
         } else {
-          // Passwords don't match
+          // Passwords don't match 6 Erreur de mot de passe
           console.log("Passwords don't match");
           res.status(403).send({ errorCode: "403" });
         }
@@ -35,28 +45,12 @@ module.exports = function(app, db, session, bcrypt) {
     });
   });
 
-  // Permet de savoir si la session est anonyme ou quelqu'un de loggé ,
-  // au cas l'utilisateur clique sur F5 , on relit cette fonction, puis on dit si cest un anonyme ou pas.
-  // ca sert aussi quand on update quelque chose dans le frontend, pour rafraichir le user
-  app.post("/getActualSession", function(req, res) {
-    if (req.session.loggedIn) {
-      console.log("User has logged in");
-
-      // res.send(req.session.user);
-      var identifiantMongoDb = req.session.user._id;
-
-      var ObjectId = require("mongodb").ObjectID; //working
-      var idObj = ObjectId(identifiantMongoDb); //working
-
-      db.collection("users").findOne({ _id: idObj }, function(findErr, result) {
-        if (findErr) throw findErr;
-        res.send(result);
-      });
-    } else {
-      console.log("Anonymous user");
-      res.status(403).send({ errorCode: "403" });
-    }
-  });
+    /*
+     * Loggin out a user on MONGODB ATLAS - Delogge utilisateur sur mongodb atlas
+     * @params JSON OBJECT 
+     * @return Status 200
+     * @error  Status 400
+     */
 
   app.post("/logout", function(req, res) {
     req.session.loggedIn = false;
@@ -64,17 +58,6 @@ module.exports = function(app, db, session, bcrypt) {
     res.sendStatus(200);
   });
 
-  function requiresAuth (req, res, next) {
-    // LOGGED IN CONTROL
-    if (!req.session.loggedIn) {
-        console.log(" FORBIDDEN ");
-        res.status(403).send({ errorCode: "403" });
-        return;
-    }
-    else {
-        next(); // continue the process
-    }
-  }
 
   // -----------------------------------FIN AUTH USER-------------------------------------------
 };
