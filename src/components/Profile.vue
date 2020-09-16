@@ -624,7 +624,8 @@ export default {
                         text: 'Added on user!'
                     });
                     this.creationProcess = false;
-                    this.getActualSession();
+                    
+                    // this.getActualSession(); REMOVED SEE IF ITS OK
                 })
                 .catch(error => {
                     console.log(error);
