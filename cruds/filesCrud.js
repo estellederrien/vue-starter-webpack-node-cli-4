@@ -3,7 +3,7 @@
 /* INTRODUCTION 
 
   THERE ARE 3 WAYS TO STORE  FILES :
-  1. THE NODE SERVER
+  1. ON THE NODE SERVER ( THE TMP DIRECTORY IS MANDATORY ON HEROKU)
   2. AN FTP SERVER 
   3. SOMEWHERE ON THE CLOUD
 
@@ -12,11 +12,11 @@
 
   INTRODUCTION
   IL Y A 3 FAÇONS DE STOCKER DES FICHIERS:
-  1. LE SERVEUR NODE
+  1. SUR LE SERVEUR NODE ( OBLIGATOIREMENT DANS LE REPERTOIRE TMP SUR HEROKU )
   2. UN SERVEUR FTP
   3. PARTOUT SUR LE CLOUD
   TANT QUE VOUS CHOISISSEZ UNE OPTION, VOUS DEVEZ CHANGER PLUSIEURS CHOSES DANS L'APPLICATION VUE.JS AVANT!
-  IM CONSTRUIT ACTUELLEMENT CETTE ESSAYE DE LE RENDRE LE PLUS SIMPLE QUE POSSIBLE!
+  JE CONSTRUIS ACTUELLEMENT ET ESSAYE DE LE RENDRE LE PLUS SIMPLE POSSIBLE!
 
 */
 
@@ -25,10 +25,8 @@ module.exports = function(app, db, permissions) {
 
     /* ************************************* NODE MODULES ****************************************************** */
 
-    var cloudinary = require("cloudinary") // Managing the cloudinary server pictures storing
     var Client = require("ssh2-sftp-client") // Managing the SFTP server connexion
     var multer = require("multer") // Managing multiples files uploads
-    const sharp = require("sharp") // Resizing pictures module
     var fs = require("fs") // Managing the file system
     const bodyParser = require("body-parser")
 
@@ -71,7 +69,7 @@ module.exports = function(app, db, permissions) {
 
     var uploadFiles = multer({ storage: storageFiles })
 
-    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES (Bad practise)****************************************************** */
+    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES ****************************************************** */
     // ********************************** CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE  ****************************************************** */
 
     // CREATE MULTIPLE FILES
@@ -113,50 +111,50 @@ module.exports = function(app, db, permissions) {
         },
     )
 
-    // ******************************************************** BACK END CRUD FTP FILES STORING WEB SERVICES ****************************************************** */
+    // ******************************************************** FTP FILES STORING CRUD WEB SERVICES ****************************************************** */
 
 
 
-    // CREATE A File ON FTP WEB SERVICE
+    // CREATE A FILE  ON FTP WEB SERVICE
     app.post("/createFtpFile", function(req, res, next) {
         // TO DO
     })
 
-    // READ A PICTURE ON FTP WEB SERVICE
+    // READ A FILE ON FTP WEB SERVICE
     app.post("/readFtpFile", function(req, res, next) {
         // TO DO
     })
 
-    // UPDATE A PICTURE ON FTP WEB SERVICE
+    // UPDATE A FILE  ON FTP WEB SERVICE
     app.post("/updateFtpFile", function(req, res, next) {
         // TO DO
     })
 
-    // DELETE A PICTURE ON FTP WEB SERVICE
+    // DELETE A FILE ON FTP WEB SERVICE
     app.post("/deleteFtpFile", function(req, res, next) {
         // TO DO
     })
 
-    // ******************************************************** BACK END CLOUD FILES STORING WEB SERVICES ****************************************************** */
+    // ******************************************************** CLOUD FILES CRUD STORING WEB SERVICES ****************************************************** */
 
-    // CREATE A PICTURE ON THE CLOUD SERVER
+    // CREATE A FILE ON THE CLOUD SERVER
     app.post("/createCloudFile", function(req, res, next) {
         // TO DO
         // SENDING THE UPLOADS URL FOR DISPLAYING
         // res.send({ filename: req.file.filename});
     })
 
-    // READ A PICTURE ON THE Cloud SERVER
+    // READ A FILE  ON THE Cloud SERVER
     app.post("/readCloudFile", function(req, res, next) {
         // TO DO
     })
 
-    // UPDATE A PICTURE ON THE Cloud SERVER
+    // UPDATE A FILE  ON THE Cloud SERVER
     app.post("/updateCloudFile", function(req, res, next) {
         // TO DO
-    })
+    })s
 
-    // DELETE A PICTURE ON THE Cloud SERVER
+    // DELETE A FILE ON THE Cloud SERVER
     app.post("/deleteCloudFile", function(req, res, next) {
         // TO DO
     })
