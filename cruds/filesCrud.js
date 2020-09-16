@@ -108,7 +108,6 @@ module.exports = function(app, db, permissions) {
    * @error   STATUS 400
    */
     app.post("/deleteFile",
-        permissions.requiresLoggedIn,
         permissions.permission_valid("DELETE_FILE"),
         function(req, res) {
 
