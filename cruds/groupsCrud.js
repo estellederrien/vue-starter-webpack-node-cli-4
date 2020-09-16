@@ -5,7 +5,7 @@ module.exports = function(app, db, permissions) {
      * @return Status 200
      * @error  Status 400
      */
-    app.post("/createGroup", function(req, res) {
+    app.post("/createGroup", permissions.permission_valid("CREATE_GROUP"), function(req, res) {
         var group = req.body;
 
         group.creation_date = new Date();
