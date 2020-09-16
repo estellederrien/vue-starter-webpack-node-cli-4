@@ -73,9 +73,7 @@ describe("Profile test", () => {
    it("insertUser()  to be a function", () => {
     expect(wrapper.vm.createUser).to.be.a("function");
   });
-  it("getActualSession()  to be a function", () => {
-    expect(wrapper.vm.getActualSession).to.be.a("function");
-  });
+
  it("getAge()  to be a function", () => {
     expect(wrapper.vm.getAge).to.be.a("function");
   });
