@@ -1,3 +1,4 @@
+// -----------------------------------      MIDDLEWARE FUNCTIONS -------------------------------------------
 module.exports = {
 	requiresLoggedIn(req, res, next) {
 		// LOGGED IN CONTROL
