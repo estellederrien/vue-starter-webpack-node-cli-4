@@ -91,18 +91,18 @@ MongoClient.connect(url, function(err, client) {
         console.log(err);
     } else {
 
-        console.log("Connexion is OK !!");
+        console.log("The DB Connexion POOL is UP !!");
 
-        // SETTING THE DB NAME WE USE ONLINE
+        // SETTING THE DB NAME WE USE ONLINE - Le nom de notre database
         db = client.db(dbName);
 
-        // WE LOAD THE PERMISSIONS CONTROL AND LOGGED IN CONTROL MIDDLEWARE
-        var permissions = require("./appSystem/permissions.js");
-
-        // WE LOAD THE AUTHENTFICATION SYSTEM
+        // LOADING THE AUTHENTIFICATION SYSTEM - ON cahrge le système d'authentification
         require("./appSystem/auth.js")(app, db, session, bcrypt);
 
-        // NOW WE LOAD CRUDS SEPARATLY
+        // LOADING THE PERMISSIONS CONTROL AND LOGGED IN CONTROL MIDDLEWARE - On charge le système de controle de permissions et le controle de logged in
+        var permissions = require("./appSystem/permissions.js");
+
+        // LOADING CRUDS ONE BY ONE - On charge les cruds un par un
 
         require("./cruds/usersCrud.js")(app, db, permissions, bcrypt);
         require("./cruds/filesCrud.js")(app, db, permissions);
