@@ -69,10 +69,14 @@ module.exports = function(app, db, permissions) {
 
     var uploadFiles = multer({ storage: storageFiles })
 
-    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES ****************************************************** */
-    // ********************************** CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE  ****************************************************** */
+    // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES - CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE ****************************************************** */
 
-    // CREATE MULTIPLE FILES
+   /*
+   * Create multiples files on the node server - Créer des fichiers multiples en provenance du front end .
+   * @params Multiples files received from the front end  - In the FormData() format -  headers: {crossdomain: true,"Content-Type": "undefined"}
+   * @return ARRAY - Filenames
+   * @error  NONE
+   */
     app.post("/createFiles", uploadFiles.array("file", 10), function(req, res, err) {
         if (err) {
             console.log(err)
@@ -85,12 +89,22 @@ module.exports = function(app, db, permissions) {
         res.send(filenames)
     })
 
-    // READ A FILE ON THE NODE SERVER
+   /*
+   * Update a file on the node server - Mettre à jour un fichier sur le serveur node
+   * @params TODO
+   * @return  TODO
+   * @error   TODO
+   */
     app.post("/updateFile", function(req, res, next) {
         // TO DO
     })
 
-    // DELETE A FILE
+   /*
+   * Delete a file FROM the node server - Supprimer un fichier sur le serveur node.
+   * @params JSON OBJECT - NAME
+   * @return  STATUS 200 
+   * @error   STATUS 400
+   */
     app.post("/deleteFile",
         permissions.requiresLoggedIn,
         permissions.permission_valid("DELETE_FILE"),
