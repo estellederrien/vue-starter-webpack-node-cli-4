@@ -7,9 +7,10 @@ module.exports = {
    * @error  Status 403
    */
 	requiresLoggedIn(req, res, next) {
-		// LOGGED IN CONTROL
+		console.log(req.session)
 		if (!req.session.loggedIn) {
-			console.log(" FORBIDDEN ")
+
+			console.log(" FORBIDDEN CAUSE YOU ARE NOT LOGGED IN  ")
 			res.status(403).send({ errorCode: "403" })
 			return
 		} else {
@@ -26,7 +27,7 @@ module.exports = {
 	permission_valid(permission) {
 		return function(req, res, next) {
 			if (!req.session.user.permissions.includes(permission)) {
-				console.log(" FORBIDDEN ")
+				console.log(" FORBIDDEN CAUSE THE PERMISSION IS MISSING ")
 				res.status(403).send({ errorCode: "403" })
 				return
 			} else {

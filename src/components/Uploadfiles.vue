@@ -94,7 +94,7 @@ export default {
                         title: 'Hey! ',
                         text: 'Files have been uploaded'
                     });
-                    // Send to filenames to the parent component, Displaying them in the user component
+                    // Send to filenames to the parent component, Displaying them in the profile and user component
                     this.$emit("myfilenamesevent", response.data);
                     // INITIALIZING FILES TO GET READY TO UPLOADS SOME NEWS !
                     this.files = [];
