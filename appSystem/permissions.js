@@ -1,5 +1,11 @@
 // -----------------------------------      MIDDLEWARE FUNCTIONS -------------------------------------------
 module.exports = {
+   /*
+   * LOGGED IN  MIDDLEWARE FUNCTION USED IN WEB SERVICES  - Cette function est un middleware qui s'insère dans les webservices cruds controle si on est identifié grace à la variable de sessions
+   * @params req.session.loggedIn - TRUE OR FALSE
+   * @return NEXT()
+   * @error  Status 403
+   */
 	requiresLoggedIn(req, res, next) {
 		// LOGGED IN CONTROL
 		if (!req.session.loggedIn) {
@@ -11,7 +17,12 @@ module.exports = {
 		}
 	},
 	// -----------------------------------PERMISSIONS CONTROL -------------------------------------------
-
+	/*
+   * PERMISSIONS CHECK MIDDLEWARE FUNCTION USED IN WEB SERVICES - CHECKING IF WE ARE ALLOWED TO FIRE A WEB SERVICE  - Cette function est un middleware qui s'insère dans les webservices cruds et controle si on a la permission d'exécuter un web service
+   * @params ARRAY - permissions
+   * @return NEXT()
+   * @error  Status 403
+   */
 	permission_valid(permission) {
 		return function(req, res, next) {
 			if (!req.session.user.permissions.includes(permission)) {
@@ -24,7 +35,7 @@ module.exports = {
 		}
 	},
 
-	// Vérifie si un user tente de updater lui même
+	// TODO - Vérifie si un user tente de updater lui même
 	himself_valid: function(user, req) {
 		if (req.session.user.email == user.email) {
 			return true
@@ -34,6 +45,14 @@ module.exports = {
 	},
 
 	// -----------------------------------PERMISSIONS CREATION  -------------------------------------------
+
+	/*
+   * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT
+   * @params JSON OBJECT - USER
+   * @return ARRAY - PERMISSIONS
+   * @error  NONE
+   */
+
 	create_permissions: function(user) {
 		var permissions
 
