@@ -51,19 +51,19 @@ module.exports = function(app, db, permissions) {
             console.log(err, "catch error")
         })
 
-    /* ************************************* MULTER FILE HANDLINGS ****************************************************** */
+    /* ************************************* NODE.JS MULTER FILE HANDLINGS ****************************************************** */
 
-    // MULTER PARAMS FOR FILES STORAGE
+    // If we store our files on our node.js server, then we have to use MULTER . - Si on stocke nos fichiers sur le server node, alors, il faut utiliser MULTER
     var storageFiles = multer.diskStorage({
         destination: function(req, file, cb) {
-            cb(null, "./tmp/files")
+            cb(null, "./tmp/files") // Path to store our files . Le chemain ou on enregistre nos fichiers.
         },
         filename: function(req, file, cb) {
             let ext = file.originalname.substring(
                 file.originalname.lastIndexOf("."),
                 file.originalname.length,
             )
-            cb(null, file.originalname + "-" + Date.now() + ext)
+            cb(null, file.originalname + "-" + Date.now() + ext) // A date will guarantee our filename to be unique. , Ajouter la date gaurantit l'unicité du fichier, aucun doublon possible  
         },
     })
 
@@ -109,14 +109,13 @@ module.exports = function(app, db, permissions) {
         permissions.requiresLoggedIn,
         permissions.permission_valid("DELETE_FILE"),
         function(req, res) {
-            console.log(req.body)
+
             var file = req.body.name
 
             try {
                 var fs = require("fs")
                 var filePath = "./tmp/files/" + file
                 fs.unlinkSync(filePath)
-
                 res.sendStatus(200)
             } catch (e) {
                 console.log(e)
