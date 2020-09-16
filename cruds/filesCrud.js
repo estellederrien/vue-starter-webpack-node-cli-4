@@ -77,7 +77,7 @@ module.exports = function(app, db, permissions) {
    * @return ARRAY - Filenames
    * @error   STATUS 400
    */
-    app.post("/createFiles", permissions.permission_valid("CREATE_FILE"), uploadFiles.array("file", 10), function(req, res, err) {
+    app.post("/createFiles", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_FILE"), uploadFiles.array("file", 10), function(req, res, err) {
         if (err) {
             console.log(err)
             //res.sendStatus(400)
