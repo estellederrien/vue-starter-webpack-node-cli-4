@@ -3,8 +3,8 @@ module.exports = function(app, db, session, bcrypt) {
   /*
    * Authenticate a MONGODB ATLAS user  - Authentifier un utilisateur sur Mongodb ATLAS
    * @params JSON OBJECT - EXAMPLE : {"email":"urEmail","password":"urPassword"}
-   * @return Status 200
-   * @error  Status 400
+   * @return JSON OBJECT - dbUser
+   * @error  Status 403
    */
 
   app.post("/getAuth", function(req, res) {
@@ -12,27 +12,27 @@ module.exports = function(app, db, session, bcrypt) {
     console.log("reqsessionId ; " + req.sessionID);
 
     // step 1. Getting front end DATA (email and password) - On récupère log in et mot de passe du front end
-    var user = req.body;
+    var frontEndUser = req.body;
 
     // step 2. FINDING EMAIL IN DATABASE - ON cherche l'email dans la db
-    db.collection("users").findOne({ email: user.email }, function(findErr,result) {
+    db.collection("users").findOne({ email: frontEndUser.email }, function(findErr,dbUser) {
       
       if (findErr) res.status(403).send({ errorCode: "403" });
 
-      if (!result) {
+      if (!dbUser) {
         console.log("USER is not present in the DATABASE");
         res.status(403).send({ errorCode: "403" });
       } else {
         // step 3. COMPARING PASSWORDS ( front end vs db ) - ON compare le password entré et celui de la database
-        if (bcrypt.compareSync(user.password, result.password)) { // Passwords match
+        if (bcrypt.compareSync(frontEndUser.password, dbUser.password)) { // Passwords match
          
 
           // step 4. BUILDING THE BACKEND USER SESSION - AJOUT DES DATAS DU USER A LA SESSION ET LE FAIT QUIL EST LOGGE
           req.session.loggedIn = true;
-          req.session.user = result;
+          req.session.user = dbUser;
 
           // step 5. SENDING USER DATA TO FRONT END ENVOI DU USER AU FRONT END
-          res.send(result);
+          res.send(dbUser);
 
         } else {
           //
@@ -47,8 +47,8 @@ module.exports = function(app, db, session, bcrypt) {
   /*
    * Loggin out an APP user  - Delogge un utilisateur
    * @params NONE
-   * @return
-   * @error
+   * @return 200
+   * @error NONE
    */
 
   app.post("/logout", function(req, res) {
