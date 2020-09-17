@@ -36,8 +36,8 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 <b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the complete VUE.JS FRONT END application. <br>
 <b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
 <b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
-<b>\APPSYSTEM</b> : There, you can find the MondoDb Authentication web service (auth.js), and the middleware functions used for webs services permissions control (permissions.js)<br>
-<b>\TMP</b> : THis is a mandatory directory for heroku files uploads.  <br><br>
+<b>\APPSYSTEM</b> : There, you can find the MongoDb ATLAS Authentication web service (auth.js), and the middleware functions used for webs services permissions control (permissions.js)<br>
+<b>\TMP</b> : This is a mandatory directory , used for Heroku files uploads.  <br><br>
 
 
 
