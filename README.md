@@ -31,10 +31,10 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 ## What's in files ?
 
 <b>SERVER.js</b> This is the node.js server who holds the node.js params and CRUDS loading. <br>
-<b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the FRONT END application. <br>
+<b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the complete VUE.JS FRONT END application. <br>
 <b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
-<b>\CRUDS</b> : Each file is a CRUD ( create , read, update , delete).<br>
-<b>\TMP</b> : THis is a mandatory directory for heroku files uploads. <br>
+<b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
+<b>\TMP</b> : THis is a mandatory directory for heroku files uploads.  <br>
 
 
 ## Not available:
@@ -76,11 +76,11 @@ Data science  ...<br />
 1 AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
 ## French : 
-Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.
+Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.<br>
 Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ...<br />
 
 ## Project setup
-Clone the depot using smargit, then install libs :
+Clone the depot using smargit, then install the node modules :
 ```
 npm install
 ```
@@ -88,7 +88,7 @@ npm install
 ### Compiles and hot-reloads for development on port 8080
 When you want to develop the vue.js application, run these 2 commands.
 <br /> Then, go in your browser to localhost: 8080, and modify the files in the \ SRC directory
-<br /> To modify the BACK END, it is rather in the CRUDS directory
+<br /> To modify the BACK END, it is rather in the CRUDS directory<br>
 <br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes .
 <br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
 <br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
@@ -97,20 +97,20 @@ npm run serve ( the dev env) , then, npm run start (the node server)
 ```
 
 ### Compiles and minifies for production
-When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.
+When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.<br>
 <br />Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 ```
 npm run build
 ```
 ### Run build on port 80
-To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!
+To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!<br>
 <br />Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
 
 ```
 npm run start
 ```
 ### Publishing on HEROKU
-It is so simple and automatic, 1. Clone this depot in you github, 2. Simply go to heroku and go to the deploy tab then Manually deploy your app. 3. DOn't even sync the \dist directory, Heroku does it for you !
+It is so simple and automatic, 1. Clone this depot in you github, 2. Simply go to heroku and go to the deploy tab then Manually deploy your app. 3. DOn't even sync the \dist directory, Heroku does it for you !<br>
 <br />c'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. Allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application. 3. Même pas besoin de taper NPM RUN BUILD, Heroku le fait automatiquement pour vous. Pour gérer cela, c'est sous l'onglet DEPLOY, c'est trop pratique, tout se fait tout seul, on peut ^même paramétrer en SYNC automatique dès qu'on fait un commit, l'app se mets à jour toute seule !.
 
 ### Creating your MONGODB ATLAS ACCOUNT
