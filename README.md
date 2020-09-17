@@ -1,8 +1,6 @@
 # Vue.js + Node.js + MongoDb Atlas FULL STACK STARTER ! 
 CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
 
-## Desc
-This 2020 starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
 
 ## Demos
 DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
@@ -11,6 +9,10 @@ DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ![ScreenShot](screenshot1.jpeg)
+
+## Desc
+This 2020 starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
+
 
 ## LATEST STARTER NEWS ! 
   <br>
