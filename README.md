@@ -37,12 +37,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 <b>\APPSYSTEM</b> : There, you can find the MondoDb Authentication web service (auth.js), and the middleware functions used for webs services permissions control (permissions.js)<br>
 <b>\TMP</b> : THis is a mandatory directory for heroku files uploads.  <br><br>
 
-SERVER.js Il s'agit du serveur node.js: Inclut les paramètres node.js, le chargement du module de session de nœud et le chargement des services Web CRUDS.
-\ SRC: C'est ici que vous développez l'application front-end vue.js, c'est fondamentalement l'application VUE.JS FRONT END complète.
-\ DIST: C'est là que le build apparaît lorsque vous tapez NPM RUN BUILD, c'est la dernière application frontale vue.js prête pour la production.
-\ CRUDS: Chaque fichier est un CRUD WEBS SERVICES (créer, lire, mettre à jour, supprimer).
-\ APPSYSTEM: Vous y trouverez le service Web d'authentification MondoDb (auth.js) et les fonctions middleware utilisées pour le contrôle des autorisations des services Web (permissions.js)
-\ TMP: C'est un répertoire obligatoire pour les téléchargements de fichiers heroku.
+
 
 
 ## Not available:
@@ -85,7 +80,14 @@ Data science  ...<br />
 <br /><br />
 ## French : 
 Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.<br>
-Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ...<br />
+Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, permissions, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ...<br /><br>
+
+SERVER.js Il s'agit du serveur node.js: Inclut les paramètres node.js, le chargement du module de session de nœud et le chargement des services Web CRUDS.<br>
+\ SRC: C'est ici que vous développez l'application front-end vue.js, c'est fondamentalement l'application VUE.JS FRONT END complète.<br>
+\ DIST: C'est là que le build apparaît lorsque vous tapez NPM RUN BUILD, c'est la dernière application frontale vue.js prête pour la production.<br>
+\ CRUDS: Chaque fichier est un CRUD WEBS SERVICES (créer, lire, mettre à jour, supprimer).<br>
+\ APPSYSTEM: Vous y trouverez le service Web d'authentification MondoDb (auth.js) et les fonctions middleware utilisées pour le contrôle des autorisations des services Web (permissions.js)<br>
+\ TMP: C'est un répertoire obligatoire pour les téléchargements de fichiers heroku.<br>
 
 ## Project setup
 Clone the depot using smargit, then install the node modules :
