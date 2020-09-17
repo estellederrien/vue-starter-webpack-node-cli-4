@@ -45,26 +45,6 @@ module.exports = function(app, db, permissions) {
         api_secret: "3UWkrND91MW3jhmGecvp77uetvQ",
     })
 
-    /* FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONNAL FTP'  YOU HAVE TO OWN A FTP SERVER*/
-    let sftp = new Client()
-
-    sftp.connect({
-            host: "test.rebex.net",
-            user: "demo",
-            password: "password",
-            port: 22,
-        })
-        .then(() => {
-            return sftp.list("/")
-        })
-        .then((data) => {
-            console.log(data, "the data info")
-        })
-        .catch((err) => {
-            console.log(err, "catch error")
-        })
-
-
 
     /* ************************************* MULTER IMAGES HANDLINGS ****************************************************** */
 
