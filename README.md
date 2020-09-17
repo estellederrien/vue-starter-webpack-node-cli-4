@@ -35,7 +35,14 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 <b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
 <b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
 <b>\APPSYSTEM</b> : There, you can find the MondoDb Authentication web service (auth.js), and the middleware functions used for webs services permissions control (permissions.js)<br>
-<b>\TMP</b> : THis is a mandatory directory for heroku files uploads.  <br>
+<b>\TMP</b> : THis is a mandatory directory for heroku files uploads.  <br><br>
+
+SERVER.js Il s'agit du serveur node.js: Inclut les paramètres node.js, le chargement du module de session de nœud et le chargement des services Web CRUDS.
+\ SRC: C'est ici que vous développez l'application front-end vue.js, c'est fondamentalement l'application VUE.JS FRONT END complète.
+\ DIST: C'est là que le build apparaît lorsque vous tapez NPM RUN BUILD, c'est la dernière application frontale vue.js prête pour la production.
+\ CRUDS: Chaque fichier est un CRUD WEBS SERVICES (créer, lire, mettre à jour, supprimer).
+\ APPSYSTEM: Vous y trouverez le service Web d'authentification MondoDb (auth.js) et les fonctions middleware utilisées pour le contrôle des autorisations des services Web (permissions.js)
+\ TMP: C'est un répertoire obligatoire pour les téléchargements de fichiers heroku.
 
 
 ## Not available:
