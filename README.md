@@ -28,12 +28,19 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 <br />
 
+## What's in files ?
+
+<b>SERVER.js</b> This is the node.js server who holds the node.js params and CRUDS loading. <br>
+<b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the FRONT END application. <br>
+<b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
+<b>\CRUDS</b> : Each file is a CRUD ( create , read, update , delete).<br>
+<b>\TMP</b> : THis is a mandatory directory for heroku files uploads. <br>
 
 
-## Won't contains :
+## Not available:
 VUEX : It is another starter in another GIT depot of mine<br />
 
-## Will Contains :
+## Available :
 
 1 Users CRUD<br />
 1 Auth system<br />
