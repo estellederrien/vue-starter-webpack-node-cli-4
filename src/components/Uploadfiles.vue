@@ -81,7 +81,7 @@ export default {
                 .post("/createFiles", formData, {
                     headers: {
                         crossdomain: true,
-                        "Content-Type": "undefined"
+                        "Content-Type": "multipart/form-data"
                     }
                 })
 
@@ -106,6 +106,30 @@ export default {
                         group: 'foo',
                         title: 'Hey! ',
                         text: 'Permission is missing ! -> <br> ' + error
+                    });
+                    console.log(error);
+
+                });
+
+                // DEV : ALL FILES ARE FTP SYNCED
+                 axios
+                .post("/transferFtpFiles", formData, {
+                    headers: {
+                        crossdomain: true,
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+
+                .then(response => {
+                    alert('dev')
+
+                })
+                .catch(error => {
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: error
                     });
                     console.log(error);
 

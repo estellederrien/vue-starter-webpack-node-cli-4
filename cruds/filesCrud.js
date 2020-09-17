@@ -23,40 +23,53 @@
 
 module.exports = function(app, db, permissions) {
 
-    /* ************************************* NODE MODULES ****************************************************** */
-
-    var Client = require("ssh2-sftp-client") // Managing the SFTP server connexion
-    var multer = require("multer") // Managing multiples files uploads
-    var fs = require("fs") // Managing the file system
+    /* ************************************* LOADING NODE MODULES ****************************************************** */
+    
+    const ftp       = require("basic-ftp") // ftp connexion
+    var Client      = require("ssh2-sftp-client") // Managing the SFTP server connexion
+    var multer      = require("multer") // Managing multiples files uploads
+    var fs          = require("fs") // Managing the file system
     const bodyParser = require("body-parser")
 
-    /* ************************************* STORAGE SERVERS CONNEXIONS PARAMS ****************************************************** */
 
-    /* FTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONAL FTP'  YOU HAVE TO OWN A FTP SERVER*/
-    let sftp = new Client()
+    /* ************************************* PARAMS    ****************************************************** */
 
-    sftp.connect({
-            host: "test.rebex.net",
-            user: "demo",
-            password: "password",
-            port: 22,
-        })
-        .then(() => {
-            return sftp.list("/")
-        })
-        .then((data) => {
-            console.log(data, "the data info")
-        })
-        .catch((err) => {
-            console.log(err, "catch error")
-        })
+    // NODE SERVER FILE PATH - CHEMIN DE STOCKAGE DES FICHERS SUR LE SERVER NODE
+    const path = "./tmp/files"
+    
+    /* FTP SERVER PARAMS - YOU HAVE TO OWN A FTP SERVER * https://www.npmjs.com/package/basic-ftp*/
+   const config =  {
+            host: "ftpupload.net",
+            user: "epiz_26763901",
+            password: "8I3OWcTxB53UG",
+            secure: false
+        }
+ 
+
+
+    /* SFTP SERVER PARAMS 'STORING FILES AND PICTURES ON MY PERSONAL FTP' */
+    /*     let sftp = new Client()
+
+    
+        sftp.connect(config)
+            .then(() => {
+                return sftp.list("/htdocs")
+            })
+            .then((data) => {
+                console.log(data, "the data info")
+            })
+            .catch((err) => {
+                console.log(err, "catch error")
+            })
+    */
+    
 
     /* ************************************* NODE.JS SERVER MULTER FILE HANDLINGS ****************************************************** */
 
     // If we store our files on our node.js server, then we have to use MULTER . - Si on stocke nos fichiers sur le server node, alors, il faut utiliser MULTER
     var storageFiles = multer.diskStorage({
         destination: function(req, file, cb) {
-            cb(null, "./tmp/files") // Path to store our files . Le chemain ou on enregistre nos fichiers.
+            cb(null, path) // Path to store our files . Le chemin ou on enregistre nos fichiers.
         },
         filename: function(req, file, cb) {
             let ext = file.originalname.substring(
@@ -115,7 +128,7 @@ module.exports = function(app, db, permissions) {
 
             try {
                 var fs = require("fs")
-                var filePath = "./tmp/files/" + file
+                var filePath = path + file
                 fs.unlinkSync(filePath)
                 res.sendStatus(200)
             } catch (e) {
@@ -129,9 +142,28 @@ module.exports = function(app, db, permissions) {
 
 
 
-    // CREATE A FILE  ON FTP WEB SERVICE
-    app.post("/createFtpFile", function(req, res, next) {
+    // CREATE A FILE  ON FTP WEB SERVICE IN DEV
+    app.post("/createFtpFiles", function(req, res, next) {
+        example()
+ 
+        async function example() {
+        const client = new ftp.Client()
+        client.ftp.verbose = true
+        try {
+            await client.access(config)
+            console.log(await client.list())
+            await client.ensureDir("htdocs/")
+            await client.clearWorkingDir()
+            await client.uploadFromDir("tmp/files")
+            // await client.uploadFrom("README.md", "README_FTP.md")
+            // await client.downloadTo("README_COPY.md", "README_FTP.md")
+        }
+        catch(err) {
+            console.log(err)
+        }
+        client.close()
         // TO DO
+        }
     })
 
     // READ A FILE ON FTP WEB SERVICE
@@ -148,6 +180,30 @@ module.exports = function(app, db, permissions) {
     app.post("/deleteFtpFile", function(req, res, next) {
         // TO DO
     })
+
+ // TRANSFERING ALL FILES TO FTP 
+ app.post("/transferFtpFiles", function(req, res, next) {
+    
+    example()
+ 
+    async function example() {
+        const client = new ftp.Client()
+        client.ftp.verbose = true
+        try {
+            await client.access(config)
+            console.log(await client.list())
+            await client.ensureDir("htdocs/")
+            await client.clearWorkingDir()
+            await client.uploadFromDir("tmp/files")
+            // await client.uploadFrom("README.md", "README_FTP.md")
+            // await client.downloadTo("README_COPY.md", "README_FTP.md")
+        }
+        catch(err) {
+            console.log(err)
+        }
+        client.close()
+    }
+})
 
     // ******************************************************** CLOUD FILES CRUD STORING WEB SERVICES ****************************************************** */
 
