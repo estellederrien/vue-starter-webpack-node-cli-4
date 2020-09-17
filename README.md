@@ -30,7 +30,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 ## What's in files ?
 
-<b>SERVER.js</b> This is the node.js server who holds the node.js params and CRUDS loading. <br>
+<b>SERVER.js</b> This is the node.js server: Includes the node.js params, node session module loading and the CRUDS web services loading. <br>
 <b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the complete VUE.JS FRONT END application. <br>
 <b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
 <b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
