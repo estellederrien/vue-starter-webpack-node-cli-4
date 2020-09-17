@@ -3,7 +3,7 @@ CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib
 
 
 ## Demos
-DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !=)<br>
+DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !)<br>
 
 
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
