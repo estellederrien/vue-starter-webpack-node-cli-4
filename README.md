@@ -38,6 +38,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 <b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
 <b>\APPSYSTEM</b> : There, you can find the MongoDb ATLAS Authentication web service (auth.js), and the middleware functions used for webs services permissions control (permissions.js)<br>
 <b>\TMP</b> : This is a mandatory directory , used for Heroku files uploads.  <br><br>
+<b>\SRC\App.vue</b> : There, you can find the global medias queries CSS styles, making the app fully responsive on all medias, this is an important part ! . </b>
 
 
 
@@ -90,6 +91,7 @@ Le but de ce starter est de pouvoir commencer n'importe quel application Node.js
 <b>\ CRUDS:</b> Chaque fichier est un CRUD WEBS SERVICES (créer, lire, mettre à jour, supprimer) un peu comme en java ou en php, sauf que c'est du NODE.JS.<br>
 <b>\ APPSYSTEM:</b> Vous y trouverez le service Web d'authentification sur MongoDb Atlas (auth.js) et les fonctions middleware utilisées pour le contrôle des autorisations des services Web (permissions.js)<br>
 <b>\ TMP:</b> C'est un répertoire obligatoire pour les téléchargements de fichiers sur Héroku.<br>
+<b>\SRC\App.vue</b> : Dans ce fichier, vous pouvez trouver les CSS Medias queries de l'app qui permettent de régler les styles css pour que cela passe sur tous les matériels .</b>
 
 ## Project setup
 Clone the depot using smargit, then install the node modules :
