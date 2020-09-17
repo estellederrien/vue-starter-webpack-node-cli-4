@@ -109,7 +109,7 @@ export default {
 
       // DEV : ALL FILES ARE FTP SYNCED
       axios
-        .post("/transferFtpFiles", formData, {
+        .post("/createFtpFiles", formData, {
           headers: {
             crossdomain: true,
             "Content-Type": "multipart/form-data",
