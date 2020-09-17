@@ -16,6 +16,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
+   09-17-2020 : Uploading multiples files to the FTP server is now working, next step is reading files from FTP ...<br>
   08-05-2020 : Uploadings pics is now active on heroku, switching to the tmp directory. next step is activating the ftp files uploading<br>
   08-04-2020 : I'm currently focused on performance issues ( initial loading is too slow)<br>
  08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
