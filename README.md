@@ -102,10 +102,10 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development on port 8080
-When you want to develop the vue.js application, run these 2 commands.
+When you want to develop the vue.js application, run these 2 commands in 2 differents windows CMD, at the root of the app.
 <br /> Then, go in your browser to localhost: 8080, and modify the files in the \ SRC directory
 <br /> To modify the BACK END, it is rather in the CRUDS directory<br>
-<br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes .
+<br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes dans 2 fenêtres différentes CMD sous windows, à la racine de l'application.
 <br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
 <br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```
