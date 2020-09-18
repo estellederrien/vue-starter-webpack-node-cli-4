@@ -96,9 +96,10 @@ Le but de ce starter est de pouvoir commencer n'importe quel application Node.js
 <b>\SRC\App.vue</b> : Dans ce fichier, vous pouvez trouver les CSS Medias queries de l'app qui permettent de régler les styles css pour que cela passe sur tous les matériels .</b>
 
 ## Project setup
-Clone the depot using smargit, then install the node modules :
+Clone the depot using smargit, then install the node modules at the root of the app, enter :<br>
+Coonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant ceci à la racine de l'application, dans une fenêtre windows :
 ```
-npm install
+#npm install
 ```
 
 ### Compiles and hot-reloads for development on port 8080
