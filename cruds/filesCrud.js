@@ -196,9 +196,36 @@ module.exports = function(app, db, permissions) {
     }
   });
 
-  // READ A FILE ON FTP WEB SERVICE
+    /*
+   * Read an FTP file - Lire un fichier sur le server FTP
+   * Downloading the file , transfering it to the tmp directory, so the front end can read it
+   * @params  JSON {name: file.filename}
+   * @return ARRAY - Filenames
+   * @error   NONE
+   */
   app.post("/readFtpFile", function(req, res, next) {
-    // TO DO
+    
+    // Init variables 
+    var file = req.body.name;
+    console.log(file );
+
+    read_my_ftp_file(file);
+
+    async function read_my_ftp_file(file) {
+      const client = new ftp.Client();
+      client.ftp.verbose = true;
+      try {
+        await client.access(config);
+        await client.ensureDir("htdocs/");
+        await client.downloadTo("tmp/files/"+file,file )
+        res.sendStatus(200);
+
+      } catch (err) {
+        console.log(err);
+        res.sendStatus(400);
+      }
+     client.close();
+    }
   });
 
   // UPDATE A FILE  ON FTP WEB SERVICE
