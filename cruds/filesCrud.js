@@ -21,13 +21,17 @@
 */
 
 module.exports = function(app, db, permissions) {
+
+
   /* ************************************* LOADING NODE MODULES ****************************************************** */
 
   const ftp = require("basic-ftp"); // ftp connexion
-  var Client = require("ssh2-sftp-client"); // Managing the SFTP server connexion
-  var multer = require("multer"); // Managing multiples files uploads
-  var fs = require("fs"); // Managing the file system
+  const Client = require("ssh2-sftp-client"); // Managing the SFTP server connexion
+  const multer = require("multer"); // Managing multiples files uploads
+  const fs = require("fs"); // Managing the file system
   const bodyParser = require("body-parser");
+
+
 
   /* ************************************* PARAMS    ****************************************************** */
 
@@ -58,26 +62,34 @@ module.exports = function(app, db, permissions) {
             })
     */
 
-  /* ************************************* NODE.JS SERVER MULTER FILE HANDLINGS ****************************************************** */
+  /* ************************************* MULTER MULTIPLE FILES UPLOADS FILE HANDLINGS ****************************************************** */
 
-  // If we store our files on our node.js server, then we have to use MULTER . - Si on stocke nos fichiers sur le server node, alors, il faut utiliser MULTER
+  // If we permit multiples uploads  then we have to use MULTER to add a date to each of the filenames, avoiding any duplicate .
+  // - Si on fait de l'upload de fichiers multiples, on utilise multer pour renommer les fichiers et les rendre uniques en y ajoutant la date
   var storageFiles = multer.diskStorage({
     destination: function(req, file, cb) {
       cb(null, path); // Path to store our files . Le chemin ou on enregistre nos fichiers.
     },
     filename: function(req, file, cb) {
-      let ext = file.originalname.substring(file.originalname.lastIndexOf("."), file.originalname.length);
-      cb(null, file.originalname + "-" + Date.now() + ext); // A date will guarantee our filename to be unique. , Ajouter la date gaurantit l'unicité du fichier, aucun doublon possible
+      let extension = file.originalname.substring(file.originalname.lastIndexOf("."), file.originalname.length);
+      let filename = file.originalname
+        .split(".")
+        .slice(0, -1)
+        .join(".");
+      cb(null, filename + "-" + Date.now() + extension); // A date will guarantee our filename to be unique. , Ajouter la date gaurantit l'unicité du fichier, aucun doublon possible
     },
   });
 
   var uploadFiles = multer({ storage: storageFiles });
 
+
+
+
   // ********************************** CRUD - STORING FILES ON THE NODE SERVER WEB SERVICES   - CRUD - STOCKE LES FICHIERS SUR LE SERVEUR NODE ****************************************************** */
 
   /*
    * Create multiples files on the node server - Créer des fichiers multiples en provenance du front end .
-   * @params Multiples files received from the front end  - In the FormData() format -  headers: {crossdomain: true,"Content-Type": "undefined"}
+   * @params Multiples files received from the front end  - In the FormData() format -  headers: {crossdomain: true,"Content-Type": "multipart/form-data"}
    * @return ARRAY - Filenames
    * @error   STATUS 400
    */
@@ -125,9 +137,17 @@ module.exports = function(app, db, permissions) {
     }
   });
 
-  // ******************************************************** FTP FILES STORING CRUD WEB SERVICES ****************************************************** */
 
-  // CREATE MULTIPLES FILES  ON FTP WEB SERVICE - PLEASE WAIT IT IS IN DEV
+
+
+  // ******************************************************** CRUD -  FTP FILES STORING CRUD WEB SERVICES ****************************************************** */
+
+   /*
+   * Create multiples files on the FTP server - Créer des fichiers multiples en provenance du front end .
+   * @params Multiples files received from the front end  - In the FormData() format -  headers: {crossdomain: true,"Content-Type": "multipart/form-data"}
+   * @return ARRAY - Filenames
+   * @error   NONE
+   */
   app.post("/createFtpFiles", uploadFiles.array("file", 10), function(req, res, next) {
     example();
 
@@ -152,6 +172,7 @@ module.exports = function(app, db, permissions) {
           filenames.push(file);
         });
 
+        // Sending back filenames to the frnot end for later display and db recording ...
         res.send(filenames);
 
       } catch (err) {
@@ -198,7 +219,10 @@ module.exports = function(app, db, permissions) {
     }
   });
 
-  // ******************************************************** CLOUD FILES CRUD STORING WEB SERVICES ****************************************************** */
+
+
+
+  // ******************************************************** CRUD -  CLOUD FILES CRUD STORING WEB SERVICES ****************************************************** */
 
   // CREATE A FILE ON THE CLOUD SERVER
   app.post("/createCloudFile", function(req, res, next) {
