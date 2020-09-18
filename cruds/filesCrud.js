@@ -198,7 +198,8 @@ module.exports = function(app, db, permissions) {
 
     /*
    * Read an FTP file - Lire un fichier sur le server FTP
-   * Downloading the file , transfering it to the tmp directory, so the front end can read it
+   * Downloading the FTP file , transfering it to the NODE.JS SERVER tmp directory, so the front end can read it
+   * On télécharge le fichier sur le FTP, puis on le place sur le server node.js dans le dossier TMP pour znsuite pouvoir le lire avec une requete AJAX danss vue.js
    * @params  JSON {name: file.filename}
    * @return  STATUS 200
    * @error   STATUS 400
