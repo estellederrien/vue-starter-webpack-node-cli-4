@@ -159,7 +159,7 @@ module.exports = function(app, db, permissions) {
     // *********************************** HELPER FUNCTIONS  ****************************************************** */
 
     /*
-     * Reducing image size with MULTER TODO
+     * Reducing image size with SHARP - TODO
      * @return image
      * @error 
      */
