@@ -218,7 +218,9 @@
                                                     </thead>
                                                     <tr v-for="file in user.filenames">
                                                         <td>
-                                                            <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                            <a class="float-left" > <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                             <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
+                                                             <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
                                                         </td>
                                                         <td> 
                                                             <span class="btn btn-warning" v-on:click="readFtpFile(file)">
