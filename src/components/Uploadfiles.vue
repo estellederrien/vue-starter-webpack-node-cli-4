@@ -63,9 +63,9 @@ export default {
       var formData = new FormData();
 
       /*
-                  Iterate over any file sent over appending the files
-                  to the form data.
-                  */
+    Iterate over any file sent over appending the files
+    to the form data.
+    */
       console.log(this.files);
 
       for (var i = 0; i < this.files.length; i++) {
@@ -76,13 +76,12 @@ export default {
 
       /*Make the request to the POST /multiple-files URL*/
       axios
-        .post("/createFiles", formData, {
+        .post("/createFtpFiles", formData, {
           headers: {
             crossdomain: true,
             "Content-Type": "multipart/form-data",
           },
         })
-
         .then((response) => {
           this.loading = false;
 
@@ -103,28 +102,6 @@ export default {
             group: "foo",
             title: "Hey! ",
             text: "Permission is missing ! -> <br> " + error,
-          });
-          console.log(error);
-        });
-
-      // DEV : ALL FILES ARE FTP SYNCED
-      axios
-        .post("/createFtpFiles", formData, {
-          headers: {
-            crossdomain: true,
-            "Content-Type": "multipart/form-data",
-          },
-        })
-
-        .then((response) => {
-          alert("dev");
-        })
-        .catch((error) => {
-          this.$notify({
-            type: "error",
-            group: "foo",
-            title: "Hey! ",
-            text: error,
           });
           console.log(error);
         });
