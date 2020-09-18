@@ -200,8 +200,8 @@ module.exports = function(app, db, permissions) {
    * Read an FTP file - Lire un fichier sur le server FTP
    * Downloading the file , transfering it to the tmp directory, so the front end can read it
    * @params  JSON {name: file.filename}
-   * @return ARRAY - Filenames
-   * @error   NONE
+   * @return  STATUS 200
+   * @error   STATUS 400
    */
   app.post("/readFtpFile", function(req, res, next) {
     
@@ -233,7 +233,13 @@ module.exports = function(app, db, permissions) {
     // TO DO
   });
 
-  // DELETE A FILE ON FTP WEB SERVICE
+    /*
+   * DELETE an FTP file - supprimer un fichier sur le server FTP
+   *
+   * @params  JSON {name: file.filename}
+   * @return  STATUS 200
+   * @error   STATUS 400
+   */
   app.post("/deleteFtpFile", function(req, res, next) {
      // Init variables 
      var file = req.body.name;
