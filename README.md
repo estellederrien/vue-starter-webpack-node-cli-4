@@ -97,7 +97,7 @@ Le but de ce starter est de pouvoir commencer n'importe quel application Node.js
 
 ## Project setup
 Clone the depot using smargit, then install the node modules at the root of the app, enter :<br>
-Coonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant ceci à la racine de l'application, dans une fenêtre windows :
+Clonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant ceci à la racine de l'application, dans une fenêtre windows :
 ```
 #npm install
 ```
