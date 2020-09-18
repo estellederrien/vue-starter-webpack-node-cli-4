@@ -211,6 +211,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Nom</th>
+                                                            <th>Télécharger du FTP</th>
                                                             <th>Supprimer</th>
                                                             <th>Permissions</th>
                                                         </tr>
@@ -219,7 +220,14 @@
                                                         <td>
                                                             <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
                                                         </td>
-                                                        <td> <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
+                                                        <td> 
+                                                            <span class="btn btn-warning" v-on:click="readFtpFile(file)">
+                                                                <i class="far fa-file"></i>
+                                                                <br />
+                                                            </span>
+                                                        </td>
+                                                        <td> 
+                                                            <span class="remove-file btn btn-primary" v-on:click="deleteFile(file)">
                                                                 <i class="far fa-trash-alt"></i>
                                                                 <br />
                                                             </span>
@@ -462,6 +470,52 @@ export default {
 
                     });
             }
+        },
+        readFtpFile(file) {
+            alert('I m getting your file on the ftp server, please wait.')
+            let self = this;
+           axios.post("readFtpFile", {name: file.filename})
+                .then(response => {
+                    alert('File had been transfered to the node server');
+                     axios({
+                        url: file.filename, //your url 
+                        method: 'GET',
+                        responseType: 'blob', // important
+                        }).then((response) => {
+                        const url = window.URL.createObjectURL(new Blob([response.data]));
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.setAttribute('download', 'file.pdf'); //or any other extension
+                        document.body.appendChild(link);
+                        link.click();
+                        });
+
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> ' + error
+                    });
+                }); 
+         
+        /*  axios({
+            url: 'readFtpFile',
+            method: 'GET',
+            responseType: 'blob', // important
+            }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.pdf'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+            }); */
+
+
+            
         },
         replaceByDefault(e) {
             e.target.src = "defaut.png";
