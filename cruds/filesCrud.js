@@ -98,12 +98,15 @@ module.exports = function(app, db, permissions) {
       console.log(err);
       //res.sendStatus(400)
     }
-    // Getting the Multer modified filenames, then send them back to the front end - ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
+    // Getting the Multer modified filenames, then send them back to the front end - 
+    // ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
     var filenames = [];
 
     req.files.forEach(function(file) {
       filenames.push(file);
     });
+    
+    // Sending back filenames to the VUE.js front end for later displaying and db recording ...
     res.send(filenames);
   });
 
@@ -165,14 +168,15 @@ module.exports = function(app, db, permissions) {
           await client.uploadFrom("tmp/files/" + req.files[x].filename, req.files[x].filename);
         }
 
-        // Getting the Multer modified filenames, then send them back to the front end - ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
+        // Getting the Multer modified filenames, then send them back to the front end - 
+        // ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
         var filenames = [];
 
         req.files.forEach(function(file) {
           filenames.push(file);
         });
 
-        // Sending back filenames to the frnot end for later display and db recording ...
+        // Sending back filenames to the VUE.js front end for later displaying and db recording ...
         res.send(filenames);
 
       } catch (err) {
@@ -197,7 +201,13 @@ module.exports = function(app, db, permissions) {
     // TO DO
   });
 
-  // TRANSFERING ALL OF THE NODE SERVER FILES TO AN FTP - TRANSFERER TOUS LES FICHIERS DU SERVEUR NODE SUR NOTRE SERVEUR FTP
+
+  /*
+   * TRANSFERING ALL OF THE NODE SERVER FILES TO AN FTP - TRANSFERER TOUS LES FICHIERS DU SERVEUR NODE SUR NOTRE SERVEUR FTP
+   * @params Multiples files received from the front end  - In the FormData() format -  headers: {crossdomain: true,"Content-Type": "multipart/form-data"}
+   * @return ARRAY - Filenames
+   * @error   NONE
+   */
   app.post("/transferFtpFiles", function(req, res, next) {
     example();
 
@@ -210,8 +220,8 @@ module.exports = function(app, db, permissions) {
         await client.ensureDir("htdocs/");
         await client.clearWorkingDir();
         await client.uploadFromDir("tmp/files");
-        // await client.uploadFrom("README.md", "README_FTP.md")
-        // await client.downloadTo("README_COPY.md", "README_FTP.md")
+        // DEBUG await client.uploadFrom("README.md", "README_FTP.md")
+        // DEBUG await client.downloadTo("README_COPY.md", "README_FTP.md")
       } catch (err) {
         console.log(err);
       }
