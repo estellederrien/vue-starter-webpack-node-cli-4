@@ -94,20 +94,24 @@ module.exports = function(app, db, permissions) {
    * @error   STATUS 400
    */
   app.post("/createFiles", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_FILE"), uploadFiles.array("file", 10), function(req, res, err) {
+    
+    // Init variables
+    var filenames = [];
+
     if (err) {
       console.log(err);
       //res.sendStatus(400)
     }
     // Getting the Multer modified filenames, then send them back to the front end - 
-    // ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
-    var filenames = [];
-
+    // On récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
+    
     req.files.forEach(function(file) {
       filenames.push(file);
     });
     
     // Sending back filenames to the VUE.js front end for later displaying and db recording ...
     res.send(filenames);
+
   });
 
   /*
@@ -152,26 +156,32 @@ module.exports = function(app, db, permissions) {
    * @error   NONE
    */
   app.post("/createFtpFiles", uploadFiles.array("file", 10), function(req, res, next) {
+
+    
     example();
 
     async function example() {
       const client = new ftp.Client();
       client.ftp.verbose = true;
       try {
+
+        //Init variables 
+        var filenames = [];
+
         await client.access(config);
         await client.ensureDir("htdocs/");
 
         // DEBUG await client.uploadFrom("tmp/files/README.md.txt", "README_FTP.md")
 
-        // Getting all files  then sending them one by one ASYNc to  the ftp server - ON prends chaque fichier et on les envoie sur le ftp un par un dans une boucle for avec un async je sais cest bizarre mais ça marche
+        // Getting all files  then sending them one by one ASYNc to  the ftp server - 
+        // ON prends chaque fichier et on les envoie sur le ftp un par un dans une boucle for avec un async je sais cest bizarre mais ça marche
         for (var x = 0; x < req.files.length; x++) {
           await client.uploadFrom("tmp/files/" + req.files[x].filename, req.files[x].filename);
         }
 
         // Getting the Multer modified filenames, then send them back to the front end - 
         // ON récupère les noms des fichiers qui ont été modifiés par multer, puis on les renvoit au front end .
-        var filenames = [];
-
+      
         req.files.forEach(function(file) {
           filenames.push(file);
         });
