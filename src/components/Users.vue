@@ -115,7 +115,7 @@ export default {
                 .then(response => {
                     this.users = response.data;
                     this.loaded = true;
-                    console.log(this.users);
+                    //console.log(this.users);
                 })
                 .catch(function (error) {
                     console.log(error);
