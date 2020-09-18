@@ -235,7 +235,27 @@ module.exports = function(app, db, permissions) {
 
   // DELETE A FILE ON FTP WEB SERVICE
   app.post("/deleteFtpFile", function(req, res, next) {
-    // TO DO
+     // Init variables 
+     var file = req.body.name;
+     console.log(file );
+ 
+     delete_my_ftp_file(file);
+ 
+     async function delete_my_ftp_file(file) {
+       const client = new ftp.Client();
+       client.ftp.verbose = true;
+       try {
+         await client.access(config);
+         await client.ensureDir("htdocs/");
+         await client.remove(file)
+         res.sendStatus(200);
+ 
+       } catch (err) {
+         console.log(err);
+         res.sendStatus(400);
+       }
+      client.close();
+     }
   });
 
 
