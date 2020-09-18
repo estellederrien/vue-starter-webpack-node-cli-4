@@ -158,9 +158,9 @@ module.exports = function(app, db, permissions) {
   app.post("/createFtpFiles", uploadFiles.array("file", 10), function(req, res, next) {
 
     
-    example();
+    send_my_files_to_the_ftp();
 
-    async function example() {
+    async function send_my_files_to_the_ftp() {
       const client = new ftp.Client();
       client.ftp.verbose = true;
       try {
@@ -173,8 +173,8 @@ module.exports = function(app, db, permissions) {
 
         // DEBUG await client.uploadFrom("tmp/files/README.md.txt", "README_FTP.md")
 
-        // Getting all files  then sending them one by one ASYNc to  the ftp server - 
-        // ON prends chaque fichier et on les envoie sur le ftp un par un dans une boucle for avec un async je sais cest bizarre mais ça marche
+        // Getting all files  then sending them one by one ASYNC to  the ftp server - 
+        // On prends chaque fichier et on les envoie sur le ftp un par un dans une boucle for avec un async, je sais cest bizarre mais ça marche
         for (var x = 0; x < req.files.length; x++) {
           await client.uploadFrom("tmp/files/" + req.files[x].filename, req.files[x].filename);
         }
