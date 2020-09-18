@@ -109,7 +109,10 @@ When you want to develop the vue.js application, run these 2 commands.
 <br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
 <br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```
-npm run serve ( the dev env) , then, npm run start (the node server)
+// Open a cmd window on WINDOWS
+#npm run serve ( the dev env runiing on port 8080) 
+//Open another CMD window then enter :
+#node server.js (the node server running on port 80)
 ```
 
 ### Compiles and minifies for production
