@@ -60,15 +60,15 @@
 
                                 </div>
 
-                                <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                               <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <div >
                                         <label > Groupes </label><br>
-                                        <div class="badge badge-success" v-for="g in user.groups">
-                                            <i class="fas fa-users"></i> {{ g.name }}
+                                        <div class="badge badge-success" v-for="groupName in user.groups">
+                                            <i class="fas fa-users"></i> {{ groupName }}
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> 
 
                             </div>
 

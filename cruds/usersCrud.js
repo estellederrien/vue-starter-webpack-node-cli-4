@@ -20,6 +20,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         // Setting a new empty user files array
         user.filenames = [];
+        user.groups = [];
 
         // CONTROLE DE DOUBLONS EMAIL
         // Checking if no email duplicate
@@ -132,7 +133,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         // Setting a new empty user files array
         user.filenames = [];
-
+        user.groups = [];
+        
         // CONTROLE DE DOUBLONS EMAIL
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
             if (!result) {
@@ -357,27 +359,5 @@ module.exports = function(app, db, permissions, bcrypt) {
         return docs;
     }
 
-    /*
-     * Async call in the purpose to know  which groups a user belongs to .
-     * Pour retrouver les groupes d'un user
-     * @return JSON ARRAY users including his groups
-     * @error none
-     */
-    // CHAINER PLUSIEURS COLLECTIONS CALL EN MODE ASYNC
-    async function getUsersGroups(users, req) {
-        await Promise.all(
-            users.map((user) => {
-                return db
-                    .collection("groups")
-                    .find({ "users._id": String(user._id) })
-                    .toArray()
-                    .then((group) => {
-                        user.groups = group;
-                        // console.log(group);
-                    });
-            })
-        );
 
-        return users;
-    }
 };

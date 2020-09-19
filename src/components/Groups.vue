@@ -107,7 +107,7 @@
                     {{user.nom}} -
                   </span>
                 </th>
-                <th>{{group.date_creation}}</th>
+                <th>{{group.creation_date}}</th>
               </tr>
             </tbody>
           </table>
