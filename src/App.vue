@@ -4,7 +4,7 @@
 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="#">Vue-Node-Starter by Nicolas Huleux</a>
+            <a class="navbar-brand" href="#">Vue-Node-Starter by Nicolas Huleux  V. {{v}}</a>
 
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -125,6 +125,10 @@ export default {
         SidebarMenu,
         messages: Messages
     },
+    created() {
+        // APPLICATION_VERSION is coming from the vue.config.js file and is set in package.json
+        this.v = APPLICATION_VERSION;
+    },
     methods: {
         profile() {
             this.$router.push("/profile");
@@ -151,6 +155,7 @@ export default {
     },
     data() {
         return {
+            v:"",
             collapsed: true,
             width: "250px",
             relative: true,
