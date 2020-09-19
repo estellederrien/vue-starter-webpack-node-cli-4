@@ -209,8 +209,8 @@ module.exports = function(app, db, permissions, bcrypt) {
             // Getting the user files EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
             // docs = FilterByFilesPermissions(docs, req);
 
-            // Getting the user groups
-            getUsersGroups(docs, req)
+            // Getting the user groups  EDIT : TOO SLOW MOOVE IT TO A BACKGROUND TASK !!!!
+          /*   getUsersGroups(docs, req)
                 .then((users) => {
                     res.send(users);
                 })
@@ -218,6 +218,8 @@ module.exports = function(app, db, permissions, bcrypt) {
                     // if you have an error
                     console.log(error);
                 });
+ */
+                res.send(docs);
         });
     });
 
