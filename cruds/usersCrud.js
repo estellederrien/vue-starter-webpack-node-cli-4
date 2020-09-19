@@ -206,8 +206,8 @@ module.exports = function(app, db, permissions, bcrypt) {
             if (err) throw err;
             console.log(err);
 
-            // Getting the user files
-            docs = FilterByFilesPermissions(docs, req);
+            // Getting the user files EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
+            // docs = FilterByFilesPermissions(docs, req);
 
             // Getting the user groups
             getUsersGroups(docs, req)
