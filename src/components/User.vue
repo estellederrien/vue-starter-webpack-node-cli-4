@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"></src></span>
+        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"/></span>
     </div>
     <div class="container-fluid " id="userDiv" v-show="loaded">
         <form method="post">
@@ -221,7 +221,7 @@
                                             
                                             <td>
 
-                                                <a class="float-left" v-bind:href="'files/' + file.filename"><i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                <a class="float-left" ><i class="fas fa-file-alt"></i> {{ file.filename }}</a>
                                             </td>
 
                                         </tr>
