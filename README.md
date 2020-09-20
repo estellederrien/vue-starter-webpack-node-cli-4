@@ -1,7 +1,7 @@
 # Vue.js + Node.js + MongoDb Atlas Full stack starter ! 
-. BLazing fast Vue.js + node.js app starter .<br>
+. Blazing fast 2020 Vue.js + node.js app starter .<br>
 . Easy to understand CRUD(create,read,update,delete) back end files reminding the Php or Java style.<br>
-. CLI v4.0 and Express.<br>
+. Pictures are stored on Cloudinary, Files are FTP stored .<br>
 . MongoDb node.js module (no Mongoose)<br>
 . Working Mocha Chai unit components testing for Vue.js .<br>
 . Shaman Linear regression library. <br>
