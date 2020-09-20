@@ -104,7 +104,8 @@ Le but de ce starter est de pouvoir commencer n'importe quel application Node.js
 <b>\ CRUDS:</b> Chaque fichier est un CRUD WEBS SERVICES (créer, lire, mettre à jour, supprimer) un peu comme en java ou en php, sauf que c'est du NODE.JS.<br>
 <b>\ APPSYSTEM:</b> Vous y trouverez le service Web d'authentification sur MongoDb Atlas (auth.js) et les fonctions middleware utilisées pour le contrôle des autorisations des services Web (permissions.js)<br>
 <b>\ TMP:</b> C'est un répertoire obligatoire pour les téléchargements de fichiers sur Héroku.<br>
-<b>\SRC\App.vue</b> : Dans ce fichier, vous pouvez trouver les CSS Medias queries de l'app qui permettent de régler les styles css pour que cela passe sur tous les matériels .</b>
+<b>\SRC\App.vue</b> : Dans ce fichier, vous pouvez trouver les CSS Medias queries de l'app qui permettent de régler les styles css pour que cela passe sur tous les matériels .</br>
+<b>\TESTS</b> : On execute NPM RUN TEST dans ce rep pour tester tous les components de l'app vue.js
 
 ## Project setup
 Clone the depot using smargit, then install the node modules at the root of the app, enter :<br>
