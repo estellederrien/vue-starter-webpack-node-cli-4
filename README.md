@@ -4,7 +4,7 @@
 . Pictures are stored on Cloudinary, Files are FTP stored .<br>
 . MongoDb node.js module (no Mongoose), CRUDS files are switchables to SQL relational databases CRUDS with ease<br>
 . Working Mocha Chai unit components testing for Vue.js .<br>
-. Shaman Linear regression library. <br>
+. This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
 . Git Commits are automatically Heroku synced .<br>
 
 ## Demos
