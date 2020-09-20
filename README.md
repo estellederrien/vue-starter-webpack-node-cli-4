@@ -2,11 +2,11 @@
 . CLI v4.0 and Express<br>
 . Mocha unit components testing <br>
 . Shaman Linear regression lib <br>
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+. Git Commits are automatically Heroku synced .<br>
 
 ## Demos
-DEMO : HEROKU : https://vuestartergit.herokuapp.com/  (Commits are automatically synced !)<br>
-
+DEMO-> HEROKU : https://vuestartergit.herokuapp.com/  
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
