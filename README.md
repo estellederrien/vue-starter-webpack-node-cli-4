@@ -5,8 +5,8 @@
 . Git Commits are automatically Heroku synced .<br>
 
 ## Demos
-DEMO-> HEROKU : https://vuestartergit.herokuapp.com/  
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+DEMO-> HEROKU : https://vuestartergit.herokuapp.com/  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
