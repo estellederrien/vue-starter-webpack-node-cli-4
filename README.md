@@ -1,5 +1,7 @@
-# Vue.js + Node.js + MongoDb Atlas FULL STACK STARTER ! 
-CLI v4.0 + Mocha unit components testing + Shaman Linear regression lib 
+# Vue.js + Node.js + MongoDb Atlas Full stack starter ! 
+. CLI v4.0 and Express<br>
+. Mocha unit components testing <br>
+. Shaman Linear regression lib <br>
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Demos
