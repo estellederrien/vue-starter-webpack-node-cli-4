@@ -1,5 +1,5 @@
 # My Vue.js + Node.js + MongoDb Atlas Full stack starter ! 
-. Blazing fast 2020 Vue.js + node.js app starter .<br>
+. Blazing fast 2020 Modern Vue.js + Node.js app starter .<br>
 . Easy to understand CRUD(create,read,update,delete) back end files reminding the Php or Java style.<br>
 . Pictures are stored on Cloudinary, Files are FTP stored .<br>
 . MongoDb node.js module (no Mongoose), CRUDS files are switchables to SQL relational databases CRUDS with ease<br>
