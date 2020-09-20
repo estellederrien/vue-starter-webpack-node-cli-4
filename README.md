@@ -25,7 +25,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  09-19-2020 : The app is now blazin' fast ! We can go forward now !!<br>
+  09-19-2020 : The app is now blazin' fast ! We can moove forward now !!<br>
   09-19-2020 : The group query was slowing the readUsers web service a lot ! Disabled and making it a background task theses days! ReadUsers is now immediate ! The app will be blazin' fast<br>
   09-10-2020 : The infinity free FTP policy is limiting and blocking at a certain point :  230-Your bandwidth usage is restricted... I am currently searching for another FTP - reading and downloading from FTP is now working<br>
    09-17-2020 : Uploading multiples files to the FTP server is now working, next step is reading files from FTP ...<br>
