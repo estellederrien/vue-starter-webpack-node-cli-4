@@ -2,6 +2,7 @@
 module.exports = function(app, db, permissions, bcrypt) {
     /*
      * Creating a user
+     * @params JSON OBJECT : {}
      * @return Status 200
      * @error  Status 400
      */
@@ -53,6 +54,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Reading a user
+     * @params JSON OBJECT : {id: this.id}
      * @return JSON OBJECT
      * @error
      */
@@ -70,6 +72,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      *  Updating a user
+     *  @params JSON OBJECT : {}
      *  @return 200
      *  @error 400
      */
@@ -107,6 +110,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Register an anonymous user
+     * @params JSON OBJECT : {}
      * @return 200
      * @error  400
      */
@@ -163,7 +167,8 @@ module.exports = function(app, db, permissions, bcrypt) {
     });
 
     /*
-     *  Delete a user
+     * Delete a user
+     * @params JSON OBJECT : {}
      * @return 200
      * @error  400
      */
@@ -189,7 +194,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      *  Read all users
-     *
+     *  @params FILTERS JSON OBJECT : {}
      *  @return json array
      *  @error
      */
@@ -201,27 +206,16 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         // FINAL USERS READ
         db.collection("users")
-            // find holds the front end filters
-            .find(filters)
+           .find(filters) // find holds the front end filters
+           .toArray(function(err, docs) {
+                if (err) throw err;
+                console.log(err);
 
-        .toArray(function(err, docs) {
-            if (err) throw err;
-            console.log(err);
-
-            // Getting the user files EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
+            // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
             // docs = FilterByFilesPermissions(docs, req);
 
-            // Getting the user groups  EDIT : TOO SLOW MOOVE IT TO A BACKGROUND TASK !!!!
-          /*   getUsersGroups(docs, req)
-                .then((users) => {
-                    res.send(users);
-                })
-                .catch((error) => {
-                    // if you have an error
-                    console.log(error);
-                });
- */
-                res.send(docs);
+            // Sending the users list to the front end vue.js
+            res.send(docs);
         });
     });
 
@@ -248,8 +242,9 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Search user by pseudo
+     *  @params ?
      *  @return json array
-     *  @error
+     *  @error NONE
      */
 
     app.get("/searchUsers", function(req, res) {
@@ -266,7 +261,9 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      * Counting users
+     *  @params NONE
      *  @return json object
+     *  @error NONE
      */
 
     app.get("/getUsersCount", function(req, res) {
@@ -281,9 +278,9 @@ module.exports = function(app, db, permissions, bcrypt) {
 
     /*
      *  Structuring front end filters, for the .find mongodDb function
-     *
+     *  @params JSON OBJECT FILTERS {}
      *  @return JSON OBJECT find
-     *  @error
+     *  @error NONE
      */
 
     function structureFilters(frontEndFilters) {
@@ -320,6 +317,7 @@ module.exports = function(app, db, permissions, bcrypt) {
     /* HELPER
      * Cleaning empty objects and array
      * Delete any empty array or object from object
+     * @params OBJECT
      * @return none
      * @error none
      */
@@ -336,6 +334,7 @@ module.exports = function(app, db, permissions, bcrypt) {
      * 
      * FILTER TO CHECK IF A USER HAS THE PERMISSION TO DO SOMTHING
      * Filtre les documents des utilisateurs si ils ont la permission ou pas
+     * @params JSON ARRAY
      * @return JSON ARRAY docs
      * @error none
      */
