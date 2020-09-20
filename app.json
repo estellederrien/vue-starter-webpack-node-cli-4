@@ -1,0 +1,7 @@
+{
+  "name": "Vue.js Node MOngoDb Atlas starter",
+  "description": "A full stack starter",
+  "repository": "https://github.com/nicolas15000/vue-starter-webpack-node-cli-4",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "vue","mongodb","atlas"]
+}
