@@ -7,7 +7,9 @@
 ## Demos
 HEROKU LIVE DEMO ->  : https://vuestartergit.herokuapp.com/  
 
-<p align="left">[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)</p>
+<a align="right" href="https://heroku.com/deploy">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a>
 
 
 Testing: log in with -> login: admin@admin.com -> password: admin <br />
