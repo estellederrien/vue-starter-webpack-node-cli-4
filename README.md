@@ -2,7 +2,7 @@
 . Blazing fast 2020 Vue.js + node.js app starter .<br>
 . Easy to understand CRUD(create,read,update,delete) back end files reminding the Php or Java style.<br>
 . Pictures are stored on Cloudinary, Files are FTP stored .<br>
-. MongoDb node.js module (no Mongoose)<br>
+. MongoDb node.js module (no Mongoose), CRUDS files are switchables to SQL relationnal databases CRUDS<br>
 . Working Mocha Chai unit components testing for Vue.js .<br>
 . Shaman Linear regression library. <br>
 . Git Commits are automatically Heroku synced .<br>
