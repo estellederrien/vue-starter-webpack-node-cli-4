@@ -1,7 +1,7 @@
 # Vue.js + Node.js + MongoDb Atlas Full stack starter ! 
-. CLI v4.0 and Express<br>
-. Mocha unit components testing <br>
-. Shaman Linear regression lib <br>
+. CLI v4.0 and Express.<br>
+. Working Mocha Chai unit components testing for vue.js .<br>
+. Shaman Linear regression library. <br>
 . Git Commits are automatically Heroku synced .<br>
 
 ## Demos
