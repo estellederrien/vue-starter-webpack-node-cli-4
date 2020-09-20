@@ -7,8 +7,8 @@
 ## Demos
 HEROKU LIVE DEMO ->  : https://vuestartergit.herokuapp.com/  
 
-<a align="right" href="https://heroku.com/deploy">
-  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+<a href="https://heroku.com/deploy">
+  <img  align="right"  src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 
 
