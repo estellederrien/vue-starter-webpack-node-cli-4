@@ -179,6 +179,7 @@ export default {
 
 .card-body{
     padding: 1px !important;
+    max-height: 160px !important;
 }
 
 .tab-pane {
