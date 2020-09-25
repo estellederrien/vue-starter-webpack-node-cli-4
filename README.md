@@ -59,7 +59,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 ## Not available:
 VUEX : It is another starter in another GIT depot of mine<br />
 
-## Available :
+## Features:
 
 1 Users CRUD<br />
 1 Auth system<br />
@@ -74,16 +74,17 @@ VUEX : It is another starter in another GIT depot of mine<br />
 1 File session store<br />
 1 Calendar lib<br />
 1 V-dialog lib<br />
-1 SOCKET.IO realtime evolutive system <br />
-1 Gps positionning lib <br />
+1 Notifier https://github.com/euvl/vue-notification<br />
 1 multi selector : https://vue-multiselect.js.org/ <br />
+1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider
 
 <br /><br />
 ## Comin' soon ! ...
+1 SOCKET.IO realtime evolutive system <br />
+1 Gps positionning lib <br />
 1 Drag n drop lib <br />
-1 Notifier https://github.com/euvl/vue-notification<br />
 1 Node worker-thread ready to go system.<br />
-1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider
+
 <br /><br />
 Data science  ...<br />
 1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver and/or https://github.com/jvail/glpk.js<br />
