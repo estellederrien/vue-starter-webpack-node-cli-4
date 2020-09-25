@@ -8,7 +8,7 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
     app.post("/createUser", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_USER"), function(req, res) {
 
-        // 1. Getting front end data
+        // 1. Receiving front end data - On reçoit le data du front end
         var user = req.body;
 
         // 2. Checking mandatory fields presence - Controle présence des champs obligatoires. 
@@ -60,10 +60,12 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/readUser", function(req, res) {
-        var identifiant = req.param("id");
-        var ObjectId = require("mongodb").ObjectID;
-        var idObj = ObjectId(identifiant);
 
+        // 1. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
+        var ObjectId = require("mongodb").ObjectID;
+        var idObj = ObjectId(req.param("id"));
+
+        // 2. MongodDb Final Query
         db.collection("users").findOne({ _id: idObj }, function(findErr, result) {
             if (findErr) throw findErr;
             res.send(result);
@@ -78,30 +80,28 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/updateUser", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_USER"), function(req, res) {
-        // GETTIN DATA FROM FRONTEND
+
+        // 1. Receiving Front end Data - On reçois le data du front end .
         var user = req.body;
 
-        // On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
-        // Avoidning hacking by keeping the id and password from the session, not from the front end
+        // 2. Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)      
         user._id = req.session.user._id;
         user.password = req.session.user.password;
         user.last_update = new Date();
 
-        // MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
-        // Updateing session user object with the new data
-        req.session.user = user;
-
-        // RECORDING PHASE
+        // 3. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(user._id);
 
-        // OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
-        // This is mandatory, to avoid conflict
+        // 4. This is mandatory, to avoid conflict during the update -  OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
         delete user._id;
 
+        // 5 Final mongoDb QUERY
         try {
             db.collection("users").replaceOne({ _id: idObj }, user);
             res.sendStatus(200);
+            // Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
+            req.session.user = user;
         } catch (e) {
             res.sendStatus(400);
             console.log(e);
@@ -116,30 +116,19 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/registerUser", function(req, res) {
-        // gettin data from front end
+
+        // 1. Receiving Front end Data - On reçois le data du front end .
         var user = req.body;
 
-        // CONTROLE DES CHAMPS OBLIGATOIRES
+        // 2. Checking mandatory fields presence - Controle présence des champs obligatoires. 
         if (!user.prenom || !user.email || !user.password || !user.nom || user.password == "") {
             res.send({ problem: "Le formulaire est encore incomplet (serveur)" });
             return;
         }
 
-        // IP FLOODING CONTROL    // TODO
+        // 3. IP FLOODING CONTROL    // TODO
 
-        //ANONYMOUS ACCOUNT CREATION
-
-        // Creating the user's role
-        user.role = "user";
-
-        // Creating the user's permissions
-        user.permissions = permissions.create_permissions(user);
-
-        // Setting a new empty user files array
-        user.filenames = [];
-        user.groups = [];
-
-        // CONTROLE DE DOUBLONS EMAIL
+        // 4. CONTROLE DE DOUBLONS EMAIL
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
             if (!result) {
                 execute();
@@ -150,6 +139,21 @@ module.exports = function(app, db, permissions, bcrypt) {
             }
         });
 
+
+        // 5. Creating the user's role
+        user.role = "user";
+
+        // 6. Creating the user's permissions
+        user.permissions = permissions.create_permissions(user);
+
+        // 7. Setting a new empty user files array
+        user.filenames = [];
+
+        // 8. Setting a new empty user groups array
+        user.groups = [];
+
+
+        // 9. Final insert mongoDb query
         function execute() {
             // HASCHAGE BCRYPT DU PASSWORD
             var hash = bcrypt.hashSync(user.password, 10);
@@ -174,17 +178,20 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/deleteUser", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_USER"), function(req, res) {
+
+        // 1. Receiving Front end Data - On reçois le data du front end .
         var user = req.body;
+
+        // 2. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(user._id);
 
+        // 3. Final delete mongoDb query
         try {
             db.collection("users").deleteOne({ _id: idObj });
-            console.log("supprimé un user");
+            console.log("User have been deleted");
             // Delete session
             delete req.session;
-            // delete_user_from_all(user);
-
             res.sendStatus(200);
         } catch (e) {
             console.log(e);
@@ -200,11 +207,11 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     app.post("/readUsers", function(req, res) {
-        // We receive front end filters params, and we need to structure them, before using the .find() mongoDb function
-        // ON reçoits les filtres du front end, on doi les strcturer pour ensuite exéctuer mongoDB .find() avec les filtres en paramêtres
+
+        // 1. We receive front end filters params, and we need to structure them, before using the .find() mongoDb function   // ON reçoits les filtres du front end, on doi les strcturer pour ensuite exéctuer mongoDB .find() avec les filtres en paramêtres
         var filters = structureFilters(req.body.filters);
 
-        // FINAL USERS READ
+        // 2. Final read mongoDb query
         db.collection("users")
             .find(filters) // find holds the front end filters
             .toArray(function(err, docs) {
@@ -214,7 +221,7 @@ module.exports = function(app, db, permissions, bcrypt) {
                 // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
                 // docs = FilterByFilesPermissions(docs, req);
 
-                // Sending the users list to the front end vue.js
+                // 3. Sending the users list to the front end vue.js
                 res.send(docs);
             });
     });
