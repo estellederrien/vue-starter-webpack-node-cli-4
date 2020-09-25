@@ -57,7 +57,7 @@ Please allow from 1 month to 3 months for it to get finished. t<br>
 
 
 ## Not available:
-VUEX : It is another starter in another GIT depot of mine<br />
+VUEX : It is another starter in another GIT depot of mine, I will eventually add it later .<br />
 
 ## Features:
 
