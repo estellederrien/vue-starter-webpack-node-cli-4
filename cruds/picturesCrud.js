@@ -25,7 +25,7 @@
 */
 
 
-module.exports = function(app, db, permissions) {
+module.exports = function(app, db, permissions, cloudinaryToken) {
     /* ************************************* NODE MODULES ****************************************************** */
 
     var cloudinary = require("cloudinary") // Managing the cloudinary server pictures storing
@@ -39,11 +39,7 @@ module.exports = function(app, db, permissions) {
 
     /*  CLOUDINARY PARAMS 'STORING PICTURES ON THE CLOUD' YOU HAVE TO OWN A CLOUDINARY ACCOUNT */
 
-    cloudinary.config({
-        cloud_name: "ddq5asuy2",
-        api_key: "354237299578646",
-        api_secret: "3UWkrND91MW3jhmGecvp77uetvQ",
-    })
+    cloudinary.config(cloudinaryToken);
 
 
     /* ************************************* MULTER IMAGES HANDLINGS ****************************************************** */
