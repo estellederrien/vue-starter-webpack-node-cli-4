@@ -26,7 +26,6 @@ module.exports = function(app, db, session, bcrypt, logStream) {
                 // step 3. COMPARING PASSWORDS ( front end vs db ) - ON compare le password entré et celui de la database
                 if (bcrypt.compareSync(frontEndUser.password, dbUser.password)) { // Passwords match
 
-
                     // step 4. BUILDING THE BACKEND USER SESSION - AJOUT DES DATAS DU USER A LA SESSION ET LE FAIT QUIL EST LOGGE
                     req.session.loggedIn = true;
                     req.session.user = dbUser;
@@ -34,14 +33,14 @@ module.exports = function(app, db, session, bcrypt, logStream) {
                     // step 5. SENDING USER DATA TO FRONT END ENVOI DU USER AU FRONT END
                     res.send(dbUser);
 
-                    // USER CONNEXION IS WRITTEN IN LOGS
+                    // step 6. USER CONNEXION IS WRITTEN IN LOGS
                     var d = new Date(Date.now());
                     logStream.write('USER : ' + req.session.user.email + ' CONNECTED AT : ' + d.toString() + '\r\n');
                     // logStream.end('\r\n');
 
                 } else {
-                    //
-                    // step 6 : Passwords don't match  Erreur de mot de passe
+
+                    // step 7 : Passwords don't match  Erreur de mot de passe
                     console.log("Passwords don't match");
                     res.status(403).send({ errorCode: "403" });
                 }
