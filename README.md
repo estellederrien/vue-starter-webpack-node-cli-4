@@ -63,8 +63,9 @@ VUEX : It is another starter in another GIT depot of mine<br />
 
 1 Users CRUD<br />
 1 Auth system<br />
+1 Middleware functions file dedicaed to the web services (permissions.js)
 1 Profiles and Permissions management system (Front and Back)<br />
-1 Files management - and permissions -system by users<br />
+1 FTP Files management - and permissions -system by users<br />
 1 Dashboard with some graphicals libs<br />
 1 Form validator : (https://vuelidate.js.org/#getting-started)<br />
 1 Internal Messaging CRUD<br />
@@ -76,7 +77,7 @@ VUEX : It is another starter in another GIT depot of mine<br />
 1 V-dialog lib<br />
 1 Notifier https://github.com/euvl/vue-notification<br />
 1 multi selector : https://vue-multiselect.js.org/ <br />
-1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider
+1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider<br />
 
 <br /><br />
 ## Comin' soon ! ...
@@ -84,6 +85,7 @@ VUEX : It is another starter in another GIT depot of mine<br />
 1 Gps positionning lib <br />
 1 Drag n drop lib <br />
 1 Node worker-thread ready to go system.<br />
+1 Error file journalisation<br />
 
 <br /><br />
 Data science  ...<br />
