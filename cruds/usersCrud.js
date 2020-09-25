@@ -87,20 +87,22 @@ module.exports = function(app, db, permissions, bcrypt) {
         // 2. Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)      
         user._id = req.session.user._id;
         user.password = req.session.user.password;
+
+        // 3. Adding the last date update
         user.last_update = new Date();
 
-        // 3. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
+        // 4. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(user._id);
 
-        // 4. This is mandatory, to avoid conflict during the update -  OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
+        // 5. This is mandatory, to avoid conflict during the mongoDb update -  OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
         delete user._id;
 
-        // 5 Final mongoDb QUERY
+        // 6. Final mongoDb QUERY
         try {
             db.collection("users").replaceOne({ _id: idObj }, user);
             res.sendStatus(200);
-            // Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
+            // 7. Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
             req.session.user = user;
         } catch (e) {
             res.sendStatus(400);
@@ -161,7 +163,7 @@ module.exports = function(app, db, permissions, bcrypt) {
 
             try {
                 db.collection("users").insertOne(user);
-                console.log("ajouté un user");
+                console.log("A user have been added  !");
                 res.sendStatus(200);
             } catch (e) {
                 console.log(e);
@@ -239,7 +241,7 @@ module.exports = function(app, db, permissions, bcrypt) {
             .toArray(function(err, docs) {
                 if (err) throw err;
                 console.log(err);
-
+                // We only send names to the front end, allowing fast html select reacts - On envoie seulement les noms des users pour que les filtres marchents vite .
                 var users = docs.map(function(item) {
                     return item["nom"];
                 });
@@ -291,12 +293,14 @@ module.exports = function(app, db, permissions, bcrypt) {
      */
 
     function structureFilters(frontEndFilters) {
+
+        // 1. Setting the find object
         var find = {};
 
-        // QUERY WITH NO FILTERS :
+        // 2. If no filters, return an empty find object - Si il n'y a pas de filtres choisi dans le frontend, on retourne un objet filtres vide
         if (frontEndFilters === undefined || (Object.entries(frontEndFilters).length === 0 && frontEndFilters.constructor === Object)) {
             return find;
-            // QUERY WITH FILTERS
+            // 3. If filters, return a nice find object - Si il y a des filtres front end, on crée la requête .find à la volée .
         } else if (Object.entries(frontEndFilters).length !== 0 && frontEndFilters.constructor === Object) {
             cleanFilters(frontEndFilters);
 
