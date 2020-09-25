@@ -74,6 +74,7 @@ VUEX : It is another starter in another GIT depot of mine, I will eventually add
 1 Notifier https://github.com/euvl/vue-notification<br />
 1 multi selector : https://vue-multiselect.js.org/ <br />
 1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider<br />
+1 logStream file for connexions logs, actions logs, etc ...<br />
 
 <br /><br />
 ## Comin' soon ! ...
@@ -81,7 +82,7 @@ VUEX : It is another starter in another GIT depot of mine, I will eventually add
 1 Gps positionning lib <br />
 1 Drag n drop lib <br />
 1 Node worker-thread ready to go system.<br />
-1 Error file journalisation<br />
+
 1 Node.js Emailing system<br />
 1 Anti Flooding by IP System<br />
 1 File session store<br />
