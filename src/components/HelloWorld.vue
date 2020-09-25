@@ -23,8 +23,8 @@
 				Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX
 
 				<br />
-				<span style="color:red">Testing: log in ADMIN with -> login: admin@admin.com + password: admin </span>
-				<span style="color:red">Testing: log in ANY USER  -> login: user email + password: password </span>
+				<span style="color:blue">Testing: log in ADMIN with -> login: admin@admin.com + password: admin </span><br>
+				<span style="color:blue">Testing: log in ANY USER  -> login: user email + password: password </span>
 				<br />
 			</h5>
 		</div>
