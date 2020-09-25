@@ -189,7 +189,9 @@ export default {
     font-size:0.9em;
 
 }
-
+.tab-content{
+    min-height:60px !important;
+}
 .cardList{
     margin-bottom : 20px;
 /*     min-width: 20rem;
