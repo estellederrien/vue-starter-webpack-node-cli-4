@@ -7,40 +7,40 @@ module.exports = function(app, db, permissions, bcrypt) {
      * @error  Status 400
      */
     app.post("/createUser", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_USER"), function(req, res) {
-        // gettin data from front end
+
+        // 1. Getting front end data
         var user = req.body;
 
-        // Checking mandatory fields  // CONTROLE DES CHAMPS OBLIGATOIRES
+        // 2. Checking mandatory fields presence - Controle présence des champs obligatoires. 
         if (!user.prenom || !user.email || !user.password || !user.nom || user.password == "") {
             res.status(403).send({ errorCode: "403" });
             return;
         }
 
-        // Creating the user's permissions ( Chosen by the front end , inside of user.role)
-        user.permissions = permissions.create_permissions(user);
-
-        // Setting a new empty user files array
-        user.filenames = [];
-        user.groups = [];
-
-        // CONTROLE DE DOUBLONS EMAIL
-        // Checking if no email duplicate
+        // 3. Checking if no email duplicate - Controle si il y a un doublon EMAIL To be mooved to the MIDDLEWARE
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
             if (!result) {
                 execute();
             } else {
-                console.log("ya un doublon email");
+                console.log("Sorry , there is a duplicate Email, This is Forbidden");
                 res.send({ problem: "doublonEmail" });
                 return;
             }
         });
 
+
         function execute() {
-            // HASCHAGE BCRYPT DU PASSWORD
-            // HASCHING THE USER PASSWORD
+
+            // Creating the user's permissions ( Chosen by the front end , inside of user.role) - On crée les permissions de l'utilisateur en fonction du role choisi dans le front end
+            user.permissions = permissions.create_permissions(user);
+            // Setting a new empty user files array - On crée un tableau qui contiendra les fichiers de l'utilisateur
+            user.filenames = [];
+            // Setting a new empty user groups array - On crée un tableau qui contiendra les groupes de l'utilisateur
+            user.groups = [];
+            // HASCHING THE USER PASSWORD - HASCHAGE BCRYPT DU PASSWORD
             var hash = bcrypt.hashSync(user.password, 10);
             user.password = hash;
-
+            // MongodDb Final Insert Query
             try {
                 db.collection("users").insertOne(user);
                 console.log("Added one user");
@@ -138,7 +138,7 @@ module.exports = function(app, db, permissions, bcrypt) {
         // Setting a new empty user files array
         user.filenames = [];
         user.groups = [];
-        
+
         // CONTROLE DE DOUBLONS EMAIL
         db.collection("users").findOne({ email: user.email }, function(findErr, result) {
             if (!result) {
@@ -206,17 +206,17 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         // FINAL USERS READ
         db.collection("users")
-           .find(filters) // find holds the front end filters
-           .toArray(function(err, docs) {
+            .find(filters) // find holds the front end filters
+            .toArray(function(err, docs) {
                 if (err) throw err;
                 console.log(err);
 
-            // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
-            // docs = FilterByFilesPermissions(docs, req);
+                // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
+                // docs = FilterByFilesPermissions(docs, req);
 
-            // Sending the users list to the front end vue.js
-            res.send(docs);
-        });
+                // Sending the users list to the front end vue.js
+                res.send(docs);
+            });
     });
 
     /*
