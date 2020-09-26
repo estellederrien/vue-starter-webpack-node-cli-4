@@ -8,7 +8,7 @@
 . Git Commits are automatically Heroku synced .<br>
 
 ## Demos
-HEROKU LIVE DEMO ->  : https://vuestartergit.herokuapp.com/  
+<b>HEROKU LIVE DEMO </b>->  : https://vuestartergit.herokuapp.com/  
 
 <a href="https://heroku.com/deploy">
   <img  align="right"  src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
