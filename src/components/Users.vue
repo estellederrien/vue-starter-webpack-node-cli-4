@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader" /></span>
+        <span v-if="!loaded"><img src="../assets/img/Spin-1s-200px.gif" class="loader" /></span>
     </div>
     <div class="container-fluid" v-show="loaded">
         <div class="row">
