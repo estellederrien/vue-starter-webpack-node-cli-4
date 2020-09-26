@@ -15,7 +15,6 @@ module.exports = {
             next() // continue the process
         }
     },
-    // -----------------------------------middleware CONTROL -------------------------------------------
     /*
      * CHECKING IF PERMISSION VALID - MIDDLEWARE FUNCTION USED IN WEB SERVICES - CHECKING IF WE ARE ALLOWED TO FIRE A WEB SERVICE  - Cette function est un middleware qui s'insère dans les webservices cruds et controle si on a la permission d'exécuter un web service
      * @params req.session.user.permissions
@@ -33,7 +32,6 @@ module.exports = {
             }
         }
     },
-    // -----------------------------------middleware CREATION  -------------------------------------------
     /*
      * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
      * Quand un utilisateur est créé, on lui affecte ces permissions dans son objet json "permissions" sur mongodb ATLAS
