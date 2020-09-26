@@ -695,6 +695,7 @@ export default {
                     this.creationProcess = false;
                     
                     // this.getActualSession(); REMOVED SEE IF ITS OK
+                     this.user = this.$user;
                 })
                 .catch(error => {
                     console.log(error);
