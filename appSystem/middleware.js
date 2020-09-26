@@ -35,16 +35,17 @@ module.exports = {
     },
     // -----------------------------------middleware CREATION  -------------------------------------------
     /*
-     * middleware CREATIONS : WHEN A USER IS CREATED, THESES middleware ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
+     * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
+     * Quand un utilisateur est créé, on lui affecte ces permissions dans son objet json "permissions" sur mongodb ATLAS
      * @params JSON OBJECT - USER
      * @return ARRAY - middleware
      * @error  NONE
      */
-    create_middleware: function(user) {
-        var middleware
+    create_permissions: function(user) {
+        var permissions
         switch (user.role) {
             case "viewer":
-                middleware = [
+                permissions = [
                     "READ_DASHBOARD",
                     "READ_USERS",
                     "READ_MESSAGES",
@@ -58,7 +59,7 @@ module.exports = {
                 ]
                 break
             case "user":
-                middleware = [
+                permissions = [
                     "READ_DASHBOARD",
                     "CREATE_USER",
                     "READ_USER",
@@ -78,7 +79,7 @@ module.exports = {
                 ]
                 break
             case "manager":
-                middleware = [
+                permissions = [
                     "READ_DASHBOARD",
                     "CREATE_USER",
                     "READ_USER",
@@ -106,7 +107,7 @@ module.exports = {
                 ]
                 break
             case "administrator":
-                middleware = [
+                permissions = [
                     "READ_DASHBOARD",
                     "CREATE_USER",
                     "READ_USER",
@@ -133,8 +134,8 @@ module.exports = {
                 ]
                 break
             default:
-                middleware = ["READ_DASHBOARD", "READ_USERS"]
+                permissions = ["READ_DASHBOARD", "READ_USERS"]
         }
-        return middleware
+        return permissions
     },
 }

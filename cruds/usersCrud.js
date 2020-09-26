@@ -32,7 +32,7 @@ module.exports = function(app, db, middleware, bcrypt) {
         function execute() {
 
             // Creating the user's middleware ( Chosen by the front end , inside of user.role) - On crée les middleware de l'utilisateur en fonction du role choisi dans le front end
-            user.middleware = middleware.create_middleware(user);
+            user.middleware = middleware.create_permissions(user);
             // Setting a new empty user files array - On crée un tableau qui contiendra les fichiers de l'utilisateur
             user.filenames = [];
             // Setting a new empty user groups array - On crée un tableau qui contiendra les groupes de l'utilisateur
@@ -146,7 +146,7 @@ module.exports = function(app, db, middleware, bcrypt) {
         user.role = "user";
 
         // 6. Creating the user's middleware
-        user.middleware = middleware.create_middleware(user);
+        user.middleware = middleware.create_permissions(user);
 
         // 7. Setting a new empty user files array
         user.filenames = [];
