@@ -25,7 +25,8 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  09-26-2020 : a logStream is now installed.
+  09-26-2020 : Users Filters are now localstorage stored .
+  09-26-2020 : a logStream is now installed.<br>
   09-19-2020 : The app is now blazin' fast ! We can moove forward now !!<br>
   09-19-2020 : The group query was slowing the readUsers web service a lot ! Disabled and making it a background task theses days! ReadUsers is now immediate ! The app will be blazin' fast<br>
   09-10-2020 : The infinity free FTP policy is limiting and blocking at a certain point :  230-Your bandwidth usage is restricted... I am currently searching for another FTP - reading and downloading from FTP is now working<br>
@@ -35,11 +36,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
  08-04-2020 : This app is now automatically synced to heroku, when commiting, its so easy to use !<br>
  08-04-2020 : Pictures are now stored on cloudinary, i'm trying to use the lazy loading module<br>
  08-04-2020 : I'm on  files uploading code refactoring , untill its finished, uploading wont work.<br>
- 08-03-2020 : I will add 3 ways of uploading pics and files : By ftp, on cloudinary, and on the node local server, and also do a global code standardisation 
-I've been so busy, and Have had to stop for 6 months but I'm back on it !!<br>
-  08-03-2020 : I will finally publish the whole code including my 'secret' permissions builder directory.<br>
-  Currently in DEV state !<br>
-Please allow from 1 month to 3 months for it to get finished. t<br>
+
  
 
 <br />
