@@ -31,8 +31,8 @@ module.exports = function(app, db, middleware, bcrypt) {
 
         function execute() {
 
-            // Creating the user's middleware ( Chosen by the front end , inside of user.role) - On crée les middleware de l'utilisateur en fonction du role choisi dans le front end
-            user.middleware = middleware.create_permissions(user);
+            // Creating the user's permissions ( Chosen by the front end , inside of user.role) - On crée les permissions de l'utilisateur en fonction du role choisi dans le front end
+            user.permissions = middleware.create_permissions(user);
             // Setting a new empty user files array - On crée un tableau qui contiendra les fichiers de l'utilisateur
             user.filenames = [];
             // Setting a new empty user groups array - On crée un tableau qui contiendra les groupes de l'utilisateur
@@ -145,8 +145,8 @@ module.exports = function(app, db, middleware, bcrypt) {
         // 5. Creating the user's role
         user.role = "user";
 
-        // 6. Creating the user's middleware
-        user.middleware = middleware.create_permissions(user);
+        // 6. Creating the user's permissions
+        user.permissions = middleware.create_permissions(user);
 
         // 7. Setting a new empty user files array
         user.filenames = [];
@@ -154,7 +154,7 @@ module.exports = function(app, db, middleware, bcrypt) {
         // 8. Setting a new empty user groups array
         user.groups = [];
 
-
+        user.img = "../assets/img/defaut.png";
         // 9. Final insert mongoDb query
         function execute() {
             // HASCHAGE BCRYPT DU PASSWORD
@@ -220,8 +220,8 @@ module.exports = function(app, db, middleware, bcrypt) {
                 if (err) throw err;
                 console.log(err);
 
-                // Getting the user files by middleware EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
-                // docs = FilterByFilesmiddleware(docs, req);
+                // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
+                // docs = FilterByFilesPermissions(docs, req);
 
                 // 3. Sending the users list to the front end vue.js
                 res.send(docs);
@@ -314,7 +314,6 @@ module.exports = function(app, db, middleware, bcrypt) {
             if (frontEndFilters.jobs) {
                 find.$and.push({ job: { $in: frontEndFilters.jobs } });
             }
-
             if (frontEndFilters.users) {
                 find.$and.push({ nom: { $in: frontEndFilters.users } });
             }
@@ -353,15 +352,15 @@ module.exports = function(app, db, middleware, bcrypt) {
      * @return JSON ARRAY docs
      * @error none
      */
-    function FilterByFilesmiddleware(docs, req) {
+    function FilterByFilesPermissions(docs, req) {
         docs.forEach(function(doc) {
             if (doc.filnames) {
                 // If user own docs
                 doc.filenames.forEach(function(file, index, object) {
-                    if (file.middleware == "all") {
+                    if (file.permission == "all") {
                         // We keep the file for display
                     } else if (req.session.loggedIn) {
-                        if (file.middleware == req.session.user._id) {
+                        if (file.permissions == req.session.user._id) {
                             // We keep the file for display
                         }
                     } else {
