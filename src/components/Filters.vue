@@ -123,6 +123,7 @@ export default {
                                 role: "",
                                 jobs: [],
                                 users: [],
+                                groups:[]
                         },
                         value: "",
                         /* Age range filter */
@@ -152,6 +153,7 @@ export default {
                         axios.post("/readGroupsForFilters")
                                 .then((response) => {
                                         this.groups = response.data;
+                                       
                                 })
                                 .catch(function(error) {
                                         console.log(error);
@@ -168,15 +170,20 @@ export default {
                 },
                 filterNow: function() {
                         /*   Executing the executeFilters parent function with modifiedFilters as parameters , 
-            the executefilters function needs to be called from the component call inside of the parent :  
-            <filters  @filters="executeFilters" ></filters> */
+                        the executefilters function needs to be called from the component call inside of the parent :  
+                        <filters  @filters="executeFilters" ></filters> */
+                        // Displaying loader
                         this.loading = true;
+                        // Storing filters in localStorage, for later displaying - On enregistre les filtres que lutilisateur a choisi dans le localstorage
+                        localStorage.setItem('filters', JSON.stringify(this.modifiedFilters));
+                        // Sending filters to the parent component
                         this.$emit("filters", this.modifiedFilters);
                 },
                 initializeFilters: function() {
                         this.modifiedFilters = {
                                 ageValues: [18, 60],
                         };
+                       localStorage.removeItem('filters');
                         this.$emit("filters", this.modifiedFilters);
                 },
                 closeModal: function() {
@@ -187,6 +194,11 @@ export default {
                 this.readJobsForFilters();
                 this.readUsers();
                 this.readGroupsForFilters();
+                 //Getting filters from localStorage, if they do exist - On va chercher les filtrs dans le local storage si ils ont été utlisés auparavant.
+               if(localStorage.getItem('filters')){
+                    this.modifiedFilters = JSON.parse(localStorage.getItem('filters'));
+                } 
+               
         },
 };
 </script>
