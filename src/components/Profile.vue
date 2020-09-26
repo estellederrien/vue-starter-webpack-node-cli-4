@@ -47,7 +47,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"> <i class="fas fa-lock"></i>
-                                    <span class="d-none d-sm-block "> Permissions </span>
+                                    <span class="d-none d-sm-block "> Droits </span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -213,7 +213,7 @@
                                                             <th>Nom</th>
                                                             <th>Télécharger du FTP</th>
                                                             <th>Supprimer du Ftp</th>
-                                                            <th>Permissions</th>
+                                                            <th>middleware</th>
                                                         </tr>
                                                     </thead>
                                                     <tr v-for="file in user.filenames">
@@ -235,7 +235,7 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <select class="form-control " v-model="file.permissions">
+                                                            <select class="form-control " v-model="file.middleware">
                                                                 <option value="all">Tous</option>
                                                                 <option v-for="u in users" :value="u._id">{{u.nom}}</option>
                                                             </select>
@@ -253,7 +253,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <i class="fas fa-lock"></i> Gérer les permissions
+                                        <i class="fas fa-lock"></i> Gérer les droits
                                     </h5>
                                     <div class="row">
                                         <div class="col-md-2">
@@ -545,8 +545,8 @@ export default {
             let self = this;
 
             values.forEach(function (value) {
-                // Files permissions are ALL by default
-                value.permissions = "all";
+                // Files middleware are ALL by default
+                value.middleware = "all";
                 self.user.filenames.push(value);
             });
 

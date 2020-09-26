@@ -1,11 +1,11 @@
 // ---------------------------------- GROUP CRUD -------------------------------------------
-module.exports = function(app, db, permissions) {
+module.exports = function(app, db, middleware) {
     /*
      * Creating a group
      * @return Status 200
      * @error  Status 400
      */
-    app.post("/createGroup", permissions.permission_valid("CREATE_GROUP"), function(req, res) {
+    app.post("/createGroup", middleware.permission_valid("CREATE_GROUP"), function(req, res) {
         var group = req.body;
 
         group.creation_date = new Date();
@@ -58,7 +58,7 @@ module.exports = function(app, db, permissions) {
      * @error  400
      */
 
-    app.post("/updateGroup", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_GROUP"), function(req, res) {
+    app.post("/updateGroup", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_GROUP"), function(req, res) {
         // GETTIN DATA FROM FRONTEND
         var group = req.body;
 
@@ -84,7 +84,7 @@ module.exports = function(app, db, permissions) {
      * @error  400
      */
 
-    app.post("/deleteGroup", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_GROUP"), function(req, res) {
+    app.post("/deleteGroup", middleware.requiresLoggedIn, middleware.permission_valid("DELETE_GROUP"), function(req, res) {
         var group = req.body;
         var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(group._id);

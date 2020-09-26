@@ -1,12 +1,12 @@
 // ---------------------------------- USERS CRUD -------------------------------------------
-module.exports = function(app, db, permissions, bcrypt) {
+module.exports = function(app, db, middleware, bcrypt) {
     /*
      * Creating a user
      * @params JSON OBJECT : {}
      * @return Status 200
      * @error  Status 400
      */
-    app.post("/createUser", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_USER"), function(req, res) {
+    app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), function(req, res) {
 
         // 1. Receiving front end data - On reçoit le data du front end
         var user = req.body;
@@ -31,8 +31,8 @@ module.exports = function(app, db, permissions, bcrypt) {
 
         function execute() {
 
-            // Creating the user's permissions ( Chosen by the front end , inside of user.role) - On crée les permissions de l'utilisateur en fonction du role choisi dans le front end
-            user.permissions = permissions.create_permissions(user);
+            // Creating the user's middleware ( Chosen by the front end , inside of user.role) - On crée les middleware de l'utilisateur en fonction du role choisi dans le front end
+            user.middleware = middleware.create_middleware(user);
             // Setting a new empty user files array - On crée un tableau qui contiendra les fichiers de l'utilisateur
             user.filenames = [];
             // Setting a new empty user groups array - On crée un tableau qui contiendra les groupes de l'utilisateur
@@ -79,7 +79,7 @@ module.exports = function(app, db, permissions, bcrypt) {
      *  @error 400
      */
 
-    app.post("/updateUser", permissions.requiresLoggedIn, permissions.permission_valid("UPDATE_USER"), function(req, res) {
+    app.post("/updateUser", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_USER"), function(req, res) {
 
         // 1. Receiving Front end Data - On reçois le data du front end .
         var user = req.body;
@@ -145,8 +145,8 @@ module.exports = function(app, db, permissions, bcrypt) {
         // 5. Creating the user's role
         user.role = "user";
 
-        // 6. Creating the user's permissions
-        user.permissions = permissions.create_permissions(user);
+        // 6. Creating the user's middleware
+        user.middleware = middleware.create_middleware(user);
 
         // 7. Setting a new empty user files array
         user.filenames = [];
@@ -179,7 +179,7 @@ module.exports = function(app, db, permissions, bcrypt) {
      * @error  400
      */
 
-    app.post("/deleteUser", permissions.requiresLoggedIn, permissions.permission_valid("DELETE_USER"), function(req, res) {
+    app.post("/deleteUser", middleware.requiresLoggedIn, middleware.permission_valid("DELETE_USER"), function(req, res) {
 
         // 1. Receiving Front end Data - On reçois le data du front end .
         var user = req.body;
@@ -220,8 +220,8 @@ module.exports = function(app, db, permissions, bcrypt) {
                 if (err) throw err;
                 console.log(err);
 
-                // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
-                // docs = FilterByFilesPermissions(docs, req);
+                // Getting the user files by middleware EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
+                // docs = FilterByFilesmiddleware(docs, req);
 
                 // 3. Sending the users list to the front end vue.js
                 res.send(docs);
@@ -353,15 +353,15 @@ module.exports = function(app, db, permissions, bcrypt) {
      * @return JSON ARRAY docs
      * @error none
      */
-    function FilterByFilesPermissions(docs, req) {
+    function FilterByFilesmiddleware(docs, req) {
         docs.forEach(function(doc) {
             if (doc.filnames) {
                 // If user own docs
                 doc.filenames.forEach(function(file, index, object) {
-                    if (file.permissions == "all") {
+                    if (file.middleware == "all") {
                         // We keep the file for display
                     } else if (req.session.loggedIn) {
-                        if (file.permissions == req.session.user._id) {
+                        if (file.middleware == req.session.user._id) {
                             // We keep the file for display
                         }
                     } else {

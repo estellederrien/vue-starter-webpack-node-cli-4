@@ -33,7 +33,7 @@
                                 <a class="nav-link" data-toggle="tab" href="#files" role="tab" ><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"  ><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Permissions</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"  ><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Droits</span></a>
                             </li>
                             
 
