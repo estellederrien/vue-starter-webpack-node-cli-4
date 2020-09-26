@@ -57,6 +57,7 @@ module.exports = function(app, db, session, bcrypt, logStream) {
 
     app.post("/logout", function(req, res) {
         req.session.loggedIn = false;
+        req.session = null;
         console.log("NOT LOGGED ANY MORE");
         res.sendStatus(200);
     });
