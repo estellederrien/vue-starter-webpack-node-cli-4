@@ -15,7 +15,6 @@ HEROKU LIVE DEMO ->  : https://vuestartergit.herokuapp.com/
 </a>
 
 
-Testing: log in with -> login: admin@admin.com -> password: admin <br />
 
 ![ScreenShot](screenshot1.jpeg)
 
