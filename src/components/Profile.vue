@@ -614,7 +614,8 @@ export default {
                         title: 'Hey! ',
                         text: 'Update is ok !'
                     });
-                    console.log(response);
+                    // UPdating user in memory
+                    localStorage.setItem('user', JSON.stringify(this.user));
                 })
                 .catch(error => {
                     console.log(error);

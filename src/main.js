@@ -35,38 +35,38 @@ Vue.use(VueLazyload)
 
 // or with options
 Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  error: '../assets/img/error.png',
-  loading: '../assets/img/loader_gif.gif',
-  attempt: 1
+    preLoad: 1.3,
+    error: '../assets/img/error.png',
+    loading: '../assets/img/loader_gif.gif',
+    attempt: 1
 })
 
 // ---------------------------------------------- STORING USER AS GLOBAL, THIS VAR IS POPULATED WHEN A USER LOGS IN INSIDE THE LOGIN COMPONENT for the PROFILE MENU TO APPEAR IN THE TOPBAR
 // ---------------------------------------------- VUEX WILL BE BETTER LATER
 
 let globalData = new Vue({
-  data: { $user: {} }
+    data: { $user: {} }
 });
 
 
 Vue.mixin({
-  computed: {
-    $user: {
-      get: function() {
+    computed: {
+        $user: {
+            get: function() {
 
-            return globalData.$data.$user;
-    
-      },
-      set: function(user) {
+                return globalData.$data.$user;
 
-        globalData.$data.$user = user;
-      }
+            },
+            set: function(user) {
+
+                globalData.$data.$user = user;
+            }
+        }
     }
-  }
 });
 
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount("#app");

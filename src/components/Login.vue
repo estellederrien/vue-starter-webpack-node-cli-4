@@ -103,14 +103,14 @@ export default {
              axios
                 .post("/getAuth", this.user)
                 .then(response => {
-                    console.log(response.data)
+
                     this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
-                     this.$notify({
+                    localStorage.setItem('user', JSON.stringify(response.data));
+                    this.$notify({
                         group: 'foo',
                         title: 'Bienvenue dans l\'application ',
                         text: 'Identification OK !'
-                        });
-                         localStorage.setItem('user', JSON.stringify(response.data));
+                    });
                    this.$router.push("/profile");
                    
                 })
