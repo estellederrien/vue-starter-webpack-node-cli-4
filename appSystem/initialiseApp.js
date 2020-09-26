@@ -13,7 +13,7 @@ module.exports = {
             role: "administrator"
         };
 
-        admin.middleware = middleware.create_middleware(admin);
+        admin.middleware = middleware.create_permissions(admin);
 
         // HASCHAGE BCRYPT DU PASSWORD
         var hash = bcrypt.hashSync(admin.password, 10);
