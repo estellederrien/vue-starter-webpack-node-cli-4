@@ -244,6 +244,7 @@ module.exports = function(app, db, permissions, bcrypt) {
                 // We only send names to the front end, allowing fast html select reacts - On envoie seulement les noms des users pour que les filtres marchents vite .
                 var users = docs.map(function(item) {
                     return item["nom"];
+                    // return { "firstName": item["prenom"], "lastName": item["nom"] };
                 });
                 res.send(users);
             });
@@ -304,7 +305,7 @@ module.exports = function(app, db, permissions, bcrypt) {
         } else if (Object.entries(frontEndFilters).length !== 0 && frontEndFilters.constructor === Object) {
             cleanFilters(frontEndFilters);
 
-            // Applying filters
+            // Building the .find query !
             find.$and = [];
 
             if (frontEndFilters.role) {
@@ -319,6 +320,9 @@ module.exports = function(app, db, permissions, bcrypt) {
             }
             if (frontEndFilters.ageValues) {
                 find.$and.push({ age: { $gt: frontEndFilters.ageValues[0] } }, { age: { $lt: frontEndFilters.ageValues[1] } });
+            }
+            if (frontEndFilters.groups) {
+                find.$and.push({ groups: { $in: frontEndFilters.groups } });
             }
 
             return find;
