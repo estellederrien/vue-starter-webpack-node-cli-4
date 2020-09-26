@@ -22,7 +22,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  09-26-2020 : Trying to get new ideas from this starter : https://github.com/nicolas15000/vueX_nodeExpress_mongoDB_wAuth_starter<br>
+  09-26-2020 : Trying to get new ideas from this starter : https://github.com/christopherliedtke/vueX_nodeExpress_mongoDB_wAuth_starter<br>
   09-26-2020 : Users Filters are now localstorage stored .<br>
   09-26-2020 : an app logStream is now installed.<br>
   09-19-2020 : The app is now blazin' fast ! We can moove forward now !!<br>
