@@ -14,8 +14,6 @@ HEROKU LIVE DEMO ->  : https://vuestartergit.herokuapp.com/
   <img  align="right"  src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 
-
-
 ![ScreenShot](screenshot1.jpeg)
 
 ## Desc
