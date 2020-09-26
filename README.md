@@ -1,11 +1,11 @@
 # My Vue.js + Node.js + MongoDb Atlas Full stack starter ! 
-. Blazin' fast 2020 Modern Vue.js + Node.js app starter .<br>
-. Easy to understand CRUD(create,read,update,delete) back end files reminding about the Php or Java style.<br>
-. Pictures are stored on Cloudinary, Files are FTP stored .<br>
-. MongoDb node.js module (no Mongoose), CRUDS files are switchables to SQL relational databases CRUDS with ease<br>
-. Working Mocha Chai unit components testing for Vue.js .<br>
-. This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
-. Git Commits are automatically Heroku synced .<br>
+-   Blazin' fast 2020 Modern Vue.js + Node.js app starter .<br>
+-   Easy to understand CRUD(create,read,update,delete) back end files reminding about the Php or Java style.<br>
+-   Pictures are stored on Cloudinary, Files are FTP stored .<br>
+-   MongoDb node.js module (no Mongoose), CRUDS files are switchables to SQL relational databases CRUDS with ease<br>
+-   Working Mocha Chai unit components testing for Vue.js .<br>
+-   This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
+-   Git Commits are automatically Heroku synced .<br>
 
 ## Demos
 <b>HEROKU LIVE DEMO </b>->  : https://vuestartergit.herokuapp.com/  
