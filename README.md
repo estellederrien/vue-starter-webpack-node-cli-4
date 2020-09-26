@@ -41,13 +41,13 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## What's in files ?
 
-<b>SERVER.js</b> This is the node.js server: Includes the node.js params, node session module loading and the MIDDLEWARE and CRUDS web services loading. <br>
-<b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the complete VUE.JS FRONT END application. <br>
-<b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
-<b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
-<b>\APPSYSTEM</b> : There, you can find the MongoDb ATLAS Authentication web service (auth.js), and the middleware functions used for webs services middleware control (middleware.js)<br>
-<b>\TMP</b> : This is a mandatory directory , used for Heroku files uploads.  <br><br>
-<b>\SRC\App.vue</b> : There, you can find the global medias queries CSS styles, making the app fully responsive on all medias, this is an important part ! . </b>
+-   <b>SERVER.js</b> This is the node.js server: Includes the node.js params, node session module loading and the MIDDLEWARE and CRUDS web services loading. <br>
+-   <b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the complete VUE.JS FRONT END application. <br>
+-   <b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
+-   <b>\CRUDS</b> : Each file is a CRUD WEBS SERVICES( create , read, update , delete).<br>
+-   <b>\APPSYSTEM</b> : There, you can find the MongoDb ATLAS Authentication web service (auth.js), and the middleware functions used for webs services middleware control (middleware.js)<br>
+-   <b>\TMP</b> : This is a mandatory directory , used for Heroku files uploads.  <br><br>
+-   <b>\SRC\App.vue</b> : There, you can find the global medias queries CSS styles, making the app fully responsive on all medias, this is an important part ! . </b>
 
 
 
