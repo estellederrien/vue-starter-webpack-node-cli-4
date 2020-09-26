@@ -161,36 +161,21 @@ PLease don't use my mongoDb atlas db, open yourself an account ...
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-## Let's have a look at a MongoDb Atlas User JSON object :
-    _id
-    :5f6e5996fff78b2d60f0b517
-    nom
-    :"Dundee"
-    prenom
-    :"Laurene"
-    phone
-    :""
-    email
-    :"l.d@gmail.com"
-    password
-    :"$2a$10$ICV4HlC9vFBmZVrE6oiuNuw6Q/NZcfez.6JL/m5IWgTF0wci/u5/."
-    img
-    :"https://res.cloudinary.com/ddq5asuy2/image/upload/v1601067409/liwzbfqx..."
-    filenames
-    :
-    Array
-    job
-    :"cto"
-    role
-    :"user"
-    age
-    :23
-    birthday
-    :"1997-07-02"
-    mentra
-    :"Je suis la directrice"
-    permissions
-    :
+## Let's have a look at a MongoDb Atlas User JSON object, for a better understanding:
+    _id:5f6e5996fff78b2d60f0b517
+    nom:"Dundee"
+    prenom:"Laurene"
+    phone:""
+    email:"l.d@gmail.com"
+    password:"$2a$10$ICV4HlC9vFBmZVrE6oiuNuw6Q/NZcfez.6JL/m5IWgTF0wci/u5/."
+    img:"https://res.cloudinary.com/ddq5asuy2/image/upload/v1601067409/liwzbfqx..."
+    filenames:Array
+    job:"cto"
+    role:"user"
+    age:23
+    birthday:"1997-07-02"
+    mentra:"Je suis la directrice"
+    permissions:
     Array
         0
         :"READ_DASHBOARD"
@@ -224,12 +209,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         :"UPDATE_MESSAGE"
         15
         :"DELETE_MESSAGE"
-    groups
-    :
-    Array
-        0
-        :"Direction"
-    last_update
-    :2020-09-25T21:20:24.313+00:00
+    groups:Array
+        0:"Direction"
+    last_update:2020-09-25T21:20:24.313+00:00
 
 <a href="https://www.openode.io/">Sponsored and hosted by opeNode.io</a>
