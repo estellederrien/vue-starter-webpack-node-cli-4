@@ -154,8 +154,9 @@ module.exports = function(app, db, middleware, bcrypt) {
         // 8. Setting a new empty user groups array
         user.groups = [];
 
-        user.img = "../assets/img/defaut.png";
-        // 9. Final insert mongoDb query
+        // 9. Adding no user img
+        user.img = "";
+        // 10. Final insert mongoDb query
         function execute() {
             // HASCHAGE BCRYPT DU PASSWORD
             var hash = bcrypt.hashSync(user.password, 10);

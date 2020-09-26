@@ -25,7 +25,8 @@
              
                 <div id="users" v-for="user in users" class="col-lg-3">
                     <div class="card  cardList">
-                        <img v-lazy="user.img" @error="replaceByDefault" class="card-img-top" alt="..." />
+                        <img v-lazy="user.img" v-if="user.img !== ''" @error="replaceByDefault" class="card-img-top" alt="..." />
+                        <img  v-if="user.img == ''" src="../assets/img/defaut.png" class="card-img-top" alt="..." />
                         <div class="card-body ">
                             <h5 class="card-title">{{ user.prenom }} {{ user.nom }}</h5>
                             <p class="card-text">
@@ -99,6 +100,7 @@ export default {
     name: "Users",
     methods: {
         replaceByDefault(e) {
+            // Doesnt seem to work any more
             e.target.src = "defaut.png";
         },
         route: function(_id) {

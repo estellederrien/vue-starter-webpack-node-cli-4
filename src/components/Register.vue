@@ -1,12 +1,11 @@
 <template>
 <div class="container">
-
     <div class="card o-hidden border-0 shadow-lg " style = "margin-top:20%">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
                 <div class="col-lg-5 mx-auto d-none d-lg-block " >
-                    <div class="text-center"><img src="../assets/img/aph_refait.jpg" style="width:200px;height:150px;margin-top:150px"></img></div>
+                    <div class="text-center"><img src="../assets/img/defaut.jpg" style="width:200px;height:150px;margin-top:150px"></img></div>
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
@@ -73,9 +72,7 @@
                                     </div>
                                 </div>
                                 <!-- <div class="col-sm-6">
-
 <input type="password" class="form-control form-control-user" name="password"value ="password" id="password" placeholder="Mot de passe">
-
   </div> -->
                             </div>
                             <a v-on:click='register()' class="btn btn-primary btn-user btn-block" style="color:white">Enregistrement</a>
@@ -102,7 +99,6 @@
     </div>
 </div>
 </template>
-
 <script>
 import axios from "axios";
 import {
@@ -111,6 +107,8 @@ import {
     between, 
     email 
 } from "vuelidate/lib/validators";
+/* PERSONNAL COMPONENTS */
+import Uploadpicture from "@/components/Uploadpicture.vue";
 export default {
     name: 'Register',
     data() {
@@ -125,7 +123,9 @@ export default {
             cliqued:false
         }
     },
-
+    components: {
+        uploadpicture: Uploadpicture
+    },
     validations: {
         user: {
             nom: {
@@ -147,15 +147,13 @@ export default {
             }
         }
     },
-
     methods: {
         routeLogin: function () {
             this.$router.push("/login");
         },
         register: function () {
              this.cliqued = true;  
-            console.log(this.user);
-
+           console.log(this.user);
             if (
                 !this.user.password ||
                 !this.user.prenom ||
@@ -163,8 +161,6 @@ export default {
                 !this.user.email||
                 !this.$v.user.email.email
             ) {
-
-               
                 this.problem = true;
                 this.$notify({
                     type: 'error',
@@ -174,11 +170,9 @@ export default {
                 });
                 return;
             }
-
             //  this.$v.form.$touch();
               // if its still pending or an error is returned do not submit
             //if (!$v.user.email.email) return;
-
             axios
                 .post("/registerUser", this.user)
                 .then(response => {
@@ -193,7 +187,6 @@ export default {
                             text: 'Added one user !'
                         });
                     }
-
                 })
                 .catch(error => {
                     console.log(error);
@@ -203,11 +196,9 @@ export default {
                         title: 'Hey! ',
                         text: error
                     });
-
                 });
         }
     },
-    
     created: function () {
         this.cliqued = false;
         this.$notify({
@@ -219,7 +210,5 @@ export default {
     }
 }
 </script>
-
 <style>
-
 </style>
