@@ -1,7 +1,7 @@
 // -----------------------------------      MIDDLEWARE FUNCTIONS -------------------------------------------
 module.exports = {
     /*
-     * LOGGED IN  MIDDLEWARE FUNCTION USED IN WEB SERVICES  - Cette function est un middleware qui s'insère dans les webservices cruds controle si on est identifié grace à la variable de sessions
+     * CHECKING IF LOGGED IN - FUNCTION USED IN WEB SERVICES  - Cette function est un middleware qui s'insère dans les webservices cruds controle si on est identifié grace à la variable de sessions
      * @params req.session.loggedIn - TRUE OR FALSE
      * @return NEXT()
      * @error  Status 403
@@ -17,8 +17,8 @@ module.exports = {
     },
     // -----------------------------------middleware CONTROL -------------------------------------------
     /*
-     * middleware CHECK MIDDLEWARE FUNCTION USED IN WEB SERVICES - CHECKING IF WE ARE ALLOWED TO FIRE A WEB SERVICE  - Cette function est un middleware qui s'insère dans les webservices cruds et controle si on a la permission d'exécuter un web service
-     * @params ARRAY - middleware
+     * CHECKING IF PERMISSION VALID - MIDDLEWARE FUNCTION USED IN WEB SERVICES - CHECKING IF WE ARE ALLOWED TO FIRE A WEB SERVICE  - Cette function est un middleware qui s'insère dans les webservices cruds et controle si on a la permission d'exécuter un web service
+     * @params req.session.user.permissions
      * @return NEXT()
      * @error  Status 403
      */
