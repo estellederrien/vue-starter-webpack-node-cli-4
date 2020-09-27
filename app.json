@@ -2,6 +2,6 @@
     "name": "Vue.js Node MOngoDb Atlas starter",
     "description": "A full stack starter",
     "repository": "https://github.com/nicolas15000/vue-starter-webpack-node-cli-4",
-    "logo": "https://github.com/nicolas15000/vue-starter-webpack-node-cli-4/blob/master/screenshot1.jpeg",
+    "logo": "https://raw.githubusercontent.com/firefly-iii/firefly-iii/main/public/mstile-150x150.png",
     "keywords": ["node", "express", "vue", "mongodb", "atlas"]
 }
