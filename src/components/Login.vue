@@ -104,8 +104,12 @@ export default {
                 .post("/getAuth", this.user)
                 .then(response => {
 
-                    this.$user =  response.data; //  USER STORED AS GLOBAL VARIABLE SEE MAIN.JS
-                    localStorage.setItem('user', JSON.stringify(response.data));
+                    // this.$user =  response.data; 
+                    // localStorage.setItem('user', JSON.stringify(response.data));
+
+
+
+                    this.$store.commit('setUser',response.data)
                     this.$notify({
                         group: 'foo',
                         title: 'Bienvenue dans l\'application ',

@@ -45,17 +45,25 @@ Vue.use(VueLazyload, {
     // ------------------------------------------ END VUE LAZY LOAD ---------------------------------------------------------------------------
 
 
-// ---------------------------------------------- VUEX DATA STORE - SHARING DATA BETWEEN COMPONENTS !-----------------------------------------------
-// ---------------------------------------------- VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS -------------------------------------
+// ---------------------------VUEX PERSIADATA STORE - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS -----------------------------------------------
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        user: {}
+        user: JSON.parse(localStorage.getItem('user') || "{}"),
+        logged: false
     },
     mutations: {
         setUser(state, user) {
-            state.user = user;
+            localStorage.setItem("user", JSON.stringify(user)) // OR
+            state.logged = true;
+        },
+        deleteUser(state) {
+            console.log("USER DELETED")
+            localStorage.removeItem("user") // OR
+            state.logged = false;
+
         }
     },
     getters: {
@@ -64,6 +72,7 @@ const store = new Vuex.Store({
         }
     }
 });
+
 
 // ---------------------------------------------- END VUEX DATA STORE - SHARING DATA BETWEEN COMPONENTS !-------------------------------------
 

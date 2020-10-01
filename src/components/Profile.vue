@@ -776,12 +776,13 @@ export default {
     beforeCreate: function () {
 
     },
-    created: function () {
+    mounted: function () {
         if (localStorage.getItem('user')) {
             this.user = JSON.parse(localStorage.getItem('user'))
         } else {
-            this.user = this.$user;
+            this.user = this.$store.getters.user
         }
+        
 
         this.auth = true;
         this.loaded = true;
