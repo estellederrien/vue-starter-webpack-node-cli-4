@@ -1,6 +1,19 @@
 // ---------------------------------- MESSAGES CRUD -------------------------------------------
 module.exports = function(app, db) {
 
+    /* MESSAGE MODEL*/
+    let message = {
+        _id: "",
+        to: "",
+        from: "",
+        senderName: "",
+        senderSurname: "",
+        date: "",
+        id: "",
+        img: "",
+        date: ""
+    }
+
     /*
      * Creating a message
      * @return Status 200
@@ -8,7 +21,6 @@ module.exports = function(app, db) {
      */
     app.post("/createMessage", function(req, res, next) {
         var message = req.body;
-        console.log(message);
         message.date = new Date();
         try {
             db.collection("messages").insertOne(message);

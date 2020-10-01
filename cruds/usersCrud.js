@@ -1,5 +1,19 @@
 // ---------------------------------- USERS CRUD -------------------------------------------
 module.exports = function(app, db, middleware, bcrypt) {
+
+    /* USER MODEL*/
+    let user = {
+        _id: "",
+        prenom: "",
+        nom: "",
+        email: "",
+        password: "",
+        permissions: [],
+        filenames: [],
+        groups: [],
+        last_update: ""
+    }
+
     /*
      * Creating a user
      * @params JSON OBJECT : {}
