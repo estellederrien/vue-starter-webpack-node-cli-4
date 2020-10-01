@@ -58,12 +58,12 @@ const store = new Vuex.Store({
     },
     mutations: {
         setUser(state, user) {
-            localStorage.setItem("user", JSON.stringify(user)) // OR
+            localStorage.setItem("user", JSON.stringify(user))
             state.logged = true;
         },
         deleteUser(state) {
             console.log("USER DELETED")
-            localStorage.removeItem("user") // OR
+            localStorage.removeItem("user")
             state.logged = false;
 
         }
