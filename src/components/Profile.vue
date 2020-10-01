@@ -218,17 +218,17 @@
                                                     </thead>
                                                     <tr v-for="file in user.filenames">
                                                         <td>
-                                                            <a class="float-left" > <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
-                                                             <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
-                                                             <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
+                                                            <a class="float-left"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                            <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
+                                                            <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
                                                         </td>
-                                                        <td> 
+                                                        <td>
                                                             <span class="btn btn-warning" v-on:click="readFtpFile(file)">
                                                                 <i class="far fa-file"></i>
                                                                 <br />
                                                             </span>
                                                         </td>
-                                                        <td> 
+                                                        <td>
                                                             <span class="remove-file btn btn-primary" v-on:click="deleteFtpFile(file)">
                                                                 <i class="far fa-trash-alt"></i>
                                                                 <br />
@@ -278,7 +278,6 @@
                                             </span>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <!-- END TABS 3 -->
@@ -350,7 +349,6 @@ import {
     between,
     email
 } from "vuelidate/lib/validators";
-
 /* PERSONNAL COMPONENTS */
 import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
@@ -358,11 +356,9 @@ import Message from "@/components/Message.vue";
 import Messages from "@/components/Messages.vue";
 import Groups from "@/components/Groups.vue";
 import MessagesList from "@/components/MessagesList.vue";
-
 export default {
     name: "Profile",
     props: ["id"],
-
     data() {
         return {
             user: {
@@ -388,7 +384,6 @@ export default {
             messagesCount: "12"
         };
     },
-
     validations: {
         user: {
             nom: {
@@ -404,7 +399,6 @@ export default {
                 minLength: minLength(2),
                 email
             },
-
             password: {
                 minLength: minLength(2),
                 required
@@ -438,7 +432,6 @@ export default {
                         title: 'Hey! ',
                         text: 'Permission is missing ! -> <br> ' + error
                     });
-
                 });
         },
         openMessageModal: function () {
@@ -453,7 +446,6 @@ export default {
                     })
                     .then(response => {
                         alert(" File has been deleted from server");
-
                         self.user.filenames = self.user.filenames.filter(function (obj) {
                             return obj.filename !== file.filename;
                         });
@@ -469,29 +461,29 @@ export default {
                             title: 'Hey! ',
                             text: 'Permission is missing ! -> <br> ' + error
                         });
-
                     });
             }
         },
         readFtpFile(file) {
             alert('I m getting your file on the ftp server, please wait.')
             let self = this;
-           axios.post("readFtpFile", {name: file.filename})
+            axios.post("readFtpFile", {
+                    name: file.filename
+                })
                 .then(response => {
                     alert('File had been transfered to the node server');
-                     axios({
+                    axios({
                         url: file.filename, //your url 
                         method: 'GET',
                         responseType: 'blob', // important
-                        }).then((response) => {
+                    }).then((response) => {
                         const url = window.URL.createObjectURL(new Blob([response.data]));
                         const link = document.createElement('a');
                         link.href = url;
                         link.setAttribute('download', 'file.pdf'); //or any other extension
                         document.body.appendChild(link);
                         link.click();
-                        });
-
+                    });
                 })
                 .catch(error => {
                     console.log(error);
@@ -501,7 +493,7 @@ export default {
                         title: 'Hey! ',
                         text: 'Permission is missing ! -> <br> ' + error
                     });
-                }); 
+                });
         },
         deleteFtpFile(file) {
             let self = this;
@@ -512,7 +504,6 @@ export default {
                     })
                     .then(response => {
                         alert(" File has been deleted from FTP");
-
                         self.user.filenames = self.user.filenames.filter(function (obj) {
                             return obj.filename !== file.filename;
                         });
@@ -528,7 +519,6 @@ export default {
                             title: 'Hey! ',
                             text: 'Permission is missing ! -> <br> ' + error
                         });
-
                     });
             }
         },
@@ -541,15 +531,12 @@ export default {
             console.log(this.user);
         },
         onFileUploads(values) {
-
             let self = this;
-
             values.forEach(function (value) {
                 // Files middleware are ALL by default
                 value.middleware = "all";
                 self.user.filenames.push(value);
             });
-
             if (!this.creationProcess) {
                 this.updateUser();
             }
@@ -559,7 +546,6 @@ export default {
             console.log("onmc")
             this.messagesCount = value;
         },
-
         showModal() {
             // this.$modal.show('hello-world');
             this.$modal.show("dialog", {
@@ -601,7 +587,6 @@ export default {
                         title: 'Hey! ',
                         text: 'Permission is missing ! -> <br> ' + error
                     });
-
                 });
         },
         updateUser: function () {
@@ -625,7 +610,6 @@ export default {
                         title: 'Hey! ',
                         text: 'Permission is missing ! -> <br> ' + error
                     });
-
                 });
         },
         deleteUser: function () {
@@ -634,9 +618,9 @@ export default {
                     .post("/deleteUser", this.user)
                     .then(response => {
                         alert(" Votre compte a été supprimé ");
-                        this.$user = {};
+                         // DELETE LOGGED IN USER DATA IN THE VUEX DATA STORE
+                        this.$store.commit('deleteUser')
                         this.$router.push("/login");
-
                         console.log(response);
                     })
                     .catch(error => {
@@ -647,7 +631,6 @@ export default {
                             title: 'Hey! ',
                             text: 'Permission is missing ! -> <br> ' + error
                         });
-
                     });
             }
         },
@@ -667,7 +650,6 @@ export default {
             };
         },
         insertUser: function () {
-
             if (
                 !this.user.password ||
                 !this.user.prenom ||
@@ -675,7 +657,6 @@ export default {
                 !this.user.email ||
                 this.$v.user.email.$error
             ) {
-
                 this.$notify({
                     type: 'error',
                     group: 'foo',
@@ -694,9 +675,7 @@ export default {
                         text: 'Added on user!'
                     });
                     this.creationProcess = false;
-                    
-                    // this.getActualSession(); REMOVED SEE IF ITS OK
-                     this.user = this.$user;
+                    this.user = this.$store.getters.user
                 })
                 .catch(error => {
                     console.log(error);
@@ -706,7 +685,6 @@ export default {
                         title: 'Hey! ',
                         text: 'Permission is missing ! -> <br> ' + error
                     });
-
                 });
         },
         getActualSession: function () {
@@ -734,7 +712,6 @@ export default {
                 alert('trop court)')
                 return;
             }
-
             axios
                 .post("/createJob", {
                     name: this.newJob
@@ -751,16 +728,13 @@ export default {
                         title: 'Hey! ',
                         text: error
                     });
-
                 });
         },
         cancelInsertUser: function () {
             this.creationProcess = false;
             this.getActualSession();
-
         },
         readUsers: function () {
-
             axios
                 .post("/readUsers", {
                     filters: this.filters
@@ -773,22 +747,17 @@ export default {
                 });
         }
     },
-    beforeCreate: function () {
-
-    },
+    beforeCreate: function () {},
     mounted: function () {
         if (localStorage.getItem('user')) {
             this.user = JSON.parse(localStorage.getItem('user'))
         } else {
             this.user = this.$store.getters.user
         }
-        
-
         this.auth = true;
         this.loaded = true;
         this.readJobs();
         this.readUsers();
-
     }
 };
 </script>
@@ -798,7 +767,6 @@ export default {
     background-color: #2a2a2e;
     border-color: #337ab7;
     color: #FFFFFF;
-
 }
 
 .error {
@@ -822,11 +790,8 @@ export default {
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
-
 .tab-content {
-
     margin-bottom: 100px !important;
-
 }
 
 .emp-profile {
@@ -942,7 +907,6 @@ export default {
 }
 
 /* LIST USERS  */
-
 .card-img-top {
     width: 100%;
     height: 15vw;

@@ -305,7 +305,7 @@ export default {
     name: "User",
     props: ["id"],
     beforeCreate: function () {
-        console.log(this.$userid)
+
     },
     data() {
         return {

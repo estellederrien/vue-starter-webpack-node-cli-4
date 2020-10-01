@@ -5,7 +5,7 @@
             <h5>Entrer un nouvel évènement</h5>
 
              <label>Mon nom : </label> <br>
-            <span class = "badge badge-primary">{{$user.nom || "Anonyme"}}</span><br><br>
+            <span class = "badge badge-primary">{{$store.getters.user.email || "Anonyme"}}</span><br><br>
 
             <label>Début : </label> <br>
             <datetime placeholder="Entrez un créneau" v-model="newEvent.start" type="datetime" :minute-step="30" :phrases="{ok: 'Ok', cancel: 'Annuler'}" title="Debut du rendez vous "></datetime>
