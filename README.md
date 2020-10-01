@@ -54,19 +54,17 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 
 
-## Not available:
-VUEX : It is another starter in another GIT depot of mine, I will eventually add it later .<br />
 
 ## Features:
-
+1 VUEX data store
 1 Users CRUD<br />
 1 Auth system<br />
-1 Middleware functions file dedicated to the web services (middleware.js)<br />
-1 Profiles and middleware management system (Front and Back)<br />
-1 FTP Files management - and middleware -system by users<br />
+1 Middleware file dedicated to the web services (middleware.js)<br />
+1 Permissions store <br />
+1 FTP Files management including rights control<br />
 1 Dashboard with some graphicals libs<br />
 1 Form validator : (https://vuelidate.js.org/#getting-started)<br />
-1 Internal Messaging CRUD<br />
+1 Internal Messaging system<br />
 1 Calendar lib<br />
 1 V-dialog lib<br />
 1 Notifier https://github.com/euvl/vue-notification<br />
@@ -80,7 +78,6 @@ VUEX : It is another starter in another GIT depot of mine, I will eventually add
 1 Gps positionning lib <br />
 1 Drag n drop lib <br />
 1 Node worker-thread ready to go system.<br />
-
 1 Node.js Emailing system<br />
 1 Anti Flooding by IP System<br />
 1 File session store<br />
