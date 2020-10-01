@@ -533,8 +533,8 @@ export default {
         onFileUploads(values) {
             let self = this;
             values.forEach(function (value) {
-                // Files middleware are ALL by default
-                value.middleware = "all";
+                // Files permissions are ALL by default
+                value.permissions = "all";
                 self.user.filenames.push(value);
             });
             if (!this.creationProcess) {
@@ -687,19 +687,6 @@ export default {
                     });
                 });
         },
-        getActualSession: function () {
-            axios
-                .post("/getActualSession", {})
-                .then(response => {
-                    this.user = response.data;
-                    this.auth = true;
-                    this.loaded = true;
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$router.push("/login");
-                });
-        },
         getAge: function () {
             var birthdate = new Date(this.user.birthday);
             var cur = new Date();
@@ -732,7 +719,7 @@ export default {
         },
         cancelInsertUser: function () {
             this.creationProcess = false;
-            this.getActualSession();
+            this.user = this.$store.getters.user
         },
         readUsers: function () {
             axios
