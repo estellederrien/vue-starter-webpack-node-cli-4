@@ -1,5 +1,15 @@
 // ---------------------------------- GROUP CRUD -------------------------------------------
 module.exports = function(app, db, middleware) {
+
+    /* GROUP MODEL*/
+    let group = {
+        _id: "",
+        name: "",
+        creation_date: "",
+        users: []
+    }
+
+
     /*
      * Creating a group
      * @return Status 200

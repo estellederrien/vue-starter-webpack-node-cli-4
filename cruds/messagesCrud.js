@@ -6,6 +6,7 @@ module.exports = function(app, db) {
         _id: "",
         to: "",
         from: "",
+        content: "",
         senderName: "",
         senderSurname: "",
         date: "",

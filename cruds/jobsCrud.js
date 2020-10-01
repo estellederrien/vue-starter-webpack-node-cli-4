@@ -1,5 +1,14 @@
 // ---------------------------------- JOBS CRUD -------------------------------------------
 module.exports = function(app, db, permissions) {
+
+    /* JOB MODEL*/
+    let job = {
+        _id: "",
+        name: "",
+        creation_date: ""
+    }
+
+
     /*
      * Creating a job
      * @return Status 200

@@ -8,10 +8,16 @@ module.exports = function(app, db, middleware, bcrypt) {
         nom: "",
         email: "",
         password: "",
+        role: "",
         permissions: [],
         filenames: [],
         groups: [],
-        last_update: ""
+        last_update: "",
+        img: "",
+        birthday: "",
+        age: "",
+        job: "",
+        mentra: ""
     }
 
     /*
