@@ -56,9 +56,9 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 
 ## Features:
-1 VUEX data store
+1 VUEX data store<br />
 1 Users CRUD<br />
-1 Auth system<br />
+1 MongoDb atlas Auth system<br />
 1 Middleware file dedicated to the web services (middleware.js)<br />
 1 Permissions store <br />
 1 FTP Files management including rights control<br />
