@@ -1,6 +1,6 @@
 {
     "name": "hello-world",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "engines": {
         "node": "12.x"
     },
@@ -92,14 +92,16 @@
         "parserOptions": {
             "parser": "babel-eslint"
         },
-        "overrides": [{
-            "files": [
-                "**/__tests__/*.{j,t}s?(x)"
-            ],
-            "env": {
-                "mocha": true
+        "overrides": [
+            {
+                "files": [
+                    "**/__tests__/*.{j,t}s?(x)"
+                ],
+                "env": {
+                    "mocha": true
+                }
             }
-        }]
+        ]
     },
     "postcss": {
         "plugins": {
