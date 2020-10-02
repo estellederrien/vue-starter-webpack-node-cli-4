@@ -22,6 +22,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
+  02-10-2020 : Finally, Mongoose is needed <br>
   01-10-2020 : Added VueX , When a user logs in, his JSON object is now stored in the VUEX store (main.js).<br>
   09-26-2020 : next dev step is resolving the user front end storing problem(Actually both stored as global $user for navbar displaying and in localstorage, this duplicate is bad), I will probably install Vuex<br>
   09-26-2020 : Trying to get new ideas from this starter : https://github.com/christopherliedtke/vueX_nodeExpress_mongoDB_wAuth_starter<br>
@@ -74,6 +75,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 <br /><br />
 ## Comin' soon ! ...
+1 MonGoose model lib<br />
 1 SOCKET.IO realtime evolutive system <br />
 1 Gps positionning lib <br />
 1 Drag n drop lib <br />
