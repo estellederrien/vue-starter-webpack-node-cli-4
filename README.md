@@ -75,7 +75,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 <br /><br />
 ## Comin' soon ! ...
-1 MonGoose data modeler lib<br />
+1 MonGoose data modeler lib with datatypes<br />
 1 SOCKET.IO realtime evolutive system <br />
 1 Gps positionning lib <br />
 1 Drag n drop lib <br />
