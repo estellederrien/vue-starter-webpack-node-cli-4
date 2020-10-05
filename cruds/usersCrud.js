@@ -1,25 +1,8 @@
 // ---------------------------------- USERS CRUD -------------------------------------------
-module.exports = function(app, db, middleware, bcrypt) {
+module.exports = function(app, db, middleware, bcrypt, User) {
 
-    /* USER MODEL*/
-    let user = {
-        _id: "",
-        prenom: "",
-        nom: "",
-        email: "",
-        password: "",
-        role: "",
-        permissions: [],
-        filenames: [],
-        groups: [],
-        last_update: "",
-        img: "",
-        birthday: "",
-        age: "",
-        job: "",
-        mentra: ""
-    }
 
+    var ObjectId = require("mongodb").ObjectID;
     /*
      * Creating a user
      * @params JSON OBJECT : {}
@@ -28,17 +11,9 @@ module.exports = function(app, db, middleware, bcrypt) {
      */
     app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), function(req, res) {
 
-        // 1. Receiving front end data - On reçoit le data du front end
-        var user = req.body;
 
-        // 2. Checking mandatory fields presence - Controle présence des champs obligatoires. 
-        if (!user.prenom || !user.email || !user.password || !user.nom || user.password == "") {
-            res.status(403).send({ errorCode: "403" });
-            return;
-        }
-
-        // 3. Checking if no email duplicate - Controle si il y a un doublon EMAIL To be mooved to the MIDDLEWARE
-        db.collection("users").findOne({ email: user.email }, function(findErr, result) {
+        // To be mooved to the MIDDLEWARE - Checking if no email duplicate - Controle si il y a un doublon EMAIL 
+        db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
             if (!result) {
                 execute();
             } else {
@@ -48,32 +23,36 @@ module.exports = function(app, db, middleware, bcrypt) {
             }
         });
 
-
-        function execute() {
-
-            // Creating the user's permissions ( Chosen by the front end , inside of user.role) - On crée les permissions de l'utilisateur en fonction du role choisi dans le front end
-            user.permissions = middleware.create_permissions(user);
-            // Setting a new empty user files array - On crée un tableau qui contiendra les fichiers de l'utilisateur
-            user.filenames = [];
-            // Setting a new empty user groups array - On crée un tableau qui contiendra les groupes de l'utilisateur
-            user.groups = [];
-            // HASCHING THE USER PASSWORD - HASCHAGE BCRYPT DU PASSWORD
-            var hash = bcrypt.hashSync(user.password, 10);
-            user.password = hash;
-            // MongodDb Final Insert Query
-            try {
-                db.collection("users").insertOne(user);
-                console.log("Added one user");
-                res.sendStatus(200);
-            } catch (e) {
-                console.log(e);
-                res.sendStatus(400);
-            }
+        try {
+            var utilisateur = new User({
+                _id: null,
+                prenom: req.body.prenom,
+                nom: req.body.nom,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                role: req.body.role,
+                permissions: middleware.create_permissions(req.body),
+                filenames: [],
+                groups: [],
+                last_update: new Date(),
+                img: req.body.img,
+                birthday: req.body.birthday,
+                age: req.body.age,
+                job: req.body.job,
+                mentra: req.body.mentra
+            })
+            db.collection("users").insertOne(utilisateur);
+            console.log("Added one user");
+            res.sendStatus(200);
+        } catch (e) {
+            console.log(e);
+            res.sendStatus(400);
         }
+
     });
 
     /*
-     * Reading a user
+     * Reading user
      * @params JSON OBJECT : {id: this.id}
      * @return JSON OBJECT
      * @error
@@ -82,7 +61,6 @@ module.exports = function(app, db, middleware, bcrypt) {
     app.post("/readUser", function(req, res) {
 
         // 1. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
-        var ObjectId = require("mongodb").ObjectID;
         var idObj = ObjectId(req.param("id"));
 
         // 2. MongodDb Final Query
@@ -102,27 +80,31 @@ module.exports = function(app, db, middleware, bcrypt) {
     app.post("/updateUser", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_USER"), function(req, res) {
 
         // 1. Receiving Front end Data - On reçois le data du front end .
-        var user = req.body;
 
-        // 2. Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)      
-        user._id = req.session.user._id;
-        user.password = req.session.user.password;
+        var utilisateur = new User({
+            _id: req.session.user._id,
+            prenom: req.body.prenom,
+            nom: req.body.nom,
+            email: req.body.email,
+            password: req.session.user.password, //  Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)      
+            role: req.body.role,
+            permissions: middleware.create_permissions(req.body),
+            filenames: [],
+            groups: [],
+            last_update: new Date(),
+            img: req.body.img,
+            birthday: req.body.birthday,
+            age: req.body.age,
+            job: req.body.job,
+            mentra: req.body.mentra
+        })
 
-        // 3. Adding the last date update
-        user.last_update = new Date();
 
-        // 4. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
-        var ObjectId = require("mongodb").ObjectID;
-        var idObj = ObjectId(user._id);
-
-        // 5. This is mandatory, to avoid conflict during the mongoDb update -  OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
-        delete user._id;
-
-        // 6. Final mongoDb QUERY
+        // Final mongoDb QUERY
         try {
-            db.collection("users").replaceOne({ _id: idObj }, user);
+            db.collection("users").replaceOne({ _id: utilisateur._id }, utilisateur);
             res.sendStatus(200);
-            // 7. Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
+            //  Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
             req.session.user = user;
         } catch (e) {
             res.sendStatus(400);
@@ -131,7 +113,7 @@ module.exports = function(app, db, middleware, bcrypt) {
     });
 
     /*
-     * Register an anonymous user
+     * Register anonymous user
      * @params JSON OBJECT : {}
      * @return 200
      * @error  400
