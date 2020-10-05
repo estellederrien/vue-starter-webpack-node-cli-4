@@ -31,7 +31,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 10),
                 role: req.body.role,
-                permissions: middleware.create_permissions(req.body),
+                permissions: middleware.create_permissions(req.body.role),
                 filenames: [],
                 groups: [],
                 last_update: new Date(),
@@ -88,7 +88,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
             email: req.body.email,
             password: req.session.user.password, //  Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)      
             role: req.body.role,
-            permissions: middleware.create_permissions(req.body),
+            permissions: middleware.create_permissions(req.body.role),
             filenames: [],
             groups: [],
             last_update: new Date(),

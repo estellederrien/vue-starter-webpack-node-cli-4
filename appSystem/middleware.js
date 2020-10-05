@@ -39,9 +39,9 @@ module.exports = {
      * @return ARRAY - middleware
      * @error  NONE
      */
-    create_permissions: function(user) {
+    create_permissions: function(role) {
         var permissions
-        switch (user.role) {
+        switch (role) {
             case "viewer":
                 permissions = [
                     "READ_DASHBOARD",
