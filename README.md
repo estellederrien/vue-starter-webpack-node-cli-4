@@ -22,6 +22,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
+  05-10-2020 : Very nice article : https://developer.mongodb.com/article/mongoose-versus-nodejs-driver<br>
   02-10-2020 : Finally, Mongoose is needed, because the datas models aren't well described <br>
   01-10-2020 : Added VueX , When a user logs in, his JSON object is now stored in the VUEX store (main.js).<br>
   09-26-2020 : next dev step is resolving the user front end storing problem(Actually both stored as global $user for navbar displaying and in localstorage, this duplicate is bad), I will probably install Vuex<br>
