@@ -24,7 +24,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
         try {
 
-            var utilisateur = new User({
+            var user = new User({
                 _id: null,
                 prenom: req.body.prenom,
                 nom: req.body.nom,
@@ -41,7 +41,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
                 job: req.body.job,
                 mentra: req.body.mentra
             })
-            db.collection("users").insertOne(utilisateur);
+            db.collection("users").insertOne(user);
             console.log("Added one user");
             res.sendStatus(200);
         } catch (e) {
@@ -123,62 +123,52 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
     app.post("/registerUser", function(req, res) {
 
-        // 1. Receiving Front end Data - On reçois le data du front end .
-        var user = req.body;
 
-        // 2. Checking mandatory fields presence - Controle présence des champs obligatoires. 
-        if (!user.prenom || !user.email || !user.password || !user.nom || user.password == "") {
-            res.send({ problem: "Le formulaire est encore incomplet (serveur)" });
-            return;
-        }
 
-        // 3. IP FLOODING CONTROL    // TODO
+        // IP FLOODING CONTROL    // TODO and To be mooved to the MIDDLEWARE
 
-        // 4. CONTROLE DE DOUBLONS EMAIL
-        db.collection("users").findOne({ email: user.email }, function(findErr, result) {
+        // To be mooved to the MIDDLEWARE - Checking if no email duplicate - Controle si il y a un doublon EMAIL 
+        db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
             if (!result) {
                 execute();
             } else {
-                console.log("ya un doublon email");
+                console.log("Sorry , there is a duplicate Email, This is Forbidden");
                 res.send({ problem: "doublonEmail" });
                 return;
             }
         });
 
+        try {
 
-        // 5. Creating the user's role
-        user.role = "user";
-
-        // 6. Creating the user's permissions
-        user.permissions = middleware.create_permissions(user);
-
-        // 7. Setting a new empty user files array
-        user.filenames = [];
-
-        // 8. Setting a new empty user groups array
-        user.groups = [];
-
-        // 9. Adding no user img
-        user.img = "";
-        // 10. Final insert mongoDb query
-        function execute() {
-            // HASCHAGE BCRYPT DU PASSWORD
-            var hash = bcrypt.hashSync(user.password, 10);
-            user.password = hash;
-
-            try {
-                db.collection("users").insertOne(user);
-                console.log("A user have been added  !");
-                res.sendStatus(200);
-            } catch (e) {
-                console.log(e);
-                res.sendStatus(400);
-            }
+            var user = new User({
+                _id: null,
+                prenom: req.body.prenom,
+                nom: req.body.nom,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                role: "user",
+                permissions: middleware.create_permissions("user"),
+                filenames: [],
+                groups: [],
+                last_update: new Date(),
+                img: "",
+                birthday: "",
+                age: "",
+                job: "",
+                mentra: "",
+            })
+            db.collection("users").insertOne(user);
+            console.log("Added one user");
+            res.sendStatus(200);
+        } catch (e) {
+            console.log(e);
+            res.sendStatus(400);
         }
+
     });
 
     /*
-     * Delete a user
+     * Delete user - Supprimer un user
      * @params JSON OBJECT : {}
      * @return 200
      * @error  400
@@ -215,8 +205,8 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
     app.post("/readUsers", function(req, res) {
 
-        // 1. We receive front end filters params, and we need to structure them, before using the .find() mongoDb function   // ON reçoits les filtres du front end, on doi les strcturer pour ensuite exéctuer mongoDB .find() avec les filtres en paramêtres
-        var filters = structureFilters(req.body.filters);
+        // 1. We receive front end filters params, and we BUILD the .find() PARAMETERS  // ON reçoits les filtres du front end, on doit créer les paramêtres de la requêtes mongoDB .find()
+        var filters = build_mongoDb_find_params(req.body.filters);
 
         // 2. Final read mongoDb query
         db.collection("users")
@@ -228,7 +218,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
                 // Getting the user files by permissions EDIT : TOO SLOW MOOVE IT TO READ USER !!!!
                 // docs = FilterByFilesPermissions(docs, req);
 
-                // 3. Sending the users list to the front end vue.js
+                // 3. Sending the users list to the front end vue.js - Later there will be an infinite scroll
                 res.send(docs);
             });
     });
@@ -292,21 +282,21 @@ module.exports = function(app, db, middleware, bcrypt, User) {
     // ----------------------------------------------------------------- HELPER FUNCTIONS ------------------------------------------------
 
     /*
-     *  Structuring front end filters, for the .find mongodDb function
-     *  @params JSON OBJECT FILTERS {}
-     *  @return JSON OBJECT find
+     *  Building the .find parameters using front end filters - On crée le parametre de mongoDb .find grâce aux filtres front end.
+     *  @params JSON OBJECT FILTERS - {}
+     *  @return JSON OBJECT - the .find() parameters
      *  @error NONE
      */
 
-    function structureFilters(frontEndFilters) {
+    function build_mongoDb_find_params(frontEndFilters) {
 
         // 1. Setting the find object
         var find = {};
 
-        // 2. If no filters, return an empty find object - Si il n'y a pas de filtres choisi dans le frontend, on retourne un objet filtres vide
+        // 2. If no filters, return an empty find parameters object - Si il n'y a pas de filtres choisi dans le frontend, on retourne un objet filtres vide
         if (frontEndFilters === undefined || (Object.entries(frontEndFilters).length === 0 && frontEndFilters.constructor === Object)) {
             return find;
-            // 3. If filters, return a nice find object - Si il y a des filtres front end, on crée la requête .find à la volée .
+            // 3. If filters, return a nice find parameters object - Si il y a des filtres front end, on crée la requête .find à la volée .
         } else if (Object.entries(frontEndFilters).length !== 0 && frontEndFilters.constructor === Object) {
             cleanFilters(frontEndFilters);
 
