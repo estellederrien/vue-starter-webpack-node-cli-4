@@ -33,6 +33,26 @@ module.exports = {
         }
     },
     /*
+     * CHECKING FOR DUPLICATE EMAIL - Recherche d'un doublon dans les emails avant d'inscrire un gars
+     * @params JSON OBJECT USER
+     * @return NEXT()
+     * @error  Status 403s
+     */
+    duplicate_email(db, email) {
+
+        db.collection("users").findOne({ 'email': email }, function(findErr, result) {
+            if (!result) {
+                //  next() // continue the process
+                return false;
+            } else {
+
+                return true;
+            }
+        });
+
+
+    },
+    /*
      * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
      * Quand un utilisateur est créé, on lui affecte ces permissions dans son objet json "permissions" sur mongodb ATLAS
      * @params JSON OBJECT - USER
