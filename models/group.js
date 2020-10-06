@@ -1,5 +1,3 @@
-// models/group.js
-
 // LOADING LIBS
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
