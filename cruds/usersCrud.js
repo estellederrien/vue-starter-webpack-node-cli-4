@@ -11,7 +11,6 @@ module.exports = function(app, db, middleware, bcrypt, User) {
      */
     app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), function(req, res) {
 
-
         // To be mooved to the MIDDLEWARE - Checking if no email duplicate - Controle si il y a un doublon EMAIL 
         db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
             if (!result) {
@@ -24,6 +23,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
         });
 
         try {
+
             var utilisateur = new User({
                 _id: null,
                 prenom: req.body.prenom,
@@ -48,6 +48,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
             console.log(e);
             res.sendStatus(400);
         }
+
 
     });
 
@@ -81,7 +82,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
         // 1. Receiving Front end Data - On reçois le data du front end .
 
-        var utilisateur = new User({
+        var user = new User({
             _id: req.session.user._id,
             prenom: req.body.prenom,
             nom: req.body.nom,
@@ -89,8 +90,8 @@ module.exports = function(app, db, middleware, bcrypt, User) {
             password: req.session.user.password, //  Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)      
             role: req.body.role,
             permissions: middleware.create_permissions(req.body.role),
-            filenames: [],
-            groups: [],
+            filenames: req.body.filenames,
+            groups: req.body.groups,
             last_update: new Date(),
             img: req.body.img,
             birthday: req.body.birthday,
@@ -102,10 +103,11 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
         // Final mongoDb QUERY
         try {
-            db.collection("users").replaceOne({ _id: utilisateur._id }, utilisateur);
-            res.sendStatus(200);
+            db.collection("users").replaceOne({ _id: user._id }, user);
             //  Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
             req.session.user = user;
+            res.sendStatus(200);
+
         } catch (e) {
             res.sendStatus(400);
             console.log(e);
