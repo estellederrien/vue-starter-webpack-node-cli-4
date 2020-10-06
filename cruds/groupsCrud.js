@@ -1,5 +1,5 @@
 // ---------------------------------- GROUP CRUD -------------------------------------------
-module.exports = function(app, db, middleware) {
+module.exports = function(app, db, middleware, Group) {
 
     /* GROUP MODEL*/
     let group = {

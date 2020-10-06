@@ -1,5 +1,5 @@
 // ---------------------------------- JOBS CRUD -------------------------------------------
-module.exports = function(app, db, permissions) {
+module.exports = function(app, db, permissions, Job) {
 
     /* JOB MODEL*/
     let job = {
