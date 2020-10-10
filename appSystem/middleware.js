@@ -8,11 +8,11 @@ module.exports = {
      */
     requiresLoggedIn(req, res, next) {
         if (!req.session.loggedIn) {
-            console.log(" FORBIDDEN CAUSE YOU ARE NOT LOGGED IN  ")
-            res.status(403).send({ errorCode: "403" })
-            return
+            console.log(" FORBIDDEN CAUSE YOU ARE NOT LOGGED IN  ");
+            res.status(403).send({ errorCode: "403" });
+            return;
         } else {
-            next() // continue the process
+            next(); // continue the process
         }
     },
     /*
@@ -24,13 +24,13 @@ module.exports = {
     permission_valid(permission) {
         return function(req, res, next) {
             if (!req.session.user.permissions.includes(permission)) {
-                console.log(" FORBIDDEN CAUSE THE PERMISSION IS MISSING ")
-                res.status(403).send({ errorCode: "403" })
-                return
+                console.log(" FORBIDDEN CAUSE THE PERMISSION IS MISSING ");
+                res.status(403).send({ errorCode: "403" });
+                return;
             } else {
-                next() // continue the process
+                next(); // continue the process
             }
-        }
+        };
     },
     /*
      * CHECKING FOR DUPLICATE EMAIL - Recherche d'un doublon dans les emails avant d'inscrire un gars
@@ -41,17 +41,33 @@ module.exports = {
      */
     duplicate_email(db) {
         return async(req, res, next) => {
-
-            let email_already_exist = await db.collection("users").findOne({ 'email': req.body.email })
-
+            let email_already_exist = await db.collection("users").findOne({ email: req.body.email });
             if (email_already_exist) {
-                console.log(" FORBIDDEN CAUSE EMAIL ALREADY EXISTS ")
-                res.status(403).send({ errorCode: "403" })
-                return
+                console.log(" FORBIDDEN CAUSE EMAIL ALREADY EXISTS ");
+                res.status(403).send({ errorCode: "403" });
+                return;
             } else {
-                next() // continue the process
+                next(); // continue the process
             }
-        }
+        };
+    },
+    /*
+     * CHECKING FOR DUPLICATE EXISTING GROUP - ON Vérifie qu'un groupe n'existe pas déjà avant d'en créer un.
+     * @params db, req,res,next
+     * @return NEXT()
+     * @error  Status 403
+     */
+    duplicate_group(db) {
+        return async(req, res, next) => {
+            let group_already_exist = await db.collection("groups").findOne({ name: req.body.name });
+            if (group_already_exist) {
+                console.log(" FORBIDDEN CAUSE GROUP ALREADY EXISTS ");
+                res.status(403).send({ errorCode: "403" });
+                return;
+            } else {
+                next(); // continue the process
+            }
+        };
     },
     /*
      * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
@@ -61,7 +77,7 @@ module.exports = {
      * @error  NONE
      */
     create_permissions: function(role) {
-        var permissions
+        var permissions;
         switch (role) {
             case "viewer":
                 permissions = [
@@ -75,8 +91,8 @@ module.exports = {
                     "READ_MESSAGES",
                     "UPDATE_MESSAGE",
                     "DELETE_MESSAGE",
-                ]
-                break
+                ];
+                break;
             case "user":
                 permissions = [
                     "READ_DASHBOARD",
@@ -95,8 +111,8 @@ module.exports = {
                     "READ_MESSAGES",
                     "UPDATE_MESSAGE",
                     "DELETE_MESSAGE",
-                ]
-                break
+                ];
+                break;
             case "manager":
                 permissions = [
                     "READ_DASHBOARD",
@@ -123,8 +139,8 @@ module.exports = {
                     "UPDATE_GROUP",
                     "DELETE_GROUP",
                     "READ_GROUPS",
-                ]
-                break
+                ];
+                break;
             case "administrator":
                 permissions = [
                     "READ_DASHBOARD",
@@ -150,11 +166,11 @@ module.exports = {
                     "UPDATE_GROUP",
                     "DELETE_GROUP",
                     "READ_GROUPS",
-                ]
-                break
+                ];
+                break;
             default:
-                permissions = ["READ_DASHBOARD", "READ_USERS"]
+                permissions = ["READ_DASHBOARD", "READ_USERS"];
         }
-        return permissions
+        return permissions;
     },
-}
+};
