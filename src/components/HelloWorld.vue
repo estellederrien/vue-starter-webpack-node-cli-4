@@ -18,7 +18,7 @@
 				<br />
 				Welcome to my Vue.JS - Node.JS - MongoDb Atlas starter !
 				<br />
-				I will try the make the code as easy and clear as possible !
+				I will try to make the code as easy and clear as possible !
 				<br />
 				Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX
 
