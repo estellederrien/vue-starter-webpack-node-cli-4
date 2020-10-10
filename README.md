@@ -79,6 +79,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 <br /><br />
 ## Comin' soon ! ...
 1 NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
+1 Translation module including English, French , hindi and Chinese.<br />
 1 SOCKET.IO realtime evolutive system, allowing several cams at the same time eventually <br />
 1 Gps positionning lib <br />
 1 Drag n drop lib <br />
