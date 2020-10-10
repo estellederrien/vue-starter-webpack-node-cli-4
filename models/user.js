@@ -1,4 +1,5 @@
 // LOADING LIBS
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = require('mongodb').ObjectID;
@@ -17,7 +18,7 @@ const UserSchema = new Schema({
     last_update: String,
     img: String,
     birthday: String,
-    age: String,
+    age: Number,
     job: String,
     mentra: String
 });
