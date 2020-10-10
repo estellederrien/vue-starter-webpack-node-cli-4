@@ -34,9 +34,10 @@ module.exports = {
     },
     /*
      * CHECKING FOR DUPLICATE EMAIL - Recherche d'un doublon dans les emails avant d'inscrire un gars
-     * @params JSON OBJECT USER
+     * 1000 thanks to EOL on stack overflow : https://stackoverflow.com/questions/64293796/middleware-email-duplicate-controls-bad-code-modeling
+     * @params db, req,res,next
      * @return NEXT()
-     * @error  Status 403s
+     * @error  Status 403
      */
     duplicate_email(db) {
         return async(req, res, next) => {
