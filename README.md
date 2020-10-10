@@ -76,6 +76,8 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider<br />
 1 logStream file for connexions logs, actions logs, etc ...<br />
 
+![ScreenShot](screenshot3.png)
+
 <br /><br />
 ## Comin' soon ! ...
 1 NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
