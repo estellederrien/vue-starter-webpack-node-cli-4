@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader"/></span>
+        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader" /></span>
     </div>
     <div class="container-fluid " id="userDiv" v-show="loaded">
         <form method="post">
@@ -22,14 +22,14 @@
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos</span></a>
                             </li>
-                          <!--   <li class="nav-item">
+                            <!--   <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> <span class="d-none d-sm-block ">Dernières infos</span></a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#files" role="tab" ><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#files" role="tab"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"  ><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Droits</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Droits</span></a>
                             </li>
                         </ul>
                     </div>
@@ -194,55 +194,56 @@
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-12 tab-content-user">
-                                       <table class="table table-sm">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nom</th>
-                                                            <th>Télécharger du FTP</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr v-for="file in user.filenames">
-                                                        <td>
-                                                            <a class="float-left"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
-                                                            <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
-                                                            <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
-                                                        </td>
-                                                        <td>
-                                                            <span class="btn btn-warning" v-on:click="readFtpFile(file)">
-                                                                <i class="far fa-file"></i>
-                                                                <br />
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                    <span class="badge badge-warning" v-if="!user.filenames.length" > User has no files yet ! </span>
+                                    <table v-if="user.filenames.length" class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Télécharger du FTP</th>
+                                            </tr>
+                                        </thead>
+                                        <tr v-for="file in user.filenames">
+                                            <td>
+                                                <a class="float-left"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
+                                                <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
+                                            </td>
+                                            <td>
+                                                <span class="btn btn-warning" v-on:click="readFtpFile(file)">
+                                                    <i class="far fa-file"></i>
+                                                    <br />
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
                             <div class="row">
-                                    <div class="col-md-2">
-                                        <label>Profil</label>
-                                    </div>
-                                    <div class="col-md-6">
+                                <div class="col-md-2">
+                                    <label>Profil</label>
+                                </div>
+                                <div class="col-md-6">
                                     <select class="custom-select" v-model="user.role" disabled>
                                         <option value="">--Please choose an option--</option>
                                         <option value="viewer">Viewer</option>
                                         <option value="user">User</option>
                                         <option value="manager">Manager</option>
                                     </select>
-                                   </div>
+                                </div>
                             </div><br>
-                             <div class="row">   
-                                     <div class="col-md-2">
-                                        <label>Liste des droits</label>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <span class="badge badge-warning  badge-space" v-for="p in user.permissions" > {{p}}<br> </span>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Liste des droits</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}<br> </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="messageslist" role="tabpanel" >
-                                test
+                        <div class="tab-pane fade" id="messageslist" role="tabpanel">
+                            test
                         </div>
                     </div>
                 </div>
@@ -255,9 +256,12 @@
             </div>
         </form>
     </div>
-     <modal name="messageModal" :width="350" :height="400"><message :user="this.anonymous" ></message></modal>
+    <modal name="messageModal" :width="350" :height="400">
+        <message :user="this.anonymous"></message>
+    </modal>
 </div>
 </template>
+
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -276,24 +280,23 @@ import Message from "@/components/Message.vue";
 export default {
     name: "User",
     props: ["_id"],
-    beforeCreate: function () {
-    },
+    beforeCreate: function () {},
     data() {
         return {
             user: {
-                 _id: "",
+                _id: "",
                 nom: "",
-                prenom: "",    
+                prenom: "",
                 phone: "",
                 email: "",
                 password: "",
                 img: "",
                 filenames: []
             },
-            anonymous:{
+            anonymous: {
                 _id: "anonymous",
                 nom: "anonymous",
-                prenom: "anonymous",    
+                prenom: "anonymous",
                 phone: "",
                 email: "",
                 password: "",
@@ -327,11 +330,11 @@ export default {
     components: {
         uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles,
-        message:Message
+        message: Message
     },
     methods: {
         readFtpFile(file) {
-           
+
             let self = this;
             axios.post("readFtpFile", {
                     name: file.filename
@@ -346,7 +349,7 @@ export default {
                         const url = window.URL.createObjectURL(new Blob([response.data]));
                         const link = document.createElement('a');
                         link.href = url;
-                        link.setAttribute('download', file.filename); // FILENAME AND EXTENSION TO DO !!!
+                        link.setAttribute('download', file.filename);
                         document.body.appendChild(link);
                         link.click();
                     });
@@ -361,7 +364,7 @@ export default {
                     });
                 });
         },
-        openMessageModal: function() {
+        openMessageModal: function () {
             this.$modal.show("messageModal");
         },
         replaceByDefault(e) {
@@ -372,7 +375,7 @@ export default {
         },
         readUser: function () {
             axios
-                .get("readUser?_id="+ this._id)
+                .get("readUser?_id=" + this._id)
                 .then(response => {
                     this.user = response.data;
                     this.loaded = true;
@@ -398,29 +401,36 @@ export default {
     }
 };
 </script>
-<style scope>
-.badge-space{
-    min-width:150px
+
+<style>
+.badge-space {
+    min-width: 150px
 }
+
 .tab-content-user {
     padding: 10px;
     margin: 10px;
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
+
 .error {
     border-color: red;
     background: #FDD;
 }
+
 .error:focus {
     outline-color: #F99;
 }
+
 .valid {
     border-color: #5A5;
     background: #EFE;
 }
+
 .valid:focus {
     outline-color: #8E8;
 }
+
 /* change all .btn to .btn-sm size on xs */
 @include media-breakpoint-between(xs, sm) {
     .btn {
@@ -431,6 +441,7 @@ export default {
             $btn-border-radius-sm);
     }
 }
+
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
@@ -441,13 +452,16 @@ export default {
     border-radius: 0.5rem;
     background: #fff;
 }
+
 .profile-img {
     text-align: center;
 }
+
 .profile-img img {
     width: 70%;
     height: 100%;
 }
+
 .profile-img .file {
     position: relative;
     overflow: hidden;
@@ -458,18 +472,22 @@ export default {
     font-size: 15px;
     background: #212529b8;
 }
+
 .profile-img .file input {
     position: absolute;
     opacity: 0;
     right: 0;
     top: 0;
 }
+
 .profile-head h5 {
     color: #333;
 }
+
 .profile-head h6 {
     color: #0062cc;
 }
+
 .profile-edit-btn {
     border: none;
     border-radius: 1.5rem;
@@ -479,72 +497,88 @@ export default {
     color: #6c757d;
     cursor: pointer;
 }
+
 .proile-rating {
     font-size: 12px;
     color: #818182;
     margin-top: 5%;
 }
+
 .proile-rating span {
     color: #495057;
     font-size: 15px;
     font-weight: 600;
 }
+
 .profile-head .nav-tabs {
     margin-bottom: 5%;
 }
+
 .profile-head .nav-tabs .nav-link {
     font-weight: 600;
     border: none;
 }
+
 .profile-head .nav-tabs .nav-link.active {
     border: none;
     border-bottom: 2px solid #0062cc;
 }
+
 .profile-work {
     padding: 14%;
     margin-top: -15%;
 }
+
 .profile-work p {
     font-size: 12px;
     color: #818182;
     font-weight: 600;
     margin-top: 10%;
 }
+
 .profile-work a {
     text-decoration: none;
     color: #495057;
     font-weight: 600;
     font-size: 14px;
 }
+
 .profile-work ul {
     list-style: none;
 }
+
 .profile-tab label {
     font-weight: 600;
 }
+
 .profile-tab p {
     font-weight: 600;
     color: #0062cc;
 }
+
 /* LIST USERS  */
 .card-img-top {
     width: 100%;
     height: 15vw;
     object-fit: cover;
 }
+
 /* TOPBAR */
 .rounded-circle {
     border-radius: 50% !important;
 }
+
 .dropdown-list-image {
     position: relative;
     height: 2.5rem;
     width: 2.5rem;
 }
+
 .dropdown-list-image img {
     height: 2.5rem;
     width: 2.5rem;
 }
+
 .dropdown-list-image .status-indicator {
     background-color: #eaecf4;
     height: 0.75rem;
@@ -555,6 +589,7 @@ export default {
     right: 0;
     border: 0.125rem solid #fff;
 }
+
 /* DAHSBOARD */
 #wrapper {
     position: relative;
@@ -565,23 +600,29 @@ export default {
     max-width: 850px;
     margin: 35px auto;
 }
+
 /* 
 HOME  */
 .container {
     max-width: 960px;
 }
+
 .pricing-header {
     max-width: 700px;
 }
+
 .card-deck .card {
     min-width: 220px;
 }
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
+
 .box-shadow {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
