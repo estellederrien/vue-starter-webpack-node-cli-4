@@ -52,7 +52,7 @@ module.exports = {
         };
     },
     /*
-     * CHECKING FOR DUPLICATE EXISTING NAME - ON Vérifie qu'un nom n'existe pas déjà dans une collection avant d'en créer un.
+     * CHECKING FOR DUPLICATE EXISTING NAME IN COLLECTION - ON Vérifie qu'un nom n'existe pas déjà dans une collection avant d'en créer un.
      * @params db, req,res,next
      * @return NEXT()
      * @error  Status 403
