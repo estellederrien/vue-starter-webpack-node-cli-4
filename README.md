@@ -130,11 +130,11 @@ When you want to develop the vue.js application, run these 2 commands in 2 diffe
 <br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```bash
 # Starting the vue.js dev env on port 8080, Axios queries are forwarded to port 80 using vue.config.js
-# Open a cmd window on WINDOWS then enter: ( ) 
+# Open a cmd window on WINDOWS then enter: 
 npm run serve 
 
 # Starting the node server on port 80
-# Open another CMD window then enter :  ()
+# Open another CMD window then enter : 
 node server.js
 
 ```
