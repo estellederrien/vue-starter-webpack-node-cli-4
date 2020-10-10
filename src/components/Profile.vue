@@ -573,9 +573,7 @@ export default {
         },
         readUser: function () {
             axios
-                .post("/readUser", {
-                    id: this.id
-                })
+                 .get("readUser?id="+ this.id)
                 .then(response => {
                     this.user = response.data;
                 })
