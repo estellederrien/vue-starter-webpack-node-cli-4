@@ -129,10 +129,10 @@ When you want to develop the vue.js application, run these 2 commands in 2 diffe
 <br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
 <br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```
-// Open a cmd window on WINDOWS
-npm run serve //( starting the vue.js dev env running on port 8080, Axios queries are forwarded to port 80 using vue.config.js) 
-//Open another CMD window then enter :
-node server.js //(starting the node server running on port 80)
+# Open a cmd window on WINDOWS
+npm run serve # ( starting the vue.js dev env running on port 8080, Axios queries are forwarded to port 80 using vue.config.js) 
+# Open another CMD window then enter :
+node server.js # (starting the node server running on port 80)
 ```
 
 ### Compiles and minifies for production
