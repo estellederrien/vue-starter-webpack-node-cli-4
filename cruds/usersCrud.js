@@ -42,7 +42,7 @@ module.exports = function(app, db, middleware, bcrypt, User) {
      * @error
      */
     app.get("/readUser", function(req, res) {
-        db.collection("users").findOne({ _id: ObjectId(req.param("id")) }, function(findErr, result) {
+        db.collection("users").findOne({ _id: ObjectId(req.param("_id")) }, function(findErr, result) {
             if (findErr) throw findErr;
             res.send(result);
         });

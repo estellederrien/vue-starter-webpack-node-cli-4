@@ -36,7 +36,7 @@ const routes = [{
         component: AsyncUsers
     },
     {
-        path: "/user/:id",
+        path: "/user/:_id",
         name: "User",
         component: User,
         props: true

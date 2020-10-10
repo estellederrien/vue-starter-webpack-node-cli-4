@@ -303,7 +303,7 @@ import Message from "@/components/Message.vue";
 
 export default {
     name: "User",
-    props: ["id"],
+    props: ["_id"],
     beforeCreate: function () {
 
     },
@@ -375,7 +375,7 @@ export default {
         },
         readUser: function () {
             axios
-                .get("readUser?id="+ this.id)
+                .get("readUser?_id="+ this._id)
                 .then(response => {
                     this.user = response.data;
                     this.loaded = true;
