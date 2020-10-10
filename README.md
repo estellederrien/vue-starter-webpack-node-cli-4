@@ -22,7 +22,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  10-10-2020 : Ftp files are now downloadable from public  users profiles - Coming soon : Social networking on each publics profiles,  infinite scrolls<br>
+  10-10-2020 : Ftp files are now downloadable from public  users profiles - Coming soon : Social networking on each publics profiles,  infinite scrolls, mooving duplicates vue.js functions to VUEX<br>
   05-10-2020 :Currently installing Mongoose , and refactoring all cruds files.<br>
   05-10-2020 : Very nice article : https://developer.mongodb.com/article/mongoose-versus-nodejs-driver<br>
   02-10-2020 : Finally, Mongoose is needed, because the datas models aren't well described <br>
