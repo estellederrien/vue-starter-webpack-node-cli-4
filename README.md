@@ -115,19 +115,15 @@ Le but de ce starter est de pouvoir commencer n'importe quel application Node.js
 -   <b>\TESTS</b> : On execute NPM RUN TEST dans ce rep pour tester tous les components de l'app vue.js
 
 ## Project setup
-Clone the depot using smargit, then install the node modules at the root of the app, enter :<br>
-Clonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant ceci à la racine de l'application, dans une fenêtre windows :
 ```
 npm install
 ```
+Clone the depot using smargit, then install the node modules at the root of the app<br>
+Clonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant le code précédent à la racine de l'application.<br>
+
 
 ### Compiles and hot-reloads for development on port 8080
-When you want to develop the vue.js application, run these 2 commands in 2 differents windows CMD, at the root of the app.
-<br /> Then, go in your browser to localhost: 8080, and modify the files in the \ SRC directory
-<br /> To modify the BACK END, it is rather in the CRUDS directory<br>
-<br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes dans 2 fenêtres différentes CMD sous windows, à la racine de l'application.
-<br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
-<br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
+
 ```bash
 # Starting the vue.js dev env on port 8080, Axios queries are forwarded to port 80 using vue.config.js
 # Open a cmd window on WINDOWS then enter: 
@@ -138,23 +134,32 @@ npm run serve
 node server.js
 
 ```
+When you want to develop the vue.js application, run these 2 commands in 2 differents windows CMD, at the root of the app.
+<br /> Then, go in your browser to localhost: 8080, and modify the files in the \ SRC directory
+<br /> To modify the BACK END, it is rather in the CRUDS directory<br>
+<br />Quand vous voulez developper l'application vue.js, executez ces 2 commandes dans 2 fenêtres différentes CMD sous windows, à la racine de l'application.
+<br />Ensuite, rendez vous dans votre navigateur à localhost:8080, et modifiez les fichiers dans le répertoire \SRC
+<br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
+
 
 ### Compiles and minifies for production
-When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.<br>
-<br />Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 ```
 npm run build
 ```
-### Run build on port 80
-To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!<br>
-<br />Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
+When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.<br>
+<br />Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 
+### Run build on port 80
 ```
 npm run start
 ```
+To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!<br>
+<br />Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
+
+
 ### Publishing on HEROKU
-It is so simple and automatic, 1. Clone this depot in you github, 2. Simply go to heroku and go to the deploy tab then Manually deploy your app. 3. DOn't even sync the \dist directory, Heroku does it for you !<br>
-<br />c'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. Allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application. 3. Même pas besoin de taper NPM RUN BUILD, Heroku le fait automatiquement pour vous. Pour gérer cela, c'est sous l'onglet DEPLOY, c'est trop pratique, tout se fait tout seul, on peut ^même paramétrer en SYNC automatique dès qu'on fait un commit, l'app se mets à jour toute seule !.
+It is so simple and automatic, 1. Clone this depot in your github, 2. Simply go to heroku and go to the deploy tab then manually deploy your app. 3. Don't even sync the \dist directory when commiting, Heroku does it for you !<br>
+<br />C'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. Allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application. 3. Même pas besoin de taper NPM RUN BUILD, Heroku le fait automatiquement pour vous. Pour gérer cela, c'est sous l'onglet DEPLOY, c'est trop pratique, tout se fait tout seul, on peut même paramétrer en SYNC automatique dès qu'on fait un commit, l'app se mets à jour toute seule !.
 
 ### Creating your MONGODB ATLAS ACCOUNT
 PLease don't use my mongoDb atlas db, open yourself an account ...
