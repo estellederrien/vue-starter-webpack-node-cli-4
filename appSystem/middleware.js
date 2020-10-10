@@ -38,19 +38,15 @@ module.exports = {
      * @return NEXT()
      * @error  Status 403s
      */
-    duplicate_email(db, email) {
+    async duplicate_email(db, email) {
 
-        db.collection("users").findOne({ 'email': email }, function(findErr, result) {
-            if (!result) {
-                //  next() // continue the process
-                return false;
-            } else {
-
-                return true;
-            }
-        });
-
-
+        let myResults;
+        try {
+            myResults = await db.collection("users").findOne({ 'email': email });
+        } catch (err) {
+            console.log(err);
+        }
+        return myResults ? true : false;
     },
     /*
      * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
