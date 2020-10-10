@@ -1,8 +1,10 @@
 // ---------------------------------- GROUP CRUD -------------------------------------------
 module.exports = function(app, db, middleware, Group) {
+    // This is needed in all web services for mongoDb updates :
+    var ObjectId = require("mongodb").ObjectID;
     /*
-     * Creating a group
-     * @ params JSON object (see group.js for schema)
+     * Create a group - Créer un groupe d'utilisateurs
+     * @params JSON object (see group.js for schema)
      * @return Status 200
      * @error  Status 400
      */
@@ -28,34 +30,45 @@ module.exports = function(app, db, middleware, Group) {
         }
     });
     /*
-     * Reading a group
+     * Read group ( so his users)- Lire un groupe ( et donc ses utilisateurs)
+     * @param INT
      * @return JSON OBJECT
-     * @error
+     * @error 400
      */
     app.post("/readGroup", function(req, res) {
-        var identifiant = req.param("_id");
-        var ObjectId = require("mongodb").ObjectID; //working
-        var idObj = ObjectId(identifiant); //working
-        db.collection("groups").findOne({ _id: idObj }, function(findErr, result) {
-            if (findErr) throw findErr;
-            res.send(result);
-        });
+        try {
+            db.collection("groups").findOne({ _id: ObjectId(req.param("_id")) }, function(findErr, result) {
+                if (findErr) throw findErr;
+                res.send(result);
+            });
+
+        } catch (e) {
+            console.log(e);
+            res.sendStatus(400);
+        }
     });
     /*
-     * Update a group
+     * Update group - Mettre à jour un groupe
+     * @params JSON object (see group.js for schema)
      * @return 200
      * @error  400
      */
     app.post("/updateGroup", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_GROUP"), function(req, res) {
-        // GETTIN DATA FROM FRONTEND
-        var group = req.body;
-        var ObjectId = require("mongodb").ObjectID;
-        var idObj = ObjectId(group._id);
-        // OBLIGATOIRE DE SUPPRIMER _ID DE OBJET USER SINON LE UPDATE NE PASSE PAS SUR MONGODB (CONFLIT)
-        delete group._id;
+        // 1.  Getting data from front end 
+        var updated_group = req.body;
+
+        // 2. Trying out the update group query
         try {
-            db.collection("groups").replaceOne({ _id: idObj }, group);
+            var group = new Group({
+                _id: updated_group._id,
+                name: updated_group.name,
+                creation_date: updated_group.creation_date,
+                users: updated_group.users
+            })
+
+            db.collection("groups").replaceOne({ _id: ObjectId(updated_group._id) }, group);
             res.sendStatus(200);
+            // Ugly momentaneus way to inject groups to users documents, in the purpose to improve the read_users ws perfs
             injectGroups(req, res);
         } catch (e) {
             res.sendStatus(400);
