@@ -42,7 +42,7 @@
                                     <span v-if="user.age">Age: {{ user.age }}</span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                    <label> Fichiers </label><br />
+                                    <label> Fichiers Ftp</label><br />
                                     <span class="badge badge-warning" v-for="f in user.filenames"> <i class="fas fa-file"></i> {{ f.filename }}</span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
