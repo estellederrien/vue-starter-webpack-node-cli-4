@@ -2,7 +2,7 @@
 -   Blazin' fast 2020 Modern Vue.js + Node.js app starter .<br>
 -   Easy to understand CRUD(create,read,update,delete) back end files reminding about the Php or Java style.<br>
 -   Pictures are stored on Cloudinary, Files are FTP stored .<br>
--   MongoDb node.js module + Mongoose Data modeler, CRUDS files are eventually switchables to SQL relational databases CRUDS with ease<br>
+-   MongoDb node.js module + Mongoose schemas types modeler, CRUDS files are eventually switchables to SQL relational databases CRUDS with ease<br>
 -   Working Mocha Chai unit components testing for Vue.js .<br>
 -   This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
 -   Git Commits are automatically Heroku synced .<br>
