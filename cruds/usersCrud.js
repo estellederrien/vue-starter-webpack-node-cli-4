@@ -8,23 +8,28 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
      * @error  Status 400
      */
     app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), middleware.duplicate_email(db), function(req, res) {
+
+        // 1.  Getting data from front end - on récupère le json data de l'app vue.js
+        var new_user = req.body;
+
+        // 2.  Trying out mongodb insert - On essaye de faire un INSERT
         try {
             var user = new User({
                 _id: null,
-                prenom: req.body.prenom,
-                nom: req.body.nom,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                role: req.body.role,
-                permissions: middleware.create_permissions(req.body.role),
+                prenom: new_user.prenom,
+                nom: new_user.nom,
+                email: new_user.email,
+                password: bcrypt.hashSync(new_user.password, 10),
+                role: new_user.role,
+                permissions: middleware.create_permissions(new_user.role),
                 filenames: [],
                 groups: [],
                 last_update: new Date(),
-                img: req.body.img,
-                birthday: req.body.birthday,
-                age: req.body.age,
-                job: req.body.job,
-                mentra: req.body.mentra,
+                img: new_user.img,
+                birthday: new_user.birthday,
+                age: new_user.age,
+                job: new_user.job,
+                mentra: new_user.mentra,
             });
             db.collection("users").insertOne(user);
             console.log("Added one user");
@@ -53,23 +58,28 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
      *  @error 400
      */
     app.post("/updateUser", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_USER"), function(req, res) {
+
+        // 1.  Getting data from front end - on récupère le json data de l'app vue.js
+        var updated_user = req.body;
+
+        // 2.  Trying out mongodb update - On essaye de faire un UPDATE
         try {
             var user = new User({
                 _id: req.session.user._id,
-                prenom: req.body.prenom,
-                nom: req.body.nom,
+                prenom: updated_user.prenom,
+                nom: updated_user.nom,
                 email: req.session.user.email, // Email can not be changed for now
                 password: req.session.user.password, //  Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
-                role: req.body.role,
-                permissions: middleware.create_permissions(req.body.role),
-                filenames: req.body.filenames,
-                groups: req.body.groups,
+                role: updated_user.role,
+                permissions: middleware.create_permissions(updated_user.role),
+                filenames: updated_user.filenames,
+                groups: updated_user.groups,
                 last_update: new Date(),
-                img: req.body.img,
-                birthday: req.body.birthday,
-                age: req.body.age,
-                job: req.body.job,
-                mentra: req.body.mentra,
+                img: updated_user.img,
+                birthday: updated_user.birthday,
+                age: updated_user.age,
+                job: updated_user.job,
+                mentra: updated_user.mentra,
             });
             db.collection("users").replaceOne({ _id: user._id }, user);
             //  Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
@@ -87,15 +97,21 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
      * @error  400
      */
     app.post("/registerUser", middleware.duplicate_email(db), function(req, res) {
-        // IP FLOODING CONTROL    // TODO and To be mooved to the MIDDLEWARE
 
+        // 1.  Getting data from front end - on récupère le json data de l'app vue.js
+        var anonymous_user = req.body;
+
+        // 2. IP FLOODING CONTROL    // TODO and To be mooved to the MIDDLEWARE
+
+
+        // 2.  Trying out mongodb insert - On essaye de faire un INSERT
         try {
             var user = new User({
                 _id: null,
-                prenom: req.body.prenom,
-                nom: req.body.nom,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
+                prenom: anonymous_user.prenom,
+                nom: anonymous_user.nom,
+                email: anonymous_user.email,
+                password: bcrypt.hashSync(anonymous_user.password, 10),
                 role: "user",
                 permissions: middleware.create_permissions("user"),
                 filenames: [],
