@@ -213,7 +213,7 @@
                                                             <th>Nom</th>
                                                             <th>Télécharger du FTP</th>
                                                             <th>Supprimer du Ftp</th>
-                                                            <th>middleware</th>
+                                                            <th>Permissions</th>
                                                         </tr>
                                                     </thead>
                                                     <tr v-for="file in user.filenames">
