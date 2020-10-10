@@ -18,11 +18,9 @@
             </div>
             <!-- <div  >
                     <b-navbar toggleable="lg" type="dark" variant="info">
-
                         {{filters}}
                     </b-navbar>
                  </div>  -->
-
             <div id="users" v-for="user in users" class="col-lg-3">
                 <div class="card  cardList">
                     <img v-lazy="user.img" v-if="user.img !== ''" @error="replaceByDefault" class="card-img-top" alt="..." />
@@ -44,11 +42,13 @@
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <label> Fichiers Ftp</label><br />
                                     <span class="badge badge-warning" v-for="f in user.filenames"> <i class="fas fa-file"></i> {{ f.filename }}</span>
+                                     <span class="badge badge-warning" v-if="!user.filenames.length" > User has no files yet ! </span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <div>
                                         <label> Groupes </label><br />
                                         <div class="badge badge-success" v-for="groupName in user.groups"><i class="fas fa-users"></i> {{ groupName }}</div>
+                                         <span class="badge badge-warning" v-if="!user.groups.length" > User has no team yet ! </span>
                                     </div>
                                 </div>
                             </div>
