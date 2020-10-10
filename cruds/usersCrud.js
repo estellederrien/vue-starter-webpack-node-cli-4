@@ -1,6 +1,6 @@
 // ---------------------------------- USERS CRUD -------------------------------------------
 module.exports = function(app, db, middleware, bcrypt, User) {
-    // This is needed in web services for mongoDb updates :
+    // This is needed in all web services for mongoDb updates :
     var ObjectId = require("mongodb").ObjectID;
     /*
      * Creating a user
@@ -8,42 +8,31 @@ module.exports = function(app, db, middleware, bcrypt, User) {
      * @return Status 200
      * @error  Status 400
      */
-    app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), function(req, res) {
-        middleware.duplicate_email(db, req.body.email).then((answer) => {
-            if (answer == true) {
-                res.sendStatus(400);
-                return;
-            } else {
-                execute();
-            }
-        });
-
-        function execute() {
-            try {
-                var user = new User({
-                    _id: null,
-                    prenom: req.body.prenom,
-                    nom: req.body.nom,
-                    email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, 10),
-                    role: req.body.role,
-                    permissions: middleware.create_permissions(req.body.role),
-                    filenames: [],
-                    groups: [],
-                    last_update: new Date(),
-                    img: req.body.img,
-                    birthday: req.body.birthday,
-                    age: req.body.age,
-                    job: req.body.job,
-                    mentra: req.body.mentra,
-                });
-                // db.collection("users").insertOne(user);
-                console.log("Added one user");
-                res.sendStatus(200);
-            } catch (e) {
-                console.log(e);
-                res.sendStatus(400);
-            }
+    app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), middleware.duplicate_email(db), function(req, res) {
+        try {
+            var user = new User({
+                _id: null,
+                prenom: req.body.prenom,
+                nom: req.body.nom,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                role: req.body.role,
+                permissions: middleware.create_permissions(req.body.role),
+                filenames: [],
+                groups: [],
+                last_update: new Date(),
+                img: req.body.img,
+                birthday: req.body.birthday,
+                age: req.body.age,
+                job: req.body.job,
+                mentra: req.body.mentra,
+            });
+            db.collection("users").insertOne(user);
+            console.log("Added one user");
+            res.sendStatus(200);
+        } catch (e) {
+            console.log(e);
+            res.sendStatus(400);
         }
     });
     /*
@@ -65,42 +54,31 @@ module.exports = function(app, db, middleware, bcrypt, User) {
      *  @error 400
      */
     app.post("/updateUser", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_USER"), function(req, res) {
-        middleware.duplicate_email(db, req.body.email).then((answer) => {
-            if (answer == true) {
-                res.sendStatus(400);
-                return;
-            } else {
-                execute();
-            }
-        });
-
-        function execute() {
-            try {
-                var user = new User({
-                    _id: req.session.user._id,
-                    prenom: req.body.prenom,
-                    nom: req.body.nom,
-                    email: req.body.email,
-                    password: req.session.user.password, //  Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
-                    role: req.body.role,
-                    permissions: middleware.create_permissions(req.body.role),
-                    filenames: req.body.filenames,
-                    groups: req.body.groups,
-                    last_update: new Date(),
-                    img: req.body.img,
-                    birthday: req.body.birthday,
-                    age: req.body.age,
-                    job: req.body.job,
-                    mentra: req.body.mentra,
-                });
-                db.collection("users").replaceOne({ _id: user._id }, user);
-                //  Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
-                req.session.user = user;
-                res.sendStatus(200);
-            } catch (e) {
-                res.sendStatus(400);
-                console.log(e);
-            }
+        try {
+            var user = new User({
+                _id: req.session.user._id,
+                prenom: req.body.prenom,
+                nom: req.body.nom,
+                email: req.session.user.email, // Email can not be changed for now
+                password: req.session.user.password, //  Avoiding hacking by keeping the id and password from the session, not from the front end - On évite tout hacking, du coup on prends le'id et le password de la session (Pas besoin de prendre celui du front end)
+                role: req.body.role,
+                permissions: middleware.create_permissions(req.body.role),
+                filenames: req.body.filenames,
+                groups: req.body.groups,
+                last_update: new Date(),
+                img: req.body.img,
+                birthday: req.body.birthday,
+                age: req.body.age,
+                job: req.body.job,
+                mentra: req.body.mentra,
+            });
+            db.collection("users").replaceOne({ _id: user._id }, user);
+            //  Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
+            req.session.user = user;
+            res.sendStatus(200);
+        } catch (e) {
+            res.sendStatus(400);
+            console.log(e);
         }
     });
     /*
@@ -109,43 +87,33 @@ module.exports = function(app, db, middleware, bcrypt, User) {
      * @return 200
      * @error  400
      */
-    app.post("/registerUser", function(req, res) {
+    app.post("/registerUser", middleware.duplicate_email(db), function(req, res) {
         // IP FLOODING CONTROL    // TODO and To be mooved to the MIDDLEWARE
-        middleware.duplicate_email(db, req.body.email).then((answer) => {
-            if (answer == true) {
-                res.sendStatus(400);
-                return;
-            } else {
-                execute();
-            }
-        });
 
-        function execute() {
-            try {
-                var user = new User({
-                    _id: null,
-                    prenom: req.body.prenom,
-                    nom: req.body.nom,
-                    email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, 10),
-                    role: "user",
-                    permissions: middleware.create_permissions("user"),
-                    filenames: [],
-                    groups: [],
-                    last_update: new Date(),
-                    img: "",
-                    birthday: "",
-                    age: "",
-                    job: "",
-                    mentra: "",
-                });
-                db.collection("users").insertOne(user);
-                console.log("Added one user");
-                res.sendStatus(200);
-            } catch (e) {
-                console.log(e);
-                res.sendStatus(400);
-            }
+        try {
+            var user = new User({
+                _id: null,
+                prenom: req.body.prenom,
+                nom: req.body.nom,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                role: "user",
+                permissions: middleware.create_permissions("user"),
+                filenames: [],
+                groups: [],
+                last_update: new Date(),
+                img: "",
+                birthday: "",
+                age: "",
+                job: "",
+                mentra: "",
+            });
+            db.collection("users").insertOne(user);
+            console.log("Added one user");
+            res.sendStatus(200);
+        } catch (e) {
+            console.log(e);
+            res.sendStatus(400);
         }
     });
     /*

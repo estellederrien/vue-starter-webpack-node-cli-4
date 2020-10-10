@@ -38,15 +38,19 @@ module.exports = {
      * @return NEXT()
      * @error  Status 403s
      */
-    async duplicate_email(db, email) {
+    duplicate_email(db) {
+        return async(req, res, next) => {
 
-        let myResults;
-        try {
-            myResults = await db.collection("users").findOne({ 'email': email });
-        } catch (err) {
-            console.log(err);
+            let email_already_exist = await db.collection("users").findOne({ 'email': req.body.email })
+
+            if (email_already_exist) {
+                console.log(" FORBIDDEN CAUSE EMAIL ALREADY EXISTS ")
+                res.status(403).send({ errorCode: "403" })
+                return
+            } else {
+                next() // continue the process
+            }
         }
-        return myResults ? true : false;
     },
     /*
      * PERMISSIONS CREATIONS : WHEN A USER IS CREATED, THESES PERMISSIONS ARE JOINED TO HIS ACCOUNT (MONGODB ATLAS JSON OBJECT )
