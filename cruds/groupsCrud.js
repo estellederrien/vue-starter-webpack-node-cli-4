@@ -76,16 +76,15 @@ module.exports = function(app, db, middleware, Group) {
         }
     });
     /*
-     * Delete a group
+     * Delete a group - Supprimer un groupe
+     * @params INT
      * @return 200
      * @error  400
      */
     app.post("/deleteGroup", middleware.requiresLoggedIn, middleware.permission_valid("DELETE_GROUP"), function(req, res) {
         var group = req.body;
-        var ObjectId = require("mongodb").ObjectID;
-        var idObj = ObjectId(group._id);
         try {
-            db.collection("groups").deleteOne({ _id: idObj });
+            db.collection("groups").deleteOne({ _id: ObjectId(group._id) });
             console.log("Deleted one group");
             res.sendStatus(200);
             injectGroups(req, res);
@@ -110,7 +109,7 @@ module.exports = function(app, db, middleware, Group) {
             });
     });
     /*
-     * Read groups for filters
+     * Read groups for filters ( Read less data)
      * @return json ARRAY
      * @error
      */
