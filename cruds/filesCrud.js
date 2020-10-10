@@ -20,7 +20,7 @@
 
 */
 
-module.exports = function(app, db, permissions, ftpConfig, nodeFilePath, fs) {
+module.exports = function(app, db, middleware, ftpConfig, nodeFilePath, fs) {
 
 
     /* ************************************* LOADING NODE MODULES ****************************************************** */
@@ -82,7 +82,7 @@ module.exports = function(app, db, permissions, ftpConfig, nodeFilePath, fs) {
      * @return ARRAY - Filenames
      * @error   STATUS 400
      */
-    app.post("/createFiles", permissions.requiresLoggedIn, permissions.permission_valid("CREATE_FILE"), uploadFiles.array("file", 10), function(req, res, err) {
+    app.post("/createFiles", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_FILE"), uploadFiles.array("file", 10), function(req, res, err) {
 
         // Init variables
         var filenames = [];
@@ -119,7 +119,7 @@ module.exports = function(app, db, permissions, ftpConfig, nodeFilePath, fs) {
      * @return  STATUS 200
      * @error   STATUS 400
      */
-    app.post("/deleteFile", permissions.permission_valid("DELETE_FILE"), function(req, res) {
+    app.post("/deleteFile", middleware.permission_valid("DELETE_FILE"), function(req, res) {
         var file = req.body.name;
 
         try {
@@ -144,7 +144,7 @@ module.exports = function(app, db, permissions, ftpConfig, nodeFilePath, fs) {
      * @return ARRAY - Filenames
      * @error   NONE
      */
-    app.post("/createFtpFiles", uploadFiles.array("file", 10), function(req, res, next) {
+    app.post("/createFtpFiles", uploadFiles.array("file", 10), middleware.requiresLoggedIn, middleware.permission_valid("CREATE_FILE"), function(req, res, next) {
 
 
         send_my_files_to_the_ftp();
