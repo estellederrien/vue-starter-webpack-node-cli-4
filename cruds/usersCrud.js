@@ -104,7 +104,7 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
         // 2. IP FLOODING CONTROL    // TODO and To be mooved to the MIDDLEWARE
 
 
-        // 2.  Trying out mongodb insert - On essaye de faire un INSERT
+        // 3.  Trying out mongodb insert - On essaye de faire un INSERT
         try {
             var user = new User({
                 _id: null,
