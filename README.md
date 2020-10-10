@@ -14,7 +14,7 @@
   <img  align="right"  src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 
-![ScreenShot](screenshot1.jpeg)
+![ScreenShot](screenshot3.png)
 
 ## Desc
 This 2020 starter aims is to be able to start any web-app, with all ready generics components, the starter is plugged to a node.js + mongoDb Atlas back end . <br><br>
@@ -76,7 +76,8 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider<br />
 1 logStream file for connexions logs, actions logs, etc ...<br />
 
-![ScreenShot](screenshot3.png)
+
+![ScreenShot](screenshot1.jpeg)
 
 <br /><br />
 ## Comin' soon ! ...
