@@ -118,7 +118,7 @@ Le but de ce starter est de pouvoir commencer n'importe quel application Node.js
 Clone the depot using smargit, then install the node modules at the root of the app, enter :<br>
 Clonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant ceci à la racine de l'application, dans une fenêtre windows :
 ```
-#npm install
+npm install
 ```
 
 ### Compiles and hot-reloads for development on port 8080
@@ -130,23 +130,23 @@ When you want to develop the vue.js application, run these 2 commands in 2 diffe
 <br />Pour modifier le BACK END, c'est plutôt dans le répertoire CRUDS
 ```
 // Open a cmd window on WINDOWS
-#npm run serve //( starting the vue.js dev env running on port 8080, Axios queries are forwarded to port 80 using vue.config.js) 
+npm run serve //( starting the vue.js dev env running on port 8080, Axios queries are forwarded to port 80 using vue.config.js) 
 //Open another CMD window then enter :
-#node server.js //(starting the node server running on port 80)
+node server.js //(starting the node server running on port 80)
 ```
 
 ### Compiles and minifies for production
 When you are satisfied with your development, you generate a BUILD of your vue.js app which is compressed and optimized, it then appears in the \ DIST directory.<br>
 <br />Quand vous êtes satisfait de votre développement, vous générez un BUILD de votre app vue.js qui est compressé et optimisé, il apparait alors dans le répertoire \DIST.
 ```
-#npm run build
+npm run build
 ```
 ### Run build on port 80
 To test your BUILD on port 80, just type localhost: 80 in your browser! In fact, there is only one node server running all the time!<br>
 <br />Pour tester votre BUILD sur le port 80 , tapez juste localhost:80 dans votre navigateur ! En fait, il n'y a qu'un seul serveur node qui tourne en permanence !
 
 ```
-#npm run start
+npm run start
 ```
 ### Publishing on HEROKU
 It is so simple and automatic, 1. Clone this depot in you github, 2. Simply go to heroku and go to the deploy tab then Manually deploy your app. 3. DOn't even sync the \dist directory, Heroku does it for you !<br>
@@ -157,12 +157,12 @@ PLease don't use my mongoDb atlas db, open yourself an account ...
 
 ### Run your unit tests
 ```
-#npm run test:unit
+npm run test:unit
 ```
 
 ### Lints and fixes files
 ```
-#npm run lint
+npm run lint
 ```
 
 ### Customize configuration
