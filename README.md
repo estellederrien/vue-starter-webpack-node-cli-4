@@ -22,7 +22,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  10-10-2020: A Nice generic backend Controller there : https://github.com/DavideViolante/Angular-Full-Stack/blob/master/server/controllers/base.ts
+  10-10-2020: A Nice generic backend Controller there : https://github.com/DavideViolante/Angular-Full-Stack/blob/master/server/controllers/base.ts<br>
   10-10-2020 : Ftp files are now downloadable from public  users profiles - Coming soon : Social networking on each publics profiles,  infinite scrolls, mooving duplicated AXIOS functions to VUEX<br>
   05-10-2020 :Currently installing Mongoose , and refactoring all cruds files.<br>
   05-10-2020 : Very nice article : https://developer.mongodb.com/article/mongoose-versus-nodejs-driver<br>
