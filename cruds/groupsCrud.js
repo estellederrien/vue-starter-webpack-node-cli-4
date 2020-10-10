@@ -8,7 +8,7 @@ module.exports = function(app, db, middleware, Group) {
      * @return Status 200
      * @error  Status 400
      */
-    app.post("/createGroup", middleware.permission_valid("CREATE_GROUP"), middleware.duplicate_group(db), function(req, res) {
+    app.post("/createGroup", middleware.permission_valid("CREATE_GROUP"), middleware.duplicate_name(db, "groups"), function(req, res) {
         // 1.  Getting data from front end 
         var new_group = req.body;
         // 2. Try an insert
