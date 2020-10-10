@@ -1,7 +1,6 @@
 // ---------------------------------- JOBS CRUD -------------------------------------------
-module.exports = function(app, db, middleware, Job) {
-    // This is needed in all web services for mongoDb updates :
-    var ObjectId = require("mongodb").ObjectID;
+module.exports = function(app, db, middleware, Job, ObjectId) {
+
     /*
      * Creating a job
      * @params JSON OBJECT {} (See jobs.js file for schema)

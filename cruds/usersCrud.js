@@ -1,7 +1,6 @@
 // ---------------------------------- USERS CRUD -------------------------------------------
-module.exports = function(app, db, middleware, bcrypt, User) {
-    // This is needed in all web services for mongoDb updates :
-    var ObjectId = require("mongodb").ObjectID;
+module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
+
     /*
      * Creating a user
      * @params JSON OBJECT : {}

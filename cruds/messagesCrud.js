@@ -1,5 +1,5 @@
 // ---------------------------------- MESSAGES CRUD -------------------------------------------
-module.exports = function(app, db, Message) {
+module.exports = function(app, db, Message, ObjectId) {
 
     /* MESSAGE MODEL*/
     let message = {

@@ -1,5 +1,5 @@
 // -----------------------------------SOlutions CRUD (LINEAR SOLVER) -------------------------------------------
-module.exports = function(app, db) {
+module.exports = function(app, db, ObjectId) {
     // GET SOLUTIONS
     app.post("/readSolutions", function(req, res, next) {
         MongoClient.connect(url, (err, client) => {

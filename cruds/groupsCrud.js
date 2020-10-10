@@ -1,7 +1,6 @@
 // ---------------------------------- GROUP CRUD -------------------------------------------
-module.exports = function(app, db, middleware, Group) {
-    // This is needed in all web services for mongoDb updates :
-    var ObjectId = require("mongodb").ObjectID;
+module.exports = function(app, db, middleware, Group, ObjectId) {
+
     /*
      * Create a group - Créer un groupe d'utilisateurs
      * @params JSON object (see group.js for schema)
