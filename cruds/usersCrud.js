@@ -3,6 +3,10 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
 
     var ObjectId = require("mongodb").ObjectID;
+    middleware.duplicate_email(db, "admin@admin.com").then((answer) => {
+        console.log(answer)
+    });
+
     /*
      * Creating a user
      * @params JSON OBJECT : {}
@@ -12,36 +16,36 @@ module.exports = function(app, db, middleware, bcrypt, User) {
     app.post("/createUser", middleware.requiresLoggedIn, middleware.permission_valid("CREATE_USER"), function(req, res) {
 
         // To be mooved to the MIDDLEWARE - Checking if no email duplicate - Controle si il y a un doublon EMAIL 
-        db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
-            if (!result) {
-                execute();
-            } else {
-                console.log("Sorry , there is a duplicate Email, This is Forbidden");
-                res.send({ problem: "doublonEmail" });
-                return;
-            }
-        });
+        // db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
+        //     if (!result) {
+        //         execute();
+        //     } else {
+        //         console.log("Sorry , there is a duplicate Email, This is Forbidden");
+        //         res.send({ problem: "doublonEmail" });
+        //         return;
+        //     }
+        // });
 
         try {
 
             var user = new User({
-                _id: null,
-                prenom: req.body.prenom,
-                nom: req.body.nom,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                role: req.body.role,
-                permissions: middleware.create_permissions(req.body.role),
-                filenames: [],
-                groups: [],
-                last_update: new Date(),
-                img: req.body.img,
-                birthday: req.body.birthday,
-                age: req.body.age,
-                job: req.body.job,
-                mentra: req.body.mentra
-            })
-            db.collection("users").insertOne(user);
+                    _id: null,
+                    prenom: req.body.prenom,
+                    nom: req.body.nom,
+                    email: req.body.email,
+                    password: bcrypt.hashSync(req.body.password, 10),
+                    role: req.body.role,
+                    permissions: middleware.create_permissions(req.body.role),
+                    filenames: [],
+                    groups: [],
+                    last_update: new Date(),
+                    img: req.body.img,
+                    birthday: req.body.birthday,
+                    age: req.body.age,
+                    job: req.body.job,
+                    mentra: req.body.mentra
+                })
+                // db.collection("users").insertOne(user);
             console.log("Added one user");
             res.sendStatus(200);
         } catch (e) {
@@ -54,21 +58,18 @@ module.exports = function(app, db, middleware, bcrypt, User) {
 
     /*
      * Reading user
-     * @params JSON OBJECT : {id: this.id}
+     * @params INT
      * @return JSON OBJECT
      * @error
      */
 
-    app.post("/readUser", function(req, res) {
+    app.get("/readUser", function(req, res) {
 
-        // 1. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
-        var idObj = ObjectId(req.param("id"));
-
-        // 2. MongodDb Final Query
-        db.collection("users").findOne({ _id: idObj }, function(findErr, result) {
-            if (findErr) throw findErr;
-            res.send(result);
-        });
+        db.collection("users").findOne({ _id: ObjectId(req.param("id")) },
+            function(findErr, result) {
+                if (findErr) throw findErr;
+                res.send(result);
+            });
     });
 
     /*
