@@ -129,15 +129,15 @@ module.exports = function(app, db, middleware, bcrypt, User) {
         // IP FLOODING CONTROL    // TODO and To be mooved to the MIDDLEWARE
 
         // To be mooved to the MIDDLEWARE - Checking if no email duplicate - Controle si il y a un doublon EMAIL 
-        db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
-            if (!result) {
-                execute();
-            } else {
-                console.log("Sorry , there is a duplicate Email, This is Forbidden");
-                res.send({ problem: "doublonEmail" });
-                return;
-            }
-        });
+        /*    db.collection("users").findOne({ email: req.body.email }, function(findErr, result) {
+               if (!result) {
+                   execute();
+               } else {
+                   console.log("Sorry , there is a duplicate Email, This is Forbidden");
+                   res.send({ problem: "doublonEmail" });
+                   return;
+               }
+           }); */
 
         try {
 
@@ -169,24 +169,16 @@ module.exports = function(app, db, middleware, bcrypt, User) {
     });
 
     /*
-     * Delete user - Supprimer un user
-     * @params JSON OBJECT : {}
+     * Delete user - Supprimer un user - Please notice, COMMON APP.DELETE is not working for some unknown reasons, so I let it like this.
+     * @params JSON OBJECT USER : {}
      * @return 200
      * @error  400
      */
 
     app.post("/deleteUser", middleware.requiresLoggedIn, middleware.permission_valid("DELETE_USER"), function(req, res) {
 
-        // 1. Receiving Front end Data - On reçois le data du front end .
-        var user = req.body;
-
-        // 2. Formatting the received id as a mongoDb ObjectId - On formatte l'identifiant utilisateur en un id de type mongoDb .
-        var ObjectId = require("mongodb").ObjectID;
-        var idObj = ObjectId(user._id);
-
-        // 3. Final delete mongoDb query
         try {
-            db.collection("users").deleteOne({ _id: idObj });
+            db.collection("users").deleteOne({ _id: ObjectId(req.body._id) });
             console.log("User have been deleted");
             // Delete session
             delete req.session;
