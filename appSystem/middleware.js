@@ -52,16 +52,16 @@ module.exports = {
         };
     },
     /*
-     * CHECKING FOR DUPLICATE EXISTING GROUP - ON Vérifie qu'un groupe n'existe pas déjà avant d'en créer un.
+     * CHECKING FOR DUPLICATE EXISTING NAME - ON Vérifie qu'un nom n'existe pas déjà dans une collection avant d'en créer un.
      * @params db, req,res,next
      * @return NEXT()
      * @error  Status 403
      */
-    duplicate_group(db) {
+    duplicate_name(db, collection) {
         return async(req, res, next) => {
-            let group_already_exist = await db.collection("groups").findOne({ name: req.body.name });
-            if (group_already_exist) {
-                console.log(" FORBIDDEN CAUSE GROUP ALREADY EXISTS ");
+            let name_already_exist = await db.collection(collection).findOne({ name: req.body.name });
+            if (name_already_exist) {
+                console.log(" FORBIDDEN CAUSE NAME ALREADY EXISTS ");
                 res.status(403).send({ errorCode: "403" });
                 return;
             } else {
