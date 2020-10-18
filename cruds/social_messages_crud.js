@@ -75,7 +75,7 @@ module.exports = function(app, db, middleware, bcrypt, SocialMessage, ObjectId) 
          * @return 200
          * @error  400
          */
-        app.post("/delete_social_message", middleware.requiresLoggedIn, middleware.permission_valid("DELETE_USER"), function(req, res) {
+        app.post("/delete_social_message", middleware.requiresLoggedIn, middleware.permission_valid("DELETE_SOCIAL_MESSAGE"), function(req, res) {
             try {
                 db.collection("social_message").deleteOne({ _id: ObjectId(req.body._id) });
                 console.log("SOCIAL MESSAGE have been deleted");
