@@ -248,7 +248,7 @@
 
                         <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
                             <div class="row">
-                                <socialnetwork></socialnetwork>
+                                <socialnetwork :_id = "this._id"></socialnetwork>
                             </div>
                         </div>
 
