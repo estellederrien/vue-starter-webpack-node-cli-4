@@ -14,7 +14,7 @@ const ObjectId = require("mongodb").ObjectID; // This is needed in all web servi
 const fs = require("fs");
 const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
 
-// ------------------------------------ LOAD PERSONNAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE -----------------------
+// ------------------------------------ LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE -----------------------
 const User = require("./models/user");
 const Group = require("./models/group");
 const Job = require("./models/job");
@@ -22,7 +22,7 @@ const Message = require("./models/message");
 const SocialMessage = require("./models/social_message");
 const Event = require("./models/event");
 
-// ------------------------------------ LOAD PERSONNAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle dde permission sur les web services
+// ------------------------------------ LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle dde permission sur les web services
 const middleware = require("./appSystem/middleware.js");
 
 // ------------------------------------THIS IS AN EXPRESS APP -------------------------------------------
