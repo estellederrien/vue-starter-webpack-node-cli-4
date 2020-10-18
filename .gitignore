@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-/cruds
 /uploads
 /node_module
 /dist
