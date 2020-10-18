@@ -16,8 +16,8 @@ export default {
                 from:"",
                 to:"",
                 date:"",
-                content:"",
                 title:"",
+                content:"",
                 user_img:""
             },
             // Social message list will appears, 5 by five or using an infinite scroll - La liste des messages est un array de json.

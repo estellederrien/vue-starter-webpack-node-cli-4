@@ -31,6 +31,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Droits</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">Social Network</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -242,9 +245,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="messageslist" role="tabpanel">
-                            test
+
+                        <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
+                            <div class="row">
+                                <socialnetwork></socialnetwork>
+                            </div>
                         </div>
+                        
+
+                
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -277,6 +286,7 @@ import {
 import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import Message from "@/components/Message.vue";
+import Socialnetwork from "@/components/SocialNetwork.vue";
 export default {
     name: "User",
     props: ["_id"],
@@ -330,7 +340,8 @@ export default {
     components: {
         uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles,
-        message: Message
+        message: Message,
+        socialnetwork: Socialnetwork
     },
     methods: {
         readFtpFile(file) {

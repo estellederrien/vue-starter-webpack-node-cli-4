@@ -21,6 +21,8 @@
 				I will try to make the code as easy and clear as possible !
 				<br />
 				Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX
+				<br />
+				https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
 
 				<br />
 				<span style="color:blue">Testing: log in ADMIN with -> login: admin@admin.com + password: admin </span><br>
