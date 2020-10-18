@@ -48,7 +48,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 <br />
 
 ## What's in files ?
-
+-   <b>CONFIG.JSON</b> This is the app configuration , db connexion, ftp connexion, choosing dev or prod, etc ...<br>
 -   <b>SERVER.js</b> This is the node.js server: Includes the node.js params, node session module loading and the MIDDLEWARE and CRUDS web services loading. <br>
 -   <b>\SRC</b> : This is where you develop the front end vue.js application, this is basically the complete VUE.JS FRONT END application. <br>
 -   <b>\DIST</b> : This is where the built appears when you type NPM RUN BUILD, This is the final front end vue.js app ready for production.<br>
@@ -108,7 +108,7 @@ Data science  ...<br />
 ## French : 
 Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.<br>
 Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, middleware, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br> Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ... Il peut vous donner des idées, bien sur, il existe peut être de meilleures architectures, par exemple avec Mongoose qui permet de mieux décrire le modèle de données et ses types, dans l'app.<br /><br>
-
+-   <b>CONFIG.JSON</b> On trouve la configuration de l'app dans ce fichier : Connexion à la db, au ftp, à cloudinary ...<br>
 -   <b>SERVER.js</b> Il s'agit du serveur node.js: Inclut les paramètres node.js, le chargement du module de gestion des sessions utilisateur et le chargement des services Web CRUDS.<br>
 -   <b>\ SRC:</b> C'est ici que vous développez l'application front-end vue.js, c'est fondamentalement l'application VUE.JS FRONT END complète.<br>
 -   <b>\ DIST:</b> C'est là que le build apparaît lorsque vous tapez NPM RUN BUILD, c'est l'application compressée et optimisée pour la production par webpack.<br>
