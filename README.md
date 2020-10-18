@@ -124,6 +124,7 @@ npm install
 ```
 Clone the depot using smargit, then install the node modules at the root of the app<br>
 Clonez ce dépot avec Smartgit, puis installez les modules nodes , en tapant le code précédent à la racine de l'application.<br>
+Create a mongoDbAtlas account, Create a cloudinary account, Create and ftp account, then fill config.json
 
 
 ### Compiles and hot-reloads for development on port 8080
@@ -165,8 +166,7 @@ To test your BUILD on port 80, just type localhost: 80 in your browser! In fact,
 It is so simple and automatic, 1. Clone this depot in your github, 2. Simply go to heroku and go to the deploy tab then manually deploy your app. 3. Don't even sync the \dist directory when commiting, Heroku does it for you !<br>
 <br />C'est tellement simple et automatique, 1. Clonez ce dépôt dans votre github, 2. Allez simplement sur heroku et allez dans l'onglet de déploiement puis déployez manuellement votre application. 3. Même pas besoin de taper NPM RUN BUILD, Heroku le fait automatiquement pour vous. Pour gérer cela, c'est sous l'onglet DEPLOY, c'est trop pratique, tout se fait tout seul, on peut même paramétrer en SYNC automatique dès qu'on fait un commit, l'app se mets à jour toute seule !.
 
-### Creating your MONGODB ATLAS ACCOUNT
-PLease don't use my mongoDb atlas db, open yourself an account ...
+
 
 ### Run your unit tests
 ```
