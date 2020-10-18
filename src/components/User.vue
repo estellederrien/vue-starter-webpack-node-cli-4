@@ -197,7 +197,7 @@
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-12 tab-content-user">
-                                    <span class="badge badge-warning" v-if="!user.filenames.length" > User has no files yet ! </span>
+                                    <span class="badge badge-warning" v-if="!user.filenames.length"> User has no files yet ! </span>
                                     <table v-if="user.filenames.length" class="table table-sm">
                                         <thead>
                                             <tr>
@@ -251,9 +251,7 @@
                                 <socialnetwork></socialnetwork>
                             </div>
                         </div>
-                        
 
-                
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -344,6 +342,18 @@ export default {
         socialnetwork: Socialnetwork
     },
     methods: {
+        readUser: function () {
+            axios
+                .get("readUser?_id=" + this._id)
+                .then(response => {
+                    this.user = response.data;
+                    this.loaded = true;
+                    this.disableAllinputs();
+                })
+                .catch(function (erreur) {
+                    console.log(erreur);
+                });
+        },
         readFtpFile(file) {
 
             let self = this;
@@ -381,34 +391,15 @@ export default {
         replaceByDefault(e) {
             e.target.src = "defaut.png";
         },
-        hide() {
-            this.$modal.hide("hello-world");
-        },
-        readUser: function () {
-            axios
-                .get("readUser?_id=" + this._id)
-                .then(response => {
-                    this.user = response.data;
-                    this.loaded = true;
-                    this.disableAllinputs();
-                })
-                .catch(function (erreur) {
-                    console.log(erreur);
-                });
-        },
         disableAllinputs: function () {
             let elems = document.getElementById('userDiv').getElementsByTagName('input');
             for (let i = 0; i < elems.length; i++) {
                 elems[i].disabled = true;
             }
-            /*  let selects = document.getElementById('userDiv').getElementsByTagName('select');
-             for (let i = 0; i < selects.length; i++) {
-                 selects[i].disabled = true;
-             } */
         }
     },
     mounted: function () {
-        this.readUser(this.id);
+        this.readUser();
     }
 };
 </script>
