@@ -31,7 +31,7 @@ module.exports = function(app, db, middleware, Group, ObjectId) {
     /*
      * Read group ( so his users)- Lire un groupe ( et donc ses utilisateurs)
      * @param INT
-     * @return JSON OBJECT
+     * @return JSON ARRAY
      * @error 400
      */
     app.post("/readGroup", function(req, res) {
