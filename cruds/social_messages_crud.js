@@ -24,7 +24,7 @@ module.exports = function(app, db, middleware, bcrypt, SocialMessage, ObjectId) 
                     user_img: new_social_message.user_img
                 });
                 db.collection("social_messages").insertOne(social_message);
-                console.log("Added one user");
+                console.log("Added one social message");
                 res.sendStatus(200);
             } catch (e) {
                 console.log(e);
@@ -95,7 +95,7 @@ module.exports = function(app, db, middleware, bcrypt, SocialMessage, ObjectId) 
 
             // 2. Final read mongoDb query
             db.collection("social_message")
-                .find(filters) // find holds the front end filters
+                .find()
                 .toArray(function(err, docs) {
                     if (err) throw err;
                     console.log(err);
