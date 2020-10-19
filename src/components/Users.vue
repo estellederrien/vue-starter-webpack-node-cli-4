@@ -8,6 +8,9 @@
             <modal name="filters" width="80%" height="auto" :scrollable="true">
                 <filters @filters="executeFilters"></filters>
             </modal>
+                <modal name="messageModal" :width="350" :height="400">
+                    <message :user="$store.getters.user"></message>
+                </modal>
             <div class="header">
                 <button class="btn btn-warning " v-on:click="openFilters()"><i class="fas fa-filter"></i> Filtres</button>
             </div>
@@ -56,12 +59,15 @@
                     </div>
                     <div class="card-footer">
                         <a v-on:click="route(user._id)" class="btn btn-primary float-right"><i class="fas fa-user"></i></a>
+                        <a  v-on:click="openMessageModal(user._id)" class="btn btn-secondary float-right"><i class="far fa-envelope"></i></a>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </template>
 
 <script>
@@ -70,6 +76,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 /* PERSONNAL COMPONENTS */
 import Filters from "@/components/Filters.vue";
+import Message from "@/components/Message.vue";
 export default {
     name: "Users",
     methods: {
@@ -102,9 +109,13 @@ export default {
             this.filters = filtersChanged;
             this.readUsers();
         },
+        openMessageModal: function () {
+            this.$modal.show("messageModal");
+        }
     },
     components: {
         filters: Filters,
+        message: Message
     },
     created: function () {
         this.readUsers();

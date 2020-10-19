@@ -24,6 +24,7 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
                 permissions: middleware.create_permissions(new_user.role),
                 filenames: [],
                 groups: [],
+                social_messages: [],
                 last_update: new Date(),
                 img: new_user.img,
                 birthday: new_user.birthday,

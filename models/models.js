@@ -22,7 +22,7 @@ const JobSchema = new Schema({
     creation_date: Date
 });
 
-// MESSAGE SCHEMA
+// SOCIAL USER MESSAGE SCHEMA
 const SocialMessageSchema = new Schema({
     from: String,
     to: String,

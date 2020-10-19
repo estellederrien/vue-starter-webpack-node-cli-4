@@ -1,5 +1,5 @@
 // ---------------------------------- MESSAGES CRUD -------------------------------------------
-module.exports = function(app, db, Message, ObjectId) {
+module.exports = function(app, db, middleware, Message, ObjectId) {
 
     /*
      * Creating a message
@@ -11,7 +11,7 @@ module.exports = function(app, db, Message, ObjectId) {
 
         // 1.  Getting data from front end - on récupère le json data de l'app vue.js
         var new_message = req.body;
-
+        console.log(new_message)
         try {
             var message = new Message({
                 _id: null, // It is a new message it has no mongodb id yet - Cest un nouveau message, il n'y a pas encore d'id mongodb, il se cree lors de la phase d'insert

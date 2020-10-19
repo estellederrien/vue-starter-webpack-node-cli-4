@@ -13,8 +13,7 @@ const MessageSchema = new Schema({
     senderSurname: String,
     date: String,
     id: String,
-    img: String,
-    date: String
+    img: String
 });
 
 module.exports = mongoose.model('Message', MessageSchema)

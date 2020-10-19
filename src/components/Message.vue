@@ -82,7 +82,8 @@ export default {
                 content: ""
             },
             users: [],
-            to:{}
+            to:{},
+            value:""
         };
     },
 
@@ -94,6 +95,8 @@ export default {
             this.message.senderName = this.user.nom;
             this.message.senderSurname = this.user.prenom;
             this.message.img = this.user.img;
+            this.message.date = new Date();
+            this.message.id = this.user._id;
 
             axios
                 .post("/createMessage", this.message)
@@ -138,7 +141,7 @@ export default {
     mounted: function () {
 
         this.readUsers();
-
+        
     }
 };
 </script>
