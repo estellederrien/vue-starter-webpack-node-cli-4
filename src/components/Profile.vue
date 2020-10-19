@@ -483,7 +483,7 @@ export default {
             // building URL 
             const url = '/api/jobs/'+job_id;
             // Delete using generic_crud.js
-            if (confirm("Do you really want to delete" + this.user.job + "?")) {
+            if (confirm("Do you really want to delete : " + this.user.job + " ?")) {
                 axios
                     .delete(url)
                     .then(response => {

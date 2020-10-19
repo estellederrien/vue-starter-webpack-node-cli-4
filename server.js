@@ -17,9 +17,7 @@ const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
 // ------------------------------------ LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE -----------------------
 const User = require("./models/user");
 const Group = require("./models/group");
-// const Job = require("./models/job");
 const Message = require("./models/message");
-const SocialMessage = require("./models/social_message");
 const Event = require("./models/event");
 
 // ------------------------------------ LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle dde permission sur les web services
@@ -124,14 +122,16 @@ function load_cruds(db) {
     require("./cruds/users_crud.js")(app, db, middleware, bcrypt, User, ObjectId);
     require("./cruds/files_crud.js")(app, db, middleware, config.ftp_config, config.node_file_path, fs, bodyParser);
     require("./cruds/pictures_crud.js")(app, db, middleware, config.cloudinary_token);
-    // require("./cruds/jobs_crud.js")(app, db, middleware, Job, ObjectId);
-    // TRYING OUT THE NEW GENERIC CRUD !!
-    const models = require('./models/models');
-    app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
-
     require("./cruds/groups_crud.js")(app, db, middleware, Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, Message, ObjectId);
-    require("./cruds/social_messages_crud.js")(app, db, middleware, SocialMessage, ObjectId);
+
+
+    // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
+    const models = require('./models/models');
+    app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
+    app.use('/api/social_messages', require("./cruds/generic_crud.js")(models.social_messages, middleware));
+
+
 }
 
 /*

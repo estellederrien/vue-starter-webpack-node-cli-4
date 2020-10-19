@@ -19,12 +19,22 @@ const jokesSchema = new Schema({
 // JOB SCHEMA
 const JobSchema = new Schema({
     name: String,
-    creation_date: String
+    creation_date: Date
 });
 
+// MESSAGE SCHEMA
+const SocialMessageSchema = new Schema({
+    from: String,
+    to: String,
+    date: Date,
+    title: String,
+    content: String,
+    user_img: String
+});
 
 const models = {};
 models.Jokes = mongoose.model('jokes', jokesSchema);
 models.jobs = mongoose.model('jobs', JobSchema);
+models.social_messages = mongoose.model('social_messages', SocialMessageSchema)
 
 module.exports = models;

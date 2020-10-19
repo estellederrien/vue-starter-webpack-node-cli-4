@@ -56,7 +56,21 @@ export default {
     methods: {
         // Social message crud functions
         create_social_message() {
-
+             axios
+                .post("/api/social_messages", this.new_social_message)
+                .then(response => {
+                    alert("Added one job !");
+                    this.readJobs();
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: error
+                    });
+                });
         },
         read_social_message() {
 
@@ -65,23 +79,54 @@ export default {
 
         },
         delete_social_message() {
+             // Getting _id from string
+            //TODO
+
+           /*  this.jobs.forEach((job, index) => {
+                if (job.name == this.user.job) {
+                    job_id = job._id;
+                }
+            }) */
+
+            // building URL 
+            const url = '/api/social_messages/'+id_to_delete;
+            // Delete using generic_crud.js
+            // if (confirm("Do you really want to delete : " + this.social_messages.job + " ?")) {
+                axios
+                    .delete(url)
+                    .then(response => {
+                        this.$notify({
+                            type: 'success',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: "Job had been deleted"
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: error
+                        });
+                    });
+            // }
 
         },
         read_all_social_message() {
             axios
-                .post("/read_all_social_message", {
-                    _id: this._id
-                })
+                .get("/api/social_messages")
                 .then(response => {
                     this.social_messages = response.data;
                 })
                 .catch(error => {
                     console.log(error);
                     this.$notify({
-                        type: "error",
-                        group: "foo",
-                        title: "Hey! ",
-                        text: error
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> ' + error
                     });
                 });
 
