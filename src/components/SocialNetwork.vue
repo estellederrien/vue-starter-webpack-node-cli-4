@@ -15,7 +15,9 @@
             <b-card border-variant="dark"  no-body class="overflow-hidden card-message" v-if="user.social_messages" v-for="sm in user.social_messages">
                 <b-row no-gutters>
                     <b-col md="2">
-                        <b-card-img :src="sm.img" alt="Image" class="rounded-0"></b-card-img>
+                        <b-card-img v-if="sm.img !== ''" :src="sm.img" alt="Image" class="rounded-0"></b-card-img>
+                       <b-card-img v-if="sm.img == ''" src="../assets/img/defaut.png" alt="Image" class="rounded-0"></b-card-img>
+                       
                     </b-col>
                     <b-col md="10">
                         <b-card-body >
