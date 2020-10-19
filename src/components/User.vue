@@ -258,7 +258,7 @@
                     <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
                             <i class="far fa-envelope"></i> <span class="d-none d-sm-block">Message</span></a>
                         <v-dialog /></span>
-                    </upload>
+                   
                 </div>
             </div>
         </form>
