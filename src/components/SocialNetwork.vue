@@ -2,18 +2,34 @@
 <b-container fluid>
     <b-row>
         <b-col sm="2">
-            <label for="textarea-small">Message de {{this.$store.getters.user.nom}}:</label>
+            <label for="textarea-small">Message from {{this.$store.getters.user.nom}}:</label>
         </b-col>
         <b-col sm="10">
-            <b-form-textarea v-model=" new_social_message.content" id="textarea-small" size="sm" placeholder="Enter message"></b-form-textarea>
+            <b-form-input id="title" v-model="new_social_message.title" placeholder="Enter Title"></b-form-input>
+            <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" placeholder="Enter message"></b-form-textarea>
+            <b-button @click="create_social_message()" type="button" variant="outline-primary " block>Send Social network msg </b-button>
         </b-col>
     </b-row>
-    <b-row>
-        <b-button @click="create_social_message()" type="button" variant="outline-primary  block" block>Send Social network msg </b-button>
-        <span v-if="user.social_messages" v-for="sm in user.social_messages" class="badge badge-warning">
-            {{sm.from}} says : {{sm.content}}
-            <button type="button" @click="delete_social_message(sm._id)">X</button>
-        </span>
+    <b-row class = "list">
+        <b-col sm="12">
+            <b-card border-variant="dark"  no-body class="overflow-hidden card-message" v-if="user.social_messages" v-for="sm in user.social_messages">
+                <b-row no-gutters>
+                    <b-col md="2">
+                        <b-card-img :src="sm.img" alt="Image" class="rounded-0"></b-card-img>
+                    </b-col>
+                    <b-col md="10">
+                        <b-card-body >
+                           <b-card-title>
+                                <h4> {{sm.title}} <!-- says at {{sm.date}}: --></h4>
+                           </b-card-title>
+                            <b-card-text>
+                                {{sm.content}}
+                            </b-card-text>
+                        </b-card-body>
+                    </b-col>
+                </b-row>
+            </b-card>
+        </b-col>
     </b-row>
 </b-container>
 </template>
@@ -32,13 +48,13 @@ export default {
         return {
             // This JSON object must be equals to the Moongoose backend modeled object - Cet objet json doit correspondre à l'objet défini dans le répertoire MODELS (moongoose) de l'app
             new_social_message: {
-                from: "test@test.fr",
-                to: "test@test.fr",
+                from: this.$store.getters.user.email,
                 date: new Date(),
-                title: "test@test.fr",
+                title: "",
                 content: "",
-                user_img: "test@test.fr"
-            }
+                img: this.$store.getters.user.img
+            },
+            x: false
         };
     },
     // Fields validation
@@ -74,8 +90,16 @@ export default {
     },
     mounted: function () {
         console.log(this.user)
+        console.log(this.$store.getters.user)
+        this.x = false;
     }
 };
 </script>
 <style scoped>
+.list{
+    margin-top:20px
+}
+.card-message{
+  margin-top:20px
+}
 </style>

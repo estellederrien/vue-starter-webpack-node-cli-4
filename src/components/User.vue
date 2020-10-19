@@ -74,15 +74,7 @@
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.nom.$error }">
                                     <p>
-                                        <input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
-                                        <!-- ERRORS MESSAGES -->
-                                        <div class="error" v-if="!$v.user.nom.required">
-                                            Le champs est nécessessaire
-                                        </div>
-                                        <div class="error" v-if="!$v.user.nom.minLength">
-                                            Le nom doit avoir au moins
-                                            {{ $v.user.nom.$params.minLength.min }} letters.
-                                        </div>
+                                        <input :disabled="true" v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
                                     </p>
                                 </div>
                             </div>
@@ -92,15 +84,7 @@
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
                                     <p>
-                                        <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
-                                        <!-- ERRORS MESSAGES -->
-                                        <div class="error" v-if="!$v.user.prenom.required">
-                                            Le champs est nécessessaire
-                                        </div>
-                                        <div class="error" v-if="!$v.user.prenom.minLength">
-                                            Le prénom doit avoir au moins
-                                            {{ $v.user.nom.$params.minLength.min }} letters.
-                                        </div>
+                                        <input :disabled="true"  v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
                                     </p>
                                 </div>
                             </div>
@@ -110,15 +94,7 @@
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
                                     <p>
-                                        <input v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
-                                        <!-- ERRORS MESSAGES -->
-                                        <div class="error" v-if="!$v.user.email.required">
-                                            Le champs est nécessessaire
-                                        </div>
-                                        <div class="error" v-if="!$v.user.email.minLength">
-                                            L'Email doit avoir au moins
-                                            {{ $v.user.nom.$params.minLength.min }} lettres.
-                                        </div>
+                                        <input :disabled="true"  v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
                                     </p>
                                 </div>
                             </div>
@@ -128,15 +104,7 @@
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
                                     <p>
-                                        <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
-                                        <!-- ERRORS MESSAGES -->
-                                        <div class="error" v-if="!$v.user.phone.minLength">
-                                            Le téléphone doit avoir au moins
-                                            {{ $v.user.phone.$params.minLength.min }} chiffres.
-                                        </div>
-                                        <!--   <div class="error" v-if="!$v.user.phone.numeric">
-                                        Le téléphone ne doit pas comporter de lettres
-                                    </div> -->
+                                        <input :disabled="true"  v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
                                     </p>
                                 </div>
                             </div>
@@ -245,20 +213,17 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
                             <div class="row">
-                                <socialnetwork :user = "this.user"></socialnetwork>
+                                <socialnetwork :user="this.user"></socialnetwork>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-md-2">
-                  <!--   <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
+                    <!--   <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
                             <i class="far fa-envelope"></i> <span class="d-none d-sm-block">Message</span></a>
                         <v-dialog /></span> -->
-                   
                 </div>
             </div>
         </form>
@@ -268,7 +233,6 @@
     </modal>
 </div>
 </template>
-
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -300,7 +264,9 @@ export default {
                 password: "",
                 img: "",
                 filenames: [],
-                socials_messages : [{"test":"test"}]
+                socials_messages: [{
+                    "test": "test"
+                }]
             },
             anonymous: {
                 _id: "anonymous",
@@ -350,9 +316,8 @@ export default {
                     this.user = response.data;
                     this.loaded = true;
                     this.disableAllinputs();
-
-                      if (!this.user.social_messages){
-                            this.user.social_messages = [{"content":"fzfzef"}];
+                    if (!this.user.social_messages) {
+                        this.user.social_messages = [];
                     }
                 })
                 .catch(function (erreur) {
@@ -360,7 +325,6 @@ export default {
                 });
         },
         readFtpFile(file) {
-
             let self = this;
             axios.post("readFtpFile", {
                     name: file.filename
@@ -397,10 +361,10 @@ export default {
             e.target.src = "defaut.png";
         },
         disableAllinputs: function () {
-            let elems = document.getElementById('userDiv').getElementsByTagName('input');
-            for (let i = 0; i < elems.length; i++) {
-                elems[i].disabled = true;
-            }
+            /*     let elems = document.getElementById('userDiv').getElementsByTagName('input');
+                for (let i = 0; i < elems.length; i++) {
+                    elems[i].disabled = true;
+                } */
         }
     },
     mounted: function () {
@@ -408,36 +372,29 @@ export default {
     }
 };
 </script>
-
 <style>
 .badge-space {
     min-width: 150px
 }
-
 .tab-content-user {
     padding: 10px;
     margin: 10px;
     margin-bottom: 50px;
 }
-
 .error {
     border-color: red;
     background: #FDD;
 }
-
 .error:focus {
     outline-color: #F99;
 }
-
 .valid {
     border-color: #5A5;
     background: #EFE;
 }
-
 .valid:focus {
     outline-color: #8E8;
 }
-
 /* change all .btn to .btn-sm size on xs */
 @include media-breakpoint-between(xs, sm) {
     .btn {
@@ -448,7 +405,6 @@ export default {
             $btn-border-radius-sm);
     }
 }
-
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
@@ -459,16 +415,13 @@ export default {
     border-radius: 0.5rem;
     background: #fff;
 }
-
 .profile-img {
     text-align: center;
 }
-
 .profile-img img {
     width: 70%;
     height: 100%;
 }
-
 .profile-img .file {
     position: relative;
     overflow: hidden;
@@ -479,22 +432,18 @@ export default {
     font-size: 15px;
     background: #212529b8;
 }
-
 .profile-img .file input {
     position: absolute;
     opacity: 0;
     right: 0;
     top: 0;
 }
-
 .profile-head h5 {
     color: #333;
 }
-
 .profile-head h6 {
     color: #0062cc;
 }
-
 .profile-edit-btn {
     border: none;
     border-radius: 1.5rem;
@@ -504,88 +453,72 @@ export default {
     color: #6c757d;
     cursor: pointer;
 }
-
 .proile-rating {
     font-size: 12px;
     color: #818182;
     margin-top: 5%;
 }
-
 .proile-rating span {
     color: #495057;
     font-size: 15px;
     font-weight: 600;
 }
-
 .profile-head .nav-tabs {
     margin-bottom: 5%;
 }
-
 .profile-head .nav-tabs .nav-link {
     font-weight: 600;
     border: none;
 }
-
 .profile-head .nav-tabs .nav-link.active {
     border: none;
     border-bottom: 2px solid #0062cc;
 }
-
 .profile-work {
     padding: 14%;
     margin-top: -15%;
 }
-
 .profile-work p {
     font-size: 12px;
     color: #818182;
     font-weight: 600;
     margin-top: 10%;
 }
-
 .profile-work a {
     text-decoration: none;
     color: #495057;
     font-weight: 600;
     font-size: 14px;
 }
-
 .profile-work ul {
     list-style: none;
 }
-
 .profile-tab label {
     font-weight: 600;
 }
-
 .profile-tab p {
     font-weight: 600;
     color: #0062cc;
 }
-
 /* LIST USERS  */
 .card-img-top {
     width: 100%;
     height: 15vw;
     object-fit: cover;
 }
-
 /* TOPBAR */
 .rounded-circle {
     border-radius: 50% !important;
 }
-
 .dropdown-list-image {
     position: relative;
     height: 2.5rem;
     width: 2.5rem;
 }
-
 .dropdown-list-image img {
     height: 2.5rem;
     width: 2.5rem;
 }
-
 .dropdown-list-image .status-indicator {
     background-color: #eaecf4;
     height: 0.75rem;
@@ -596,7 +529,6 @@ export default {
     right: 0;
     border: 0.125rem solid #fff;
 }
-
 /* DAHSBOARD */
 #wrapper {
     position: relative;
@@ -607,29 +539,23 @@ export default {
     max-width: 850px;
     margin: 35px auto;
 }
-
 /* 
 HOME  */
 .container {
     max-width: 960px;
 }
-
 .pricing-header {
     max-width: 700px;
 }
-
 .card-deck .card {
     min-width: 220px;
 }
-
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
-
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
-
 .box-shadow {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
