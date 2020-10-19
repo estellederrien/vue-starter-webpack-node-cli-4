@@ -97,6 +97,7 @@ export default {
                 .then(response => {
                     // DELETE LOGGED IN USER DATA IN THE VUEX DATA STORE
                     this.$store.commit('deleteUser')
+                    console.log(this.$store.getters.user)
                     this.$notify({
                         type: "success",
                         group: "foo",
