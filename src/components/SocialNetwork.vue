@@ -9,8 +9,12 @@
         </b-col>
     </b-row>
     <b-row>
-        <b-button @click="create_social_message()" variant="outline-primary  block" block>Send Social network msg </b-button>
-        <span v-for="sm in social_messages" class="badge badge-warning" id="textarea">{{sm.from}} says : {{sm.content}}</span>
+        <b-button @click="create_social_message()"  type="button" variant="outline-primary  block" block>Send Social network msg </b-button>
+        <span v-for="sm in social_messages" class="badge badge-warning" id="textarea" >
+            
+            {{sm.from}} says : {{sm.content}} 
+            <button  type="button" @click="delete_social_message(sm._id)">X</button>
+        </span>
     </b-row>
 </b-container>
 </template>
@@ -83,26 +87,20 @@ export default {
         },
         update_social_message() {
         },
-        delete_social_message() {
-            // Getting _id from string
-            //TODO
-            /*  this.jobs.forEach((job, index) => {
-                 if (job.name == this.user.job) {
-                     job_id = job._id;
-                 }
-             }) */
-            // building URL 
-            const url = '/api/social_messages/' + id_to_delete;
-            // Delete using generic_crud.js
-            // if (confirm("Do you really want to delete : " + this.social_messages.job + " ?")) {
+        delete_social_message(_id) {
+            alert("je delete")
+                // Building URL 
+            const url = '/api/social_messages/' + _id;
+
             axios
                 .delete(url)
                 .then(response => {
+                      this.read_all_social_message();
                     this.$notify({
                         type: 'success',
                         group: 'foo',
                         title: 'Hey! ',
-                        text: "Job had been deleted"
+                        text: "mess had been deleted"
                     });
                 })
                 .catch(error => {
@@ -114,7 +112,7 @@ export default {
                         text: error
                     });
                 });
-            // }
+        
         },
         read_all_social_message() {
             axios
