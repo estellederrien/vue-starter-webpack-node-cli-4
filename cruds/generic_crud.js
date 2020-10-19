@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-module.exports = (Collection) => {
+module.exports = (Collection, middleware) => {
 
     // ======
     // Create
@@ -82,7 +82,7 @@ module.exports = (Collection) => {
 
     let router = express.Router();
 
-    router.post('/', create);
+    router.post('/', middleware.requiresLoggedIn, create);
     router.get('/', readMany);
     router.get('/:_id', readOne);
     router.put('/:_id', update);

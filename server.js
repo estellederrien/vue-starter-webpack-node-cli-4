@@ -127,7 +127,7 @@ function load_cruds(db) {
     // require("./cruds/jobs_crud.js")(app, db, middleware, Job, ObjectId);
     // TRYING OUT THE NEW GENERIC CRUD !!
     const models = require('./models/models');
-    app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs));
+    app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
 
     require("./cruds/groups_crud.js")(app, db, middleware, Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, Message, ObjectId);
