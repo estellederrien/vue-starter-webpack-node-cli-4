@@ -418,9 +418,33 @@ export default {
         messageslist: MessagesList
     },
     methods: {
+        createJob: function () {
+            if (this.newJob.length < 3) {
+                alert('trop court)')
+                return;
+            }
+            axios
+                .post("/api/jobs", {
+                    name: this.newJob,
+                    creation_date:new Date()
+                })
+                .then(response => {
+                    alert("Added one job !");
+                    this.readJobs();
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: error
+                    });
+                });
+        },
         readJobs: function () {
             axios
-                .post("readJobs")
+                .get("/api/jobs")
                 .then(response => {
                     this.jobs = response.data;
                 })
@@ -691,29 +715,6 @@ export default {
             var diff = cur - birthdate; // This is the difference in milliseconds
             var age = Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25
             this.user.age = age;
-        },
-        createJob: function () {
-            if (this.newJob.length < 3) {
-                alert('trop court)')
-                return;
-            }
-            axios
-                .post("/createJob", {
-                    name: this.newJob
-                })
-                .then(response => {
-                    alert("Added one job !");
-                    this.readJobs();
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$notify({
-                        type: 'error',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: error
-                    });
-                });
         },
         cancelInsertUser: function () {
             this.creationProcess = false;

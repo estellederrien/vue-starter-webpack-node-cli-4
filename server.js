@@ -17,7 +17,7 @@ const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
 // ------------------------------------ LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE -----------------------
 const User = require("./models/user");
 const Group = require("./models/group");
-const Job = require("./models/job");
+// const Job = require("./models/job");
 const Message = require("./models/message");
 const SocialMessage = require("./models/social_message");
 const Event = require("./models/event");
@@ -124,7 +124,11 @@ function load_cruds(db) {
     require("./cruds/users_crud.js")(app, db, middleware, bcrypt, User, ObjectId);
     require("./cruds/files_crud.js")(app, db, middleware, config.ftp_config, config.node_file_path, fs, bodyParser);
     require("./cruds/pictures_crud.js")(app, db, middleware, config.cloudinary_token);
-    require("./cruds/jobs_crud.js")(app, db, middleware, Job, ObjectId);
+    // require("./cruds/jobs_crud.js")(app, db, middleware, Job, ObjectId);
+    // TRYING OUT THE NEW GENERIC CRUD !!
+    const models = require('./models/models');
+    app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs));
+
     require("./cruds/groups_crud.js")(app, db, middleware, Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, Message, ObjectId);
     require("./cruds/social_messages_crud.js")(app, db, middleware, SocialMessage, ObjectId);
