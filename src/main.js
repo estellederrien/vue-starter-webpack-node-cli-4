@@ -57,24 +57,31 @@ Vue.use(VueLazyload, {
 
 
 // ---------------------------VUEX DATA STORE - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS -----------------------------------------------
-
+/* INFORMATION : HOW TO USE IN COMPONENTS - COMMENT UTILISER CA DANS LES COMPONENTS  : 
+SET USER ( WHEN YOU LOG IN): this.$store.commit('setUser', response.data)
+GET USER : this.User = this.$store.getters.user
+DELETE USER (WHEN YOU LOG OUT ): this.$store.commit('deleteUser') 
+*/
 Vue.use(Vuex);
+
+const anonymous = { "_id": "anonymous", "nom": "anonymous", "prenom": "anonymous", "phone": "", "email": "", "password": "", "img": "test.png", "filenames": [] }
 
 const store = new Vuex.Store({
     state: {
-        user: JSON.parse(localStorage.getItem('user') || "{}"),
+        user: anonymous,
         logged: false
     },
     mutations: {
         setUser(state, user) {
             localStorage.setItem("user", JSON.stringify(user))
+            state.user = JSON.parse(localStorage.getItem('user'))
             state.logged = true;
         },
         deleteUser(state, user) {
-            console.log("USER DELETED");
+            console.log("USER LOCALSTORAGE SESSION DELETED");
             localStorage.removeItem("user");
-            state.user = {};
             state.logged = false;
+            state.user = anonymous
 
         }
     },
