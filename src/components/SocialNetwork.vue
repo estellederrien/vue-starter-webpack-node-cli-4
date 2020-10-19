@@ -5,15 +5,14 @@
             <label for="textarea-small">Message de {{this.$store.getters.user.nom}}:</label>
         </b-col>
         <b-col sm="10">
-            <b-form-textarea v-model =" new_social_message.content" id="textarea-small" size="sm" placeholder="Enter message"></b-form-textarea>
+            <b-form-textarea v-model=" new_social_message.content" id="textarea-small" size="sm" placeholder="Enter message"></b-form-textarea>
         </b-col>
     </b-row>
     <b-row>
-        <b-button @click="create_social_message()"  type="button" variant="outline-primary  block" block>Send Social network msg </b-button>
-        <span v-for="sm in social_messages" class="badge badge-warning" id="textarea" >
-            
-            {{sm.from}} says : {{sm.content}} 
-            <button  type="button" @click="delete_social_message(sm._id)">X</button>
+        <b-button @click="create_social_message()" type="button" variant="outline-primary  block" block>Send Social network msg </b-button>
+        <span v-if="user.social_messages" v-for="sm in user.social_messages" class="badge badge-warning">
+            {{sm.from}} says : {{sm.content}}
+            <button type="button" @click="delete_social_message(sm._id)">X</button>
         </span>
     </b-row>
 </b-container>
@@ -27,7 +26,7 @@ import {
 } from "vuelidate/lib/validators";
 export default {
     name: "socialnetwork",
-    props: ["_id"],
+    props: ["user"],
     beforeCreate: function () {},
     data() {
         return {
@@ -39,9 +38,7 @@ export default {
                 title: "test@test.fr",
                 content: "",
                 user_img: "test@test.fr"
-            },
-            // Social message list will appears, 5 by five or using an infinite scroll - La liste des messages est un array de json.
-            social_messages: []
+            }
         };
     },
     // Fields validation
@@ -66,74 +63,17 @@ export default {
         }
     },
     methods: {
-        // Social message crud functions
         create_social_message() {
-            axios
-                .post("/api/social_messages", this.new_social_message)
-                .then(response => {
-                    this.read_all_social_message();
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$notify({
-                        type: 'error',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: error
-                    });
-                });
+            var submitted = Object.assign({}, this.new_social_message);
+            this.user.social_messages.push(submitted);
+            this.$forceUpdate()
         },
-        read_social_message() {
-        },
-        update_social_message() {
-        },
-        delete_social_message(_id) {
-            alert("je delete")
-                // Building URL 
-            const url = '/api/social_messages/' + _id;
-
-            axios
-                .delete(url)
-                .then(response => {
-                      this.read_all_social_message();
-                    this.$notify({
-                        type: 'success',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: "mess had been deleted"
-                    });
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$notify({
-                        type: 'error',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: error
-                    });
-                });
-        
-        },
-        read_all_social_message() {
-            axios
-                .get("/api/social_messages")
-                .then(response => {
-                    this.social_messages = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$notify({
-                        type: 'error',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: error
-                    });
-                });
-        }
+        read_social_message() {},
+        update_social_message() {},
+        delete_social_message() {}
     },
     mounted: function () {
-        this.read_all_social_message();
-        console.log(this.$store.getters.user)
+        console.log(this.user)
     }
 };
 </script>
