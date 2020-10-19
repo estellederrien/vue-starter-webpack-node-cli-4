@@ -248,16 +248,16 @@
 
                         <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
                             <div class="row">
-                                <socialnetwork :_id = "this._id"></socialnetwork>
+                                <socialnetwork :user = "this.user"></socialnetwork>
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
+                  <!--   <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
                             <i class="far fa-envelope"></i> <span class="d-none d-sm-block">Message</span></a>
-                        <v-dialog /></span>
+                        <v-dialog /></span> -->
                    
                 </div>
             </div>
@@ -299,7 +299,8 @@ export default {
                 email: "",
                 password: "",
                 img: "",
-                filenames: []
+                filenames: [],
+                socials_messages : [{"test":"test"}]
             },
             anonymous: {
                 _id: "anonymous",
@@ -349,6 +350,10 @@ export default {
                     this.user = response.data;
                     this.loaded = true;
                     this.disableAllinputs();
+
+                      if (!this.user.social_messages){
+                            this.user.social_messages = [{"content":"fzfzef"}];
+                    }
                 })
                 .catch(function (erreur) {
                     console.log(erreur);
