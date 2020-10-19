@@ -1,0 +1,20 @@
+{
+    "localhost_db": "mongodb://localhost:27017/",
+    "mongoDb_atlas_db": "mongodb+srv://jose:x@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority",
+    "dev": false,
+    "db_name": "vue-starter-webpack",
+    "ftp_config": {
+        "host": "ftpupload.net",
+        "user": "epiz_26763901",
+        "password": "x",
+        "secure": false
+    },
+    "node_file_path": "./tmp/files/",
+    "cloudinary_token": {
+        "cloud_name": "ddq5asuy2",
+        "api_key": "354237299578646",
+        "api_secret": "x"
+    },
+    "logs_path": "tmp/logs/logs.txt"
+
+}
