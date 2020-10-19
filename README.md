@@ -22,7 +22,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  19-10-2020 : Currently converting the standard node cruds to a reusable generic node CRUD <b>generic_crud.js</b>: 10 * fasters dev comin soon ... All mongoose schemas will be centralized in <b>models.js</b> !<br>
+  19-10-2020 : Currently converting the standard node cruds to a reusable generic node CRUD <b>generic_crud.js</b>: 10 * fasters dev comin soon ... All mongoose schemas will be centralized in <b>models.js</b> !<br> French: A la place de réecrire tous les CRUDS à chaque fois, on utilise un crud générique, ça va 10 fois plus vite pour coder en full stack...<br>
   19-10-2020 : Another Generic CRUD doc : https://medium.com/@bvodola/crud-routes-generator-with-node-express-js-mongoose-30a16538e16a<br>
   18-10-2020 : The users Filters "memory" must be stored in the centralized VUEX store, App logs have to be centralized in the middleware.js file<br>
   10-10-2020: A Nice generic backend Controller there : https://github.com/DavideViolante/Angular-Full-Stack/blob/master/server/controllers/base.ts<br>
