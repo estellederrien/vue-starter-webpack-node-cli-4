@@ -6,12 +6,21 @@ import Vuex from "vuex";
 
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
+
+
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+    // Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 Vue.use(VueSidebarMenu);
 Vue.config.productionTip = false;
@@ -61,9 +70,10 @@ const store = new Vuex.Store({
             localStorage.setItem("user", JSON.stringify(user))
             state.logged = true;
         },
-        deleteUser(state) {
-            console.log("USER DELETED")
-            localStorage.removeItem("user")
+        deleteUser(state, user) {
+            console.log("USER DELETED");
+            localStorage.removeItem("user");
+            state.user = {};
             state.logged = false;
 
         }
