@@ -82,7 +82,7 @@ module.exports = (Collection, middleware) => {
 
     let router = express.Router();
 
-    router.post('/', middleware.requiresLoggedIn, create);
+    router.post('/', create);
     router.get('/', readMany);
     router.get('/:_id', readOne);
     router.put('/:_id', update);

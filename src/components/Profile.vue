@@ -166,14 +166,19 @@
                                             <label>Job</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <select class="form-control " v-model="user.job">
-                                                <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
-                                            </select>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-outline-secondary btn-warning" type="button" id="button-addon1" @click="deleteJob()">-</button>
+                                                </div>
+                                                <select class="form-control " v-model="user.job">
+                                                    <option v-for="job in jobs" :value="job.name">{{job.name}}</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="createJob()">+</button>
+                                                    <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon1" @click="createJob()">+</button>
                                                 </div>
                                                 <input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                             </div>
@@ -380,7 +385,8 @@ export default {
             loaded: false,
             users: [],
             filters: {},
-            messagesCount: "12"
+            messagesCount: "12",
+            selectedId: ''
         };
     },
     validations: {
@@ -417,6 +423,10 @@ export default {
         messageslist: MessagesList
     },
     methods: {
+        selectId(e) {
+            console.log(e)
+            this.selectedId = e._id
+        },
         createJob: function () {
             if (this.newJob.length < 3) {
                 alert('trop court)')
@@ -456,6 +466,44 @@ export default {
                         text: 'Permission is missing ! -> <br> ' + error
                     });
                 });
+        },
+        updateJob: function () {
+
+        },
+        deleteJob: function () {
+
+            // Getting _id from string
+            var job_id = "";
+
+            this.jobs.forEach((job, index) => {
+                if (job.name == this.user.job) {
+                    job_id = job._id;
+                }
+            })
+            // building URL 
+            const url = '/api/jobs/'+job_id;
+            // Delete using generic_crud.js
+            if (confirm("Do you really want to delete" + this.user.job + "?")) {
+                axios
+                    .delete(url)
+                    .then(response => {
+                        this.$notify({
+                            type: 'success',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: "Job had been deleted"
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.$notify({
+                            type: 'error',
+                            group: 'foo',
+                            title: 'Hey! ',
+                            text: error
+                        });
+                    });
+            }
         },
         openMessageModal: function () {
             this.$modal.show("messageModal");
@@ -733,7 +781,7 @@ export default {
         }
     },
     beforeCreate: function () {
-        
+
     },
     mounted: function () {
         if (localStorage.getItem('user')) {
