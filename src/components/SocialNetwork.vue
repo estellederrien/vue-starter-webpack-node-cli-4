@@ -5,8 +5,8 @@
             <label for="textarea-small">Message from {{this.$store.getters.user.nom}}:</label>
         </b-col>
         <b-col sm="10">
-            <b-form-input id="title" v-model="new_social_message.title" placeholder="Enter Title"></b-form-input>
-            <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" placeholder="Enter message"></b-form-textarea>
+            <b-form-input id="title" v-model="new_social_message.title" placeholder="Enter Title" style="margin-bottom:10px"></b-form-input>
+            <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" placeholder="Enter message" style="margin-bottom:10px"></b-form-textarea>
             <b-button @click="create_social_message()" type="button" variant="outline-primary " block>Send Social network msg </b-button>
         </b-col>
     </b-row>
