@@ -358,7 +358,6 @@ import Groups from "@/components/Groups.vue";
 import MessagesList from "@/components/MessagesList.vue";
 export default {
     name: "Profile",
-    props: ["id"],
     data() {
         return {
             user: {
@@ -426,7 +425,7 @@ export default {
             axios
                 .post("/api/jobs", {
                     name: this.newJob,
-                    creation_date:new Date()
+                    creation_date: new Date()
                 })
                 .then(response => {
                     alert("Added one job !");
@@ -504,7 +503,7 @@ export default {
                         const url = window.URL.createObjectURL(new Blob([response.data]));
                         const link = document.createElement('a');
                         link.href = url;
-                          link.setAttribute('download', file.filename); 
+                        link.setAttribute('download', file.filename);
                         document.body.appendChild(link);
                         link.click();
                     });
@@ -597,7 +596,7 @@ export default {
         },
         readUser: function () {
             axios
-                 .get("readUser?_id="+ this._id)
+                .get("readUser?_id=" + this._id)
                 .then(response => {
                     this.user = response.data;
                 })
@@ -640,7 +639,7 @@ export default {
                     .post("/deleteUser", this.user)
                     .then(response => {
                         alert(" Votre compte a été supprimé ");
-                         // DELETE LOGGED IN USER DATA IN THE VUEX DATA STORE
+                        // DELETE LOGGED IN USER DATA IN THE VUEX DATA STORE
                         this.$store.commit('deleteUser')
                         this.$router.push("/login");
                         console.log(response);
@@ -733,7 +732,9 @@ export default {
                 });
         }
     },
-    beforeCreate: function () {},
+    beforeCreate: function () {
+        
+    },
     mounted: function () {
         if (localStorage.getItem('user')) {
             this.user = JSON.parse(localStorage.getItem('user'))
