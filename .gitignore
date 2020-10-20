@@ -23,4 +23,5 @@ yarn-error.log*
 *.sw?
 
 /config.json
+config.json
 
