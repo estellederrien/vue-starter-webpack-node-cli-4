@@ -1,7 +1,11 @@
-// ------------------------------------ LOAD CONFIG -------------------------------
+// ------------------------------- 
+// LOAD CONFIG 
+// -------------------------------
 const config = require("./config.json");
 
-// ------------------------------------ LOAD OFFICIAL NODE MODULES - CHARGEMENT DES MODULES NODES -------------------------------
+// ------------------------------
+// LOAD OFFICIAL NODE MODULES - CHARGEMENT DES MODULES NODES 
+// -------------------------------
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -14,22 +18,32 @@ const ObjectId = require("mongodb").ObjectID; // This is needed in all web servi
 const fs = require("fs");
 const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
 
-// ------------------------------------ LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE -----------------------
+// -------------------------------
+// LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE 
+// -------------------------------
 const User = require("./models/user");
 const Group = require("./models/group");
 const Message = require("./models/message");
 const Event = require("./models/event");
 
-// ------------------------------------ LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle dde permission sur les web services
+// ------------------------------------ 
+// LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle de permissions sur les web services
+// -------------------------------
 const middleware = require("./appSystem/middleware.js");
 
-// ------------------------------------THIS IS AN EXPRESS APP -------------------------------------------
+// -------------------------------
+// THIS IS AN EXPRESS APP
+// -------------------------------
 const app = express();
 
-// ----------------------------------- MANAGING SERVER PORT - GESTION DES PORTS  -------------------------------------------
+// -------------------------------
+// MANAGING SERVER PORT - GESTION DES PORTS
+// -------------------------------
 const port = process.env.PORT || 80;
 
-// ----------------------------------- CORS - GESTION DE LA PROTECTION CORS ------------------------------------------------
+// -------------------------------
+// CORS - GESTION DE LA PROTECTION CORS 
+// -------------------------------
 if (port == 80) {
     // LOCALHOST AND OPENODE
     app.use(
@@ -43,17 +57,21 @@ if (port == 80) {
 } else {
     // AZURE AND HEROKU
     app.use(cors());
-    // HEROKU ENV VARS : NEEDE TO HIDE ALL CREDENTIALS IN A HEROKU / GITHUB ENV . On récupère nos mots de passe des variables d'environnement sotckés sur heroku
-    config.ftp_config.password = process.env.ftp_password;
-    config.mongoDb_atlas_db = "mongodb+srv://jose:" + process.env.mongodb_atlas_pwd + "@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority";
-    config.cloudinary_token.api_secret = process.env.cloudinary_password;
+    // It's heroku, so we need this : 
+    get_heroku_env_vars();
 }
 
-// ----------------------------------- Using sessions                 -------------------------------------------
+
+
+// -------------------------------
+// USING SESSIONS - UTILISATION DES SESSIONS
+// -------------------------------             
 app.use(session({ secret: "ssshhhhh", saveUninitialized: true, resave: true }));
 var sess = {};
 
-// ----------------------------------- MANAGING FILES AND STATICS DIRECTORIES -----------------------------------
+// -------------------------------
+// MANAGING FILES AND STATICS DIRECTORIES 
+// -------------------------------
 // VUE APP DIRECTORY ( GENERATED WITH NPM RUN BUILD ) // SERVING THE VUE.JS APP
 app.use(serveStatic(__dirname + "/dist"));
 // UPLOADS : IMAGES STORING DIRECTORY
@@ -61,7 +79,9 @@ app.use(express.static(__dirname + "/tmp"));
 // UPLOADS : FILES STORING DIRECTORY
 app.use(express.static(__dirname + "/tmp/files"));
 
-// ----------------------------------- MANAGING JSON AND BODY PARSER PARAMS -------------------------------------
+// -------------------------------
+// MANAGING JSON AND BODY PARSER PARAMS 
+// -------------------------------
 const bodyParser = require("body-parser");
 app.use(
     bodyParser.urlencoded({
@@ -79,7 +99,9 @@ app.use(
     })
 );
 
-// ----------------------------------- POOL CONNEXION DATABASE -------------------------------------------
+// -------------------------------
+// POOL CONNEXION DATABASE 
+// -------------------------------
 // This is Needed 
 var db;
 
@@ -100,7 +122,9 @@ MongoClient.connect(url, function(err, client) {
     }
 });
 
-// ----------------------------------- HELPER FUNCTIONS  -------------------------------------------
+// -------------------------------
+// HELPER FUNCTIONS
+// -------------------------------
 
 /*
  * MongoDb atlas authentication - identification sur mongoDb atlas
@@ -159,10 +183,27 @@ function write_connexion_to_logs() {
     logStream.write("DB CONNEXION AT " + d.toString() + "\r\n");
     // logStream.end(''); TODO
 }
-// -----------------------------------FIN CONNEXION DATABASE-------------------------------------------
-// -----------------------------------STARTING SERVER   -------------------------------------------
+
+/*
+ * HEROKU ENV VARS : NEEDED TO HIDE ALL CREDENTIALS IN A HEROKU / GITHUB ENV . 
+ * On récupère nos mots de passe des variables d'environnement stockés sur heroku, sinon, tout le monde verrait nos mots de passe .
+ * @params none
+ * @return none
+ * @error  none
+ */
+function get_heroku_env_vars() {
+    config.ftp_config.password = process.env.ftp_password;
+    config.mongoDb_atlas_db = "mongodb+srv://jose:" + process.env.mongodb_atlas_pwd + "@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority";
+    config.cloudinary_token.api_secret = process.env.cloudinary_password;
+}
+
+// -------------------------------
+// STARTING SERVER
+// -------------------------------
 app.listen(port);
 console.log("server started " + port);
+
+// -------------------------------
 // AZURE
+// -------------------------------
 // app.listen(8080, "0.0.0.0"); Azure needs this port
-// ----------------------------------END STARTING SERVER   -------------------------------------------
