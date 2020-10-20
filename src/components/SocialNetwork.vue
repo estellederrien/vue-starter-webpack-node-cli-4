@@ -2,7 +2,7 @@
 <b-container fluid>
     <b-row>
         <b-col sm="2">
-            <label for="textarea-small">Message from {{this.$store.getters.user.nom}}:</label>
+            <label for="textarea-small">Message from :{{this.$store.getters.user.nom}}:</label>
         </b-col>
         <b-col sm="10">
             <b-form-input id="title" v-model="new_social_message.title" placeholder="Enter Title" style="margin-bottom:10px"></b-form-input>
