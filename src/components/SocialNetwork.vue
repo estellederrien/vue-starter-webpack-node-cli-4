@@ -1,8 +1,39 @@
 <template>
 <b-container fluid>
-    <b-row>
+
+    <b-row class="list">
+        <b-col sm="12">
+            <b-card border-variant="dark" no-body class="overflow-hidden card-message" sv-if="user.social_messages" v-for="sm in user.social_messages">
+                <b-row no-gutters>
+                    <b-col md="2">
+                        <b-card-img class="message-img rounded-0" v-if="sm.img !== ''" :src="sm.img" alt="Image"></b-card-img>
+                        <img class="message-img rounded-0" v-if="sm.img == ''" src="../assets/img/defaut.jpg" alt="Image"></img>
+                      
+                        <span style="font-size:0.8em">{{sm.from}} </span>
+                        {{sm.date | moment('from', 'now') }}  
+
+                    </b-col>
+                    <b-col md="10"><button type="button" class="btn btn-secondary float-right" style="text-align:right">X</button> 
+                        <b-card-body>
+                            <!--  <b-card-title>
+                                <h4>     {{sm.title}} </h4>
+                           </b-card-title> -->
+                            <b-card-text style="text-align:left;margin-left:20px;">
+                                <b-icon icon="chat-left"></b-icon> {{sm.content }}
+                            </b-card-text>
+
+                        </b-card-body>
+
+                    </b-col>
+                </b-row>
+            </b-card>
+
+        </b-col>
+
+    </b-row>
+    <b-row class="new-message">
         <b-col sm="2">
-            <label for="textarea-small">Message from :{{this.$store.getters.user.nom}}:</label>
+            <label for="textarea-small">Add a message as <b>{{this.$store.getters.user.nom}}</b></label>
         </b-col>
         <b-col sm="10">
             <b-form-input id="title" v-model="new_social_message.title" placeholder="Enter Title" style="margin-bottom:10px"></b-form-input>
@@ -10,31 +41,9 @@
             <b-button @click="create_social_message()" type="button" variant="outline-primary " block>Send Social network msg </b-button>
         </b-col>
     </b-row>
-    <b-row class = "list">
-        <b-col sm="12">
-            <b-card border-variant="dark"  no-body class="overflow-hidden card-message" v-if="user.social_messages" v-for="sm in user.social_messages">
-                <b-row no-gutters>
-                    <b-col md="2">
-                        <b-card-img v-if="sm.img !== ''" :src="sm.img" alt="Image" class="rounded-0"></b-card-img>
-                       <b-card-img v-if="sm.img == ''" src="../assets/img/defaut.png" alt="Image" class="rounded-0"></b-card-img>
-                       
-                    </b-col>
-                    <b-col md="10">
-                        <b-card-body >
-                           <b-card-title>
-                                <h4> {{sm.title}} <!-- says at {{sm.date}}: --></h4>
-                           </b-card-title>
-                            <b-card-text>
-                                {{sm.content}}
-                            </b-card-text>
-                        </b-card-body>
-                    </b-col>
-                </b-row>
-            </b-card>
-        </b-col>
-    </b-row>
 </b-container>
 </template>
+
 <script>
 import axios from "axios";
 import {
@@ -42,6 +51,7 @@ import {
     minLength,
     between
 } from "vuelidate/lib/validators";
+
 export default {
     name: "socialnetwork",
     props: ["user"],
@@ -97,11 +107,24 @@ export default {
     }
 };
 </script>
+
 <style scoped>
-.list{
-    margin-top:20px
+.list {
+
+    margin-bottom: 20px;
 }
-.card-message{
-  margin-top:20px
+
+.card-message {
+    margin-top: 20px
+}
+
+.new-message {
+    margin-bottom: 20px
+}
+
+.message-img {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
 }
 </style>
