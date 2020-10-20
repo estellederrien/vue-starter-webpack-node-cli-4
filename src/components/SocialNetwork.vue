@@ -8,16 +8,17 @@
                     <b-col md="2">
                         <b-card-img class="message-img rounded-0" v-if="sm.img !== ''" :src="sm.img" alt="Image"></b-card-img>
                         <img class="message-img rounded-0" v-if="sm.img == ''" src="../assets/img/defaut.jpg" alt="Image"></img>
-                      
-                        <span style="font-size:0.8em">{{sm.from}} </span>
-                        {{sm.date | moment('from', 'now') }}  
+
+                        <span style="font-size:0.8em">{{sm.from}} </span><br>
+                        <span style="font-size:0.8em;color:blue">{{sm.date | moment('from', 'now') }} </span>
 
                     </b-col>
-                    <b-col md="10"><button type="button" class="btn btn-secondary float-right" style="text-align:right">X</button> 
+                    <b-col md="10"><button type="button" class="btn btn-secondary float-right" style="text-align:right" @click="delete_social_message()">X</button>
+                        <button type="button" class="btn btn-warning float-right" style="text-align:right" @click="answer_social_message()">Answer</button>
                         <b-card-body>
-                            <!--  <b-card-title>
-                                <h4>     {{sm.title}} </h4>
-                           </b-card-title> -->
+                            <!-- <b-card-title style="text-align:left;">
+                                <h4>      {{sm.title}} </h4>
+                           </b-card-title>  -->
                             <b-card-text style="text-align:left;margin-left:20px;">
                                 <b-icon icon="chat-left"></b-icon> {{sm.content }}
                             </b-card-text>
@@ -65,8 +66,7 @@ export default {
                 title: "",
                 content: "",
                 img: this.$store.getters.user.img
-            },
-            x: false
+            }
         };
     },
     // Fields validation
@@ -94,16 +94,47 @@ export default {
         create_social_message() {
             var submitted = Object.assign({}, this.new_social_message);
             this.user.social_messages.push(submitted);
-            this.$forceUpdate()
+            this.$forceUpdate();
+            this.update_user_social_messages();
         },
         read_social_message() {},
         update_social_message() {},
-        delete_social_message() {}
+        delete_social_message() {
+            alert('ok')
+        },
+        answer_social_message() {
+            alert('ok')
+        },
+
+        update_user_social_messages: function () {
+            console.log(this.user);
+            axios
+                .post("/update_user_social_messages", this.user)
+                .then(response => {
+                    this.$notify({
+                        type: 'success',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Update is ok !'
+                    });
+                    // UPdating user in memory
+                    localStorage.setItem('user', JSON.stringify(this.user));
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$notify({
+                        type: 'error',
+                        group: 'foo',
+                        title: 'Hey! ',
+                        text: 'Permission is missing ! -> <br> ' + error
+                    });
+                });
+        }
     },
     mounted: function () {
-        console.log(this.user)
-        console.log(this.$store.getters.user)
-        this.x = false;
+/*         console.log(this.user)
+        console.log(this.$store.getters.user) */
+
     }
 };
 </script>

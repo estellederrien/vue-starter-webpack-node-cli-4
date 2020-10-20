@@ -81,6 +81,7 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
                 age: updated_user.age,
                 job: updated_user.job,
                 mentra: updated_user.mentra,
+                social_messages: updated_user.social_messages
             });
             db.collection("users").replaceOne({ _id: user._id }, user);
             //  Updating session user object with the new data - MAJ DE LA SESSION EN MEMOIRE, SINON IL EST FAUSSE ENSUITE
@@ -91,6 +92,8 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
             console.log(e);
         }
     });
+
+
     /*
      * Register anonymous user
      * @params JSON OBJECT : {}
@@ -170,6 +173,26 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
                 // 3. Sending the users list to the front end vue.js - Later there will be an infinite scroll
                 res.send(docs);
             });
+    });
+    /*
+     *  Updating user 's social messages
+     *  @params USER JSON OBJECT : {}
+     *  @return 200
+     *  @error 400
+     */
+    app.post("/update_user_social_messages", function(req, res) {
+
+        // 1.  Getting data from front end - on récupère le json data de l'app vue.js
+        var updated_user = req.body;
+
+        // 2.  Trying out mongodb update - On essaye de faire un UPDATE
+        try {
+            db.collection("users").update({ _id: ObjectId(updated_user._id) }, { $set: { social_messages: updated_user.social_messages } })
+            res.sendStatus(200);
+        } catch (e) {
+            res.sendStatus(400);
+            console.log(e);
+        }
     });
     /*
      * Read all users for filters : Read Less data

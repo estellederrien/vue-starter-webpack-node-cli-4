@@ -20,7 +20,8 @@ const UserSchema = new Schema({
     birthday: String,
     age: Number,
     job: String,
-    mentra: String
+    mentra: String,
+    social_messages: Array
 });
 
 module.exports = mongoose.model('User', UserSchema)
