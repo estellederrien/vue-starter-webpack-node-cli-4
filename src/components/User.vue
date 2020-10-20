@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-        <span v-if="!loaded"><img src="../assets/img/loader_800.gif" class="loader" /></span>
+        <span v-if="!loaded"><img src="../assets/img/Spin-1s-200px.gif" class="loader" /></span>
     </div>
     <div class="container-fluid " id="userDiv" v-show="loaded">
         <form method="post">
@@ -22,6 +22,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos</span></a>
                             </li>
+                                <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">Social Network</span></a>
+                            </li>
                             <!--   <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> <span class="d-none d-sm-block ">Dernières infos</span></a>
                             </li> -->
@@ -31,9 +34,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Droits</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">Social Network</span></a>
-                            </li>
+                        
                         </ul>
                     </div>
                 </div>

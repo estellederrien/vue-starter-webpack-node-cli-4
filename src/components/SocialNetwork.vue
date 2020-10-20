@@ -91,10 +91,10 @@ export default {
         read_social_message() {},
         update_social_message() {},
         delete_social_message() {
-            alert('ok')
+            alert('Developping..')
         },
         answer_social_message() {
-            alert('ok')
+            alert('Developping..')
         },
         update_user_social_messages: function () {
             console.log(this.user);
