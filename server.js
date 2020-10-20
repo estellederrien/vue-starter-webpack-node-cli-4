@@ -1,5 +1,5 @@
 // ------------------------------- 
-// LOAD CONFIG 
+// LOAD APP CONFIG ( FTP TOKEN,CLOUDINARY TOKEN,MONGODB ATLAS TOKEN, etc ...)- ON CHARGE LA CONFIGURATION DE L'APP ( FTP,CLOUDINARY,DB URL, etc ...)
 // -------------------------------
 const config = require("./config.json");
 
@@ -61,13 +61,11 @@ if (port == 80) {
     get_heroku_env_vars();
 }
 
-
-
 // -------------------------------
 // USING SESSIONS - UTILISATION DES SESSIONS
 // -------------------------------             
 app.use(session({ secret: "ssshhhhh", saveUninitialized: true, resave: true }));
-var sess = {};
+// var sess = {};
 
 // -------------------------------
 // MANAGING FILES AND STATICS DIRECTORIES 
@@ -153,7 +151,7 @@ function load_cruds(db) {
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
     const models = require('./models/models');
     app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
-    app.use('/api/social_messages', require("./cruds/generic_crud.js")(models.social_messages, middleware));
+
 
 
 }
