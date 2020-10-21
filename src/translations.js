@@ -24,6 +24,13 @@ const Translations = {
                 INITIALIZE: "Initialiser",
                 ROLE: "Role",
 
+                //LOGIN COMPONENT
+                WELCOME: "Bienvenue",
+                ENTER_EMAIL: "Entrez votre adresse email...",
+                ENTER_PASSWORD: "Entrez votre mot de passe...",
+                CREATE_ACCOUNT: " Créer un compte !",
+
+
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: "Accueil",
@@ -97,6 +104,11 @@ const Translations = {
                 FILTER: "Filter",
                 INITIALIZE: "Initialize",
                 ROLE: "Role",
+                //LOGIN COMPONENT
+                WELCOME: "welcome",
+                ENTER_EMAIL: "Please enter your email adress...",
+                ENTER_PASSWORD: "Please enter your password",
+                CREATE_ACCOUNT: " Create an account !",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: "Home",
@@ -168,6 +180,11 @@ const Translations = {
                 FILTER: "Filter",
                 INITIALIZE: "Initialisieren",
                 ROLE: "Rolle",
+                //LOGIN COMPONENT
+                WELCOME: "Wilkommen ",
+                ENTER_EMAIL: "Bitte geben Sie Ihre E-Mail-Adresse ein ...",
+                ENTER_PASSWORD: "Bitte geben Sie Ihr Passwort ein",
+                CREATE_ACCOUNT: " Konto erstellen!",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` `,
                 HOME: "zu Hause ",
@@ -242,6 +259,11 @@ const Translations = {
                 FILTER: "Filtro",
                 INITIALIZE: "Inicializar",
                 ROLE: "Rol",
+                //LOGIN COMPONENT
+                WELCOME: "Bienvenido",
+                ENTER_EMAIL: "Ingrese su dirección de correo electrónico ...",
+                ENTER_PASSWORD: "Introduzca su contraseña",
+                CREATE_ACCOUNT: "¡Crea una cuenta!",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
                         Bienvenido al iniciador de pila completa de programación lineal vue + Python Pulp.
@@ -319,11 +341,14 @@ const Translations = {
                 FILTER: "फ़िल्टर",
                 INITIALIZE: "इनिशियलाइज़",
                 ROLE: " रोल",
+                //LOGIN COMPONENT
+                WELCOME: "आपका स्वागत",
+                ENTER_EMAIL: "कृपया अपना ईमेल प्रवेश करें ...",
+                ENTER_PASSWORD: "कृपया अपना पासवर्ड दर्ज करें",
+                CREATE_ACCOUNT: "खाता बनाएँ!",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
-                        Vue + पायथन पल्प रैखिक प्रोग्रामिंग फुल स्टैक स्टार्टर में आपका स्वागत है।
-                        नावबार मेनू में एक रैखिक प्रोग्रामिंग केस चुनें। एप्लिकेशन निर्माण की स्थिति में है।
-                        लीनियर सॉल्वर बहुत अधिक चर वाली समस्याओं को हल करने की अनुमति देते हैं। `,
+                      `,
                 HOME: " घर घर",
                 DROPDOWN_TITLE_1: "रैखिक प्रोग्रामिंग का मामलाe",
                 VERSION: "संस्करण",
@@ -394,6 +419,11 @@ const Translations = {
                 FILTER: "过滤条件",
                 INITIALIZE: "初始化",
                 ROLE: "角色",
+                //LOGIN COMPONENT
+                WELCOME: "欢迎欢迎",
+                ENTER_EMAIL: "请输入您的电子邮件地址...",
+                ENTER_PASSWORD: "请输入您的密码",
+                CREATE_ACCOUNT: "创建帐户！",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: " 家",

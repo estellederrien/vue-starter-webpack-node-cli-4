@@ -13,22 +13,22 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Bienvenue !</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">{{ t('WELCOME') }}</h1>
                                 </div>
                                 <form id="myform" class="user">
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control form-control-user" v-model="user.email" id="email" aria-describedby="email" placeholder="Entrez votre adresse Email...">
+                                        <input type="email" name="email" class="form-control form-control-user" v-model="user.email" id="email" aria-describedby="email" :placeholder=" t('ENTER_EMAIL') " >
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control form-control-user" v-model="user.password" id="password" placeholder="Mot de passe">
+                                        <input type="password" name="password" class="form-control form-control-user" v-model="user.password" id="password" :placeholder=" t('ENTER_PASSWORD') " >
                                     </div>
                                     <a v-on:click='getAuth()' class="btn btn-primary btn-user btn-block" style="color:white">
-                                        Identification
+                                        {{ t('LOGIN') }}
                                     </a>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" v-on:click='register()'>Créer un compte !</a>
+                                    <a class="small" v-on:click='register()'>{{ t('CREATE_ACCOUNT') }}</a>
                                 </div>
                             </div>
                         </div>
