@@ -39,13 +39,13 @@
                             <div class="tab-content" id="v-pills-tabContent" style="min-height:70px;">
                                 <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                     <h6>{{ t('JOB') }}: {{ user.job }}</h6>
-                                    Mentra : {{ user.mentra }}<br />
+                                    Mantra : {{ user.mentra }}<br />
                                     <span v-if="user.age">{{ t('AGE') }}: {{ user.age }}</span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <label> {{ t('FTP_FILES') }}: </label><br />
                                     <span class="badge badge-warning" v-for="f in user.filenames"> <i class="fas fa-file"></i> {{ f.filename }}</span>
-                                     <span class="badge badge-warning" v-if="!user.filenames.length" > User has no files yet ! </span>
+                                     <span class="badge badge-warning" v-if="!user.filenames.length" > {{ t('USER_HAS_NO_FILES') }} </span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <div>
