@@ -3,7 +3,7 @@
     <div class="card-header">
         <label style="padding:5px">
             <!-- test -->
-            <b> <i class="fas fa-filter"></i> {{ t('FILTERS') }}  </b>
+            <b> <i class="fas fa-filter"></i> {{ t('FILTERS') }} </b>
         </label>
         <button @click="closeModal" class="btn btn-primary float-right">X</button>
     </div>
@@ -119,10 +119,10 @@ export default {
                 .get("/api/jobs")
                 .then(response => {
                     this.jobs = response.data;
-                      this.jobs = this.jobs.map(function(item) {
+                    this.jobs = this.jobs.map(function (item) {
                         return item["name"];
-                        });
-                        
+                    });
+
                 })
                 .catch(error => {
                     console.log(error);

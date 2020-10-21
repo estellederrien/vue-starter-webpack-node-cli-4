@@ -20,21 +20,21 @@
                         <!-- <p class="proile-rating"></p> -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> A propos</span></a>
+                                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> {{ t('ABOUT') }}</span></a>
                             </li>
-                                <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">Social Network</span></a>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">{{ t('SOCIAL_NETWORK') }}</span></a>
                             </li>
                             <!--   <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> <span class="d-none d-sm-block ">Dernières infos</span></a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#files" role="tab"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">Fichiers</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#files" role="tab"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">{{ t('FILES') }}</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">Droits</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">{{ t('PERMISSIONS') }}</span></a>
                             </li>
-                        
+
                         </ul>
                     </div>
                 </div>
@@ -44,11 +44,11 @@
             <div class="row">
                 <div class="col-md-2 d-none d-md-block">
                     <div class="profile-work">
-                        <p>LIENS DE TRAVAIL</p>
+                        <p>{{ t('JOB_LINKS') }}</p>
                         <a href="">Website</a><br />
                         <a href="">Bootsnipp</a><br />
                         <a href="">Bootply</a>
-                        <p>SKILLS</p>
+                        <p>{{ t('SKILLS') }}</p>
                         <a href="">Web Designer</a><br />
                         <a href="">Web Developer</a><br />
                         <a href="">WordPress</a><br />
@@ -65,53 +65,53 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p>
-                                        <input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled />
+                                        <input v-model="user._id" class="form-control" :placeholder=" t('PARAMETER_ME') " disabled />
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Nom</label>
+                                    <label>{{ t('FIRST_NAME') }}</label>
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.nom.$error }">
                                     <p>
-                                        <input :disabled="true" v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
+                                        <input :disabled="true" v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" :placeholder=" t('PARAMETER_ME') " v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Prénom</label>
+                                    <label>{{ t('LAST_NAME') }}</label>
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
                                     <p>
-                                        <input :disabled="true"  v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+                                        <input :disabled="true" v-model="user.prenom" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Email</label>
+                                    <label>{{ t('EMAIL') }}</label>
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
                                     <p>
-                                        <input :disabled="true"  v-model="user.email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+                                        <input :disabled="true" v-model="user.email" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Téléphone</label>
+                                    <label>{{ t('PHONE') }}</label>
                                 </div>
                                 <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
                                     <p>
-                                        <input :disabled="true"  v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
+                                        <input :disabled="true" v-model="user.phone" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Job</label>
+                                    <label>{{ t('JOB') }}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>
@@ -124,7 +124,7 @@
                         <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row ">
                                 <div class="col-md-2">
-                                    <label>Experience</label>
+                                    <label>{{ t('LAST_NAME') }}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>Expert</p>
@@ -166,12 +166,12 @@
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-12 tab-content-user">
-                                    <span class="badge badge-warning" v-if="!user.filenames.length"> User has no files yet ! </span>
+                                    <span class="badge badge-warning" v-if="!user.filenames.length"> {{ t('USER_HAS_NO_FILES') }}</span>
                                     <table v-if="user.filenames.length" class="table table-sm">
                                         <thead>
                                             <tr>
-                                                <th>Nom</th>
-                                                <th>Télécharger du FTP</th>
+                                                <th>{{ t('NAME') }}</th>
+                                                <th>{{ t('FTP_DOWNLOAD') }}</th>
                                             </tr>
                                         </thead>
                                         <tr v-for="file in user.filenames">
@@ -194,7 +194,7 @@
                         <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Profil</label>
+                                    <label>{{ t('ROLE') }}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <select class="custom-select" v-model="user.role" disabled>
@@ -207,7 +207,7 @@
                             </div><br>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Liste des droits</label>
+                                    <label>{{ t('PERMISSIONS_LIST') }}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}<br> </span>
@@ -234,6 +234,7 @@
     </modal>
 </div>
 </template>
+
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -373,29 +374,36 @@ export default {
     }
 };
 </script>
+
 <style>
 .badge-space {
     min-width: 150px
 }
+
 .tab-content-user {
     padding: 10px;
     margin: 10px;
     margin-bottom: 50px;
 }
+
 .error {
     border-color: red;
     background: #FDD;
 }
+
 .error:focus {
     outline-color: #F99;
 }
+
 .valid {
     border-color: #5A5;
     background: #EFE;
 }
+
 .valid:focus {
     outline-color: #8E8;
 }
+
 /* change all .btn to .btn-sm size on xs */
 @include media-breakpoint-between(xs, sm) {
     .btn {
@@ -406,6 +414,7 @@ export default {
             $btn-border-radius-sm);
     }
 }
+
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
@@ -416,13 +425,16 @@ export default {
     border-radius: 0.5rem;
     background: #fff;
 }
+
 .profile-img {
     text-align: center;
 }
+
 .profile-img img {
     width: 70%;
     height: 100%;
 }
+
 .profile-img .file {
     position: relative;
     overflow: hidden;
@@ -433,18 +445,22 @@ export default {
     font-size: 15px;
     background: #212529b8;
 }
+
 .profile-img .file input {
     position: absolute;
     opacity: 0;
     right: 0;
     top: 0;
 }
+
 .profile-head h5 {
     color: #333;
 }
+
 .profile-head h6 {
     color: #0062cc;
 }
+
 .profile-edit-btn {
     border: none;
     border-radius: 1.5rem;
@@ -454,72 +470,88 @@ export default {
     color: #6c757d;
     cursor: pointer;
 }
+
 .proile-rating {
     font-size: 12px;
     color: #818182;
     margin-top: 5%;
 }
+
 .proile-rating span {
     color: #495057;
     font-size: 15px;
     font-weight: 600;
 }
+
 .profile-head .nav-tabs {
     margin-bottom: 5%;
 }
+
 .profile-head .nav-tabs .nav-link {
     font-weight: 600;
     border: none;
 }
+
 .profile-head .nav-tabs .nav-link.active {
     border: none;
     border-bottom: 2px solid #0062cc;
 }
+
 .profile-work {
     padding: 14%;
     margin-top: -15%;
 }
+
 .profile-work p {
     font-size: 12px;
     color: #818182;
     font-weight: 600;
     margin-top: 10%;
 }
+
 .profile-work a {
     text-decoration: none;
     color: #495057;
     font-weight: 600;
     font-size: 14px;
 }
+
 .profile-work ul {
     list-style: none;
 }
+
 .profile-tab label {
     font-weight: 600;
 }
+
 .profile-tab p {
     font-weight: 600;
     color: #0062cc;
 }
+
 /* LIST USERS  */
 .card-img-top {
     width: 100%;
     height: 15vw;
     object-fit: cover;
 }
+
 /* TOPBAR */
 .rounded-circle {
     border-radius: 50% !important;
 }
+
 .dropdown-list-image {
     position: relative;
     height: 2.5rem;
     width: 2.5rem;
 }
+
 .dropdown-list-image img {
     height: 2.5rem;
     width: 2.5rem;
 }
+
 .dropdown-list-image .status-indicator {
     background-color: #eaecf4;
     height: 0.75rem;
@@ -530,6 +562,7 @@ export default {
     right: 0;
     border: 0.125rem solid #fff;
 }
+
 /* DAHSBOARD */
 #wrapper {
     position: relative;
@@ -540,23 +573,29 @@ export default {
     max-width: 850px;
     margin: 35px auto;
 }
+
 /* 
 HOME  */
 .container {
     max-width: 960px;
 }
+
 .pricing-header {
     max-width: 700px;
 }
+
 .card-deck .card {
     min-width: 220px;
 }
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
+
 .box-shadow {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }

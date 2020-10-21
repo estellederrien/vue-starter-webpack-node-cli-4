@@ -30,6 +30,19 @@ const Translations = {
                 ENTER_PASSWORD: "Entrez votre mot de passe...",
                 CREATE_ACCOUNT: " Créer un compte !",
 
+                //USER COMPONENT
+                ABOUT: "A propos",
+                SOCIAL_NETWORK: "Réseau social",
+                FILES: "Fichiers",
+                PERMISSIONS: "Permissions",
+                PHONE: "Téléphone",
+                JOB_LINKS: "Liens de travail",
+                SKILLS: "Talents",
+                ANSWER: "Répondre",
+                FTP_DOWNLOAD: "Télécharger du FTP",
+                PERMISSIONS_LIST: "Liste des permissions",
+                NAME: "Nom",
+                USER_HAS_NO_FILES: "Cet utilisateur n'a pas encore mis de fichiers.",
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
@@ -45,6 +58,7 @@ const Translations = {
                 INTRODUCTION: "INTRODUCTION",
                 PROFILE: "Mon PROFIL",
                 SIGNOUT: "Sortir",
+
                 // REGISTER COMPONENT TRANSLATIONS
                 FIRST_NAME: "Prénom",
                 LAST_NAME: "Nom",
@@ -56,6 +70,7 @@ const Translations = {
                 ALREADY_HAVE_AN_ACCOUNT_MESSAGE: " Vous avez déjà un compte ?",
                 CONNECT: "Se connecter",
                 FILL_FORM_MESSAGE: "Merci de remplir le forumlaire suivant ",
+
                 // LOGIN COMPONENT TRANSLATIONS
                 CONNECT_YOUR_ACCOUNT: "Connectez vous à votre compte",
                 NEW_THERE: "Nouveau ici ?",
@@ -109,6 +124,19 @@ const Translations = {
                 ENTER_EMAIL: "Please enter your email adress...",
                 ENTER_PASSWORD: "Please enter your password",
                 CREATE_ACCOUNT: " Create an account !",
+                //USER COMPONENT
+                ABOUT: "About",
+                SOCIAL_NETWORK: "Social network",
+                FILES: "Files",
+                PERMISSIONS: "Permissions",
+                PHONE: "Phone",
+                JOB_LINKS: "Job links",
+                SKILLS: "Skills",
+                ANSWER: "Answer",
+                FTP_DOWNLOAD: "Download using FTP",
+                PERMISSIONS_LIST: "Permissions list",
+                NAME: "Name",
+                USER_HAS_NO_FILES: "User has no files yet .",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: "Home",
@@ -185,6 +213,19 @@ const Translations = {
                 ENTER_EMAIL: "Bitte geben Sie Ihre E-Mail-Adresse ein ...",
                 ENTER_PASSWORD: "Bitte geben Sie Ihr Passwort ein",
                 CREATE_ACCOUNT: " Konto erstellen!",
+                //USER COMPONENT
+                ABOUT: "Über",
+                SOCIAL_NETWORK: "Soziales Netzwerk",
+                FILES: "Dateien",
+                PERMISSIONS: "Berechtigungen",
+                PHONE: "Telefon",
+                JOB_LINKS: "Job-Links",
+                SKILLS: "Fähigkeiten",
+                ANSWER: "Antwort",
+                FTP_DOWNLOAD: "Download über FTP",
+                PERMISSIONS_LIST: "Berechtigungsliste",
+                NAME: "Nachname",
+                USER_HAS_NO_FILES: "Benutzer hat noch keine Dateien.",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` `,
                 HOME: "zu Hause ",
@@ -264,6 +305,19 @@ const Translations = {
                 ENTER_EMAIL: "Ingrese su dirección de correo electrónico ...",
                 ENTER_PASSWORD: "Introduzca su contraseña",
                 CREATE_ACCOUNT: "¡Crea una cuenta!",
+                //USER COMPONENT
+                ABOUT: "Acerca de",
+                SOCIAL_NETWORK: "Red social",
+                FILES: "Archivos",
+                PERMISSIONS: "Permisos",
+                PHONE: "Teléfono",
+                JOB_LINKS: "Enlaces de trabajo",
+                SKILLS: "Habilidades",
+                ANSWER: "Responder",
+                FTP_DOWNLOAD: "Descargar mediante FTP",
+                PERMISSIONS_LIST: "Lista de permisos",
+                NAME: "Nombre",
+                USER_HAS_NO_FILES: "El usuario aún no tiene archivos.",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
                         Bienvenido al iniciador de pila completa de programación lineal vue + Python Pulp.
@@ -346,6 +400,19 @@ const Translations = {
                 ENTER_EMAIL: "कृपया अपना ईमेल प्रवेश करें ...",
                 ENTER_PASSWORD: "कृपया अपना पासवर्ड दर्ज करें",
                 CREATE_ACCOUNT: "खाता बनाएँ!",
+                //USER COMPONENT
+                ABOUT: "के बारे में",
+                SOCIAL_NETWORK: "सोशल नेटवर्क",
+                FILES: "फ़ाइलें",
+                PERMISSIONS: "अनुमतियाँ",
+                PHONE: "फोन",
+                JOB_LINKS: "नौकरी लिंक",
+                SKILLS: "कौशल",
+                ANSWER: "उत्तर",
+                FTP_DOWNLOAD: "FTP का उपयोग करके डाउनलोड करें",
+                PERMISSIONS_LIST: "अनुमतियाँ सूची",
+                NAME: "नाम",
+                USER_HAS_NO_FILES: "उपयोगकर्ता के पास अभी तक कोई फ़ाइल नहीं है।",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
                       `,
@@ -424,6 +491,19 @@ const Translations = {
                 ENTER_EMAIL: "请输入您的电子邮件地址...",
                 ENTER_PASSWORD: "请输入您的密码",
                 CREATE_ACCOUNT: "创建帐户！",
+                //USER COMPONENT
+                ABOUT: "关于",
+                SOCIAL_NETWORK: "社交网络",
+                FILES: "文件",
+                PERMISSIONS: "权限",
+                PHONE: "电话",
+                JOB_LINKS: "工作链接",
+                SKILLS: "技能",
+                ANSWER: "答案",
+                FTP_DOWNLOAD: "使用FTP下载",
+                PERMISSIONS_LIST: "权限列表",
+                NAME: "名称",
+                USER_HAS_NO_FILES: "用户还没有文件。",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: " 家",
