@@ -3,7 +3,7 @@
     <div class="card-header">
         <label style="padding:5px">
             <!-- test -->
-            <b> <i class="fas fa-filter"></i> Filtres </b>
+            <b> <i class="fas fa-filter"></i> {{ t('FILTERS') }}  </b>
         </label>
         <button @click="closeModal" class="btn btn-primary float-right">X</button>
     </div>
@@ -12,10 +12,10 @@
             <div class="col-md-6" style="padding:30px">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text">Role</label>
+                        <label class="input-group-text">{{ t('ROLE') }}</label>
                     </div>
                     <select class="form-control" v-model="modifiedFilters.role">
-                        <option value>Choisir</option>
+                        <option value>{{ t('CHOOSE') }} </option>
                         <option value="viewer">Viewer</option>
                         <option value="user">User</option>
                         <option value="manager">Manager</option>
@@ -25,7 +25,7 @@
                 <div class="input-group mb-3">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text">Jobs</label>
+                            <label class="input-group-text">{{ t('JOB') }}</label>
                         </div>
                         <multiselect class="form-control" v-model="modifiedFilters.jobs" :multiple="true" :options="jobs" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                         <pre class="language-json"><code>{{ value}}</code></pre>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text">Groupes</label>
+                        <label class="input-group-text">{{ t('TEAMS') }}</label>
                     </div>
                     <multiselect class="form-control" v-model="modifiedFilters.groups" :multiple="true" :options="groups" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                     <pre class="language-json"><code>{{ value }}</code></pre>
@@ -44,7 +44,7 @@
             <div class="col-md-6" style="padding:30px">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text">Utilisateur</label>
+                        <label class="input-group-text">{{ t('USER') }}</label>
                     </div>
                     <multiselect class="form-control" v-model="modifiedFilters.users" :multiple="true" :options="users" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                     <pre class="language-json"><code>{{ value }}</code></pre>
@@ -53,7 +53,7 @@
                 <div class="mb-3">
                     <div>
                         <div class="input-group-prepend">
-                            <label class="input-group-text">Age</label>
+                            <label class="input-group-text">{{ t('AGE') }}</label>
                         </div>
                         <vue-slider v-model="modifiedFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
                     </div>
@@ -64,10 +64,10 @@
         <div class="card-footer float-right">
             <!-- LOADING PIC -->
             <button class="btn btn-warning float-right mt-auto" v-on:click="filterNow()">
-                <i class="fas fa-filter"></i> Filtrer !
+                <i class="fas fa-filter"></i> {{ t('FILTER') }}
                 <img v-if="loading" style="width:30px" src="../assets/img/loader_def.gif" />
             </button>
-            <button class="btn btn-primary float-right mt-auto" v-on:click="initializeFilters()">Initialiser</button>
+            <button class="btn btn-primary float-right mt-auto" v-on:click="initializeFilters()">{{ t('INITIALIZE') }}</button>
         </div>
     </div>
 </div>

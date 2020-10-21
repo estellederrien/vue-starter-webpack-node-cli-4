@@ -17,6 +17,13 @@ const Translations = {
                 AGE: "Age",
                 TEAMS: "Groupes",
                 FTP_FILES: "Fichiers FTP",
+
+                //FILTERS COMPONENT
+                CHOOSE: "Choisir",
+                FILTER: "Filtrer",
+                INITIALIZE: "Initialiser",
+                ROLE: "Role",
+
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: "Accueil",
@@ -85,6 +92,11 @@ const Translations = {
                 AGE: "Age",
                 TEAMS: "Teams",
                 FTP_FILES: "Ftp files",
+                //FILTERS COMPONENT
+                CHOOSE: "Choose",
+                FILTER: "Filter",
+                INITIALIZE: "Initialize",
+                ROLE: "Role",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: "Home",
@@ -150,7 +162,12 @@ const Translations = {
                 JOB: "Job",
                 AGE: "Age",
                 TEAMS: "Teams",
-                FTP_FILES: "Ftp files",
+                FTP_FILES: "FTP-Dateien",
+                //FILTERS COMPONENT
+                CHOOSE: "Wählen",
+                FILTER: "Filter",
+                INITIALIZE: "Initialisieren",
+                ROLE: "Rolle",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` `,
                 HOME: "zu Hause ",
@@ -215,11 +232,16 @@ const Translations = {
                 TABLE: "Table",
                 USERS: 'Users',
                 // USERS COMPONENT : 
-                FILTERS: "Filters",
-                JOB: "Job",
-                AGE: "Age",
-                TEAMS: "Teams",
-                FTP_FILES: "Ftp files",
+                FILTERS: "Filtros",
+                JOB: "Trabajo",
+                AGE: "Edad",
+                TEAMS: "Equipos",
+                FTP_FILES: "Archivos Ftp",
+                //FILTERS COMPONENT
+                CHOOSE: "Elegir",
+                FILTER: "Filtro",
+                INITIALIZE: "Inicializar",
+                ROLE: "Rol",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
                         Bienvenido al iniciador de pila completa de programación lineal vue + Python Pulp.
@@ -287,11 +309,16 @@ const Translations = {
                 TABLE: "Table",
                 USERS: 'Users',
                 // USERS COMPONENT : 
-                FILTERS: "Filters",
-                JOB: "Job",
-                AGE: "Age",
-                TEAMS: "Teams",
-                FTP_FILES: "Ftp files",
+                FILTERS: "फिल्टर",
+                JOB: "नौकरी",
+                AGE: "आयु",
+                TEAMS: "टीम",
+                FTP_FILES: "फ़ाइलें",
+                //FILTERS COMPONENT
+                CHOOSE: "चुनें",
+                FILTER: "फ़िल्टर",
+                INITIALIZE: "इनिशियलाइज़",
+                ROLE: " रोल",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
                         Vue + पायथन पल्प रैखिक प्रोग्रामिंग फुल स्टैक स्टार्टर में आपका स्वागत है।
@@ -357,11 +384,16 @@ const Translations = {
                 LOGOUT: "Sortir",
                 USERS: 'Users',
                 // USERS COMPONENT : 
-                FILTERS: "Filters",
-                JOB: "Job",
-                AGE: "Age",
-                TEAMS: "Teams",
-                FTP_FILES: "Ftp files",
+                FILTERS: "过滤条件",
+                JOB: "职位",
+                AGE: "年龄",
+                TEAMS: "团队",
+                FTP_FILES: "档案",
+                //FILTERS COMPONENT
+                CHOOSE: "选择",
+                FILTER: "过滤条件",
+                INITIALIZE: "初始化",
+                ROLE: "角色",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ``,
                 HOME: " 家",
