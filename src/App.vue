@@ -3,7 +3,7 @@
     <!-- --------------------------------------------- TOPBAR ------------------------------------------------------------ -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Vue-Node-Starter by Nicolas Huleux V. {{v}}</a>
+        <a class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a>
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -15,6 +15,16 @@
             </ul>
             <!-- RIGHT -->
             <ul class="navbar-nav ml-auto">
+                 <b-nav-item-dropdown text="" right>
+                    <template slot="button-content"><b>{{ t('LANG') }} </b></template>
+                    <b-dropdown-item @click="change_app_language('FRENCH')">FRENCH</b-dropdown-item>
+                    <b-dropdown-item @click="change_app_language('ENGLISH')">ENGLISH</b-dropdown-item>
+                    <b-dropdown-item @click="change_app_language('SPANISH')">ESPAGNOL</b-dropdown-item>
+                    <b-dropdown-item @click="change_app_language('DEUTSH')">DEUTSH</b-dropdown-item>
+                    <b-dropdown-item @click="change_app_language('CHINESE')">CHINESE</b-dropdown-item>
+                    <b-dropdown-item @click="change_app_language('HINDI')">HINDI</b-dropdown-item>
+                </b-nav-item-dropdown>
+
                 <!-- -----------------------------------------------------------DROPOWN MESSAGES----------------------------------------------------------------------- -->
                 <!-- Nav Item - Messages -->
                 <li class="submenu nav-item dropdown no-arrow mx-1" v-if="$store.state.logged">
@@ -23,7 +33,7 @@
                         <span class="badge badge-danger badge-counter"></span>
                     </a>
                     <messages :_id="$store.getters.user._id"></messages>
-                </li>s
+                </li>
                 <!-- -----------------------------------------------------------DROPOWN MENU------------------------------------------------------------------------ -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,16 +44,16 @@
                     <!-- Dropdown - User Information -->
                     <div class="submenu dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <router-link v-if="$store.state.logged" class="dropdown-item" to="/profile">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Mon profil
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('PROFILE') }}
                         </router-link>
 
                         <router-link class="dropdown-item" to="/login" disabled>
-                            <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>Identification
+                            <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('LOGIN') }}
                         </router-link>
 
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item logout" @click="logout()" disabled>
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Sortir !
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('LOGOUT') }}
                         </div>
                     </div>
                 </li>
@@ -81,6 +91,7 @@ export default {
     mounted() {
         // APPLICATION_VERSION is coming from the vue.config.js file and is set in package.json
         this.v = APPLICATION_VERSION;
+        this.$translate.setLang("FRENCH");
     },
     watch: {
         '$store.state.logged': function () {
@@ -90,6 +101,50 @@ export default {
     methods: {
         profile() {
             this.$router.push("/profile");
+        },
+        change_app_language(lang) {
+            this.$translate.setLang(lang);
+            this.$forceUpdate();
+            // Ugly way to change sidebar language 
+            this.menu =  [{
+                    header: true,
+                    title: "Menu",
+                    hiddenOnCollapse: true
+                },
+                {
+                    href: "/",
+                    title: this.$translate.text('HELLOWORLD'),
+                    icon: "fab fa-trello"
+                },
+                {
+                    href: "/users",
+                    title: this.$translate.text('USERS'),
+                    icon: "fas fa-users"
+                },
+                {
+                    href: "/register",
+                    title: this.$translate.text('REGISTER'),
+                    icon: "fas fa-registered"
+                },
+                {
+                    href: "/charts",
+                    title: "Management",
+                    icon: "fa fa-chart-area",
+                    child: [{
+                            href: "/dashboard",
+                            title: this.$translate.text('DASHBOARD')
+                        },
+                        {
+                            href: "/calendar",
+                            title: this.$translate.text('CALENDAR')
+                        },
+                        {
+                            href: "/table",
+                            title: this.$translate.text('TABLE')
+                        }
+                    ]
+                }
+            ]
         },
         logout() {
             axios
@@ -153,15 +208,15 @@ export default {
                     icon: "fa fa-chart-area",
                     child: [{
                             href: "/dashboard",
-                            title: "Tableau de bord"
+                            title: this.$translate.text('DASHBOARD')
                         },
                         {
                             href: "/calendar",
-                            title: "Calendrier"
+                            title: "Calendar"
                         },
                         {
                             href: "/table",
-                            title: "Table"
+                            title: "Table Example"
                         }
                     ]
                 }

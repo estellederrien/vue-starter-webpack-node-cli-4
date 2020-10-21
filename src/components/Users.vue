@@ -12,7 +12,7 @@
                     <message :user="$store.getters.user"></message>
                 </modal>
             <div class="header">
-                <button class="btn btn-warning " v-on:click="openFilters()"><i class="fas fa-filter"></i> Filtres</button>
+                <button class="btn btn-warning " v-on:click="openFilters()"><i class="fas fa-filter"></i> {{ t('FILTERS') }} </button>
             </div>
             <div v-if="!users.length">
                 <center>
@@ -38,18 +38,18 @@
                             </div>
                             <div class="tab-content" id="v-pills-tabContent" style="min-height:70px;">
                                 <div class="tab-pane fade show active" :id="'v-pills-home' + user._id" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                    <h6>Job : {{ user.job }}</h6>
+                                    <h6>{{ t('JOB') }}: {{ user.job }}</h6>
                                     Mentra : {{ user.mentra }}<br />
-                                    <span v-if="user.age">Age: {{ user.age }}</span>
+                                    <span v-if="user.age">{{ t('AGE') }}: {{ user.age }}</span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                    <label> Fichiers Ftp</label><br />
+                                    <label> {{ t('FTP_FILES') }}: </label><br />
                                     <span class="badge badge-warning" v-for="f in user.filenames"> <i class="fas fa-file"></i> {{ f.filename }}</span>
                                      <span class="badge badge-warning" v-if="!user.filenames.length" > User has no files yet ! </span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <div>
-                                        <label> Groupes </label><br />
+                                        <label> {{ t('TEAMS') }}: </label><br />
                                         <div class="badge badge-success" v-for="groupName in user.groups"><i class="fas fa-users"></i> {{ groupName }}</div>
                                          <span class="badge badge-warning" v-if="!user.groups.length" > User has no team yet ! </span>
                                     </div>
