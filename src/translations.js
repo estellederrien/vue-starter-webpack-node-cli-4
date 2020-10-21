@@ -153,10 +153,10 @@ const Translations = {
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
                 DASHBOARD: "Dashboard",
-                HELLOWORLD: "Hello World",
-                CALENDAR: "Calendar",
-                TABLE: "Table",
-                USERS: 'Users',
+                HELLOWORLD: "Hallo Welt",
+                CALENDAR: "Kalender",
+                TABLE: "Tabelle",
+                USERS: "Benutzer",
                 // USERS COMPONENT : 
                 FILTERS: "Filters",
                 JOB: "Job",
@@ -177,7 +177,7 @@ const Translations = {
                 LANG: "LANG",
                 REGISTER: "Registrieren",
                 LOGIN: "Einloggen ",
-                LOGOUT: "Sortir",
+                LOGOUT: "Ausloggen",
                 USER: "Benutzer",
                 INTRODUCTION: "Einführung",
                 PROFILE: "Mein Profil",
@@ -226,11 +226,11 @@ const Translations = {
             SPANISH: {
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
-                DASHBOARD: "Dashboard",
-                HELLOWORLD: "Hello World",
-                CALENDAR: "Calendar",
+                DASHBOARD: "Tablero",
+                HELLOWORLD: "Hola mundo",
+                CALENDAR: "Calendario",
                 TABLE: "Table",
-                USERS: 'Users',
+                USERS: 'Usuarios',
                 // USERS COMPONENT : 
                 FILTERS: "Filtros",
                 JOB: "Trabajo",
@@ -255,7 +255,7 @@ const Translations = {
                 LANG: "Lang",
                 REGISTER: "Registrarse",
                 LOGIN: "Iniciar sesión",
-                LOGOUT: "Sortir",
+                LOGOUT: "Cerrar SESIÓN",
                 USER: "Usuaria",
                 INTRODUCTION: "INTROduccion",
                 PROFILE: "Mi perfil",
@@ -303,11 +303,11 @@ const Translations = {
             HINDI: {
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
-                DASHBOARD: "Dashboard",
-                HELLOWORLD: "Hello World",
-                CALENDAR: "Calendar",
-                TABLE: "Table",
-                USERS: 'Users',
+                DASHBOARD: "डैशबोर्ड",
+                HELLOWORLD: "हेल्लोडोर",
+                CALENDAR: "कैलेंडर",
+                TABLE: " टेबल",
+                USERS: 'उपयोगकर्ता',
                 // USERS COMPONENT : 
                 FILTERS: "फिल्टर",
                 JOB: "नौकरी",
@@ -331,7 +331,7 @@ const Translations = {
                 LANG: "लैंग",
                 REGISTER: "रजिस्टर करें",
                 LOGIN: "लॉग इन करें",
-                LOGOUT: "Sortir",
+                LOGOUT: "लॉग आउट",
                 USER: "उपयोगकर्ता",
                 INTRODUCTION: "परिचय",
                 PROFILE: "मेरी प्रोफाइल",
@@ -376,13 +376,13 @@ const Translations = {
             },
             CHINESE: {
                 // NAVBAR COMPONENT TRANSLATIONS
-                APP_TITLE: "Vue-Node starter ",
-                DASHBOARD: "Dashboard",
+                APP_TITLE: "Vue节点入门 ",
+                DASHBOARD: "资讯主页",
                 HELLOWORLD: "Hello World",
-                CALENDAR: "Calendar",
-                TABLE: "Table",
-                LOGOUT: "Sortir",
-                USERS: 'Users',
+                CALENDAR: "日历",
+                TABLE: "表格",
+
+                USERS: '用户',
                 // USERS COMPONENT : 
                 FILTERS: "过滤条件",
                 JOB: "职位",
@@ -403,6 +403,7 @@ const Translations = {
                 LANG: "郎",
                 REGISTER: "寄存器",
                 LOGIN: "登录",
+                LOGOUT: "登出",
                 USER: "用户",
                 INTRODUCTION: "介绍",
                 PROFILE: "我的简历",
