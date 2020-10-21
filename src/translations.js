@@ -44,8 +44,18 @@ const Translations = {
                 NAME: "Nom",
                 USER_HAS_NO_FILES: "Cet utilisateur n'a pas encore mis de fichiers.",
 
+                // SOCIAL NETWORK
+                ADD_MESSAGE_AS: "Envoyer un message en tant que",
+                ENTER_TITLE: "Entrez le titre",
+                ENTER_MESSAGE: "Entrez le message",
+                SEND_MESSAGE: "Envoyer le message",
+
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: ``,
+                INTRO: `
+                Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX
+                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+                Tester l'application: Identification de l' ADMIN avec -> login: admin@admin.com + mot de passe: admin
+                Tester: Identification de chaque utilisateur-> login:  email de l'utilisateur + mot de passe: password `,
                 HOME: "Accueil",
                 DROPDOWN_TITLE_1: "",
                 VERSION: "VERSION",
@@ -137,8 +147,16 @@ const Translations = {
                 PERMISSIONS_LIST: "Permissions list",
                 NAME: "Name",
                 USER_HAS_NO_FILES: "User has no files yet .",
+                // SOCIAL NETWORK
+                ADD_MESSAGE_AS: "Envoyer un message en tant que",
+                ENTER_TITLE: "Entrez le titre",
+                ENTER_MESSAGE: "Entrez le message",
+                SEND_MESSAGE: "Envoyer le message",
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: ``,
+                INTRO: ` Welcome to my vue node starter ! Nicolas E HULEUX
+                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+                Testing: log in ADMIN with -> login: admin@admin.com + password: admin
+                Testing: log in ANY USER -> login: user email + password: password `,
                 HOME: "Home",
                 DROPDOWN_TITLE_1: "Linear programming templates",
                 VERSION: "Version",
@@ -226,8 +244,16 @@ const Translations = {
                 PERMISSIONS_LIST: "Berechtigungsliste",
                 NAME: "Nachname",
                 USER_HAS_NO_FILES: "Benutzer hat noch keine Dateien.",
+                // SOCIAL NETWORK
+                ADD_MESSAGE_AS: "Envoyer un message en tant que",
+                ENTER_TITLE: "Entrez le titre",
+                ENTER_MESSAGE: "Entrez le message",
+                SEND_MESSAGE: "Envoyer le message",
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: ` `,
+                INTRO: ` Willkommen zu meinem vue.js - node.js - mongodbAtlas Starter! Nicolas E HULEUX
+                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+                Testen: Melden Sie sich bei ADMIN mit -> an: admin@admin.com + Passwort: admin
+                Testen: JEDEN BENUTZER anmelden -> Anmelden: Benutzer-E-Mail + Passwort: Passwort `,
                 HOME: "zu Hause ",
                 DROPDOWN_TITLE_1: "Linearer Programmierfall",
                 VERSION: "VERSION",
@@ -318,11 +344,17 @@ const Translations = {
                 PERMISSIONS_LIST: "Lista de permisos",
                 NAME: "Nombre",
                 USER_HAS_NO_FILES: "El usuario aún no tiene archivos.",
+                // SOCIAL NETWORK
+                ADD_MESSAGE_AS: "Envoyer un message en tant que",
+                ENTER_TITLE: "Entrez le titre",
+                ENTER_MESSAGE: "Entrez le message",
+                SEND_MESSAGE: "Envoyer le message",
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: `
-                        Bienvenido al iniciador de pila completa de programación lineal vue + Python Pulp.
-                        Elija un caso de programación lineal en el menú de la barra de navegación.La aplicación está en estado de construcción.
-                        Los solucionadores lineales permiten resolver problemas que contienen muchas variables.
+                INTRO: `¡Bienvenido a mi iniciador de nodos vue! Nicolas E HULEUX
+                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+                Prueba: inicie sesión en ADMIN con -> inicio de sesión: admin@admin.com + contraseña: admin
+                Prueba: iniciar sesión CUALQUIER USUARIO -> iniciar sesión: correo electrónico de usuario + contraseña: contraseña
+
                         `,
                 HOME: "Casa",
                 DROPDOWN_TITLE_1: "Caso de programación lineal",
@@ -413,8 +445,16 @@ const Translations = {
                 PERMISSIONS_LIST: "अनुमतियाँ सूची",
                 NAME: "नाम",
                 USER_HAS_NO_FILES: "उपयोगकर्ता के पास अभी तक कोई फ़ाइल नहीं है।",
+                // SOCIAL NETWORK
+                ADD_MESSAGE_AS: "Envoyer un message en tant que",
+                ENTER_TITLE: "Entrez le titre",
+                ENTER_MESSAGE: "Entrez le message",
+                SEND_MESSAGE: "Envoyer le message",
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: `
+                INTRO: `मेरी प्रतिज्ञा नोड स्टार्टर में आपका स्वागत है! निकोलस ई हुलेक्स
+                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+                परीक्षण: ADMIN के साथ लॉग इन करें -> लॉगिन: admin@admin.com + पासवर्ड: व्यवस्थापक
+                परीक्षण: किसी भी USER में लॉग इन करें -> लॉगिन: उपयोगकर्ता ईमेल + पासवर्ड: पासवर्ड
                       `,
                 HOME: " घर घर",
                 DROPDOWN_TITLE_1: "रैखिक प्रोग्रामिंग का मामलाe",
@@ -504,8 +544,16 @@ const Translations = {
                 PERMISSIONS_LIST: "权限列表",
                 NAME: "名称",
                 USER_HAS_NO_FILES: "用户还没有文件。",
+                // SOCIAL NETWORK
+                ADD_MESSAGE_AS: "Envoyer un message en tant que",
+                ENTER_TITLE: "Entrez le titre",
+                ENTER_MESSAGE: "Entrez le message",
+                SEND_MESSAGE: "Envoyer le message",
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: ``,
+                INTRO: `欢迎来到我的vue节点入门！尼古拉斯E HULEUX
+                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+                测试：使用->登录名：admin@admin.com +密码：admin登录ADMIN
+                测试：登录ANY USER->登录：用户电子邮件+密码：密码`,
                 HOME: " 家",
                 DROPDOWN_TITLE_1: "线性规划案例",
                 VERSION: "版",

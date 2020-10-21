@@ -15,18 +15,9 @@
 			<h5>
 				<br />
 
-				<br />
-				Welcome to my Vue.JS - Node.JS - MongoDb Atlas starter !
-				<br />
-				I will try to make the code as easy and clear as possible !
-				<br />
-				Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX
-				<br />
-				https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
+				{{ t('INTRO') }}
 
-				<br />
-				<span style="color:blue">Testing: log in ADMIN with -> login: admin@admin.com + password: admin </span><br>
-				<span style="color:blue">Testing: log in ANY USER  -> login: user email + password: password </span>
+
 				<br />
 			</h5>
 		</div>
