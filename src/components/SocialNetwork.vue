@@ -2,7 +2,13 @@
 <b-container fluid>
     <b-row class="list">
         <b-col sm="12">
-            <b-card border-variant="dark" no-body class="overflow-hidden card-message" sv-if="user.social_messages" v-for="sm in user.social_messages">
+            <b-card v-for="sm in user.social_messages" :key="user._id" border-variant="dark" no-body class="overflow-hidden card-message" sv-if="user.social_messages">
+                <div class="card-header">
+                    {{sm.title}}
+                      <button type="button" class="btn btn-secondary float-right"  @click="delete_social_message()">X</button>
+                        <!-- <button type="button" class="btn btn-warning float-right"  @click="open_answer_social_message()">{{ t('ANSWER') }}</button> -->
+                </div>
+                <!-- main social message -->
                 <b-row no-gutters>
                     <b-col md="2">
                         <b-card-img class="message-img rounded-0" v-if="sm.img !== ''" :src="sm.img" alt="Image"></b-card-img>
@@ -10,8 +16,8 @@
                         <span style="font-size:0.8em">{{sm.from}} </span><br>
                         <span style="font-size:0.8em;color:blue">{{sm.date | moment('from', 'now') }} </span>
                     </b-col>
-                    <b-col md="10"><button type="button" class="btn btn-secondary float-right" style="text-align:right" @click="delete_social_message()">X</button>
-                        <button type="button" class="btn btn-warning float-right" style="text-align:right" @click="answer_social_message()">{{ t('ANSWER') }}</button>
+                    <b-col md="10">
+                      
                         <b-card-body>
                             <!-- <b-card-title style="text-align:left;">
                                 <h4>      {{sm.title}} </h4>
@@ -22,6 +28,46 @@
                         </b-card-body>
                     </b-col>
                 </b-row>
+
+                <!-- Answer main social message textarea-->
+                <b-row v-if="true">
+                    <b-col md="2"></b-col>
+                    <b-col sm="10">
+                        <b-form-textarea v-model="new_social_answer.content" id="textarea-small" size="md" :placeholder=" t('ANSWER') " style="margin-bottom:10px"></b-form-textarea>
+                        <b-button @click="answer_social_message(sm)" type="button" class="btn btn-warning" block>{{ t('ANSWER') }}</b-button>
+                    </b-col>
+                </b-row>
+
+                <!-- ANSWER CARD -->
+                <b-row class="answers">
+                    <b-col md="2"></b-col>
+                    <b-col sm="10">
+                        <b-card v-for="answer in sm.answers" border-variant="dark" no-body class="overflow-hidden card-answer" sv-if="user.social_messages">
+                            <b-row no-gutters>
+
+                                <b-col md="2">
+                                    <b-card-img class="message-img rounded-0" v-if="answer.img !== ''" :src="sm.img" alt="Image"></b-card-img>
+                                    <img class="message-img rounded-0" v-if="answer.img == ''" src="../assets/img/defaut.jpg" alt="Image"></img>
+                                    <span style="font-size:0.8em">{{answer.from}} </span><br>
+                                    <span style="font-size:0.8em;color:blue">{{answer.date | moment('from', 'now') }} </span>
+                                </b-col>
+                                <b-col md="8">
+                                    <!-- <button type="button" class="btn btn-secondary float-right" style="text-align:right" @click="delete_social_message()">X</button>
+                                <button type="button" class="btn btn-warning float-right" style="text-align:right" @click="answer_social_message(answer)">{{ t('ANSWER') }}</button> -->
+                                    <b-card-body>
+                                        <!-- <b-card-title style="text-align:left;">
+                                                <h4>      {{sm.title}} </h4>
+                                        </b-card-title>  -->
+                                        <b-card-text style="text-align:left;margin-left:20px;">
+                                            <b-icon icon="chat-left"></b-icon> {{answer.content }}
+                                        </b-card-text>
+                                    </b-card-body>
+                                </b-col>
+                            </b-row>
+                        </b-card>
+                    </b-col>
+
+                </b-row>
             </b-card>
         </b-col>
     </b-row>
@@ -30,13 +76,14 @@
             <label for="textarea-small">{{ t('ADD_MESSAGE_AS') }}<b>{{this.$store.getters.user.nom}}</b></label>
         </b-col>
         <b-col sm="10">
-            <b-form-input id="title" v-model="new_social_message.title"  :placeholder=" t('ENTER_TITLE') " style="margin-bottom:10px"></b-form-input>
+            <b-form-input id="title" v-model="new_social_message.title" :placeholder=" t('ENTER_TITLE') " style="margin-bottom:10px"></b-form-input>
             <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" :placeholder=" t('ENTER_MESSAGE') " style="margin-bottom:10px"></b-form-textarea>
             <b-button @click="create_social_message()" type="button" variant="outline-primary " block>{{ t('SEND_MESSAGE') }}</b-button>
         </b-col>
     </b-row>
 </b-container>
 </template>
+
 <script>
 import axios from "axios";
 import {
@@ -55,6 +102,13 @@ export default {
                 from: this.$store.getters.user.email,
                 date: new Date(),
                 title: "",
+                content: "",
+                img: this.$store.getters.user.img,
+                answers: []
+            },
+            new_social_answer: {
+                from: this.$store.getters.user.email,
+                date: new Date(),
                 content: "",
                 img: this.$store.getters.user.img
             }
@@ -93,8 +147,8 @@ export default {
         delete_social_message() {
             alert('Developping..')
         },
-        answer_social_message() {
-            alert('Developping..')
+        answer_social_message(sm) {
+            sm.answers.push(this.new_social_answer)
         },
         update_user_social_messages: function () {
             console.log(this.user);
@@ -125,19 +179,33 @@ export default {
     }
 };
 </script>
+
 <style scoped>
 .list {
     margin-bottom: 20px;
 }
+
+.answers {
+    margin-top: 20px;
+}
+
 .card-message {
-    margin-top: 20px
+    margin-top: 20px;
+     padding: 5px;
 }
+
 .new-message {
-    margin-bottom: 20px
+    margin-bottom: 40px
 }
+
 .message-img {
     width: 100px;
     height: 100px;
+    padding: 5px;
+}
+
+.card-answer {
+    margin-top:20px;
     padding: 5px;
 }
 </style>
