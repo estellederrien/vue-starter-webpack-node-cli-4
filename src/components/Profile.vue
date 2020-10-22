@@ -180,7 +180,7 @@
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon1" @click="createJob()">+</button>
                                                 </div>
-                                                <input v-model="newJob" type="text" class="form-control" placeholder="" placeholder="Ajouter un job" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                <input v-model="newJob" type="text" class="form-control"  :placeholder=" t('ADD_A_JOB') " aria-label="Example text with button addon" aria-describedby="button-addon1">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
