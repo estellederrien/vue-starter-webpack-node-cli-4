@@ -11,7 +11,7 @@
                         <span style="font-size:0.8em;color:blue">{{sm.date | moment('from', 'now') }} </span>
                     </b-col>
                     <b-col md="10"><button type="button" class="btn btn-secondary float-right" style="text-align:right" @click="delete_social_message()">X</button>
-                        <button type="button" class="btn btn-warning float-right" style="text-align:right" @click="answer_social_message()">Answer</button>
+                        <button type="button" class="btn btn-warning float-right" style="text-align:right" @click="answer_social_message()">{{ t('ANSWER') }}</button>
                         <b-card-body>
                             <!-- <b-card-title style="text-align:left;">
                                 <h4>      {{sm.title}} </h4>
@@ -30,9 +30,9 @@
             <label for="textarea-small">Add a message as <b>{{this.$store.getters.user.nom}}</b></label>
         </b-col>
         <b-col sm="10">
-            <b-form-input id="title" v-model="new_social_message.title" placeholder="Enter Title" style="margin-bottom:10px"></b-form-input>
-            <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" placeholder="Enter message" style="margin-bottom:10px"></b-form-textarea>
-            <b-button @click="create_social_message()" type="button" variant="outline-primary " block>Send Social network msg </b-button>
+            <b-form-input id="title" v-model="new_social_message.title"  :placeholder=" t('ENTER_TITLE') " style="margin-bottom:10px"></b-form-input>
+            <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" :placeholder=" t('ENTER_MESSAGE') " style="margin-bottom:10px"></b-form-textarea>
+            <b-button @click="create_social_message()" type="button" variant="outline-primary " block>{{ t('SEND_MESSAGE') }}</b-button>
         </b-col>
     </b-row>
 </b-container>

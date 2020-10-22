@@ -148,10 +148,10 @@ const Translations = {
                 NAME: "Name",
                 USER_HAS_NO_FILES: "User has no files yet .",
                 // SOCIAL NETWORK
-                ADD_MESSAGE_AS: "Envoyer un message en tant que",
-                ENTER_TITLE: "Entrez le titre",
-                ENTER_MESSAGE: "Entrez le message",
-                SEND_MESSAGE: "Envoyer le message",
+                ADD_MESSAGE_AS: "Send a message as",
+                ENTER_TITLE: "Enter title ...",
+                ENTER_MESSAGE: "Enter message ...",
+                SEND_MESSAGE: "Send a message ...",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` Welcome to my vue node starter ! Nicolas E HULEUX
                 https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
@@ -245,10 +245,10 @@ const Translations = {
                 NAME: "Nachname",
                 USER_HAS_NO_FILES: "Benutzer hat noch keine Dateien.",
                 // SOCIAL NETWORK
-                ADD_MESSAGE_AS: "Envoyer un message en tant que",
-                ENTER_TITLE: "Entrez le titre",
-                ENTER_MESSAGE: "Entrez le message",
-                SEND_MESSAGE: "Envoyer le message",
+                ADD_MESSAGE_AS: "Nachricht senden als",
+                ENTER_TITLE: "Titel eingeben ...",
+                ENTER_MESSAGE: "Nachricht eingeben ...",
+                SEND_MESSAGE: "Nachricht senden ...",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` Willkommen zu meinem vue.js - node.js - mongodbAtlas Starter! Nicolas E HULEUX
                 https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
@@ -345,10 +345,10 @@ const Translations = {
                 NAME: "Nombre",
                 USER_HAS_NO_FILES: "El usuario aún no tiene archivos.",
                 // SOCIAL NETWORK
-                ADD_MESSAGE_AS: "Envoyer un message en tant que",
-                ENTER_TITLE: "Entrez le titre",
-                ENTER_MESSAGE: "Entrez le message",
-                SEND_MESSAGE: "Envoyer le message",
+                ADD_MESSAGE_AS: "Enviar mensaje como",
+                ENTER_TITLE: "Ingrese título ...",
+                ENTER_MESSAGE: "Ingresar mensaje ...",
+                SEND_MESSAGE: "Enviar un mensaje ...",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `¡Bienvenido a mi iniciador de nodos vue! Nicolas E HULEUX
                 https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
@@ -446,10 +446,10 @@ const Translations = {
                 NAME: "नाम",
                 USER_HAS_NO_FILES: "उपयोगकर्ता के पास अभी तक कोई फ़ाइल नहीं है।",
                 // SOCIAL NETWORK
-                ADD_MESSAGE_AS: "Envoyer un message en tant que",
-                ENTER_TITLE: "Entrez le titre",
-                ENTER_MESSAGE: "Entrez le message",
-                SEND_MESSAGE: "Envoyer le message",
+                ADD_MESSAGE_AS: "संदेश को इस रूप में भेजें",
+                ENTER_TITLE: "शीर्षक दर्ज करें ...",
+                ENTER_MESSAGE: "संदेश दर्ज करें ...",
+                SEND_MESSAGE: "एक संदेश भेजें ...",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `मेरी प्रतिज्ञा नोड स्टार्टर में आपका स्वागत है! निकोलस ई हुलेक्स
                 https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
@@ -510,7 +510,7 @@ const Translations = {
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue节点入门 ",
                 DASHBOARD: "资讯主页",
-                HELLOWORLD: "Hello World",
+                HELLOWORLD: "你好，世界",
                 CALENDAR: "日历",
                 TABLE: "表格",
 
@@ -545,10 +545,10 @@ const Translations = {
                 NAME: "名称",
                 USER_HAS_NO_FILES: "用户还没有文件。",
                 // SOCIAL NETWORK
-                ADD_MESSAGE_AS: "Envoyer un message en tant que",
-                ENTER_TITLE: "Entrez le titre",
-                ENTER_MESSAGE: "Entrez le message",
-                SEND_MESSAGE: "Envoyer le message",
+                ADD_MESSAGE_AS: "发送为",
+                ENTER_TITLE: "输入标题...",
+                ENTER_MESSAGE: "输入消息...",
+                SEND_MESSAGE: "发送消息...",
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `欢迎来到我的vue节点入门！尼古拉斯E HULEUX
                 https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
