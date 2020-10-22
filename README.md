@@ -1,6 +1,6 @@
 # My Vue.js + Node.js + MongoDb Atlas Full stack starter ! 
 -   Blazin' fast 2020 Modern Vue.js + Node.js app starter .<br>
-- French, English, Chinese, Hindi, German, Spanish, Japanese, Russian, Arabic...<br>
+-   Chinese, Hindi, French, English, German, Spanish, Japanese, Russian, Arabic...<br>
 -   Easy to understand CRUD(create,read,update,delete) back end files reminding about the Php or Java style.<br>
 -   Pictures are stored on Cloudinary, Files are FTP stored .<br>
 -   MongoDb node.js module + Mongoose schemas types modeler, CRUDS files are eventually switchables to SQL relational databases CRUDS with ease<br>
