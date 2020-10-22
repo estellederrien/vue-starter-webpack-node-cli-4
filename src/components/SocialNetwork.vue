@@ -74,6 +74,7 @@
     </modal>
 </b-container>
 </template>
+
 <script>
 import axios from "axios";
 import {
@@ -100,7 +101,7 @@ export default {
                 from: this.$store.getters.user.email,
                 date: new Date(),
                 content: "",
-                img: this.$store.getters.user.img
+                img: ""
             },
             cliqued_social_message: null
         };
@@ -143,6 +144,7 @@ export default {
             if (!this.cliqued_social_message.answers) {
                 this.cliqued_social_message.answers = []
             }
+            this.new_social_answer.img = this.$store.getters.user.img;
             this.cliqued_social_message.answers.push(this.new_social_answer);
             this.$forceUpdate();
             this.update_user_social_messages();
@@ -182,29 +184,36 @@ export default {
     }
 };
 </script>
+
 <style scoped>
 .list {
     margin-bottom: 20px;
 }
+
 .answers {
     margin-top: 20px;
 }
+
 .card-message {
     margin-top: 20px;
     padding: 5px;
 }
+
 .new-message {
     margin-bottom: 40px
 }
+
 .message-img {
     width: 100px;
     height: 100px;
     padding: 5px;
 }
+
 .card-answer {
     margin-top: 20px;
     padding: 5px;
 }
+
 .answer-modal {
     padding: 20px;
 }
