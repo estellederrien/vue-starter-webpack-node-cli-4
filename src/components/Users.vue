@@ -16,7 +16,7 @@
             </div>
             <div v-if="!users.length">
                 <center>
-                    <h1>Pas de résultats avec ce filtre !</h1>
+                    <h1>{{ t("NO_FILTERS_RESULTS") }}</h1>
                 </center>
             </div>
             <!-- <div  >

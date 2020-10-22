@@ -1,251 +1,289 @@
 <template>
-<div>
     <div>
-        <span v-if="!loaded"><img src="../assets/img/Spin-1s-200px.gif" class="loader" /></span>
-    </div>
-    <div class="container-fluid " id="userDiv" v-show="loaded">
-        <form method="post">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="profile-img">
-                        <img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
+        <div>
+            <span v-if="!loaded"><img src="../assets/img/Spin-1s-200px.gif" class="loader"/></span>
+        </div>
+        <div class="container-fluid " id="userDiv" v-show="loaded">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="profile-img">
+                            <img v-bind:src="user.img" @error="replaceByDefault" style="width:150px" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="profile-head">
-                        <h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
-                        <h6>
-                            {{user.mentra}}
-                        </h6>
-                        <!-- <p class="proile-rating"></p> -->
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i><span class="d-none d-sm-block "> {{ t('ABOUT') }}</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">{{ t('SOCIAL_NETWORK') }}</span></a>
-                            </li>
-                            <!--   <li class="nav-item">
+                    <div class="col-md-8">
+                        <div class="profile-head">
+                            <h5>{{ user.prenom }} {{ user.nom.toUpperCase() }}</h5>
+                            <h6>
+                                {{ user.mentra }}
+                            </h6>
+                            <!-- <p class="proile-rating"></p> -->
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"
+                                        ><i class="fas fa-home"></i><span class="d-none d-sm-block "> {{ t("ABOUT") }}</span></a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#social-network" role="tab"
+                                        ><i class="fas fa-comments"></i> <span class="d-none d-sm-block ">{{ t("SOCIAL_NETWORK") }}</span></a
+                                    >
+                                </li>
+                                <!--   <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-info"></i> <span class="d-none d-sm-block ">Dernières infos</span></a>
                             </li> -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#files" role="tab"><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">{{ t('FILES') }}</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">{{ t('PERMISSIONS') }}</span></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 d-none d-md-block">
-                    <div class="profile-work">
-                        <p>{{ t('JOB_LINKS') }}</p>
-                        <a href="">Website</a><br />
-                        <a href="">Bootsnipp</a><br />
-                        <a href="">Bootply</a>
-                        <p>{{ t('SKILLS') }}</p>
-                        <a href="">Web Designer</a><br />
-                        <a href="">Web Developer</a><br />
-                        <a href="">WordPress</a><br />
-                        <a href="">WooCommerce</a><br />
-                        <a href="">PHP, .Net</a><br />
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>User Id </label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>
-                                        <input v-model="user._id" class="form-control" :placeholder=" t('PARAMETER_ME') " disabled />
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('FIRST_NAME') }}</label>
-                                </div>
-                                <div class="col-md-6" :class="{ 'form-group--error': $v.user.nom.$error }">
-                                    <p>
-                                        <input :disabled="true" v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" :placeholder=" t('PARAMETER_ME') " v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('LAST_NAME') }}</label>
-                                </div>
-                                <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
-                                    <p>
-                                        <input :disabled="true" v-model="user.prenom" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('EMAIL') }}</label>
-                                </div>
-                                <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
-                                    <p>
-                                        <input :disabled="true" v-model="user.email" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('PHONE') }}</label>
-                                </div>
-                                <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
-                                    <p>
-                                        <input :disabled="true" v-model="user.phone" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('JOB') }}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>
-                                        {{user.job}}
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#files" role="tab"
+                                        ><i class="fas fa-file-alt"></i> <span class="d-none d-sm-block ">{{ t("FILES") }}</span></a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#authorizations" role="tab"
+                                        ><i class="fas fa-lock"></i> <span class="d-none d-sm-block ">{{ t("PERMISSIONS") }}</span></a
+                                    >
+                                </li>
+                            </ul>
                         </div>
-                        <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row ">
-                                <div class="col-md-2">
-                                    <label>{{ t('LAST_NAME') }}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>Hourly Rate</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>10$/hr</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>Total Projects</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>230</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>English Level</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>Availability</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>6 months</p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 d-none d-md-block">
+                        <div class="profile-work">
+                            <p>{{ t("JOB_LINKS") }}</p>
+                            <a href="">Website</a><br />
+                            <a href="">Bootsnipp</a><br />
+                            <a href="">Bootply</a>
+                            <p>{{ t("SKILLS") }}</p>
+                            <a href="">Web Designer</a><br />
+                            <a href="">Web Developer</a><br />
+                            <a href="">WordPress</a><br />
+                            <a href="">WooCommerce</a><br />
+                            <a href="">PHP, .Net</a><br />
                         </div>
-                        <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-md-12 tab-content-user">
-                                    <span class="badge badge-warning" v-if="!user.filenames.length"> {{ t('USER_HAS_NO_FILES') }}</span>
-                                    <table v-if="user.filenames.length" class="table table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>{{ t('NAME') }}</th>
-                                                <th>{{ t('FTP_DOWNLOAD') }}</th>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>User Id </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <input v-model="user._id" class="form-control" :placeholder="t('PARAMETER_ME')" disabled />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("LAST_NAME") }}</label>
+                                    </div>
+                                    <div class="col-md-6" :class="{ 'form-group--error': $v.user.nom.$error }">
+                                        <p>
+                                            <input
+                                                :disabled="true"
+                                                v-model="user.nom"
+                                                class="form-control"
+                                                v-on:input="$v.user.nom.$touch"
+                                                :placeholder="t('PARAMETER_ME')"
+                                                v-bind:class="{ 'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid }"
+                                            />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("FIRST_NAME") }}</label>
+                                    </div>
+                                    <div class="col-md-6" :class="{ 'form-group--error': $v.user.prenom.$error }">
+                                        <p>
+                                            <input
+                                                :disabled="true"
+                                                v-model="user.prenom"
+                                                class="form-control"
+                                                :placeholder="t('PARAMETER_ME')"
+                                                v-on:input="$v.user.prenom.$touch"
+                                                v-bind:class="{
+                                                    'is-invalid': $v.user.prenom.$error,
+                                                    'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid,
+                                                }"
+                                            />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("EMAIL") }}</label>
+                                    </div>
+                                    <div class="col-md-6" :class="{ 'form-group--error': $v.user.email.$error }">
+                                        <p>
+                                            <input
+                                                :disabled="true"
+                                                v-model="user.email"
+                                                class="form-control"
+                                                :placeholder="t('PARAMETER_ME')"
+                                                v-on:input="$v.user.email.$touch"
+                                                v-bind:class="{
+                                                    'is-invalid': $v.user.email.$error,
+                                                    'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid,
+                                                }"
+                                            />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("PHONE") }}</label>
+                                    </div>
+                                    <div class="col-md-6" :class="{ 'form-group--error': $v.user.phone.$error }">
+                                        <p>
+                                            <input
+                                                :disabled="true"
+                                                v-model="user.phone"
+                                                class="form-control"
+                                                :placeholder="t('PARAMETER_ME')"
+                                                v-on:input="$v.user.phone.$touch"
+                                                v-bind:class="{
+                                                    'is-invalid': $v.user.phone.$error,
+                                                    'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid,
+                                                }"
+                                            />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("JOB") }}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            {{ user.job }}
+                                            <br />
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row ">
+                                    <div class="col-md-2">
+                                        <label>{{ t("LAST_NAME") }}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-12 tab-content-user">
+                                        <span class="badge badge-warning" v-if="!user.filenames.length"> {{ t("USER_HAS_NO_FILES") }}</span>
+                                        <table v-if="user.filenames.length" class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ t("NAME") }}</th>
+                                                    <th>{{ t("FTP_DOWNLOAD") }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tr v-for="file in user.filenames">
+                                                <td>
+                                                    <a class="float-left"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
+                                                    <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
+                                                    <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
+                                                </td>
+                                                <td>
+                                                    <span class="btn btn-warning" v-on:click="readFtpFile(file)">
+                                                        <i class="far fa-file"></i>
+                                                        <br />
+                                                    </span>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tr v-for="file in user.filenames">
-                                            <td>
-                                                <a class="float-left"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
-                                                <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
-                                                <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
-                                            </td>
-                                            <td>
-                                                <span class="btn btn-warning" v-on:click="readFtpFile(file)">
-                                                    <i class="far fa-file"></i>
-                                                    <br />
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('ROLE') }}</label>
+                            <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("ROLE") }}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="custom-select" v-model="user.role" disabled>
+                                            <option value="">--Please choose an option--</option>
+                                            <option value="viewer">Viewer</option>
+                                            <option value="user">User</option>
+                                            <option value="manager">Manager</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <select class="custom-select" v-model="user.role" disabled>
-                                        <option value="">--Please choose an option--</option>
-                                        <option value="viewer">Viewer</option>
-                                        <option value="user">User</option>
-                                        <option value="manager">Manager</option>
-                                    </select>
-                                </div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label>{{ t('PERMISSIONS_LIST') }}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}<br> </span>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>{{ t("PERMISSIONS_LIST") }}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{ p }}<br /> </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
-                            <div class="row">
-                                <socialnetwork :user="this.user"></socialnetwork>
+                            <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
+                                <div class="row">
+                                    <socialnetwork :user="this.user"></socialnetwork>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <!--   <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
+                    <div class="col-md-2">
+                        <!--   <span><a class="btn btn-primary btn-block" v-on:click="openMessageModal()">
                             <i class="far fa-envelope"></i> <span class="d-none d-sm-block">Message</span></a>
                         <v-dialog /></span> -->
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <modal name="messageModal" :width="350" :height="400">
+            <message :user="this.anonymous"></message>
+        </modal>
     </div>
-    <modal name="messageModal" :width="350" :height="400">
-        <message :user="this.anonymous"></message>
-    </modal>
-</div>
 </template>
 
 <script>
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import {
-    SidebarMenu
-} from "vue-sidebar-menu";
-import {
-    required,
-    minLength,
-    between
-} from "vuelidate/lib/validators";
+import { SidebarMenu } from "vue-sidebar-menu";
+import { required, minLength, between } from "vuelidate/lib/validators";
 /* IMPORTING PERSONNAL COMPONENTS */
 import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
@@ -254,7 +292,7 @@ import Socialnetwork from "@/components/SocialNetwork.vue";
 export default {
     name: "User",
     props: ["_id"],
-    beforeCreate: function () {},
+    beforeCreate: function() {},
     data() {
         return {
             user: {
@@ -266,9 +304,11 @@ export default {
                 password: "",
                 img: "",
                 filenames: [],
-                socials_messages: [{
-                    "test": "test"
-                }]
+                socials_messages: [
+                    {
+                        test: "test",
+                    },
+                ],
             },
             anonymous: {
                 _id: "anonymous",
@@ -278,43 +318,43 @@ export default {
                 email: "",
                 password: "",
                 img: "",
-                filenames: []
+                filenames: [],
             },
             auth: false,
-            loaded: false
+            loaded: false,
         };
     },
     validations: {
         user: {
             nom: {
                 required,
-                minLength: minLength(2)
+                minLength: minLength(2),
             },
             prenom: {
                 required,
-                minLength: minLength(2)
+                minLength: minLength(2),
             },
             email: {
                 required,
-                minLength: minLength(2)
+                minLength: minLength(2),
             },
             phone: {
                 minLength: minLength(2),
-                numeric: true
-            }
-        }
+                numeric: true,
+            },
+        },
     },
     components: {
         uploadpicture: Uploadpicture,
         uploadfiles: Uploadfiles,
         message: Message,
-        socialnetwork: Socialnetwork
+        socialnetwork: Socialnetwork,
     },
     methods: {
-        readUser: function () {
+        readUser: function() {
             axios
                 .get("readUser?_id=" + this._id)
-                .then(response => {
+                .then((response) => {
                     this.user = response.data;
                     this.loaded = true;
                     this.disableAllinputs();
@@ -322,62 +362,63 @@ export default {
                         this.user.social_messages = [];
                     }
                 })
-                .catch(function (erreur) {
+                .catch(function(erreur) {
                     console.log(erreur);
                 });
         },
         readFtpFile(file) {
             let self = this;
-            axios.post("readFtpFile", {
-                    name: file.filename
+            axios
+                .post("readFtpFile", {
+                    name: file.filename,
                 })
-                .then(response => {
-                    console.log('File had been transfered to the node server');
+                .then((response) => {
+                    console.log("File had been transfered to the node server");
                     axios({
-                        url: file.filename, //your url 
-                        method: 'GET',
-                        responseType: 'blob', // important
+                        url: file.filename, //your url
+                        method: "GET",
+                        responseType: "blob", // important
                     }).then((response) => {
                         const url = window.URL.createObjectURL(new Blob([response.data]));
-                        const link = document.createElement('a');
+                        const link = document.createElement("a");
                         link.href = url;
-                        link.setAttribute('download', file.filename);
+                        link.setAttribute("download", file.filename);
                         document.body.appendChild(link);
                         link.click();
                     });
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.$notify({
-                        type: 'error',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: 'Permission is missing ! -> <br> ' + error
+                        type: "error",
+                        group: "foo",
+                        title: "Hey! ",
+                        text: "Permission is missing ! -> <br> " + error,
                     });
                 });
         },
-        openMessageModal: function () {
+        openMessageModal: function() {
             this.$modal.show("messageModal");
         },
         replaceByDefault(e) {
             e.target.src = "defaut.png";
         },
-        disableAllinputs: function () {
+        disableAllinputs: function() {
             /*     let elems = document.getElementById('userDiv').getElementsByTagName('input');
                 for (let i = 0; i < elems.length; i++) {
                     elems[i].disabled = true;
                 } */
-        }
+        },
     },
-    mounted: function () {
+    mounted: function() {
         this.readUser();
-    }
+    },
 };
 </script>
 
 <style>
 .badge-space {
-    min-width: 150px
+    min-width: 150px;
 }
 
 .tab-content-user {
@@ -388,30 +429,26 @@ export default {
 
 .error {
     border-color: red;
-    background: #FDD;
+    background: #fdd;
 }
 
 .error:focus {
-    outline-color: #F99;
+    outline-color: #f99;
 }
 
 .valid {
-    border-color: #5A5;
-    background: #EFE;
+    border-color: #5a5;
+    background: #efe;
 }
 
 .valid:focus {
-    outline-color: #8E8;
+    outline-color: #8e8;
 }
 
 /* change all .btn to .btn-sm size on xs */
 @include media-breakpoint-between(xs, sm) {
     .btn {
-        @include button-size($input-btn-padding-y-sm,
-            $input-btn-padding-x-sm,
-            $font-size-sm,
-            $line-height-sm,
-            $btn-border-radius-sm);
+        @include button-size($input-btn-padding-y-sm, $input-btn-padding-x-sm, $font-size-sm, $line-height-sm, $btn-border-radius-sm);
     }
 }
 

@@ -25,6 +25,7 @@
                     <b-dropdown-item @click="change_app_language('HINDI')">HINDI</b-dropdown-item>
                     <b-dropdown-item :disabled="true" @click="change_app_language('JAPANESE')">JAPANESE(Comin soon)</b-dropdown-item>
                     <b-dropdown-item :disabled="true" @click="change_app_language('RUSSIAN')">RUSSIAN(Comin soon)</b-dropdown-item>
+                    <b-dropdown-item :disabled="true" @click="change_app_language('ARABIC')">ARABIC(Comin soon)</b-dropdown-item>
                 </b-nav-item-dropdown>
 
                 <!-- -----------------------------------------------------------DROPOWN MESSAGES----------------------------------------------------------------------- -->

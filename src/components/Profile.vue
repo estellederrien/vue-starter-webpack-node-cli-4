@@ -14,12 +14,12 @@
                         <uploadpicture @filename="onUploadPicture" v-if="this.auth" style="margin-top:10px"></uploadpicture>
                     </div>
                     <div class="profile-work col-md-2 d-none d-md-block">
-                        <p>LIENS DE TRAVAIL</p> <a href="">Website</a>
+                        <p>{{ t("JOB_LINKS") }}</p> <a href="">Website</a>
                         <br /> <a href="">Bootsnipp</a>
                         <br /> <a href="">Bootply</a>
                         <br>
                         <br>
-                        <p>SKILLS</p> <a href="">Web Designer</a>
+                        <p>{{ t("SKILLS") }}</p> <a href="">Web Designer</a>
                         <br /> <a href="">Web Developer</a>
                         <br /> <a href="">WordPress</a>
                         <br /> <a href="">WooCommerce</a>
@@ -37,26 +37,26 @@
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> <i class="fas fa-home"></i>
-                                    <span class="d-none d-sm-block "> A propos </span>
+                                    <span class="d-none d-sm-block ">{{ t("ABOUT") }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"> <i class="fas fa-file-alt"></i>
-                                    <span class="d-none d-sm-block ">Fichiers </span>
+                                    <span class="d-none d-sm-block ">{{ t("FILES") }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorizations" role="tab" aria-controls="files" aria-selected="false"> <i class="fas fa-lock"></i>
-                                    <span class="d-none d-sm-block "> Droits </span>
+                                    <span class="d-none d-sm-block "> {{ t("PERMISSIONS") }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false"> <i class="fas fa-users-cog"></i>
-                                    <span class="d-none d-sm-block "> Groupes</span>
+                                    <span class="d-none d-sm-block "> {{ t("TEAMS") }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">Messages <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
+                                <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">{{ t("MESSAGES") }} <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
                             </li>
                         </ul>
                     </div>
@@ -73,69 +73,69 @@
                                         </div>
                                         <div class="col-md-8">
                                             <p>
-                                                <input v-model="user._id" class="form-control" placeholder="modifiez-moi" disabled />
+                                                <input v-model="user._id" class="form-control" :placeholder=" t('PARAMETER_ME') " disabled />
                                             </p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Nom</label>
+                                            <label>{{ t("LAST_NAME") }}</label>
                                         </div>
                                         <div class="col-md-8" :class="{ 'form-group--error': $v.user.nom.$error }">
                                             <p>
-                                                <input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" placeholder="modifiez-moi" v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
+                                                <input v-model="user.nom" class="form-control" v-on:input="$v.user.nom.$touch" :placeholder=" t('PARAMETER_ME') " v-bind:class="{'is-invalid': $v.user.nom.$error, 'is-valid': $v.user.nom.$dirty && !$v.user.nom.$invalid}" />
                                                 <!-- ERRORS MESSAGES t-->
-                                                <div class="error" v-if="!$v.user.nom.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.nom.required">{{t('FIELD_IS_MANDATORY')}}</div>
                                                 <div class="error" v-if="!$v.user.nom.minLength">Le nom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
                                             </p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Prénom</label>
+                                            <label>{{ t("FIRST_NAME") }}</label>
                                         </div>
                                         <div class="col-md-8" :class="{ 'form-group--error': $v.user.prenom.$error }">
                                             <p>
-                                                <input v-model="user.prenom" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
+                                                <input v-model="user.prenom" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.prenom.$touch" v-bind:class="{'is-invalid': $v.user.prenom.$error, 'is-valid': $v.user.prenom.$dirty && !$v.user.prenom.$invalid}" />
                                                 <!-- ERRORS MESSAGES -->
-                                                <div class="error" v-if="!$v.user.prenom.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.prenom.required">{{t('FIELD_IS_MANDATORY')}}</div>
                                                 <div class="error" v-if="!$v.user.prenom.minLength">Le prénom doit avoir au moins {{ $v.user.nom.$params.minLength.min }} letters.</div>
                                             </p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Email</label>
+                                            <label>{{ t("EMAIL") }}</label>
                                         </div>
                                         <div class="col-md-8" :class="{ 'form-group--error': $v.user.email.$error }">
                                             <p>
-                                                <input v-model="user.email" type="email" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
+                                                <input v-model="user.email" type="email" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.email.$touch" v-bind:class="{'is-invalid': $v.user.email.$error, 'is-valid': $v.user.email.$dirty && !$v.user.email.$invalid}" />
                                                 <!-- ERRORS MESSAGES -->
-                                                <div class="error" v-if="!$v.user.email.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.email.required">{{t('FIELD_IS_MANDATORY')}}</div>
                                                 <div class="error" v-if="!$v.user.email.minLength">L'Email doit avoir au moins {{ $v.user.email.$params.minLength.min }} lettres.</div>
                                             </p>
                                         </div>
                                     </div>
                                     <div class="row" v-if="creationProcess">
                                         <div class="col-md-2">
-                                            <label>Password</label>
+                                            <label>{{ t("PASSWORD") }}</label>
                                         </div>
                                         <div class="col-md-4">
                                             <p>
-                                                <input v-model="user.password" class="form-control" placeholder="modifiez-moi" />
+                                                <input v-model="user.password" class="form-control" :placeholder=" t('PARAMETER_ME') " />
                                                 <!-- ERRORS MESSAGES -->
-                                                <div class="error" v-if="!$v.user.password.required">Le champs est nécessessaire</div>
+                                                <div class="error" v-if="!$v.user.password.required">{{t('FIELD_IS_MANDATORY')}}</div>
                                                 <div class="error" v-if="!$v.user.password.minLength">L'Email doit avoir au moins {{ $v.user.password.$params.minLength.min }} lettres.</div>
                                             </p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Téléphone</label>
+                                            <label>{{ t("PHONE") }}</label>
                                         </div>
                                         <div class="col-md-8" :class="{ 'form-group--error': $v.user.phone.$error }">
                                             <p>
-                                                <input v-model="user.phone" class="form-control" placeholder="modifiez-moi" v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
+                                                <input v-model="user.phone" class="form-control" :placeholder=" t('PARAMETER_ME') " v-on:input="$v.user.phone.$touch" v-bind:class="{'is-invalid': $v.user.phone.$error, 'is-valid': $v.user.phone.$dirty && !$v.user.phone.$invalid}" />
                                                 <!-- ERRORS MESSAGES -->
                                                 <div class="error" v-if="!$v.user.phone.minLength">Le téléphone doit avoir au moins {{ $v.user.phone.$params.minLength.min }} chiffres.</div>
                                             </p>
@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Date de naissance</label>
+                                            <label>{{ t("BIRTHDAY") }}</label>
                                         </div>
                                         <div class="col-md-10">
                                             <p>
@@ -155,7 +155,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Age</label>
+                                            <label>{{ t("AGE") }}</label>
                                         </div>
                                         <div class="col-md-10">
                                             <p>
@@ -163,7 +163,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Job</label>
+                                            <label>{{ t("JOB") }}</label>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group mb-3">
@@ -184,7 +184,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Description</label>
+                                            <label>{{ t("DESCRIPTION") }}</label>
                                         </div>
                                         <div class="col-md-10">
                                             <p>
@@ -208,17 +208,17 @@
                                     <div class="card ">
                                         <div class="card-body" style="overflow:auto;">
                                             <h5 class="card-title">
-                                                <i class="fas fa-file-alt"></i> Liste des fichiers
+                                                <i class="fas fa-file-alt"></i> {{ t("FILE_LISTS") }}
                                             </h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Gérez</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{ t("MANAGE") }}</h6>
                                             <div style=" font-size:0.8em;">
                                                 <table class="table table-sm">
                                                     <thead>
                                                         <tr>
-                                                            <th>Nom</th>
-                                                            <th>Télécharger du FTP</th>
-                                                            <th>Supprimer du Ftp</th>
-                                                            <th>Permissions</th>
+                                                            <th>{{ t("NAME") }}</th>
+                                                            <th>{{ t("FTP_DOWNLOAD") }}</th>
+                                                            <th>{{ t("FTP_DELETE") }}</th>
+                                                            <th>{{ t("PERMISSIONS") }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tr v-for="file in user.filenames">
@@ -258,11 +258,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <i class="fas fa-lock"></i> Gérer les droits
+                                        <i class="fas fa-lock"></i> {{ t("PERMISSIONS") }}
                                     </h5>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Profil</label>
+                                            <label>{{ t("PROFILE") }}</label>
                                         </div>
                                         <div class="col-md-6">
                                             <select class="custom-select" v-model="user.role" :disabled="!creationProcess">
@@ -276,7 +276,7 @@
                                     <br>
                                     <div class="row" v-if="!creationProcess">
                                         <div class="col-md-2">
-                                            <label>Liste des droits</label>
+                                            <label>{{ t("PERMISSIONS_LIST") }}</label>
                                         </div>
                                         <div class="col-md-6"> <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{p}}
                                                 <br>
@@ -310,24 +310,24 @@
                         <div class="" v-if="!creationProcess">
                             <button class="btn btn-secondary" v-on:click="openMessageModal()">
                                 <a> <i class="fas fa-envelope"></i>
-                                    <span class="d-none d-sm-block ">Message interne</span>
+                                    <span class="d-none d-sm-block ">{{ t("INTERNAL_MESSENGER") }}</span>
                                 </a>
                             </button>
                             <button type="button" v-on:click="createUser()" class="btn btn-secondary"> <i class="fas fa-user-plus"></i>
-                                <span class="d-none d-sm-block ">Créer un utilisateur</span>
+                                <span class="d-none d-sm-block ">{{ t("CREATE_USER") }}</span>
                             </button>
                             <button type="button" v-on:click="deleteUser()" class="btn btn-danger"> <i class="fas fa-user-minus"></i>
-                                <span class="d-none d-sm-block ">Supprimer Compte</span>
+                                <span class="d-none d-sm-block ">{{ t("DELETE_ACCOUNT") }}</span>
                             </button>
                             <button type="button" v-on:click="updateUser()" class="btn btn-secondary"> <i class="fas fa-save"></i>
-                                <span class="d-none d-sm-block ">Mise à jour</span>
+                                <span class="d-none d-sm-block ">{{ t("UPDATE_ACCOUNT") }}</span>
                             </button>
                         </div>
                         <button type="button" v-if="creationProcess" v-on:click="cancelInsertUser()" class="btn btn-secondary"> <i class="fas fa-window-close"></i>
-                            <span class="d-none d-sm-block ">Cancel</span>
+                            <span class="d-none d-sm-block ">{{ t("CANCEL") }}</span>
                         </button>
                         <button type="button" v-if="creationProcess" v-on:click="insertUser()" class="btn btn-secondary"> <i class="fas fa-user-plus"></i>
-                            <span class="d-none d-sm-block ">Enregistrer utilisateur</span>
+                            <span class="d-none d-sm-block ">{{ t("INSERT_USER") }}</span>
                         </button>
                     </div>
                 </div>
@@ -481,7 +481,7 @@ export default {
                 }
             })
             // building URL 
-            const url = '/api/jobs/'+job_id;
+            const url = '/api/jobs/' + job_id;
             // Delete using generic_crud.js
             if (confirm("Do you really want to delete : " + this.user.job + " ?")) {
                 axios
@@ -785,8 +785,8 @@ export default {
     },
     mounted: function () {
 
-            this.user = this.$store.getters.user
-        
+        this.user = this.$store.getters.user
+
         this.auth = true;
         this.loaded = true;
         this.readJobs();

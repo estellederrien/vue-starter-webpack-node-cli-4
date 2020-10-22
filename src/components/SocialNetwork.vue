@@ -27,7 +27,7 @@
     </b-row>
     <b-row class="new-message">
         <b-col sm="2">
-            <label for="textarea-small">Add a message as <b>{{this.$store.getters.user.nom}}</b></label>
+            <label for="textarea-small">{{ t('ADD_MESSAGE_AS') }}<b>{{this.$store.getters.user.nom}}</b></label>
         </b-col>
         <b-col sm="10">
             <b-form-input id="title" v-model="new_social_message.title"  :placeholder=" t('ENTER_TITLE') " style="margin-bottom:10px"></b-form-input>

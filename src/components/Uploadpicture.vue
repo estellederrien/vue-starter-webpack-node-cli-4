@@ -4,7 +4,7 @@
   <span>
     <label for="file" class="btn btn-secondary btn-block">
       <i class="fas fa-user-astronaut"></i>
-      <span class="d-none d-sm-block">Modifier Avatar</span>
+      <span class="d-none d-sm-block">{{ t("CHANGE_AVATAR") }}</span>
     </label>
     <input
       type="file"
