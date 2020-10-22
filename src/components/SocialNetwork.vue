@@ -4,9 +4,9 @@
         <b-col sm="12">
             <b-card v-for="sm in user.social_messages" :key="user._id" border-variant="dark" no-body class="overflow-hidden card-message" sv-if="user.social_messages">
                 <div class="card-header">
-                    {{sm.title}}
-                      <button type="button" class="btn btn-secondary float-right"  @click="delete_social_message()">X</button>
-                        <!-- <button type="button" class="btn btn-warning float-right"  @click="open_answer_social_message()">{{ t('ANSWER') }}</button> -->
+                    <b>{{sm.title}}</b>
+                    <button type="button" class="btn btn-secondary float-right" @click="delete_social_message()">X</button>
+                    <button type="button" class="btn btn-warning float-right" @click="openAnswerModal()">{{ t('ANSWER') }}</button>
                 </div>
                 <!-- main social message -->
                 <b-row no-gutters>
@@ -17,7 +17,7 @@
                         <span style="font-size:0.8em;color:blue">{{sm.date | moment('from', 'now') }} </span>
                     </b-col>
                     <b-col md="10">
-                      
+
                         <b-card-body>
                             <!-- <b-card-title style="text-align:left;">
                                 <h4>      {{sm.title}} </h4>
@@ -26,15 +26,6 @@
                                 <b-icon icon="chat-left"></b-icon> {{sm.content }}
                             </b-card-text>
                         </b-card-body>
-                    </b-col>
-                </b-row>
-
-                <!-- Answer main social message textarea-->
-                <b-row v-if="true">
-                    <b-col md="2"></b-col>
-                    <b-col sm="10">
-                        <b-form-textarea v-model="new_social_answer.content" id="textarea-small" size="md" :placeholder=" t('ANSWER') " style="margin-bottom:10px"></b-form-textarea>
-                        <b-button @click="answer_social_message(sm)" type="button" class="btn btn-warning" block>{{ t('ANSWER') }}</b-button>
                     </b-col>
                 </b-row>
 
@@ -71,16 +62,29 @@
             </b-card>
         </b-col>
     </b-row>
-    <b-row class="new-message">
-        <b-col sm="2">
-            <label for="textarea-small">{{ t('ADD_MESSAGE_AS') }}<b>{{this.$store.getters.user.nom}}</b></label>
-        </b-col>
-        <b-col sm="10">
-            <b-form-input id="title" v-model="new_social_message.title" :placeholder=" t('ENTER_TITLE') " style="margin-bottom:10px"></b-form-input>
-            <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" :placeholder=" t('ENTER_MESSAGE') " style="margin-bottom:10px"></b-form-textarea>
-            <b-button @click="create_social_message()" type="button" variant="outline-primary " block>{{ t('SEND_MESSAGE') }}</b-button>
-        </b-col>
-    </b-row>
+    <button type="button" class="btn btn-warning float-right" @click="openNewMessageModal()">{{ t('MESSAGE') }}</button>
+    <!-- MODALS -->
+
+    <modal name="NewMessageModal">
+        <div class="answer-modal">
+            <b-row class="new-message">
+                <b-col sm="2">
+                    <label for="textarea-small">{{ t('ADD_MESSAGE_AS') }}<b>{{this.$store.getters.user.nom}}</b></label>
+                </b-col>
+                <b-col sm="10">
+                    <b-form-input id="title" v-model="new_social_message.title" :placeholder=" t('ENTER_TITLE') " style="margin-bottom:10px"></b-form-input>
+                    <b-form-textarea v-model="new_social_message.content" id="textarea-small" size="md" :placeholder=" t('ENTER_MESSAGE') " style="margin-bottom:10px"></b-form-textarea>
+                    <b-button @click="create_social_message()" type="button" variant="outline-primary " block>{{ t('SEND_MESSAGE') }}</b-button>
+                </b-col>
+            </b-row>
+        </div>
+    </modal>
+    <modal name="AnswerModal">
+        <div class="answer-modal">
+            <b-form-textarea v-model="new_social_answer.content" id="textarea-small" size="md" :placeholder=" t('ANSWER') " style="margin-bottom:10px"></b-form-textarea>
+            <b-button @click="answer_social_message(sm)" type="button" class="btn btn-warning" block>{{ t('ANSWER') }}</b-button>
+        </div>
+    </modal>
 </b-container>
 </template>
 
@@ -148,7 +152,14 @@ export default {
             alert('Developping..')
         },
         answer_social_message(sm) {
-            sm.answers.push(this.new_social_answer)
+            console.log(sm)
+            // Needed for older json objects
+            /*   if (!sm.answers) {
+                  sm.answers = []
+              }
+              sm.answers.push(this.new_social_answer);
+              this.$forceUpdate();
+              this.update_user_social_messages(); */
         },
         update_user_social_messages: function () {
             console.log(this.user);
@@ -171,6 +182,12 @@ export default {
                         text: error
                     });
                 });
+        },
+        openAnswerModal: function () {
+            this.$modal.show("AnswerModal");
+        },
+        openNewMessageModal: function () {
+            this.$modal.show("NewMessageModal");
         }
     },
     mounted: function () {
@@ -191,7 +208,7 @@ export default {
 
 .card-message {
     margin-top: 20px;
-     padding: 5px;
+    padding: 5px;
 }
 
 .new-message {
@@ -205,7 +222,11 @@ export default {
 }
 
 .card-answer {
-    margin-top:20px;
+    margin-top: 20px;
     padding: 5px;
+}
+
+.answer-modal {
+    padding: 20px;
 }
 </style>
