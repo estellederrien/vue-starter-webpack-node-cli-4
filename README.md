@@ -89,7 +89,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 <br /><br />
 ## Comin' soon ! ...
 1 NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
-1 NEW ! Ability to share documents, and getting users comments ( Like in Facebook)
+1 NEW ! Ability to share documents, and getting users comments ( Like in Facebook)<br />
 1 SOCKET.IO realtime evolutive system + 1 vue component, allowing several cams at the same time eventually <br />
 1 Gps positionning lib <br />
 1 Drag n drop lib, including a new project allowing users to order files by drag and dropping them ( Saving positions) <br />
