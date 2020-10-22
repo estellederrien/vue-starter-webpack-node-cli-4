@@ -597,7 +597,7 @@ const Translations = {
                 CANCEL: "रद्द करना",
 
                 //UPLOAD FILE COMPONENT
-                CHANGE_AVATAR: "Modifier l'avatar",
+                CHANGE_AVATAR: "चंग अवतारी",
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `मेरी प्रतिज्ञा नोड स्टार्टर में आपका स्वागत है! निकोलस ई हुलेक्स
@@ -729,7 +729,7 @@ const Translations = {
                 CANCEL: "取消",
 
                 //UPLOAD FILE COMPONENT
-                CHANGE_AVATAR: "Modifier l'avatar",
+                CHANGE_AVATAR: "长阿凡达",
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `欢迎来到我的vue节点入门！尼古拉斯E HULEUX
