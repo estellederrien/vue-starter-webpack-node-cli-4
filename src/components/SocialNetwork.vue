@@ -144,7 +144,7 @@ export default {
             if (!this.cliqued_social_message.answers) {
                 this.cliqued_social_message.answers = []
             }
-            this.new_social_answer.img = this.$store.getters.user.img;
+            this.new_social_answer.img = Object.assign({}, this.$store.getters.user.img);
             this.cliqued_social_message.answers.push(this.new_social_answer);
             this.$forceUpdate();
             this.update_user_social_messages();
