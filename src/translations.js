@@ -6,6 +6,7 @@ const Translations = {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "Le champs est obligatoire.",
                 NO_FILTERS_RESULTS: "Pas de résultats avec ce filtre",
+                FORGOTTEN_FIELD: "Vous avez oublié de renseigner un champs",
 
                 // NAVBAR COMPONENT TRANSLATIONS AND // HOME COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
@@ -137,6 +138,7 @@ const Translations = {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "Field is mandatory",
                 NO_FILTERS_RESULTS: "Chosen filters returns no matches",
+                FORGOTTEN_FIELD: "One field is missing",
 
                 //navbar
                 APP_TITLE: "Vue-Node starter ",
@@ -267,6 +269,7 @@ const Translations = {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "Feld ist obligatorisch",
                 NO_FILTERS_RESULTS: "Chosen filters returns no matches",
+                FORGOTTEN_FIELD: "One field is missing",
 
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
@@ -395,7 +398,8 @@ const Translations = {
             SPANISH: {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "el campo es obligatorio",
-                NO_FILTERS_RESULTS: "Chosen filters returns no matches",
+                NO_FILTERS_RESULTS: "Los filtros elegidos no devuelven coincidencias",
+                FORGOTTEN_FIELD: "Falta un campo",
 
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
@@ -526,7 +530,8 @@ const Translations = {
             HINDI: {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "फ़ील्ड अनिवार्य है",
-                NO_FILTERS_RESULTS: "Chosen filters returns no matches",
+                NO_FILTERS_RESULTS: "चुना फिल्टर कोई मेल नहीं देता है",
+                FORGOTTEN_FIELD: "एक खेत गायब है",
 
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue-Node starter ",
@@ -656,7 +661,8 @@ const Translations = {
             CHINESE: {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "必填项",
-                NO_FILTERS_RESULTS: "Chosen filters returns no matches",
+                NO_FILTERS_RESULTS: "选择的过滤器不返回任何匹配项",
+                FORGOTTEN_FIELD: "缺少一个字段",
 
                 // NAVBAR COMPONENT TRANSLATIONS
                 APP_TITLE: "Vue节点入门 ",

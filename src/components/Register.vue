@@ -10,16 +10,16 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Créer un compte !</h1>
+                            <h1 class="h4 text-gray-900 mb-4">{{ t('CREATE_ACCOUNT') }} !</h1>
                         </div>
                         <form class="user " id="form">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" min="1" v-model="user.prenom" name="prenom" value="prenom" id="prenom" placeholder="Prénom">
+                                    <input type="text" class="form-control form-control-user" min="1" v-model="user.prenom" name="prenom" value="prenom" id="prenom" :placeholder=" t('FIRST_NAME') ">
                                     <!-- ERRORS MESSAGES -->
                                      <div v-if="cliqued ">
                                         <div class="error" v-if="!$v.user.prenom.required">
-                                            Le champs est nécessaire
+                                            {{ t('FIELD_IS_MANDATORY') }}
                                         </div>
                                         <div class="error" v-if="!$v.user.prenom.minLength">
                                             Le prénom doit avoir au moins
@@ -28,11 +28,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" min="1" v-model="user.nom" name="nom" value="nom" id="nom" placeholder="Nom">
+                                    <input type="text" class="form-control form-control-user" min="1" v-model="user.nom" name="nom" value="nom" id="nom" :placeholder=" t('LAST_NAME') ">
                                     <!-- ERRORS MESSAGES -->
                                     <div v-if="cliqued ">
                                         <div class="error" v-if="!$v.user.nom.required">
-                                            Le champs est nécessaire
+                                           {{ t('FIELD_IS_MANDATORY') }}
                                         </div>
                                         <div class="error" v-if="!$v.user.nom.minLength">
                                             Le nom doit avoir au moins
@@ -42,11 +42,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user" min="1" v-model="user.email" name="email" value="email" id="email" placeholder="Email">
+                                <input type="email" class="form-control form-control-user" min="1" v-model="user.email" name="email" value="email" id="email" :placeholder=" t('EMAIL') ">
                                 <!-- ERRORS MESSAGES -->
                                  <div v-if="cliqued ">
                                     <div class="error" v-if="!$v.user.email.required">
-                                        Le champs est nécessaire
+                                        {{ t('FIELD_IS_MANDATORY') }}
                                     </div>
                                     <div class="error" v-if="!$v.user.email.minLength">
                                         L'Email doit avoir au moins
@@ -59,11 +59,11 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" min="1" v-model="user.password" value="password" id="password" placeholder="Mot de passe">
+                                    <input type="password" class="form-control form-control-user" min="1" v-model="user.password" value="password" id="password" :placeholder=" t('PASSWORD') ">
                                     <!-- ERRORS MESSAGES -->
                                      <div v-if="cliqued ">
                                         <div class="error" v-if="!$v.user.password.required">
-                                            Le champs est nécessaire
+                                            {{ t('FIELD_IS_MANDATORY') }}
                                         </div>
                                         <div class="error" v-if="!$v.user.password.minLength">
                                             Le mot de passe doit avoir au moins
@@ -75,8 +75,8 @@
 <input type="password" class="form-control form-control-user" name="password"value ="password" id="password" placeholder="Mot de passe">
   </div> -->
                             </div>
-                            <a v-on:click='register()' class="btn btn-primary btn-user btn-block" style="color:white">Enregistrement</a>
-                            <span class="badge badge-danger btn-block" v-if="problem">vous avez oublié de renseigner un champ !</span>
+                            <a v-on:click='register()' class="btn btn-primary btn-user btn-block" style="color:white">{{ t('CREATE_ACCOUNT') }} </a>
+                            <span class="badge badge-danger btn-block" v-if="problem">{{ t('FORGOTTEN_FIELD') }}</span>
                             <hr>
                             <!-- <a href="index.html" class="btn btn-google btn-user btn-block"> -->
                             <!-- <i class="fab fa-google fa-fw"></i> Register with Google -->
@@ -90,7 +90,7 @@
                 <a class="small" v-on:click='login()'>Mot de passe oublié?</a>
               </div> -->
                         <div class="text-center">
-                            <a class="small" v-on:click='routeLogin()'>Déjà un compte ? S'identifier</a>
+                            <a class="small" v-on:click='routeLogin()'>{{ t('ALREADY_HAVE_AN_ACCOUNT_MESSAGE') }}</a>
                         </div>
                     </div>
                 </div>
