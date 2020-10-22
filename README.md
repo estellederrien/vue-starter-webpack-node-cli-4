@@ -98,8 +98,8 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 1 Anti Flooding by IP System<br />
 1 File session store, allowing a better users sessions management<br />
 
-<br />
-## Data science  ...
+<br /><br />
+## Data science  ...<br />
 1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver and/or https://github.com/jvail/glpk.js<br />
 1 Linear multiple regression lib : https://github.com/luccastera/shaman<br />
 1 Neural network  : https://github.com/BrainJS/brain.js<br />
