@@ -31,7 +31,7 @@
                         <b-card v-for="answer in sm.answers" border-variant="dark" no-body class="overflow-hidden card-answer" sv-if="user.social_messages">
                             <b-row no-gutters>
                                 <b-col md="2">
-                                    <b-card-img class="message-img rounded-0" v-if="answer.img !== ''" :src="sm.img" alt="Image"></b-card-img>
+                                    <b-card-img class="message-img rounded-0" v-if="answer.img !== ''" :src="answer.img" alt="Image"></b-card-img>
                                     <img class="message-img rounded-0" v-if="answer.img == ''" src="../assets/img/defaut.jpg" alt="Image"></img>
                                     <span style="font-size:0.8em">{{answer.from}} </span><br>
                                     <span style="font-size:0.8em;color:blue">{{answer.date | moment('from', 'now') }} </span>
@@ -144,8 +144,10 @@ export default {
             if (!this.cliqued_social_message.answers) {
                 this.cliqued_social_message.answers = []
             }
-            this.new_social_answer.img = Object.assign({}, this.$store.getters.user.img);
-            this.cliqued_social_message.answers.push(this.new_social_answer);
+            console.log(this.$store.getters.user.img)
+            this.new_social_answer.img =  this.$store.getters.user.img;
+            var submitted = Object.assign({}, this.new_social_answer);
+            this.cliqued_social_message.answers.push(submitted);
             this.$forceUpdate();
             this.update_user_social_messages();
         },
@@ -172,7 +174,8 @@ export default {
                 });
         },
         openAnswerModal: function (sm) {
-            this.cliqued_social_message = sm;
+            console.log(sm)
+            this.cliqued_social_message = Object.assign({}, sm);
             this.$modal.show("AnswerModal");
         },
         openNewMessageModal: function () {
