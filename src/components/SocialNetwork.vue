@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <b>{{sm.title}}</b>
                     <button type="button" class="btn btn-secondary float-right" @click="delete_social_message()">X</button>
-                    <button type="button" class="btn btn-warning float-right" @click="openAnswerModal()">{{ t('ANSWER') }}</button>
+                    <button type="button" class="btn btn-warning float-right" @click="openAnswerModal(sm)">{{ t('ANSWER') }}</button>
                 </div>
                 <!-- main social message -->
                 <b-row no-gutters>
@@ -115,7 +115,8 @@ export default {
                 date: new Date(),
                 content: "",
                 img: this.$store.getters.user.img
-            }
+            },
+            cliqued_social_message:null
         };
     },
     // Fields validation
@@ -151,15 +152,15 @@ export default {
         delete_social_message() {
             alert('Developping..')
         },
-        answer_social_message(sm) {
-            console.log(sm)
+        answer_social_message() {
+
             // Needed for older json objects
-            /*   if (!sm.answers) {
-                  sm.answers = []
+            if (!this.cliqued_social_message.answers) {
+                  this.cliqued_social_message.answers = []
               }
-              sm.answers.push(this.new_social_answer);
+              this.cliqued_social_message.answers.push(this.new_social_answer);
               this.$forceUpdate();
-              this.update_user_social_messages(); */
+              this.update_user_social_messages(); 
         },
         update_user_social_messages: function () {
             console.log(this.user);
@@ -183,10 +184,13 @@ export default {
                     });
                 });
         },
-        openAnswerModal: function () {
+        openAnswerModal: function (sm) {
+                        console.log(sm)
+            this.cliqued_social_message = sm ;
             this.$modal.show("AnswerModal");
         },
         openNewMessageModal: function () {
+
             this.$modal.show("NewMessageModal");
         }
     },
