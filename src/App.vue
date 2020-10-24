@@ -1,12 +1,12 @@
 <template>
 <div id="app">
     <!-- --------------------------------------------- TOPBAR ------------------------------------------------------------ -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark  fixed-top bg-custom" >
+    <nav class="navbar navbar-expand-lg navbar-default  fixed-top bg-custom">
         <!-- Brand -->
         <!-- <a disabled class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a> -->
-         <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="#" >
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/768px-Bootstrap_logo.svg.png" width="30" height="30" alt="">
-            </a>
+        </a>
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
             </ul>
             <!-- RIGHT -->
             <ul class="navbar-nav ml-auto">
-                 <b-nav-item-dropdown text="" right>
+                <b-nav-item-dropdown text="" right>
                     <template slot="button-content"><b>{{ t('LANG') }} </b></template>
                     <b-dropdown-item @click="change_app_language('FRENCH')">FRENCH</b-dropdown-item>
                     <b-dropdown-item @click="change_app_language('ENGLISH')">ENGLISH</b-dropdown-item>
@@ -62,7 +62,7 @@
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('LOGOUT') }}
                         </div>
                         <div class="dropdown-item">
-                        {{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}
+                            {{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}
                         </div>
                     </div>
                 </li>
@@ -90,7 +90,7 @@ export default {
     name: "App",
     data() {
         return {
-            v:""
+            v: ""
         }
     },
     components: {
@@ -115,7 +115,7 @@ export default {
             this.$translate.setLang(lang);
             this.$forceUpdate();
             // Ugly way to change sidebar language 
-            this.menu =  [{
+            this.menu = [{
                     header: true,
                     title: "Menu",
                     hiddenOnCollapse: true
@@ -190,7 +190,7 @@ export default {
                     input: "white-theme"
                 }
             ],
-            selectedTheme: "dark-theme",
+            selectedTheme: "white-theme",
             menu: [{
                     header: true,
                     title: "Menu",
@@ -300,13 +300,120 @@ export default {
 
 /* ----------------------------------------------------------------------- END MEDIAS QUERIES --------------------------------------------------------------------- */
 /* -----------------------------------------------------------------------  MOST COMMON CSS --------------------------------------------------------------------- */
-/* Buttons */
+
+/* 
+=====================
+TOP navbar
+===================== */
+/* Navbar */
+.navbar-default {
+    background-color: #f7e4b2;
+    border-color: blue;
+}
+
+/* Title */
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #5E5E5E;
+}
+
+/* Link */
+.navbar-default .navbar-nav>li>a {
+    color: black;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: white;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+
+/* Caret */
+.navbar-default .navbar-nav>.dropdown>a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+
+.navbar-default .navbar-nav>.dropdown>a:hover .caret,
+.navbar-default .navbar-nav>.dropdown>a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+
+.navbar-default .navbar-nav>.open>a .caret,
+.navbar-default .navbar-nav>.open>a:hover .caret,
+.navbar-default .navbar-nav>.open>a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+
+.navbar-brand{
+    margin-left:-5px
+}
+
+/* 
+=====================
+SIDEBAR
+===================== */
+
+.v-sidebar-menu.vsm_white-theme {
+    background-color: #f7e4b2 !important;
+}
+
+.v-sidebar-menu.vsm_white-theme .vsm--link_level-1 .vsm--icon {
+    background-color: transparent;
+}
+
+.v-sidebar-menu.vsm_white-theme .vsm--dropdown .vsm--list {
+    background-color: #f9edcd !important;
+}
+
+.v-sidebar-menu.vsm_white-theme .vsm--toggle-btn {
+    color: #262626;
+    background-color: #f7e4b2!important;
+}
+
+/* 
+=====================
+TEMPLATES
+===================== */
+.list-template {
+    background-color:#f9edcd !important;
+    padding-top: 30px;
+    min-height: 100vh
+}
+
+.user-template {
+    padding-top: 10px
+}
+
+/* 
+=====================
+BUTTONS
+===================== */
 .btn {
     transition: 0.3s !important;
 }
 
 .btn:hover {
-    background-color: yellow !important;
+    background-color: #f5ebd0!important;
     color: black !important;
 }
 
@@ -329,17 +436,8 @@ a:hover {
 
 /* change the link color */
 
-.list-template{
-    background-color:grey !important;
-    padding-top:30px;
-    min-height:100vh
-}
 
-.user-template{
-     padding-top:10px
-}
 /* ---------------------------------------------------------------------------GRAPHICAL ELEMENTS -----------------------------------------------*/
-
 
 .loader {
     width: 300px;
@@ -354,11 +452,8 @@ a:hover {
     margin-bottom: 60px;
 }
 
-.v-sidebar-menu>.vsm--list {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+.v-sidebar-menu {
+
     margin-top: 55px;
 }
 
