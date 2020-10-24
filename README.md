@@ -2,13 +2,13 @@
 -   Blazin' fast 2020 Modern Vue.js + Node.js app starter .<br>
 -   Chinese, Hindi, French, English, German, Spanish, Japanese, Russian, Arabic...<br>
 -   Easy to understand CRUD(create,read,update,delete) back end files reminding about the Php or Java style.<br>
+-   If you're bored writing cruds files, simply query <b>generic_crud.js</b> !
 -   Pictures are stored on Cloudinary, Files are FTP stored .<br>
--   MongoDb node.js module + Mongoose schemas types modeler, CRUDS files are eventually switchables to SQL relational databases CRUDS with ease<br>
 -   Working Mocha Chai unit components testing for Vue.js .<br>
 -   This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
 -   Git Commits are automatically Heroku synced .<br>
 -   Style is switchable to https://www.creative-tim.com/templates/vuejs?page=1 templates
--   If you're bored writing cruds files, simply query <b>generic_crud.js</b> !!
+
 
 ## Demos
 <b>HEROKU LIVE DEMO </b>->  : https://vuestartergit.herokuapp.com/  
