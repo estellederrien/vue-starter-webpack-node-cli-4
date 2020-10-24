@@ -3,7 +3,7 @@
         <div>
             <span v-if="!loaded"><img src="../assets/img/Spin-1s-200px.gif" class="loader"/></span>
         </div>
-        <div class="container-fluid " id="userDiv" v-show="loaded">
+        <div class="container-fluid user-template" id="userDiv" v-show="loaded">
             <form method="post">
                 <div class="row">
                     <div class="col-md-2">

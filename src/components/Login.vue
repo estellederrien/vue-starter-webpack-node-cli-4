@@ -1,5 +1,5 @@
 <template>
-<div class="container" style = "margin-top:10%">
+<div class="container" style = "margin-top:5%">
     <!-- Outer Row -->
     <div class="row justify-content-center">
         <div class="col-xl-10 col-lg-12 col-md-9">

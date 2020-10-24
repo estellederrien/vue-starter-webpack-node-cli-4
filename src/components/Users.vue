@@ -3,14 +3,14 @@
     <div>
         <span v-if="!loaded"><img src="../assets/img/Spin-1s-200px.gif" class="loader" /></span>
     </div>
-    <div class="container-fluid" v-show="loaded">
+    <div class="container-fluid list-template" v-show="loaded">
         <div class="row">
             <modal name="filters" width="80%" height="auto" :scrollable="true">
                 <filters @filters="executeFilters"></filters>
             </modal>
-                <modal name="messageModal" :width="350" :height="400">
-                    <message :user="$store.getters.user"></message>
-                </modal>
+            <modal name="messageModal" :width="350" :height="400">
+                <message :user="$store.getters.user"></message>
+            </modal>
             <div class="header">
                 <button class="btn btn-warning " v-on:click="openFilters()"><i class="fas fa-filter"></i> {{ t('FILTERS') }} </button>
             </div>
@@ -45,13 +45,13 @@
                                 <div class="tab-pane fade" :id="'v-pills-profile' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <label> {{ t('FTP_FILES') }}: </label><br />
                                     <span class="badge badge-warning" v-for="f in user.filenames"> <i class="fas fa-file"></i> {{ f.filename }}</span>
-                                     <span class="badge badge-warning" v-if="!user.filenames.length" > {{ t('USER_HAS_NO_FILES') }} </span>
+                                    <span class="badge badge-warning" v-if="!user.filenames.length"> {{ t('USER_HAS_NO_FILES') }} </span>
                                 </div>
                                 <div class="tab-pane fade" :id="'v-pills-groups' + user._id" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                     <div>
                                         <label> {{ t('TEAMS') }}: </label><br />
                                         <div class="badge badge-success" v-for="groupName in user.groups"><i class="fas fa-users"></i> {{ groupName }}</div>
-                                         <span class="badge badge-warning" v-if="!user.groups.length" > User has no team yet ! </span>
+                                        <span class="badge badge-warning" v-if="!user.groups.length"> User has no team yet ! </span>
                                     </div>
                                 </div>
                             </div>
@@ -59,15 +59,14 @@
                     </div>
                     <div class="card-footer">
                         <a v-on:click="route(user._id)" class="btn btn-primary float-right"><i class="fas fa-user"></i></a>
-                        <a  v-on:click="openMessageModal(user._id)" class="btn btn-secondary float-right"><i class="far fa-envelope"></i></a>
-                        
+                        <a v-on:click="openMessageModal(user._id)" class="btn btn-secondary float-right"><i class="far fa-envelope"></i></a>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </template>
 
 <script>

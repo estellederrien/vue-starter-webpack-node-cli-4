@@ -1,5 +1,5 @@
 <template>
-<div class="card mb-3 text-center">
+<div class="card mb-3 text-center ">
     <div class="card-header">
         <label style="padding:5px">
             <!-- test -->
@@ -7,7 +7,7 @@
         </label>
         <button @click="closeModal" class="btn btn-primary float-right">X</button>
     </div>
-    <div class="card-body d-flex flex-column">
+    <div class="card-body d-flex flex-column" style="">
         <div class="row">
             <div class="col-md-6" style="padding:30px">
                 <div class="input-group mb-3">

@@ -1,9 +1,12 @@
 <template>
 <div id="app">
     <!-- --------------------------------------------- TOPBAR ------------------------------------------------------------ -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark  fixed-top bg-custom" >
         <!-- Brand -->
-        <a class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a>
+        <!-- <a disabled class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a> -->
+         <a class="navbar-brand" href="#">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/768px-Bootstrap_logo.svg.png" width="30" height="30" alt="">
+            </a>
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -58,6 +61,9 @@
                         <div class="dropdown-item logout" @click="logout()" disabled>
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('LOGOUT') }}
                         </div>
+                        <div class="dropdown-item">
+                        {{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -67,7 +73,7 @@
     <!-- --------------------------------------------- SIDEBAR ------------------------------------------------------------ -->
     <sidebar-menu :menu="menu" :width="width" :collapsed="collapsed" :theme="selectedTheme" />
     <!-- --------------------------------------------- VIEWS  ------------------------------------------------------------ -->
-    <div style="margin-top:60px">
+    <div style="margin-top:55px">
         <router-view></router-view>
     </div>
 </div>
@@ -125,11 +131,6 @@ export default {
                     icon: "fas fa-users"
                 },
                 {
-                    href: "/register",
-                    title: this.$translate.text('REGISTER'),
-                    icon: "fas fa-registered"
-                },
-                {
                     href: "/charts",
                     title: "Management",
                     icon: "fa fa-chart-area",
@@ -146,6 +147,11 @@ export default {
                             title: this.$translate.text('TABLE')
                         }
                     ]
+                },
+                {
+                    href: "/register",
+                    title: this.$translate.text('REGISTER'),
+                    icon: "fas fa-registered"
                 }
             ]
         },
@@ -201,11 +207,6 @@ export default {
                     icon: "fas fa-users"
                 },
                 {
-                    href: "/register",
-                    title: "Register",
-                    icon: "fas fa-registered"
-                },
-                {
                     href: "/charts",
                     title: "Management",
                     icon: "fa fa-chart-area",
@@ -222,6 +223,11 @@ export default {
                             title: "Table Example"
                         }
                     ]
+                },
+                {
+                    href: "/register",
+                    title: "Register",
+                    icon: "fas fa-registered"
                 }
             ]
         };
@@ -321,7 +327,20 @@ a:hover {
     cursor: pointer;
 }
 
+/* change the link color */
+
+.list-template{
+    background-color:grey !important;
+    padding-top:30px;
+    min-height:100vh
+}
+
+.user-template{
+     padding-top:10px
+}
 /* ---------------------------------------------------------------------------GRAPHICAL ELEMENTS -----------------------------------------------*/
+
+
 .loader {
     width: 300px;
     height: 250px;

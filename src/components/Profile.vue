@@ -825,6 +825,7 @@ export default {
 ----------------------------------------------------- */
 .tab-content {
     margin-bottom: 100px !important;
+    padding-top:-50px !important;
 }
 
 .emp-profile {
@@ -864,7 +865,9 @@ export default {
 
 .profile-head h5 {
     color: #333;
+   
 }
+
 
 .profile-head h6 {
     color: #0062cc;
