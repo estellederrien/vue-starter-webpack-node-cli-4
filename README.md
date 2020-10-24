@@ -69,22 +69,22 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 
 ## Features:
-1 VUEX data store<br />
-1 Users CRUD<br />
-1 MongoDb atlas Auth system<br />
-1 Middleware file dedicated to the web services (middleware.js)<br />
-1 Mongoose schema modeler <br />
-1 Permissions store <br />
-1 FTP Files management including rights control<br />
-1 Dashboard with some graphicals libs<br />
-1 Form validator : (https://vuelidate.js.org/#getting-started)<br />
-1 Internal Messaging system<br />
-1 Calendar lib<br />
-1 V-dialog lib<br />
-1 Notifier https://github.com/euvl/vue-notification<br />
-1 multi selector : https://vue-multiselect.js.org/ <br />
-1 vue-range-slider : https://github.com/xwpongithub/vue-range-slider<br />
-1 logStream file for connexions logs, actions logs, etc ...<br />
+- VUEX data store<br />
+- Users CRUD<br />
+- MongoDb atlas Auth system<br />
+- Middleware file dedicated to the web services (middleware.js)<br />
+- Mongoose schema modeler <br />
+- Permissions and Role store <br />
+- FTP Files management <br />
+- Dashboard with some graphicals libs (Apex charts)<br />
+- Form validator : (https://vuelidate.js.org/#getting-started)<br />
+- Internal Messenger system<br />
+- Calendar lib<br />
+- V-dialog lib<br />
+- Notifier https://github.com/euvl/vue-notification<br />
+- multi selector : https://vue-multiselect.js.org/ <br />
+- vue-range-slider : https://github.com/xwpongithub/vue-range-slider<br />
+- logStream file for connexions logs, actions logs, etc ...<br />
 
 
 
@@ -92,27 +92,27 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 <br /><br />
 ## Comin' soon ! ...
-1 NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
-1 NEW ! Ability to share documents, and getting users comments ( Like in Facebook)<br />
-1 Trello project management inspired vue.js module, using drag and drop .<br />
-1 SOCKET.IO realtime evolutive system + 1 vue component, allowing several cams at the same time eventually <br />
-1 Gps positionning lib <br />
-1 Drag n drop lib, including a new project allowing users to order files by drag and dropping them ( Saving positions) <br />
-1 Node worker-thread ready to go system, allowing slow big data treatments.<br />
-1 Node.js Emailing system<br />
-1 Anti Flooding by IP System<br />
-1 File session store, allowing a better users sessions management<br />
-1 Generic reusable Infinite Scrool code<br />
+- NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
+- NEW ! Ability to share documents, and getting users comments ( Like in Facebook)<br />
+- Trello  inspired project management vue.js module, using drag and drop .<br />
+- SOCKET.IO realtime evolutive system + 1 vue component, allowing several cams at the same time eventually <br />
+- Gps positionning lib <br />
+- Drag n drop lib, including a new project allowing users to order files by drag and dropping them ( Saving positions) <br />
+- Node worker-thread ready to go system, allowing slow big data treatments.<br />
+- Node.js Emailing system<br />
+- Anti Flooding by IP System<br />
+- File session store, allowing a better users sessions management<br />
+- Generic reusable Infinite Scrool code<br />
 
 <br /><br />
 ## Data science  ...<br />
-1 Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver and/or https://github.com/jvail/glpk.js<br />
-1 Linear multiple regression lib : https://github.com/luccastera/shaman<br />
-1 Neural network  : https://github.com/BrainJS/brain.js<br />
-1 Probability distribution lib : https://www.npmjs.com/package/probability-distributions<br />
-1 Kmeans lib : https://www.npmjs.com/package/node-kmeans<br />
-1 Random forest lib : https://github.com/mljs/random-forest<br />
-1 AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
+- Linear solver lib : https://www.npmjs.com/package/javascript-lp-solver and/or https://github.com/jvail/glpk.js<br />
+- Linear multiple regression lib : https://github.com/luccastera/shaman<br />
+- Neural network  : https://github.com/BrainJS/brain.js<br />
+- Probability distribution lib : https://www.npmjs.com/package/probability-distributions<br />
+- Kmeans lib : https://www.npmjs.com/package/node-kmeans<br />
+- Random forest lib : https://github.com/mljs/random-forest<br />
+- AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
 ## French : 
 Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.<br>
