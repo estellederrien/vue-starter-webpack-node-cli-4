@@ -90,6 +90,9 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ![ScreenShot](screenshot-2.png)
 
+## Collabs:
+I am looking for collabs and can give you access to the depot !!
+
 <br /><br />
 ## Comin' soon ! ...
 - NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
