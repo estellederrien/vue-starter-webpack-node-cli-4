@@ -611,8 +611,8 @@ const Translations = {
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `<div> मेरे vue.js - node.js - mongodbAtlas स्टार्टर में आपका स्वागत है! निकोलस ई HULEUX <br>
                 <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> Github पर प्रोजेक्ट देखें </a> <br>
-                <b> एप्लिकेशन का परीक्षण करें: </ b> <br> ADMIN की पहचान -> लॉगिन: admin@admin.com +:: <br> <br>
-                प्रत्येक उपयोगकर्ता की पहचान -> लॉगिन: उपयोगकर्ता का ईमेल + पासवर्ड: पासवर्ड <br> </ div>
+                <b> एप्लिकेशन का परीक्षण करें: </ b> <br> ADMIN की पहचान -> लॉगिन: admin@admin.com + admin <br> <br>
+                प्रत्येक उपयोगकर्ता की पहचान -> लॉगिन: उपयोगकर्ता का ईमेल + password <br> </ div>
                       `,
                 HOME: " घर घर",
                 DROPDOWN_TITLE_1: "रैखिक प्रोग्रामिंग का मामलाe",
