@@ -42,7 +42,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false"> <i class="fas fa-file-alt"></i>
-                                    <span class="d-none d-sm-block ">{{ t("FILES") }}</span>
+                                    <span class="d-none d-sm-block ">{{ t("FTP_FILES") }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">

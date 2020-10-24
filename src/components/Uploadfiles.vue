@@ -3,16 +3,16 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-plus"></i> Télécharger des fichiers sur le serveur</h5>
+                <h5 class="card-title"><i class="fas fa-plus"></i> {{t('UPLOAD_FILES_TO_FTP')}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                    Maintenez la touche TAB enfoncée...
+                   {{t('HOLD_TAB')}}
                 </h6>
                 <div class="row">
                     <input name="file" type="file" id="files" ref="files" multiple @change="handleFileUploads" />
                     <!-- LOADING PIC -->
                     <img v-if="loading" style="width:100px" src="../assets/img/loader_def.gif" />
 
-                    <label v-if="files">Preview :</label>
+                    <label v-if="files"> {{t('PREVIEW')}}</label>
                     <!-- REALTIME FILE MANAGEMENT -->
                     <table class="table table-dark table-sm">
                         <tbody>
@@ -24,7 +24,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.8em;">Ok, placer les fichiers sur le serveur
+                    <a v-if="files" v-on:click="submitFiles" class="btn btn-primary btn-block btn-small" style="color:white; font-size:0.8em;">{{t('UPLOAD_FILES')}}
                     </a>
                 </div>
             </div>

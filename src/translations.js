@@ -75,6 +75,12 @@ const Translations = {
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Modifier l'avatar",
 
+                //UPLOAD FILES COMPONENT
+                UPLOAD_FILES_TO_FTP: "Envoyer des fichiers sur le serveur FTP",
+                HOLD_TAB: "Maintenez la touche tab pour sélectionner plusieurs",
+                PREVIEW: "Visualiser la liste",
+                UPLOAD_FILES: "Envoyer les fichiers",
+
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
                 <div>Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX<br>
@@ -209,6 +215,12 @@ const Translations = {
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Change my avatar",
 
+                //UPLOAD FILES COMPONENT
+                UPLOAD_FILES_TO_FTP: "Send files to the FTP server",
+                HOLD_TAB: "Hold on TAB to upload multiples files",
+                PREVIEW: "File list preview",
+                UPLOAD_FILES: "Send files on the FTP",
+
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` <div> Welcome to my vue.js - node.js - mongodbAtlas starter! Nicolas E HULEUX <br>
                 <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> See the project on Github </a> <br>
@@ -341,6 +353,12 @@ const Translations = {
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Avatar bearbeiten",
+
+                //UPLOAD FILES COMPONENT
+                UPLOAD_FILES_TO_FTP: "Dateien an den FTP-Server senden",
+                HOLD_TAB: "Halten Sie die Tabulatortaste gedrückt, um mehrere Dateien hochzuladen",
+                PREVIEW: "Dateilistenvorschau",
+                UPLOAD_FILES: "Dateien auf dem FTP senden",
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: ` <div> Willkommen zu meinem vue.js - node.js - mongodbAtlas Starter! Nicolas E HULEUX <br>
@@ -475,6 +493,12 @@ const Translations = {
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Cambiar mi avatar",
 
+                //UPLOAD FILES COMPONENT
+                UPLOAD_FILES_TO_FTP: "Enviar archivos al servidor FTP",
+                HOLD_TAB: "Mantenga presionada la tecla TAB para cargar varios archivos",
+                PREVIEW: "Vista previa de la lista de archivos",
+                UPLOAD_FILES: "Enviar archivos por FTP",
+
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `<div> ¡Bienvenido a mi inicio de vue.js - node.js - mongodbAtlas! Nicolas E HULEUX <br>
                 <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> Ver el proyecto en Github </a> <br>
@@ -507,6 +531,7 @@ const Translations = {
                 CONNECT: "Conectar",
                 FILL_FORM_MESSAGE: "Por favor, complete el siguiente formulario",
                 // LOGIN COMPONENT TRANSLATIONS
+
                 CONNECT_YOUR_ACCOUNT: "Conecta tu cuenta",
                 NEW_THERE: "¿Nuevo allí?",
                 // MAXIMIZEPROFIT1.VUE
@@ -607,6 +632,12 @@ const Translations = {
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "चंग अवतारी",
+
+                //UPLOAD FILES COMPONENT
+                UPLOAD_FILES_TO_FTP: "FTP सर्वर पर फाइल भेजें",
+                HOLD_TAB: "कई गुना फ़ाइलें अपलोड करने के लिए TAB पर पकड़ रखें",
+                PREVIEW: "पूर्वावलोकन",
+                UPLOAD_FILES: "FTP पर फ़ाइलें भेजें",
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `<div> मेरे vue.js - node.js - mongodbAtlas स्टार्टर में आपका स्वागत है! निकोलस ई HULEUX <br>
@@ -740,6 +771,12 @@ const Translations = {
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "长阿凡达",
+
+                //UPLOAD FILES COMPONENT
+                UPLOAD_FILES_TO_FTP: "将文件发送到FTP服务器",
+                HOLD_TAB: "按住TAB可以上传多个文件",
+                PREVIEW: "预览",
+                UPLOAD_FILES: "在FTP上发送文件",
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `<div>欢迎来到我的vue.js-node.js-mongodbAtlas启动器！ Nicolas E HULEUX <br>
