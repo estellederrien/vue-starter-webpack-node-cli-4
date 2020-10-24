@@ -106,6 +106,7 @@ I am looking for collabs and can give you access to the depot !!
 - Anti Flooding by IP System<br />
 - File session store, allowing a better users sessions management<br />
 - Generic reusable Infinite Scrool code<br />
+- Automatic filters generation module, when using a data model ( Like in Java)<br />
 
 <br /><br />
 ## Data science  ...<br />
