@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">{{ t("MESSAGES") }} <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
+                                <a class="nav-link" data-toggle="tab" href="#messageslist" role="tab"><i class="fas fa-envelope"></i> <span class="d-none d-sm-block ">{{ t("PRIVATE_MESSAGES") }} <span class="badge badge-danger badge-counter"> {{this.messagesCount}}</span></span></a>
                             </li>
                         </ul>
                     </div>

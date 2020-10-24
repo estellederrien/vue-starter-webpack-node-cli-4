@@ -71,6 +71,7 @@ const Translations = {
                 UPDATE_ACCOUNT: "Mise à jour",
                 FTP_DELETE: "Supprimer du FTP",
                 CANCEL: "Annuler",
+                PRIVATE_MESSAGES: "Messages privés",
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Modifier l'avatar",
@@ -211,6 +212,8 @@ const Translations = {
                 UPDATE_ACCOUNT: "update",
                 FTP_DELETE: "Delete from Ftp",
                 CANCEL: "Cancel",
+                PRIVATE_MESSAGES: "Private messages",
+
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Change my avatar",
@@ -350,6 +353,7 @@ const Translations = {
                 UPDATE_ACCOUNT: "aktualisieren den Account",
                 FTP_DELETE: "Aus FTP löschen",
                 CANCEL: "Abbrechen",
+                PRIVATE_MESSAGES: "Private messages",
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Avatar bearbeiten",
@@ -489,6 +493,7 @@ const Translations = {
                 UPDATE_ACCOUNT: "actualización cuenta",
                 FTP_DELETE: "Eliminar de Ftp",
                 CANCEL: "Cancelar",
+                PRIVATE_MESSAGES: "Private messages",
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "Cambiar mi avatar",
@@ -629,6 +634,7 @@ const Translations = {
                 UPDATE_ACCOUNT: "अधतन खाता",
                 FTP_DELETE: "एफ़टीपी से हटाएं",
                 CANCEL: "रद्द करना",
+                PRIVATE_MESSAGES: "Private messages",
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "चंग अवतारी",
@@ -768,6 +774,7 @@ const Translations = {
                 UPDATE_ACCOUNT: "更新",
                 FTP_DELETE: "从ftp删除",
                 CANCEL: "取消",
+                PRIVATE_MESSAGES: "Private messages",
 
                 //UPLOAD FILE COMPONENT
                 CHANGE_AVATAR: "长阿凡达",

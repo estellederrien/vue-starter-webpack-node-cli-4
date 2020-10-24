@@ -2,7 +2,7 @@
 <div class="card mb-6 " style="padding:5px;">
 
     <div class="card-header ">
-        <label><b><i class="fas fa-envelope"></i> Message</b></label>
+        <label><b><i class="fas fa-envelope"></i> {{t('PRIVATE_MESSAGE')}}</b></label>
         <button @click="closeModal" class="btn btn-primary float-right">X</button>
     </div>
 
