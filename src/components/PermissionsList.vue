@@ -37,7 +37,7 @@ import axios from "axios";
 
 export default {
     name: "permissionslist",
-    props: ["user"], // USER OBJECT IS COMING FROM PROFILE.JS !
+    props: ["user","creationProcess"], // USER OBJECT IS COMING FROM PROFILE.JS !
     beforeCreate: function () {
 
     },

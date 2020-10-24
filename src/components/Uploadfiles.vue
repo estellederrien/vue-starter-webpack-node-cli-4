@@ -250,6 +250,19 @@ export default {
                 text: "Cliquez sur Soumettre pour placer les fichiers sur le serveur !",
             });
         },
+        readUsers: function () {
+            axios
+                .post("/readUsers", {
+                    filters: this.filters
+                })
+                .then(response => {
+                    this.users = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        
     },
     mounted: function () {
 
