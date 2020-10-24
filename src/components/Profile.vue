@@ -129,7 +129,7 @@ import {
     SidebarMenu
 } from "vue-sidebar-menu";
 
-/* PERSONNAL COMPONENTS */
+/* PERSONAL COMPONENTS */
 import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import Message from "@/components/Message.vue";
@@ -174,60 +174,7 @@ export default {
         userform:UserForm
     },
     methods: {
-        
-        openMessageModal: function () {
-            this.$modal.show("messageModal");
-        },
-        replaceByDefault(e) {
-            e.target.src = "defaut.png";
-        },
-        onUploadPicture(value) {
-            // Pass Picture URL to the user object .
-            this.user.img = value;
-            console.log(this.user);
-        },
-        onFileUploads(values) {
-            let self = this;
-            values.forEach(function (value) {
-                // Files permissions are ALL by default
-                value.permissions = "all";
-                self.user.filenames.push(value);
-            });
-            if (!this.creationProcess) {
-                this.updateUser();
-            }
-        },
-        onMessagesCount(value) {
-            console.log(value)
-            console.log("onmc")
-            this.messagesCount = value;
-        },
-        showModal() {
-            // this.$modal.show('hello-world');
-            this.$modal.show("dialog", {
-                title: "Message",
-                text: "You are too awesome",
-                buttons: [{
-                        title: "Deal with it",
-                        handler: () => {
-                            alert("Woot!");
-                        }
-                    },
-                    {
-                        title: "", // Button title
-                        default: true, // Will be triggered by default if 'Enter' pressed.
-                        handler: () => {} // Button click handler
-                    },
-                    {
-                        title: "Close"
-                    }
-                ]
-            });
-        },
-        hideModal() {
-            this.$modal.hide("hello-world");
-        },
-        readUser: function () {
+         readUser: function () {
             axios
                 .get("readUser?_id=" + this._id)
                 .then(response => {
@@ -288,6 +235,34 @@ export default {
                     });
             }
         },
+        openMessageModal: function () {
+            this.$modal.show("messageModal");
+        },
+        replaceByDefault(e) {
+            e.target.src = "defaut.png";
+        },
+        onUploadPicture(value) {
+            // Pass Picture URL to the user object .
+            this.user.img = value;
+            console.log(this.user);
+        },
+        onFileUploads(values) {
+            let self = this;
+            values.forEach(function (value) {
+                // Files permissions are ALL by default
+                value.permissions = "all";
+                self.user.filenames.push(value);
+            });
+            if (!this.creationProcess) {
+                this.updateUser();
+            }
+        },
+        onMessagesCount(value) {
+            console.log(value)
+            console.log("onmc")
+            this.messagesCount = value;
+        },
+       
         createUser: function () {
             this.creationProcess = true;
             this.user = {
@@ -344,18 +319,6 @@ export default {
         cancelInsertUser: function () {
             this.creationProcess = false;
             this.user = this.$store.getters.user
-        },
-        readUsers: function () {
-            axios
-                .post("/readUsers", {
-                    filters: this.filters
-                })
-                .then(response => {
-                    this.users = response.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
         }
     },
     beforeCreate: function () {
@@ -364,7 +327,6 @@ export default {
         this.user = this.$store.getters.user
         this.auth = true;
         this.loaded = true;
-  
         this.readUsers();
     }
 };

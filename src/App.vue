@@ -62,6 +62,7 @@
                         <div class="dropdown-item logout" @click="logout()" disabled>
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('LOGOUT') }}
                         </div>
+                          <div class="dropdown-divider"></div>
                         <div class="dropdown-item">
                             {{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}
                         </div>

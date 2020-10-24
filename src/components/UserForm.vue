@@ -102,6 +102,8 @@
                     <div class="col-md-2">
                         <label>{{ t("JOB") }}</label>
                     </div>
+
+                    <!-- JOB CRUD COMPONENT TODO -->
                     <div class="col-md-4">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -120,6 +122,7 @@
                             <input v-model="newJob" type="text" class="form-control" :placeholder=" t('ADD_A_JOB') " aria-label="Example text with button addon" aria-describedby="button-addon1">
                         </div>
                     </div>
+                    <!-- END JOB CRUD COMPONENT -->
                     <div class="col-md-2">
                         <label>{{ t("DESCRIPTION") }}</label>
                     </div>
