@@ -8,7 +8,7 @@
 -   This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
 -   Git Commits are automatically Heroku synced .<br>
 -   Style is switchable to https://www.creative-tim.com/templates/vuejs?page=1 templates
--   If you're bored writing cruds files, simply query generic_crud.js !!
+-   If you're bored writing cruds files, simply query <b>generic_crud.js</b> !!
 
 ## Demos
 <b>HEROKU LIVE DEMO </b>->  : https://vuestartergit.herokuapp.com/  
