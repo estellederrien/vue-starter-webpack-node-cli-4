@@ -54,6 +54,7 @@ const Translations = {
                 ENTER_TITLE: "Entrez le titre",
                 ENTER_MESSAGE: "Entrez le message",
                 SEND_MESSAGE: "Envoyer le message",
+                CREATE_SOCIAL_MESSAGE: "Créer un message",
 
                 // PROFILE TRANSLATIONS 
                 BIRTHDAY: "Date de naissance",
@@ -76,10 +77,10 @@ const Translations = {
 
                 // HOME COMPONENT TRANSLATIONS
                 INTRO: `
-                Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX
-                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
-                Tester l'application: Identification de l' ADMIN avec -> login: admin@admin.com + mot de passe: admin
-                Tester: Identification de chaque utilisateur-> login:  email de l'utilisateur + mot de passe: password `,
+                <div>Bienvenue dans mon starter vue.js - node.js - mongodbAtlas starter ! Nicolas E HULEUX<br>
+                <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4">Voir le projet sur Github</a><br>
+                <b>Tester l'application:</b><br> Identification de l' ADMIN -> login: admin@admin.com + mot de passe: admin<br>
+                Identification de chaque utilisateur -> login:  email de l'utilisateur + mot de passe: password<br></div> `,
                 HOME: "Accueil",
                 DROPDOWN_TITLE_1: "",
                 VERSION: "VERSION",
@@ -187,6 +188,7 @@ const Translations = {
                 ENTER_TITLE: "Enter title ...",
                 ENTER_MESSAGE: "Enter message ...",
                 SEND_MESSAGE: "Send a message ...",
+                CREATE_SOCIAL_MESSAGE: "Create a message",
 
                 // PROFILE TRANSLATIONS 
                 BIRTHDAY: "Birthday",
@@ -208,10 +210,12 @@ const Translations = {
                 CHANGE_AVATAR: "Change my avatar",
 
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: ` Welcome to my vue node starter ! Nicolas E HULEUX
-                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
-                Testing: log in ADMIN with -> login: admin@admin.com + password: admin
-                Testing: log in ANY USER -> login: user email + password: password `,
+                INTRO: ` <div> Welcome to my vue.js - node.js - mongodbAtlas starter! Nicolas E HULEUX <br>
+                <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> See the project on Github </a> <br>
+                <b> Test the application: </b> <br> Identification of the ADMIN -> login: admin@admin.com + password: admin <br>
+                Identification of each user -> login: user's email + password: password <br> </div>
+
+`,
                 HOME: "Home",
                 DROPDOWN_TITLE_1: "Linear programming templates",
                 VERSION: "Version",
@@ -317,6 +321,7 @@ const Translations = {
                 ENTER_TITLE: "Titel eingeben ...",
                 ENTER_MESSAGE: "Nachricht eingeben ...",
                 SEND_MESSAGE: "Nachricht senden ...",
+                CREATE_SOCIAL_MESSAGE: "Erstellen Sie eine Nachricht",
 
                 // PROFILE TRANSLATIONS 
                 BIRTHDAY: "Geburtstag",
@@ -338,10 +343,12 @@ const Translations = {
                 CHANGE_AVATAR: "Avatar bearbeiten",
 
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: ` Willkommen zu meinem vue.js - node.js - mongodbAtlas Starter! Nicolas E HULEUX
-                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
-                Testen: Melden Sie sich bei ADMIN mit -> an: admin@admin.com + Passwort: admin
-                Testen: JEDEN BENUTZER anmelden -> Anmelden: Benutzer-E-Mail + Passwort: Passwort `,
+                INTRO: ` <div> Willkommen zu meinem vue.js - node.js - mongodbAtlas Starter! Nicolas E HULEUX <br>
+                <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> Siehe das Projekt auf Github </a> <br>
+                <b> Testen Sie die Anwendung: </ b> <br> Identifizierung des ADMIN -> Login: admin@admin.com + Passwort: admin <br>
+                Identifikation jedes Benutzers -> Login: E-Mail des Benutzers + Passwort: password <br> </ div>
+
+ `,
                 HOME: "zu Hause ",
                 DROPDOWN_TITLE_1: "Linearer Programmierfall",
                 VERSION: "VERSION",
@@ -447,6 +454,7 @@ const Translations = {
                 ENTER_TITLE: "Ingrese título ...",
                 ENTER_MESSAGE: "Ingresar mensaje ...",
                 SEND_MESSAGE: "Enviar un mensaje ...",
+                CREATE_SOCIAL_MESSAGE: "Crea un mensaje",
 
                 // PROFILE TRANSLATIONS 
                 BIRTHDAY: "Cumpleaños",
@@ -468,10 +476,10 @@ const Translations = {
                 CHANGE_AVATAR: "Cambiar mi avatar",
 
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: `¡Bienvenido a mi iniciador de nodos vue! Nicolas E HULEUX
-                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
-                Prueba: inicie sesión en ADMIN con -> inicio de sesión: admin@admin.com + contraseña: admin
-                Prueba: iniciar sesión CUALQUIER USUARIO -> iniciar sesión: correo electrónico de usuario + contraseña: contraseña
+                INTRO: `<div> ¡Bienvenido a mi inicio de vue.js - node.js - mongodbAtlas! Nicolas E HULEUX <br>
+                <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> Ver el proyecto en Github </a> <br>
+                <b> Pruebe la aplicación: </b> <br> Identificación del ADMIN -> login: admin@admin.com + contraseña: admin <br>
+                Identificación de cada usuario -> login: correo electrónico del usuario + contraseña: password <br> </div>
 
                         `,
                 HOME: "Casa",
@@ -579,6 +587,7 @@ const Translations = {
                 ENTER_TITLE: "शीर्षक दर्ज करें ...",
                 ENTER_MESSAGE: "संदेश दर्ज करें ...",
                 SEND_MESSAGE: "एक संदेश भेजें ...",
+                CREATE_SOCIAL_MESSAGE: "एक संदेश बनाएँ",
 
                 // PROFILE TRANSLATIONS 
                 BIRTHDAY: "जन्मदिन",
@@ -600,10 +609,10 @@ const Translations = {
                 CHANGE_AVATAR: "चंग अवतारी",
 
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: `मेरी प्रतिज्ञा नोड स्टार्टर में आपका स्वागत है! निकोलस ई हुलेक्स
-                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
-                परीक्षण: ADMIN के साथ लॉग इन करें -> लॉगिन: admin@admin.com + पासवर्ड: व्यवस्थापक
-                परीक्षण: किसी भी USER में लॉग इन करें -> लॉगिन: उपयोगकर्ता ईमेल + पासवर्ड: पासवर्ड
+                INTRO: `<div> मेरे vue.js - node.js - mongodbAtlas स्टार्टर में आपका स्वागत है! निकोलस ई HULEUX <br>
+                <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4"> Github पर प्रोजेक्ट देखें </a> <br>
+                <b> एप्लिकेशन का परीक्षण करें: </ b> <br> ADMIN की पहचान -> लॉगिन: admin@admin.com +:: <br> <br>
+                प्रत्येक उपयोगकर्ता की पहचान -> लॉगिन: उपयोगकर्ता का ईमेल + पासवर्ड: पासवर्ड <br> </ div>
                       `,
                 HOME: " घर घर",
                 DROPDOWN_TITLE_1: "रैखिक प्रोग्रामिंग का मामलाe",
@@ -711,6 +720,7 @@ const Translations = {
                 ENTER_TITLE: "输入标题...",
                 ENTER_MESSAGE: "输入消息...",
                 SEND_MESSAGE: "发送消息...",
+                CREATE_SOCIAL_MESSAGE: "建立讯息",
 
                 // PROFILE TRANSLATIONS 
                 BIRTHDAY: "生日",
@@ -732,10 +742,10 @@ const Translations = {
                 CHANGE_AVATAR: "长阿凡达",
 
                 // HOME COMPONENT TRANSLATIONS
-                INTRO: `欢迎来到我的vue节点入门！尼古拉斯E HULEUX
-                https://github.com/nicolas15000/vue-starter-webpack-node-cli-4
-                测试：使用->登录名：admin@admin.com +密码：admin登录ADMIN
-                测试：登录ANY USER->登录：用户电子邮件+密码：密码`,
+                INTRO: `<div>欢迎来到我的vue.js-node.js-mongodbAtlas启动器！ Nicolas E HULEUX <br>
+                <a href ="https://github.com/nicolas15000/vue-starter-webpack-node-cli-4">在Github上查看项目</a> <br>
+                <b>测试应用程序：</ b> <br>标识ADMIN->登录名：admin@admin.com +密码：admin <br>
+                每个用户的标识->登录名：用户的电子邮件地址和密码：password<br> </ div>`,
                 HOME: " 家",
                 DROPDOWN_TITLE_1: "线性规划案例",
                 VERSION: "版",

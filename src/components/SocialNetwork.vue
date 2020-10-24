@@ -50,7 +50,8 @@
             </b-card>
         </b-col>
     </b-row>
-    <button type="button" class="btn btn-warning float-right" @click="openNewMessageModal()">{{ t('MESSAGE') }}</button>
+    <!-- CREATE SOCIAL MESSAGE BUTTON -->
+    <button type="button" class="btn btn-warning float-right" @click="openNewMessageModal()">{{ t('CREATE_SOCIAL_MESSAGE') }}</button>
     <!-- MODALS -->
     <modal name="NewMessageModal">
         <div class="answer-modal">
