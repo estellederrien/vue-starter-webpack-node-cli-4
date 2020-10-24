@@ -6,6 +6,7 @@
         <!-- <a disabled class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a> -->
         <a class="navbar-brand" href="#" >
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/768px-Bootstrap_logo.svg.png" width="30" height="30" alt="">
+            
         </a>
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -378,7 +379,7 @@ SIDEBAR
 }
 
 .v-sidebar-menu.vsm_white-theme .vsm--link_level-1 .vsm--icon {
-    background-color: transparent;
+    background-color: transparent  !important;
 }
 
 .v-sidebar-menu.vsm_white-theme .vsm--dropdown .vsm--list {
@@ -390,12 +391,17 @@ SIDEBAR
     background-color: #f7e4b2!important;
 }
 
+.v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_exact-active .vsm--icon, .v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_active .vsm--icon {
+    color: maroon !important;
+    background-color: #262626;
+}
+
 /* 
 =====================
 TEMPLATES
 ===================== */
 .list-template {
-    background-color:#f9edcd !important;
+    background-color:#f6efdb !important;
     padding-top: 30px;
     min-height: 100vh
 }
