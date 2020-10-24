@@ -5,7 +5,7 @@
             </src>
         </span>
     </div>
-    <div class="container-fluid " v-show="loaded">
+    <div class="container-fluid user-template" v-show="loaded">
         <form method="post" v-on:submit.prevent>
             <div class="row">
                 <div class="col-md-2">
@@ -180,7 +180,7 @@
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon1" @click="createJob()">+</button>
                                                 </div>
-                                                <input v-model="newJob" type="text" class="form-control"  :placeholder=" t('ADD_A_JOB') " aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                <input v-model="newJob" type="text" class="form-control" :placeholder=" t('ADD_A_JOB') " aria-label="Example text with button addon" aria-describedby="button-addon1">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -200,58 +200,9 @@
                         </div>
                         <!-- TABS 2 -->
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row tab-content-user">
-                                <div class="col-md-6">
-                                    <uploadfiles @myfilenamesevent="onFileUploads"></uploadfiles>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card ">
-                                        <div class="card-body" style="overflow:auto;">
-                                            <h5 class="card-title">
-                                                <i class="fas fa-file-alt"></i> {{ t("FILE_LISTS") }}
-                                            </h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">{{ t("MANAGE") }}</h6>
-                                            <div style=" font-size:0.8em;">
-                                                <table class="table table-sm">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>{{ t("NAME") }}</th>
-                                                            <th>{{ t("FTP_DOWNLOAD") }}</th>
-                                                            <th>{{ t("FTP_DELETE") }}</th>
-                                                            <th>{{ t("PERMISSIONS") }}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr v-for="file in user.filenames">
-                                                        <td>
-                                                            <a class="float-left"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a>
-                                                            <!-- When files are stored on the NODEJS SERVER , add v bind for the download link -->
-                                                            <!-- <a class="float-left" v-bind:href="file.filename"> <i class="fas fa-file-alt"></i> {{ file.filename }}</a> -->
-                                                        </td>
-                                                        <td>
-                                                            <span class="btn btn-warning" v-on:click="readFtpFile(file)">
-                                                                <i class="far fa-file"></i>
-                                                                <br />
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="remove-file btn btn-primary" v-on:click="deleteFtpFile(file)">
-                                                                <i class="far fa-trash-alt"></i>
-                                                                <br />
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control " v-model="file.middleware">
-                                                                <option value="all">Tous</option>
-                                                                <option v-for="u in users" :value="u._id">{{u.nom}}</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <uploadfiles @myfilenamesevent="onFileUploads" :user="this.user"></uploadfiles>
+
                         </div>
                         <!-- TABS 3 -->
                         <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
@@ -508,91 +459,7 @@ export default {
         openMessageModal: function () {
             this.$modal.show("messageModal");
         },
-        deleteFile(file) {
-            let self = this;
-            if (confirm("Do you really want to delete?")) {
-                axios
-                    .post("deleteFile", {
-                        name: file.filename
-                    })
-                    .then(response => {
-                        alert(" File has been deleted from server");
-                        self.user.filenames = self.user.filenames.filter(function (obj) {
-                            return obj.filename !== file.filename;
-                        });
-                        if (!this.creationProcess) {
-                            this.updateUser();
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        this.$notify({
-                            type: 'error',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> ' + error
-                        });
-                    });
-            }
-        },
-        readFtpFile(file) {
-            alert('I m getting your file on the ftp server, please wait.')
-            let self = this;
-            axios.post("readFtpFile", {
-                    name: file.filename
-                })
-                .then(response => {
-                    alert('File had been transfered to the node server');
-                    axios({
-                        url: file.filename, //your url 
-                        method: 'GET',
-                        responseType: 'blob', // important
-                    }).then((response) => {
-                        const url = window.URL.createObjectURL(new Blob([response.data]));
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.setAttribute('download', file.filename);
-                        document.body.appendChild(link);
-                        link.click();
-                    });
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$notify({
-                        type: 'error',
-                        group: 'foo',
-                        title: 'Hey! ',
-                        text: 'Permission is missing ! -> <br> ' + error
-                    });
-                });
-        },
-        deleteFtpFile(file) {
-            let self = this;
-            if (confirm("Do you really want to delete?")) {
-                axios
-                    .post("deleteFtpFile", {
-                        name: file.filename
-                    })
-                    .then(response => {
-                        alert(" File has been deleted from FTP");
-                        self.user.filenames = self.user.filenames.filter(function (obj) {
-                            return obj.filename !== file.filename;
-                        });
-                        if (!this.creationProcess) {
-                            this.updateUser();
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        this.$notify({
-                            type: 'error',
-                            group: 'foo',
-                            title: 'Hey! ',
-                            text: 'Permission is missing ! -> <br> ' + error
-                        });
-                    });
-            }
-        },
+        
         replaceByDefault(e) {
             e.target.src = "defaut.png";
         },
@@ -825,7 +692,7 @@ export default {
 ----------------------------------------------------- */
 .tab-content {
     margin-bottom: 100px !important;
-    padding-top:-50px !important;
+    padding-top: -50px !important;
 }
 
 .emp-profile {
@@ -865,9 +732,8 @@ export default {
 
 .profile-head h5 {
     color: #333;
-   
-}
 
+}
 
 .profile-head h6 {
     color: #0062cc;
