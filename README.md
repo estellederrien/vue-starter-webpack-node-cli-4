@@ -102,6 +102,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 1 Node.js Emailing system<br />
 1 Anti Flooding by IP System<br />
 1 File session store, allowing a better users sessions management<br />
+1 Generic reusable Infinite Scrool code<br />
 
 <br /><br />
 ## Data science  ...<br />
