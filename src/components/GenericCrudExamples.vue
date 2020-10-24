@@ -52,8 +52,7 @@ export default {
                 creation_date: new Date()
             },
             things: [],
-            chosen_thing: -1,
-            updated_thing: {}
+            chosen_thing: -1
         };
     },
     methods: {
