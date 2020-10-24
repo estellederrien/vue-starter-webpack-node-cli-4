@@ -52,7 +52,7 @@ export default {
                 creation_date: new Date()
             },
             things: [],
-            chosen_thing: -1
+            chosen_thing: -1 // Otherwize, Select 1st option is empty
         };
     },
     methods: {
