@@ -147,6 +147,10 @@ export default {
                         {
                             href: "/table",
                             title: this.$translate.text('TABLE')
+                        },
+                        {
+                            href: "/generic_crud",
+                            title: this.$translate.text('GENERIC_CRUD')
                         }
                     ]
                 },
@@ -223,6 +227,10 @@ export default {
                         {
                             href: "/table",
                             title: "Table Example"
+                        },
+                        {
+                            href: "/generic_crud",
+                            title: this.$translate.text('GENERIC_CRUD')
                         }
                     ]
                 },

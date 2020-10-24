@@ -6,7 +6,7 @@ import User from "@/components/User";
 import Register from "@/components/Register";
 import Login from "@/components/Login";
 import Table from "@/components/Table";
-
+import GenericCrud from "@/components/GenericCrudExamples";
 
 // ASYNC COMPONENT LOADINGS
 const AsyncUsers = () =>
@@ -67,6 +67,11 @@ const routes = [{
         path: "/table",
         name: "Table",
         component: Table
+    },
+    {
+        path: "/generic_crud",
+        name: "Reusable cruds examples",
+        component: GenericCrud
     },
     {
         path: '*',

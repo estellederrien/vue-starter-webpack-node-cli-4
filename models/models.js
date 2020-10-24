@@ -22,11 +22,18 @@ const JobSchema = new Schema({
     creation_date: Date
 });
 
+// THING SCHEMA
+const ThingSchema = new Schema({
+    name: String,
+    creation_date: Date
+});
+
 
 
 const models = {};
 models.Jokes = mongoose.model('jokes', jokesSchema);
 models.jobs = mongoose.model('jobs', JobSchema);
+models.things = mongoose.model('things', ThingSchema);
 
 
 module.exports = models;

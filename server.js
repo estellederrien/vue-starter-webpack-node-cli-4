@@ -151,7 +151,7 @@ function load_cruds(db) {
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
     const models = require('./models/models');
     app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
-
+    app.use('/api/things', require("./cruds/generic_crud.js")(models.things, middleware));
 
 
 }
