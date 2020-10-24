@@ -323,11 +323,13 @@ export default {
     },
     beforeCreate: function () {
     },
-    mounted: function () {
-        this.user = this.$store.getters.user
+    created: function () {
+        // console.log(this.$store.getters.user)
+        // this.user = this.$store.getters.user; // To repair
+         this.user = JSON.parse(localStorage.getItem("user"));
+        
         this.auth = true;
         this.loaded = true;
-        this.readUsers();
     }
 };
 </script>

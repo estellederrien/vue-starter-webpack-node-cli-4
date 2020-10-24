@@ -82,8 +82,13 @@ const routes = [{
         beforeEnter: (to, from, next) => {
 
             if (localStorage.getItem('user')) {
-                console.log(localStorage.getItem('user'));
-                next()
+                var user = JSON.parse(localStorage.getItem("user"));
+                console.log(user);
+                if (user.nom !== "anonymous") {
+                    next()
+                } else {
+                    $router.push("/login");
+                }
             } else {
 
                 $router.push("/login");

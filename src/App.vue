@@ -4,9 +4,9 @@
     <nav class="navbar navbar-expand-lg navbar-default  fixed-top bg-custom">
         <!-- Brand -->
         <!-- <a disabled class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a> -->
-        <a class="navbar-brand" href="#" >
+        <a class="navbar-brand" href="#">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/768px-Bootstrap_logo.svg.png" width="30" height="30" alt="">
-            
+
         </a>
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -62,7 +62,7 @@
                         <div class="dropdown-item logout" @click="logout()" disabled>
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>{{ t('LOGOUT') }}
                         </div>
-                          <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider"></div>
                         <div class="dropdown-item">
                             {{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}
                         </div>
@@ -366,8 +366,8 @@ TOP navbar
     border-bottom-color: #555;
 }
 
-.navbar-brand{
-    margin-left:-5px
+.navbar-brand {
+    margin-left: -5px
 }
 
 /* 
@@ -380,7 +380,7 @@ SIDEBAR
 }
 
 .v-sidebar-menu.vsm_white-theme .vsm--link_level-1 .vsm--icon {
-    background-color: transparent  !important;
+    background-color: transparent !important;
 }
 
 .v-sidebar-menu.vsm_white-theme .vsm--dropdown .vsm--list {
@@ -389,10 +389,11 @@ SIDEBAR
 
 .v-sidebar-menu.vsm_white-theme .vsm--toggle-btn {
     color: #262626;
-    background-color: #f7e4b2!important;
+    background-color: #f7e4b2 !important;
 }
 
-.v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_exact-active .vsm--icon, .v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_active .vsm--icon {
+.v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_exact-active .vsm--icon,
+.v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_active .vsm--icon {
     color: maroon !important;
     background-color: #262626;
 }
@@ -402,7 +403,7 @@ SIDEBAR
 TEMPLATES
 ===================== */
 .list-template {
-    background-color:#f6efdb !important;
+    background-color: #f6efdb !important;
     padding-top: 30px;
     min-height: 100vh
 }
@@ -420,7 +421,7 @@ BUTTONS
 }
 
 .btn:hover {
-    background-color: #f5ebd0!important;
+    background-color: #f5ebd0 !important;
     color: black !important;
 }
 
@@ -442,7 +443,6 @@ a:hover {
 }
 
 /* change the link color */
-
 
 /* ---------------------------------------------------------------------------GRAPHICAL ELEMENTS -----------------------------------------------*/
 
