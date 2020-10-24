@@ -192,7 +192,7 @@ export default {
         },
         updateUser: function () {
             axios
-                .post("/updateUser", this.user)
+                .put("/updateUser", this.user)
                 .then(response => {
                     this.$notify({
                         type: 'success',
@@ -200,8 +200,8 @@ export default {
                         title: 'Hey! ',
                         text: 'Update is ok !'
                     });
-                    // UPdating user in memory
-                    localStorage.setItem('user', JSON.stringify(this.user));
+                    // Updating user in memory
+                    this.$store.commit('setUser', this.user) 
                 })
                 .catch(error => {
                     console.log(error);
@@ -209,7 +209,7 @@ export default {
                         type: 'error',
                         group: 'foo',
                         title: 'Hey! ',
-                        text: 'Permission is missing ! -> <br> ' + error
+                        text: error
                     });
                 });
         },

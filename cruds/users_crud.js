@@ -58,7 +58,7 @@ module.exports = function(app, db, middleware, bcrypt, User, ObjectId) {
      *  @return 200
      *  @error 400
      */
-    app.post("/updateUser", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_USER"), function(req, res) {
+    app.put("/updateUser", middleware.requiresLoggedIn, middleware.permission_valid("UPDATE_USER"), function(req, res) {
 
         // 1.  Getting data from front end - on récupère le json data de l'app vue.js
         var updated_user = req.body;
