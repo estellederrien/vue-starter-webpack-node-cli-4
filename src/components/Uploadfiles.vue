@@ -86,11 +86,8 @@
 import axios from "axios";
 
 export default {
-    /*
-          Defines the data used by the component
-        */
     name: "uploadfiles",
-    props: ["filenames","user"],
+    props: ["filenames","user"], // USER OBJECT IS COMING FROM PROFILE.JS !
     data() {
         return {
             files: "",
