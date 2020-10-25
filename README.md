@@ -98,7 +98,7 @@ I am looking for collabs and can give you access to the depot !!
 ## Comin' soon ! ...
 - NEW ! Social network on each user public profiles, allowing all users to share stories, pics etc ...<br />
 - NEW ! Ability to share documents, and getting users comments ( Like in Facebook)<br />
-- JWT login, Register Email confirmation.<br />
+- Better designed JWT login, Register Email confirmation.<br />
 - Trello  inspired project management vue.js module, using drag and drop .<br />
 - SOCKET.IO realtime evolutive system + 1 vue component, allowing several cams at the same time eventually <br />
 - Gps positionning lib <br />
