@@ -26,6 +26,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
+  25-10-2020 : Nice documents : JWT auth vs Sessions auth : https://medium.com/@sherryhsu/session-vs-token-based-authentication-11a6c5ac45e4<br>
   19-10-2020 : Currently converting the standard node cruds to a reusable generic node CRUD <b>generic_crud.js</b>: 10 * fasters dev comin soon ... All mongoose schemas will be centralized in <b>models.js</b> !<br>
   19-10-2020 : Another Generic CRUD doc : https://medium.com/@bvodola/crud-routes-generator-with-node-express-js-mongoose-30a16538e16a<br>
   18-10-2020 : The users Filters "localstorage memory" must be stored in the centralized VUEX store, App logs have to be centralized in the middleware.js file<br>
