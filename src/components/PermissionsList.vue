@@ -14,6 +14,7 @@
                     <option value="viewer">Viewer</option>
                     <option value="user">User</option>
                     <option value="manager">Manager</option>
+                    <option value="administrator">Administrator</option>
                 </select>
             </div>
         </div>
