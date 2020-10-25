@@ -8,7 +8,7 @@
 -   This starter is suitable for JS data science, linear regressions, neural networks, Kmeans.. . <br>
 -   Git Commits are automatically Heroku synced .<br>
 -   Style is switchable to https://www.creative-tim.com/templates/vuejs?page=1 templates
-- Users have sessions, no JWT tokens.
+- Sessions based authentication (No JWT token)
 
 
 ## Demos
