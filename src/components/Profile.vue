@@ -65,7 +65,7 @@
                     <div class="tab-content profile-tab" id="myTabContent">
                         <!-- TABS 1 -->
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                             <userform  :user="this.user"></userform >
+                             <userform  :user="this.user" :creationProcess="this.creationProcess"></userform >
                         </div>
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                             <uploadfiles @myfilenamesevent="onFileUploads" :user="this.user"></uploadfiles>
@@ -283,8 +283,7 @@ export default {
                 !this.user.password ||
                 !this.user.prenom ||
                 !this.user.nom ||
-                !this.user.email ||
-                this.$v.user.email.$error
+                !this.user.email 
             ) {
                 this.$notify({
                     type: 'error',

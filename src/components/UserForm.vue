@@ -57,7 +57,7 @@
                     <div class="col-md-2">
                         <label>{{ t("PASSWORD") }}</label>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <p>
                             <input v-model="user.password" class="form-control" :placeholder=" t('PARAMETER_ME') " />
                             <!-- ERRORS MESSAGES -->
