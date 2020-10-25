@@ -8,7 +8,7 @@
             <modal name="filters" width="80%" height="auto" :scrollable="true">
                 <filters @filters="executeFilters"></filters>
             </modal>
-            <modal name="messageModal" :width="350" :height="400">
+            <modal name="messageModal" width="80%" height="auto" :scrollable="true" >
                 <message :user="$store.getters.user"></message>
             </modal>
             <div class="header">

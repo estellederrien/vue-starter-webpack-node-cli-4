@@ -116,7 +116,7 @@
         </form>
     </div>
     <!-- MODAL -->
-    <modal name="messageModal" :width="350" :height="400">
+    <modal name="messageModal" width="80%" height="auto" :scrollable="true">
         <message :user="this.user"></message>
     </modal>
 </div>
