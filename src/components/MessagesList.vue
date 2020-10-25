@@ -4,7 +4,7 @@
         <b-row no-gutters>
             <b-col md="2">
                 <b-card-img class="message-img rounded-0" v-if="m.img !== ''" :src="m.img" alt="Image"></b-card-img>
-                <img class="message-img rounded-0" v-if="m.img == '' || m.img == Undefined " src="../assets/img/defaut.jpg" alt="Image"></img>
+                <img class="message-img rounded-0" v-if="m.img == '' || m.img == Undefined " src="../assets/img/defaut.jpg" alt="Image"></img><br>
                 <span style="font-size:0.8em">{{m.from}} </span><br>
                 <span style="font-size:0.8em;color:blue">{{m.date | moment('from', 'now') }} </span>
             </b-col>
@@ -60,3 +60,13 @@ export default {
     }
 };
 </script>
+<style scoped>
+.message-img{
+    width:50px;
+    height:50px;
+}
+.card-message{
+
+    margin-bottom:10px
+}
+</style>
