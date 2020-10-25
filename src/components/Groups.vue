@@ -157,7 +157,7 @@ export default {
               title: "Hey! ",
               text: "Groupe created"
             });
-            this.groups.push(this.group);
+              this.updateMode = true;
           })
           .catch(error => {
             console.log(error);
