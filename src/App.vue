@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <!-- --------------------------------------------- TOPBAR ------------------------------------------------------------ -->
-    <nav class="navbar navbar-expand-lg navbar-default  fixed-top bg-custom">
+    <nav class="navbar navbar-expand-lg navbar-default  fixed-top bg-custom navbar-light">
         <!-- Brand -->
         <!-- <a disabled class="navbar-brand" href="#">{{ t('APP_TITLE') }} by Nicolas Huleux V. {{v}}</a> -->
         <a class="navbar-brand" href="#">
@@ -258,10 +258,58 @@ export default {
 
 /* -----------------------------------------------------------------------MEDIAS QUERIES --------------------------------------------------------------------- */
 /* SMARTPHONES PORTRAIT */
-@media only screen and (max-width: 300px) {}
+@media only screen and (max-width: 300px) {
+
+    .message-modal {
+
+        width: 300px;
+        left: 35%;
+    }
+
+    #app {
+        font-size: 10px !important;
+    }
+
+    label {
+        font-size: 10px!important;
+    }
+
+    .btn {
+        font-size: 12px !important;
+        padding: 4px 6px;
+    }
+
+    .input-group-text {
+        font-size: 10px!important;
+    }
+}
 
 /* SMARTPHONES LANDSCAPE */
-@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 480px) {
+    
+    .message-modal {
+
+        width: 300px;
+        left: 35%;
+    }
+
+    #app {
+        font-size: 10px !important;
+    }
+
+    label {
+        font-size: 10px!important;
+    }
+
+    .btn {
+        font-size: 12px !important;
+        padding: 4px 6px;
+    }
+
+    .input-group-text {
+        font-size: 10px!important;
+    }
+}
 
 /* TABLETS PORTRAIT */
 @media only screen and (max-width: 768px) {
@@ -285,6 +333,13 @@ export default {
     .navbar-brand {
         display: none !important;
     }
+
+    .message-modal {
+
+        width: 300px;
+        left: 35%;
+    }
+
 }
 
 /* TABLET LANDSCAPE / DESKTOP */
@@ -306,6 +361,29 @@ export default {
         width: 200px !important;
         height: 150px !important;
     }
+
+}
+
+/* LARGE SCREENS more than 22" */
+@media only screen and (max-width: 2490px) {
+    #app {
+        font-size: 14px;
+    }
+
+    label {
+        font-size: 14px !important;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .loader {
+        width: 200px !important;
+        height: 150px !important;
+    }
+
 }
 
 /* ----------------------------------------------------------------------- END MEDIAS QUERIES --------------------------------------------------------------------- */
