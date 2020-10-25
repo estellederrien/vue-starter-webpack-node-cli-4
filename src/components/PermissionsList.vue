@@ -6,7 +6,7 @@
         </h5>
         <div class="row">
             <div class="col-md-2">
-                <label>{{ t("PROFILE") }}</label>
+                <label>{{ t("ROLE") }}</label>
             </div>
             <div class="col-md-6">
                 <select class="custom-select" v-model="user.role" :disabled="!creationProcess">
