@@ -44,7 +44,7 @@
 // Import others components
 import axios from "axios";
 export default {
-    name: "emptycomponent",
+
     data() {
         return {
             thing: {
