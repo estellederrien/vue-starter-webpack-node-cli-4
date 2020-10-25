@@ -235,28 +235,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="authorizations" role="tabpanel" aria-labelledby="authorizations-tab">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <label>{{ t("ROLE") }}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <select class="custom-select" v-model="user.role" disabled>
-                                            <option value="">--Please choose an option--</option>
-                                            <option value="viewer">Viewer</option>
-                                            <option value="user">User</option>
-                                            <option value="manager">Manager</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <label>{{ t("PERMISSIONS_LIST") }}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span class="badge badge-warning  badge-space" v-for="p in user.permissions"> {{ p }}<br /> </span>
-                                    </div>
-                                </div>
+                                  <permissionslist :user="this.user" ></permissionslist>
                             </div>
                             <div class="tab-pane fade" id="social-network" role="tabpanel" aria-labelledby="social-network-tab">
                                 <div class="row">
@@ -289,6 +268,7 @@ import Uploadpicture from "@/components/Uploadpicture.vue";
 import Uploadfiles from "@/components/Uploadfiles.vue";
 import Message from "@/components/Message.vue";
 import Socialnetwork from "@/components/SocialNetwork.vue";
+import PermissionsList from "@/components/PermissionsList.vue";
 export default {
     name: "User",
     props: ["_id"],
@@ -349,6 +329,7 @@ export default {
         uploadfiles: Uploadfiles,
         message: Message,
         socialnetwork: Socialnetwork,
+         permissionslist:PermissionsList
     },
     methods: {
         readUser: function() {
