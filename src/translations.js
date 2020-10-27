@@ -416,6 +416,7 @@ const Translations = {
                 INTRODUCTION: "Einführung",
                 PROFILE: "Mein Profil",
                 SIGNOUT: "Ausloggen",
+
                 // REGISTER COMPONENT TRANSLATIONS
                 FIRST_NAME: "Vorname",
                 LAST_NAME: "Nachname",
