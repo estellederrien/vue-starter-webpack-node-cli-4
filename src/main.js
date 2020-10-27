@@ -20,8 +20,8 @@ import velocity from "velocity-animate";
 import Multiselect from "vue-multiselect";
 import VueLazyload from "vue-lazyload";
 import VueTranslate from "vue-translate-plugin";
-import Translations from './translations.js'
-import VuexPersistence from 'vuex-persist'
+import Translations from './Translations.js'
+import Store from './Store.js'
 
 // ==========================================================
 // USE MODULES
@@ -38,9 +38,7 @@ Vue.component("multiselect", Multiselect);
 Vue.use(require("vue-moment"));
 Vue.use(VueTranslate);
 Vue.locales(Translations.get()) // Import language translations
-    /* const vuexLocal = new VuexPersistence({
-        storage: window.localStorage
-    }) */
+
 
 // ==========================================================
 // VUE LAZY LOAD
@@ -55,76 +53,10 @@ Vue.use(VueLazyload, {
 // ==========================================================
 // VUEX DATA STORE WITH VuexPersistence PLUGIN - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS 
 // ==========================================================
-/* INFORMATION : HOW TO USE IN COMPONENTS - COMMENT UTILISER CA DANS LES COMPONENTS  : SET USER ( WHEN YOU LOG IN): this.$store.commit('setUser', response.data) GET USER : this.User = this.$store.getters.user DELETE USER (WHEN YOU LOG OUT ): this.$store.commit('deleteUser') - START ACTION : store.dispatch('increment')*/
+
 Vue.use(Vuex);
-import axios from 'axios'
-const anonymous = { _id: "anonymous", nom: "anonymous", prenom: "anonymous", phone: "", email: "anonymous@anonymous.fr", password: "", img: "", filenames: [] };
-const store = new Vuex.Store({
-    state: {
-        user: anonymous,
-        logged: false,
-        usersFilters: {
-            ageValues: [18, 60],
-            role: "",
-            jobs: [],
-            users: [],
-            groups: []
-        }
-    },
-    mutations: {
-        setUser(state, user) {
-            state.user = user;
-            state.logged = true;
-        },
-        deleteUser(state, user) {
-            localStorage.removeItem("user");
-            state.logged = false;
-            state.user = anonymous;
-        },
-        setUsersFilters(state, usersFilters) {
-            state.usersFilters = usersFilters;
-        },
-        deleteUsersFilters(state, userFilters) {
-            localStorage.removeItem("usersFilters");
-            state.userFilters = {
-                ageValues: [18, 60],
-                role: "",
-                jobs: [],
-                users: [],
-                groups: []
-            }
-        }
-    },
-    getters: {
-        user: (state) => {
-            return state.user;
-        },
-        usersFilters: (state) => {
-            return state.usersFilters;
+const store = new Vuex.Store(Store)
 
-        }
-    },
-    actions: {
-        loadUsers({ commit }) {
-            // EXEMPLE CODE - Actions is used for Async DB calls- On utilise actions pour faire des lecture en bdd
-            // https://stackoverflow.com/questions/48455175/how-to-get-data-from-api-in-vuex-using-axios/48458134
-            // CALLIN IN COMPONENTS this.$store.dispatch('loadUsers')
-            //    .then((result) => {
-            //        //handle the returened data
-            // })   
-            axios
-                .get('/users')
-                .then(users => {
-                    console.log(users)
-                        // console.log(response.data, this)
-                    commit('setUsers', users)
-                    commit('changeLoadingState', false)
-                })
-
-        }
-    },
-    plugins: [new VuexPersistence().plugin]
-});
 
 // ==========================================================
 // MOUNTING APP 

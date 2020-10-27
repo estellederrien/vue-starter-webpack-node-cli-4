@@ -1,14 +1,34 @@
-// Tasks module
+// ==========================================================
+// VUEX DATA STORE WITH VuexPersistence PLUGIN - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS 
+// ==========================================================
+
+/* INFORMATION : HOW TO USE IN COMPONENTS - COMMENT UTILISER CA DANS LES COMPONENTS  : SET USER ( WHEN YOU LOG IN): this.$store.commit('setUser', response.data) GET USER : this.User = this.$store.getters.user DELETE USER (WHEN YOU LOG OUT ): this.$store.commit('deleteUser') - START ACTION : store.dispatch('increment')*/
 import axios from 'axios';
+import VuexPersistence from 'vuex-persist'
 
 const resource_uri = "http://localhost:3000/task/";
+const anonymous = { _id: "anonymous", nom: "anonymous", prenom: "anonymous", phone: "", email: "anonymous@anonymous.fr", password: "", img: "", filenames: [] };
 
 const state = {
-    tasks: []
+    user: anonymous,
+    logged: false,
+    usersFilters: {
+        ageValues: [18, 60],
+        role: "",
+        jobs: [],
+        users: [],
+        groups: []
+    }
 };
 
 const getters = {
-    allTasks: state => state.tasks
+    user: (state) => {
+        return state.user;
+    },
+    usersFilters: (state) => {
+        return state.usersFilters;
+
+    }
 };
 
 const actions = {
@@ -31,23 +51,38 @@ const actions = {
 };
 
 const mutations = {
-    setTasks: (state, tasks) => state.tasks = tasks,
-    newTask: (state, task) => state.tasks = [task, ...state.tasks],
-    updTask: (state, updatedTask) => {
-        let tasks = [...state.tasks];
-        const index = tasks.findIndex(t => t.id === updatedTask.id);
-        if (index !== -1) {
-            tasks.splice(index, 1, updatedTask);
-        }
-        state.tasks = [...tasks];
+    setUser(state, user) {
+        state.user = user;
+        state.logged = true;
     },
-    // deleteTask should work correctly
-    deleteTask: (state, task) => state.tasks = state.tasks.filter(t => task.id !== t.id),
+    deleteUser(state, user) {
+        localStorage.removeItem("user");
+        state.logged = false;
+        state.user = anonymous;
+    },
+    setUsersFilters(state, usersFilters) {
+        state.usersFilters = usersFilters;
+    },
+    deleteUsersFilters(state, userFilters) {
+        localStorage.removeItem("usersFilters");
+        state.userFilters = {
+            ageValues: [18, 60],
+            role: "",
+            jobs: [],
+            users: [],
+            groups: []
+        }
+    }
 };
+
+/* const vuexLocal = new VuexPersistence({
+    storage: window.localStorage
+}) */
 
 export default {
     state,
     getters,
     actions,
-    mutations
+    mutations,
+    plugins: [new VuexPersistence().plugin]
 }
