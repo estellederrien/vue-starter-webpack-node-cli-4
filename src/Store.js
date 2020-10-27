@@ -22,20 +22,20 @@ import VuexPersistence from 'vuex-persist'
 // ==========================================================
 const resource_uri = "http://localhost:3000/users/";
 const anonymous = { _id: "anonymous", nom: "anonymous", prenom: "anonymous", phone: "", email: "anonymous@anonymous.fr", password: "", img: "", filenames: [] };
-
+const init_users_filters = {
+    ageValues: [18, 60],
+    role: "",
+    jobs: [],
+    users: [],
+    groups: []
+};
 // ==========================================================
 // States
 // ==========================================================
 const state = {
     user: anonymous,
     logged: false,
-    usersFilters: {
-        ageValues: [18, 60],
-        role: "",
-        jobs: [],
-        users: [],
-        groups: []
-    }
+    usersFilters: init_users_filters
 };
 
 // ==========================================================
