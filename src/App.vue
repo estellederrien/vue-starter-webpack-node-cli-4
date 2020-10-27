@@ -24,7 +24,7 @@
                     <b-dropdown-item @click="change_app_language('FRENCH')">FRENCH</b-dropdown-item>
                     <b-dropdown-item @click="change_app_language('ENGLISH')">ENGLISH</b-dropdown-item>
                     <b-dropdown-item @click="change_app_language('SPANISH')">ESPAGNOL</b-dropdown-item>
-                    <b-dropdown-item @click="change_app_language('DEUTSH')">DEUTSH</b-dropdown-item>
+                    <b-dropdown-item @click="change_app_language('GERMAN')">GERMAN</b-dropdown-item>
                     <b-dropdown-item @click="change_app_language('CHINESE')">CHINESE</b-dropdown-item>
                     <b-dropdown-item @click="change_app_language('HINDI')">HINDI</b-dropdown-item>
                     <b-dropdown-item :disabled="true" @click="change_app_language('JAPANESE')">JAPANESE(Comin soon)</b-dropdown-item>
