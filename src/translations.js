@@ -127,6 +127,7 @@ const Translations = {
                 // LOGIN COMPONENT TRANSLATIONS
                 CONNECT_YOUR_ACCOUNT: "Connectez vous à votre compte",
                 NEW_THERE: "Nouveau ici ?",
+
                 // MAXIMIZEPROFIT1.VUE
                 TITLE_1: "Maximiser le profit de votre usine 1",
                 LP_DESC: "Description du P.L",
