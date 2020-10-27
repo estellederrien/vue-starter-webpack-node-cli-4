@@ -2,13 +2,30 @@
 // VUEX DATA STORE WITH VuexPersistence PLUGIN - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS 
 // ==========================================================
 
-/* INFORMATION : HOW TO USE IN COMPONENTS - COMMENT UTILISER CA DANS LES COMPONENTS  : SET USER ( WHEN YOU LOG IN): this.$store.commit('setUser', response.data) GET USER : this.User = this.$store.getters.user DELETE USER (WHEN YOU LOG OUT ): this.$store.commit('deleteUser') - START ACTION : store.dispatch('increment')*/
+// ==========================================================
+// INFORMATION
+// HOW TO USE IN COMPONENTS - COMMENT UTILISER CA DANS LES COMPONENTS  : 
+// SET USER ( WHEN YOU LOG IN): this.$store.commit('setUser', response.data) 
+// GET USER : this.user = this.$store.getters.user 
+// DELETE USER (WHEN YOU LOG OUT ): this.$store.commit('deleteUser') 
+// START ACTION (LOAD  DATA FROM DB) : store.dispatch('increment')
+// ==========================================================
+
+// ==========================================================
+// IMPORT NODE MODULES
+// ==========================================================
 import axios from 'axios';
 import VuexPersistence from 'vuex-persist'
 
-const resource_uri = "http://localhost:3000/task/";
+// ==========================================================
+// Initialisations Variables
+// ==========================================================
+const resource_uri = "http://localhost:3000/users/";
 const anonymous = { _id: "anonymous", nom: "anonymous", prenom: "anonymous", phone: "", email: "anonymous@anonymous.fr", password: "", img: "", filenames: [] };
 
+// ==========================================================
+// States
+// ==========================================================
 const state = {
     user: anonymous,
     logged: false,
@@ -21,6 +38,9 @@ const state = {
     }
 };
 
+// ==========================================================
+// Getters
+// ==========================================================
 const getters = {
     user: (state) => {
         return state.user;
@@ -31,6 +51,9 @@ const getters = {
     }
 };
 
+// ==========================================================
+// Actions ( For Dbs queries)
+// ==========================================================
 const actions = {
     async fetchTasks({ commit }) {
         const response = await axios.get(resource_uri);
@@ -50,6 +73,9 @@ const actions = {
     }
 };
 
+// ==========================================================
+// Mutations
+// ==========================================================
 const mutations = {
     setUser(state, user) {
         state.user = user;
