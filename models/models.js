@@ -28,12 +28,27 @@ const ThingSchema = new Schema({
     creation_date: Date
 });
 
+// tRYING OUT POPULATE EXAMPLE iN GenericCrudExamples.vue
+const personSchema = Schema({
+    _id: Schema.Types.ObjectId,
+    name: String,
+    age: Number,
+    stories: [{ type: Schema.Types.ObjectId, ref: 'Story' }]
+});
+// tRYING OUT  POPULATE EXAMPLE  iN GenericCrudExamples.vue
+const storySchema = Schema({
+    author: { type: Schema.Types.ObjectId, ref: 'Person' },
+    title: String,
+    fans: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
+});
+
 
 
 const models = {};
 models.Jokes = mongoose.model('jokes', jokesSchema);
 models.jobs = mongoose.model('jobs', JobSchema);
 models.things = mongoose.model('things', ThingSchema);
-
+models.Story = mongoose.model('Story', storySchema);
+models.Person = mongoose.model('Person', personSchema);
 
 module.exports = models;

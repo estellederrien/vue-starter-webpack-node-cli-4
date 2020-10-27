@@ -21,6 +21,7 @@ import Multiselect from "vue-multiselect";
 import VueLazyload from "vue-lazyload";
 import VueTranslate from "vue-translate-plugin";
 import Translations from './translations.js'
+import VuexPersistence from 'vuex-persist'
 
 // ==========================================================
 // USE MODULES
@@ -37,6 +38,9 @@ Vue.component("multiselect", Multiselect);
 Vue.use(require("vue-moment"));
 Vue.use(VueTranslate);
 Vue.locales(Translations.get()) // Import language translations
+    /* const vuexLocal = new VuexPersistence({
+        storage: window.localStorage
+    }) */
 
 // ==========================================================
 // VUE LAZY LOAD
@@ -49,7 +53,7 @@ Vue.use(VueLazyload, {
 });
 
 // ==========================================================
-// VUEX DATA STORE - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS 
+// VUEX DATA STORE WITH VuexPersistence PLUGIN - SHARING DATA BETWEEN COMPONENTS ! - VUEX MAGASIN DE DATA - PARTAGER DES DATAS ENTRE LES COMPONENTS 
 // ==========================================================
 /* INFORMATION : HOW TO USE IN COMPONENTS - COMMENT UTILISER CA DANS LES COMPONENTS  : SET USER ( WHEN YOU LOG IN): this.$store.commit('setUser', response.data) GET USER : this.User = this.$store.getters.user DELETE USER (WHEN YOU LOG OUT ): this.$store.commit('deleteUser') - START ACTION : store.dispatch('increment')*/
 Vue.use(Vuex);
@@ -59,18 +63,45 @@ const store = new Vuex.Store({
     state: {
         user: anonymous,
         logged: false,
+        usersFilters: {
+            ageValues: [18, 60],
+            role: "",
+            jobs: [],
+            users: [],
+            groups: []
+        }
     },
     mutations: {
         setUser(state, user) {
-            localStorage.setItem("user", JSON.stringify(user));
-            state.user = JSON.parse(localStorage.getItem("user"));
+            state.user = user;
             state.logged = true;
         },
         deleteUser(state, user) {
-            console.log("USER LOCALSTORAGE SESSION DELETED");
             localStorage.removeItem("user");
             state.logged = false;
             state.user = anonymous;
+        },
+        setUsersFilters(state, usersFilters) {
+            state.usersFilters = usersFilters;
+        },
+        deleteUsersFilters(state, userFilters) {
+            localStorage.removeItem("usersFilters");
+            state.userFilters = {
+                ageValues: [18, 60],
+                role: "",
+                jobs: [],
+                users: [],
+                groups: []
+            }
+        }
+    },
+    getters: {
+        user: (state) => {
+            return state.user;
+        },
+        usersFilters: (state) => {
+            return state.usersFilters;
+
         }
     },
     actions: {
@@ -92,11 +123,7 @@ const store = new Vuex.Store({
 
         }
     },
-    getters: {
-        user: (state) => {
-            return state.user;
-        },
-    },
+    plugins: [new VuexPersistence().plugin]
 });
 
 // ==========================================================

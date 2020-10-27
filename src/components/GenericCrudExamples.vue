@@ -4,7 +4,46 @@
         <div class="col-md-12 col-xs-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Reusable crud : Things data model</h5>
+                    <h5 class="card-title">Using Reusable crud (generic_crud.js): Crud on things data model :</h5>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="input-group mb-3">
+                                <input v-model="thing.name" type="text" class="form-control" :placeholder=" t('ADD') ">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary " type="button" @click="create_thing()">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <select class="form-control " v-model="chosen_thing">
+                                    <option value="-1"> -Select - </option>
+                                    <option v-for="thing in things" :value="thing">{{thing.name}}</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <button style="color:white" class="btn btn-outline-secondary btn-danger" type="button" @click="delete_thing()">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group mb-3">
+                                <input v-model="chosen_thing.name" type="text" class="form-control" :placeholder=" t('UPDATE') ">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-warning" type="button" @click="update_thing()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mime SQl joints using mongoose :</h5>
+                   <a href=" https://mongoosejs.com/docs/populate.html"> https://mongoosejs.com/docs/populate.html</a><br><br>
                     <div class="row">
                         <div class="col-md-2">
                             <div class="input-group mb-3">
@@ -40,6 +79,7 @@
     </div>
 </div>
 </template>
+
 <script>
 // Import others components
 import axios from "axios";
@@ -87,17 +127,17 @@ export default {
                 });
         },
         update_thing: function () {
-            const url = '/api/things/' + this.chosen_thing._id ;
-                axios
-                    .put(url,this.chosen_thing)
-                    .then(response => {
-                        this.read_things();
-                        this.chosen_thing = -1
-                        console.log(response.status);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+            const url = '/api/things/' + this.chosen_thing._id;
+            axios
+                .put(url, this.chosen_thing)
+                .then(response => {
+                    this.read_things();
+                    this.chosen_thing = -1
+                    console.log(response.status);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
         delete_thing: function () {
             const url = '/api/things/' + this.chosen_thing._id;
@@ -108,7 +148,7 @@ export default {
                     .then(response => {
                         this.read_things();
                         this.chosen_thing = -1
-                          console.log(response.status);
+                        console.log(response.status);
                     })
                     .catch(error => {
                         console.log(error);
@@ -121,5 +161,9 @@ export default {
     }
 };
 </script>
+
 <style scoped>
+.card{
+    margin-top:20px
+}
 </style>

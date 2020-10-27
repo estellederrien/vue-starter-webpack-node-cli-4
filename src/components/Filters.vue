@@ -14,7 +14,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text">{{ t('ROLE') }}</label>
                     </div>
-                    <select class="form-control" v-model="modifiedFilters.role">
+                    <select class="form-control" v-model="usersFilters.role">
                         <option value>{{ t('CHOOSE') }} </option>
                         <option value="viewer">Viewer</option>
                         <option value="user">User</option>
@@ -27,7 +27,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text">{{ t('JOB') }}</label>
                         </div>
-                        <multiselect class="form-control" v-model="modifiedFilters.jobs" :multiple="true" :options="jobs" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
+                        <multiselect class="form-control" v-model="usersFilters.jobs" :multiple="true" :options="jobs" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                         <pre class="language-json"><code>{{ value}}</code></pre>
                     </div>
                     <br />
@@ -36,7 +36,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text">{{ t('TEAMS') }}</label>
                     </div>
-                    <multiselect class="form-control" v-model="modifiedFilters.groups" :multiple="true" :options="groups" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
+                    <multiselect class="form-control" v-model="usersFilters.groups" :multiple="true" :options="groups" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                     <pre class="language-json"><code>{{ value }}</code></pre>
                 </div>
                 <br />
@@ -46,7 +46,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text">{{ t('USER') }}</label>
                     </div>
-                    <multiselect class="form-control" v-model="modifiedFilters.users" :multiple="true" :options="users" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
+                    <multiselect class="form-control" v-model="usersFilters.users" :multiple="true" :options="users" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                     <pre class="language-json"><code>{{ value }}</code></pre>
                 </div>
                 <br />
@@ -55,7 +55,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text">{{ t('AGE') }}</label>
                         </div>
-                        <vue-slider v-model="modifiedFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
+                        <vue-slider v-model="usersFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
                     </div>
                 </div>
             </div>
@@ -92,13 +92,7 @@ export default {
             jobs: [],
             users: [],
             groups: [],
-            modifiedFilters: {
-                ageValues: [18, 60],
-                role: "",
-                jobs: [],
-                users: [],
-                groups: []
-            },
+            usersFilters: {},
             value: "",
             /* Age range filter */
             min: 0,
@@ -149,22 +143,24 @@ export default {
                 });
         },
         filterNow: function () {
-            /*   Executing the executeFilters parent function with modifiedFilters as parameters , 
+            /*   Executing the executeFilters parent function with usersFilters as parameters , 
             the executefilters function needs to be called from the component call inside of the parent :  
             <filters  @filters="executeFilters" ></filters> */
             // Displaying loader
             this.loading = true;
+            console.log(this.usersFilters)
             // Storing filters in localStorage, for later displaying - On enregistre les filtres que lutilisateur a choisi dans le localstorage
-            localStorage.setItem('filters', JSON.stringify(this.modifiedFilters));
+            // localStorage.setItem('filters', JSON.stringify(this.usersFilters));
+            this.$store.commit("setUsersFilters",this.usersFilters)
             // Sending filters to the parent component
-            this.$emit("filters", this.modifiedFilters);
+            this.$emit("filters", this.usersFilters);
         },
         initializeFilters: function () {
-            this.modifiedFilters = {
+            this.usersFilters = {
                 ageValues: [18, 60],
             };
-            localStorage.removeItem('filters');
-            this.$emit("filters", this.modifiedFilters);
+             this.$store.commit("deleteUsersFilters")
+            this.$emit("filters", this.usersFilters);
         },
         closeModal: function () {
             this.$modal.hide("filters");
@@ -174,10 +170,8 @@ export default {
         this.readJobsForFilters();
         this.readUsers();
         this.readGroupsForFilters();
-        //Getting filters from localStorage, if they do exist - On va chercher les filtrs dans le local storage si ils ont été utlisés auparavant.
-        if (localStorage.getItem('filters')) {
-            this.modifiedFilters = JSON.parse(localStorage.getItem('filters'));
-        }
+        //Getting filters from vuex store, if they do exist - On va chercher les filtrs dans vuex store si ils ont été utlisés auparavant.
+        this.usersFilters = this.$store.getters.usersFilters
 
     },
 };

@@ -65,7 +65,7 @@
                     <div class="tab-content profile-tab" id="myTabContent">
                         <!-- TABS 1 -->
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                             <userform  :user="this.user" :creationProcess="this.creationProcess"></userform >
+                            <userform :user="this.user" :creationProcess="this.creationProcess"></userform>
                         </div>
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="profile-tab">
                             <uploadfiles @myfilenamesevent="onFileUploads" :user="this.user"></uploadfiles>
@@ -121,6 +121,7 @@
     </modal>
 </div>
 </template>
+
 <script>
 /* GITHUB COMPONENTS */
 import axios from "axios";
@@ -170,11 +171,11 @@ export default {
         messages: Messages,
         groups: Groups,
         messageslist: MessagesList,
-        permissionslist:PermissionsList,
-        userform:UserForm
+        permissionslist: PermissionsList,
+        userform: UserForm
     },
     methods: {
-         readUser: function () {
+        readUser: function () {
             axios
                 .get("readUser?_id=" + this._id)
                 .then(response => {
@@ -201,7 +202,7 @@ export default {
                         text: 'Update is ok !'
                     });
                     // Updating user in memory
-                    this.$store.commit('setUser', this.user) 
+                    this.$store.commit('setUser', this.user)
                 })
                 .catch(error => {
                     console.log(error);
@@ -262,7 +263,7 @@ export default {
             console.log("onmc")
             this.messagesCount = value;
         },
-       
+
         createUser: function () {
             this.creationProcess = true;
             this.user = {
@@ -283,7 +284,7 @@ export default {
                 !this.user.password ||
                 !this.user.prenom ||
                 !this.user.nom ||
-                !this.user.email 
+                !this.user.email
             ) {
                 this.$notify({
                     type: 'error',
@@ -320,38 +321,41 @@ export default {
             this.user = this.$store.getters.user
         }
     },
-    beforeCreate: function () {
-    },
+    beforeCreate: function () {},
     created: function () {
-        // console.log(this.$store.getters.user)
-        // this.user = this.$store.getters.user; // To repair
-         this.user = JSON.parse(localStorage.getItem("user"));
-        
+
+        this.user = this.$store.getters.user;
         this.auth = true;
         this.loaded = true;
     }
 };
 </script>
+
 <style>
 .footer {
     background-color: #2a2a2e;
     border-color: #337ab7;
     color: #FFFFFF;
 }
+
 .error {
     border-color: red;
     background: #fdd;
 }
+
 .error:focus {
     outline-color: #f99;
 }
+
 .valid {
     border-color: #5a5;
     background: #efe;
 }
+
 .valid:focus {
     outline-color: #8e8;
 }
+
 /* ---------------------------------------------------
  PROFILE
 ----------------------------------------------------- */
@@ -359,6 +363,7 @@ export default {
     margin-bottom: 100px !important;
     padding-top: -50px !important;
 }
+
 .emp-profile {
     padding: 3%;
     margin-top: 3%;
@@ -366,13 +371,16 @@ export default {
     border-radius: 0.5rem;
     background: #fff;
 }
+
 .profile-img {
     text-align: center;
 }
+
 .profile-img img {
     width: 70%;
     height: 100%;
 }
+
 .profile-img .file {
     position: relative;
     overflow: hidden;
@@ -383,18 +391,22 @@ export default {
     font-size: 15px;
     background: #212529b8;
 }
+
 .profile-img .file input {
     position: absolute;
     opacity: 0;
     right: 0;
     top: 0;
 }
+
 .profile-head h5 {
     color: #333;
 }
+
 .profile-head h6 {
     color: #0062cc;
 }
+
 .profile-edit-btn {
     border: none;
     border-radius: 1.5rem;
@@ -404,73 +416,89 @@ export default {
     color: #6c757d;
     cursor: pointer;
 }
+
 .proile-rating {
     font-size: 12px;
     color: #818182;
     margin-top: 5%;
 }
+
 .proile-rating span {
     color: #495057;
     font-size: 15px;
     font-weight: 600;
 }
+
 .profile-head .nav-tabs {
     margin-bottom: 5%;
 }
+
 .profile-head .nav-tabs .nav-link {
     font-weight: 600;
     border: none;
     color: maroon;
 }
+
 .profile-head .nav-tabs .nav-link.active {
     border: none;
     border-bottom: 2px solid #0062cc;
 }
+
 .profile-work {
     padding: 14%;
     margin-top: -15%;
 }
+
 .profile-work p {
     font-size: 12px;
     color: #818182;
     font-weight: 600;
     margin-top: 10%;
 }
+
 .profile-work a {
     text-decoration: none;
     color: #495057;
     font-weight: 600;
     font-size: 14px;
 }
+
 .profile-work ul {
     list-style: none;
 }
+
 .profile-tab label {
     font-weight: 600;
 }
+
 .profile-tab p {
     font-weight: 600;
     color: #0062cc;
 }
+
 /* LIST USERS  */
 .card-img-top {
     width: 100%;
     height: 15vw;
     object-fit: cover;
 }
+
 /* TOPBAR */
 .rounded-circle {
     border-radius: 50% !important;
 }
+
 .dropdown-list-image {
     position: relative;
     height: 2.5rem;
     width: 2.5rem;
 }
+
 .dropdown-list-image img {
     height: 2.5rem;
     width: 2.5rem;
 }
+
 .dropdown-list-image .status-indicator {
     background-color: #eaecf4;
     height: 0.75rem;
@@ -481,6 +509,7 @@ export default {
     right: 0;
     border: 0.125rem solid #fff;
 }
+
 /* DAHSBOARD */
 #wrapper {
     position: relative;
@@ -491,23 +520,29 @@ export default {
     max-width: 850px;
     margin: 35px auto;
 }
+
 /* 
 HOME  */
 .container {
     max-width: 960px;
 }
+
 .pricing-header {
     max-width: 700px;
 }
+
 .card-deck .card {
     min-width: 220px;
 }
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
+
 .box-shadow {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }

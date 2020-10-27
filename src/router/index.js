@@ -86,18 +86,19 @@ const routes = [{
         ,
         beforeEnter: (to, from, next) => {
 
-            if (localStorage.getItem('user')) {
-                var user = JSON.parse(localStorage.getItem("user"));
-                console.log(user);
-                if (user.nom !== "anonymous") {
-                    next()
-                } else {
-                    $router.push("/login");
-                }
-            } else {
+            /*       if (localStorage.getItem('user')) {
+                      var user = JSON.parse(localStorage.getItem("user"));
+                      console.log(user);
+                      if (user.nom !== "anonymous") {
+                          next()
+                      } else {
+                          $router.push("/login");
+                      }
+                  } else {
 
-                $router.push("/login");
-            }
+                      $router.push("/login");
+                  } */
+            next()
         }
 
     }
