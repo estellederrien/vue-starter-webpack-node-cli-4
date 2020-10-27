@@ -23,6 +23,17 @@ const Translations = {
                 TEAMS: "Groupes",
                 FTP_FILES: "Fichiers FTP",
 
+                // GROUPS COMPONENT :
+                CREATE_TEAM: "Créer un groupe",
+                ADD_USERS: "Ajouter des utilisateurs",
+                GROUPS_LIST: "Liste des groupes",
+                CLICK_TO_UPDATE: "Cliquez pour modifier",
+                GROUP_CREATED: "Le groupe a été créé",
+                GROUP_UPDATED: "Le groupe a été updaté",
+                GROUP_DELETED: "Le groupe a été supprimé",
+                CONFIRM_DELETION: "Etes vous sur de vouloir supprimer ce groupe ?",
+                ENTER_NAME: "Entrez le nom",
+
                 //FILTERS COMPONENT
                 CHOOSE: "Choisir",
                 FILTER: "Filtrer",
@@ -185,10 +196,20 @@ const Translations = {
                 SKILLS: "Skills",
                 ANSWER: "Answer",
                 FTP_DOWNLOAD: "Download using FTP",
-
                 PERMISSIONS_LIST: "Permissions list",
                 NAME: "Name",
                 USER_HAS_NO_FILES: "User has no files yet .",
+
+                // GROUPS COMPONENT :
+                CREATE_TEAM: "Create a team !",
+                ADD_USERS: "Add users ",
+                GROUPS_LIST: "Team list",
+                CLICK_TO_UPDATE: "Click to update.",
+                GROUP_CREATED: "Team has been created",
+                GROUP_UPDATED: "Team has been updated",
+                GROUP_DELETED: "Team has been deleted",
+                CONFIRM_DELETION: "Are you really sure to delete this team ?",
+                ENTER_NAME: "Enter the name ...",
 
                 // SOCIAL NETWORK
                 ADD_MESSAGE_AS: "Send a message as : ",
@@ -284,7 +305,7 @@ const Translations = {
                 PLEASE_BUILD: "Please build",
                 MY_PROFIT: "My profit "
             },
-            DEUTSH: {
+            GERMAN: {
                 //FIELDS CONTROL TRANSLATIONS
                 FIELD_IS_MANDATORY: "Feld ist obligatorisch",
                 NO_FILTERS_RESULTS: "Chosen filters returns no matches",
@@ -330,6 +351,17 @@ const Translations = {
                 PERMISSIONS_LIST: "Berechtigungsliste",
                 NAME: "Nachname",
                 USER_HAS_NO_FILES: "Benutzer hat noch keine Dateien.",
+
+                // GROUPS COMPONENT :
+                CREATE_TEAM: "Erstelle ein Team!",
+                ADD_USERS: "Benutzer hinzufügen ",
+                GROUPS_LIST: "Teamliste",
+                CLICK_TO_UPDATE: "Zum Aktualisieren klicken.",
+                GROUP_CREATED: "Team wurde erstellt",
+                GROUP_UPDATED: "Team wurde aktualisiert",
+                GROUP_DELETED: "Team wurde gelöscht",
+                CONFIRM_DELETION: "Sind Sie wirklich sicher, dieses Team zu löschen?",
+                ENTER_NAME: "Geben Sie den Namen ein ...",
 
                 // SOCIAL NETWORK
                 ADD_MESSAGE_AS: "Nachricht senden als : ",
@@ -445,6 +477,7 @@ const Translations = {
                 TEAMS: "Equipos",
                 FTP_FILES: "Archivos Ftp",
 
+
                 //FILTERS COMPONENT
                 CHOOSE: "Elegir",
                 FILTER: "Filtro",
@@ -470,6 +503,18 @@ const Translations = {
                 PERMISSIONS_LIST: "Lista de permisos",
                 NAME: "Nombre",
                 USER_HAS_NO_FILES: "El usuario aún no tiene archivos.",
+
+
+                // GROUPS COMPONENT :
+                CREATE_TEAM: "¡Crea un equipo!",
+                ADD_USERS: "Agregar usuarios.",
+                GROUPS_LIST: "Lista de equipos.",
+                CLICK_TO_UPDATE: "Haga clic para actualizar.",
+                GROUP_CREATED: "Se ha creado el equipo",
+                GROUP_UPDATED: "El equipo se ha actualizado",
+                GROUP_DELETED: "El equipo ha sido eliminado",
+                CONFIRM_DELETION: "¿Estás realmente seguro de eliminar este equipo?",
+                ENTER_NAME: "Ingrese el nombre ...",
 
                 // SOCIAL NETWORK
                 ADD_MESSAGE_AS: "Enviar mensaje como : ",
@@ -612,6 +657,18 @@ const Translations = {
                 NAME: "नाम",
                 USER_HAS_NO_FILES: "उपयोगकर्ता के पास अभी तक कोई फ़ाइल नहीं है।",
 
+
+                // GROUPS COMPONENT :
+                CREATE_TEAM: "एक टीम बनाएं!",
+                ADD_USERS: "उपयोगकर्ता जोड़ें",
+                GROUPS_LIST: "टीम सूची",
+                CLICK_TO_UPDATE: "अपडेट करने के लिए क्लिक करें।",
+                GROUP_CREATED: "टीम बनाई गई है",
+                GROUP_UPDATED: "टीम अपडेट हो गई है",
+                GROUP_DELETED: "टीम हटा दी गई है",
+                CONFIRM_DELETION: "क्या आप वाकई इस टीम को हटाना सुनिश्चित कर रहे हैं?",
+                ENTER_NAME: "नाम दर्ज करें ...",
+
                 // SOCIAL NETWORK
                 ADD_MESSAGE_AS: "संदेश को इस रूप में भेजें",
                 ENTER_TITLE: "शीर्षक दर्ज करें ...",
@@ -751,6 +808,17 @@ const Translations = {
                 PERMISSIONS_LIST: "权限列表",
                 NAME: "名称",
                 USER_HAS_NO_FILES: "用户还没有文件。",
+
+                // GROUPS COMPONENT :
+                CREATE_TEAM: "创建团队",
+                ADD_USERS: "添加用户",
+                GROUPS_LIST: "团队列表",
+                CLICK_TO_UPDATE: "单击更新。",
+                GROUP_CREATED: "团队已创建",
+                GROUP_UPDATED: "团队已更新",
+                GROUP_DELETED: "团队已删除",
+                CONFIRM_DELETION: "您确定要删除此小组吗？",
+                ENTER_NAME: "输入名称...",
 
                 // SOCIAL NETWORK
                 ADD_MESSAGE_AS: "发送为",
