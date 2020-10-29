@@ -84,7 +84,7 @@ module.exports = function(app, db, middleware, Job, ObjectId) {
      * @return JSON ARRAY
      * @error  
      */
-    app.post("/readJobs", function(req, res) {
+    app.get("/readJobs", function(req, res) {
         db.collection("jobs")
             .find()
             .sort({ name: 1 })

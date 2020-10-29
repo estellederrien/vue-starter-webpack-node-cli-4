@@ -216,7 +216,7 @@ export default {
         },
         readGroups: function () {
             axios
-                .post("/readGroups")
+                .get("/readGroups")
                 .then(response => {
                     this.groups = response.data;
                 })

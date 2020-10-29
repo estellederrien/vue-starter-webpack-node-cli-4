@@ -97,7 +97,7 @@ module.exports = function(app, db, middleware, Group, ObjectId) {
      * @return json ARRAY
      * @error
      */
-    app.post("/readGroups", function(req, res) {
+    app.get("/readGroups", function(req, res) {
         db.collection("groups")
             .find()
             .sort({ name: 1 })
