@@ -151,6 +151,10 @@ export default {
                         {
                             href: "/generic_crud",
                             title: this.$translate.text('GENERIC_CRUD')
+                        },
+                        {
+                            href: "/mongoose_populate",
+                            title: "Mongoose populate"
                         }
                     ]
                 },
@@ -231,6 +235,10 @@ export default {
                         {
                             href: "/generic_crud",
                             title: this.$translate.text('GENERIC_CRUD')
+                        },
+                        {
+                            href: "/mongoose_populate",
+                            title: "Mongoose populate"
                         }
                     ]
                 },
