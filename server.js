@@ -21,10 +21,7 @@ const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
 // -------------------------------
 // LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE 
 // -------------------------------
-const User = require("./models/user");
-const Group = require("./models/group");
-const Message = require("./models/message");
-const Event = require("./models/event");
+const models = require('./models/models');
 
 // ------------------------------------ 
 // LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle de permissions sur les web services
@@ -141,19 +138,19 @@ function load_auth(db) {
  * @error  none
  */
 function load_cruds(db) {
-    require("./cruds/users_crud.js")(app, db, middleware, bcrypt, User, ObjectId);
+    require("./cruds/users_crud.js")(app, db, middleware, bcrypt, models.User, ObjectId);
     require("./cruds/files_crud.js")(app, db, middleware, config.ftp_config, config.node_file_path, fs, bodyParser);
     require("./cruds/pictures_crud.js")(app, db, middleware, config.cloudinary_token);
-    require("./cruds/groups_crud.js")(app, db, middleware, Group, ObjectId);
-    require("./cruds/messages_crud.js")(app, db, middleware, Message, ObjectId);
+    require("./cruds/groups_crud.js")(app, db, middleware, models.Group, ObjectId);
+    require("./cruds/messages_crud.js")(app, db, middleware, models.Message, ObjectId);
 
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
-    const models = require('./models/models');
     app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
     app.use('/api/things', require("./cruds/generic_crud.js")(models.things, middleware));
     app.use('/api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
     app.use('/api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
 
+    // TRYING OUT MONGODB POPULATE
     require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
 

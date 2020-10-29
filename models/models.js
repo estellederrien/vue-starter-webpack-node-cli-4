@@ -1,6 +1,7 @@
 //models.js
 const mongoose = require('mongoose');
 
+var ObjectId = require('mongodb').ObjectID;
 // ===============
 // Database Config
 // ===============
@@ -10,6 +11,60 @@ mongoose.connect("mongodb+srv://jose:windsurf@cluster0-6kmcn.azure.mongodb.net/v
 // =======
 // Schemas
 // =======
+
+// USER SCHEMA
+const UserSchema = new Schema({
+    _id: ObjectId,
+    prenom: { type: String, required: true },
+    nom: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    role: String,
+    permissions: Array,
+    filenames: Array,
+    groups: Array,
+    last_update: String,
+    img: String,
+    birthday: String,
+    age: Number,
+    job: String,
+    mentra: String,
+    social_messages: Array
+});
+
+// GROUP SCHEMA
+const GroupSchema = new Schema({
+    _id: ObjectId,
+    name: String,
+    creation_date: String,
+    users: Array
+});
+
+// MESSAGE SCHEMA
+const MessageSchema = new Schema({
+    _id: ObjectId,
+    to: String,
+    from: String,
+    content: String,
+    senderName: String,
+    senderSurname: String,
+    date: String,
+    id: String,
+    img: String
+});
+
+// EVENT SCHEMA
+const EventSchema = new Schema({
+    _id: ObjectId,
+    start: Date,
+    end: Date,
+    title: String,
+    content: String,
+    contentFull: String,
+    class: String
+});
+
+
 
 const jokesSchema = new Schema({
     content: String,
@@ -44,6 +99,12 @@ const storySchema = Schema({
 
 
 const models = {};
+
+models.User = mongoose.model('User', UserSchema);
+models.Group = mongoose.model('Group', GroupSchema);
+models.Message = mongoose.model('Message', MessageSchema);
+models.Event = mongoose.model('Event', EventSchema);
+
 models.Jokes = mongoose.model('jokes', jokesSchema);
 models.jobs = mongoose.model('jobs', JobSchema);
 models.things = mongoose.model('things', ThingSchema);
