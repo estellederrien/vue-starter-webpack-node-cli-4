@@ -133,8 +133,6 @@ export default {
     },
     mounted: function () {
         this.read_things();
-        this.read_persons();
-         this.read_stories();
     }
 };
 </script>
