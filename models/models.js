@@ -83,13 +83,13 @@ const ThingSchema = new Schema({
     creation_date: Date
 });
 
-// tRYING OUT POPULATE EXAMPLE iN GenericCrudExamples.vue
+// tRYING OUT POPULATE EXAMPLE iN mongoosePopulate.vue
 const personSchema = Schema({
     _id: Schema.Types.ObjectId,
     name: String,
     age: Number
 });
-// tRYING OUT  POPULATE EXAMPLE  iN GenericCrudExamples.vue
+// tRYING OUT  POPULATE EXAMPLE   iN mongoosePopulate.vue
 const storySchema = Schema({
     author: { type: Schema.Types.ObjectId, ref: 'Personnes' },
     title: String,
