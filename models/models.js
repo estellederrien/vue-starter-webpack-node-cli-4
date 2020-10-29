@@ -6,7 +6,7 @@ var ObjectId = require('mongodb').ObjectID;
 // Database Config
 // ===============
 const Schema = mongoose.Schema;
-mongoose.connect("mongodb+srv://jose:windsurf@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://jose:" + process.env.mongodb_atlas_pwd + "@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority", { useNewUrlParser: true });
 
 // =======
 // Schemas
