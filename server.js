@@ -56,6 +56,8 @@ if (port == 80) {
     app.use(cors());
     // It's heroku, so we need this : 
     get_heroku_env_vars();
+
+
 }
 
 // -------------------------------

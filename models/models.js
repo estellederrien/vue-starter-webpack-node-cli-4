@@ -11,7 +11,15 @@ const Schema = mongoose.Schema;
 // ===============
 // Mongoose Database Connect
 // ===============
-mongoose.connect("mongodb+srv://jose:windsurf@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority", { useNewUrlParser: true });
+if (process.env.mongodb_atlas_pwd) {
+    mongoose.connect("mongodb+srv://jose:" + process.env.mongodb_atlas_pwd + "@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority", { useNewUrlParser: true });
+} else {
+    mongoose.connect(config.mongoDb_atlas_db, { useNewUrlParser: true });
+}
+
+//mongoose.connect(config.mongoDb_atlas_db, { useNewUrlParser: true }); NOT WORKING 
+
+
 // =======
 // Schemas
 // =======
