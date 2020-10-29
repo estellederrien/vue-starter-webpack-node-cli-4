@@ -76,6 +76,23 @@ module.exports = (Collection, middleware) => {
         });
     };
 
+    // =========
+    // Read many using Populate
+    // =========
+    /*     const readManyPopulate = (req, res) => {
+            let query = res.locals.query || {};
+
+            Collection.find().
+            populate('author').
+            exec(function(err, result) {
+                if (err) return handleError(err);
+                res.send(result);
+
+            });
+        }; */
+
+
+
     // ======
     // Routes
     // ======
@@ -87,6 +104,8 @@ module.exports = (Collection, middleware) => {
     router.get('/:_id', readOne);
     router.put('/:_id', update);
     router.delete('/:_id', remove);
+
+    // router.get('/readManyPopulate', readManyPopulate);
 
     return router;
 

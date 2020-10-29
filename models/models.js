@@ -32,14 +32,13 @@ const ThingSchema = new Schema({
 const personSchema = Schema({
     _id: Schema.Types.ObjectId,
     name: String,
-    age: Number,
-    stories: [{ type: Schema.Types.ObjectId, ref: 'Story' }]
+    age: Number
 });
 // tRYING OUT  POPULATE EXAMPLE  iN GenericCrudExamples.vue
 const storySchema = Schema({
-    author: { type: Schema.Types.ObjectId, ref: 'Person' },
+    author: { type: Schema.Types.ObjectId, ref: 'Personnes' },
     title: String,
-    fans: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
+    fans: [{ type: Schema.Types.ObjectId, ref: 'Personnes' }]
 });
 
 
@@ -48,7 +47,7 @@ const models = {};
 models.Jokes = mongoose.model('jokes', jokesSchema);
 models.jobs = mongoose.model('jobs', JobSchema);
 models.things = mongoose.model('things', ThingSchema);
-models.Story = mongoose.model('Story', storySchema);
-models.Person = mongoose.model('Person', personSchema);
+models.stories = mongoose.model('Story', storySchema);
+models.personnes = mongoose.model('Personnes', personSchema);
 
 module.exports = models;

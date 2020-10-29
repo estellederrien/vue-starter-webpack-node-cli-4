@@ -147,13 +147,14 @@ function load_cruds(db) {
     require("./cruds/groups_crud.js")(app, db, middleware, Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, Message, ObjectId);
 
-
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
     const models = require('./models/models');
     app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
     app.use('/api/things', require("./cruds/generic_crud.js")(models.things, middleware));
+    app.use('/api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
+    app.use('/api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
 
-
+    require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
 
 /*
