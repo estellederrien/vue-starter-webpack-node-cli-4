@@ -77,7 +77,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 - Users CRUD<br />
 - MongoDb atlas Auth system<br />
 - Middleware file dedicated to the web services (middleware.js)<br />
-- Mongoose schema modeler <br />
+- Mongoose schema modeler and POPULATE features Json Objects joints<br />
 - Permissions and Role store <br />
 - FTP Files management <br />
 - Dashboard with some graphicals libs (Apex charts)<br />
