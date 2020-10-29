@@ -150,9 +150,9 @@ export default {
                 });
         },
         create_story: function () {
-            console.log(this.persons[1]._id)
+
             this.story.author = this.persons[1]._id
-            console.log(this.story)
+
             axios
                 .post("/api/stories", this.story)
                 .then(response => {
