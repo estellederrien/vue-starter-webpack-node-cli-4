@@ -4,6 +4,7 @@
         <div class="col-md-12 col-xs-6">
             <div class="card">
                 <div class="card-body">
+                     <img style="width:300px;height:200px" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5IllY723--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/a3exuz06e9h212pandfr.png"></img>
                     <h5 class="card-title">Using Reusable crud (generic_crud.js): Crud on things data model :</h5>
                     <div class="row">
                         <div class="col-md-2">
