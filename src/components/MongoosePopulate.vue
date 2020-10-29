@@ -4,6 +4,8 @@
         <div class="col-md-12 col-xs-6">
             <div class="card">
                 <div class="card-body">
+
+                    <img src="https://images.opencollective.com/frontendmasters/0b9cda4/logo/256.png"></img>
                     <h5 class="card-title">JSON SQL joints using mongoose POPULATE()<br> Insert 1 person _id and N users _id in a story object , and read it:</h5>
                     <a href=" https://mongoosejs.com/docs/populate.html"> https://mongoosejs.com/docs/populate.html</a><br><br>
                     <div class="row">
