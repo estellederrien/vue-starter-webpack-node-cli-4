@@ -266,7 +266,7 @@ export default {
 
 /* -----------------------------------------------------------------------MEDIAS QUERIES --------------------------------------------------------------------- */
 /* SMARTPHONES PORTRAIT */
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 260px) {
 
     .message-modal {
 
@@ -279,7 +279,7 @@ export default {
     }
 
     label {
-        font-size: 10px!important;
+        font-size: 10px !important;
     }
 
     .btn {
@@ -288,13 +288,18 @@ export default {
     }
 
     .input-group-text {
-        font-size: 10px!important;
+        font-size: 10px !important;
+    }
+
+    .v--modal {
+
+        margin-top: 80px;
     }
 }
 
 /* SMARTPHONES LANDSCAPE */
 @media only screen and (max-width: 480px) {
-    
+
     .message-modal {
 
         width: 300px;
@@ -306,7 +311,7 @@ export default {
     }
 
     label {
-        font-size: 10px!important;
+        font-size: 10px !important;
     }
 
     .btn {
@@ -315,7 +320,12 @@ export default {
     }
 
     .input-group-text {
-        font-size: 10px!important;
+        font-size: 10px !important;
+    }
+
+    .v--modal {
+
+        margin-top: 80px;
     }
 }
 
@@ -348,6 +358,11 @@ export default {
         left: 35%;
     }
 
+    .v--modal {
+
+        margin-top: 80px;
+    }
+
 }
 
 /* TABLET LANDSCAPE / DESKTOP */
@@ -368,6 +383,11 @@ export default {
     .loader {
         width: 200px !important;
         height: 150px !important;
+    }
+
+    .v--modal {
+
+        margin-top: 80px;
     }
 
 }
