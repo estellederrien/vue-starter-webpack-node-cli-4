@@ -213,7 +213,7 @@ export default {
 }
 
 .tab-pane {
-    min-height: 350px !important;
+    min-height: 380px !important;
 }
 
 .b-icon {

@@ -291,10 +291,7 @@ export default {
         font-size: 10px !important;
     }
 
-    .v--modal {
-
-        margin-top: 80px;
-    }
+    
 }
 
 /* SMARTPHONES LANDSCAPE */
@@ -323,10 +320,7 @@ export default {
         font-size: 10px !important;
     }
 
-    .v--modal {
-
-        margin-top: 80px;
-    }
+    
 }
 
 /* TABLETS PORTRAIT */
@@ -357,11 +351,9 @@ export default {
         width: 300px;
         left: 35%;
     }
+   
+  
 
-    .v--modal {
-
-        margin-top: 80px;
-    }
 
 }
 
@@ -385,11 +377,7 @@ export default {
         height: 150px !important;
     }
 
-    .v--modal {
-
-        margin-top: 80px;
-    }
-
+  
 }
 
 /* LARGE SCREENS more than 22" */
@@ -612,4 +600,9 @@ CHANGE ALL MODALS BEHAVIOR */
     position: relative !important;
     overflow: visible !important;
 }
+  .v--modal {
+
+        margin-top: 60px !important;
+    }
+
 </style>
