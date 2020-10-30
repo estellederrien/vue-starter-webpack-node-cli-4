@@ -14,13 +14,15 @@
                             <b-icon icon="filter" aria-hidden="true"></b-icon> Standard</strong>
                         </template>
 
-                        <b-form-group label-cols-lg="3" label="Résumé" label-size="lg" label-class="font-weight-bold pt-0" class="mb-0">
-                            <b-form-group label-cols-sm="3" label="User:" label-align-sm="right" label-for="nested-street">
+                        <b-form-group label-cols-lg="3" label="Standard" label-size="lg" label-class="font-weight-bold pt-0" class="mb-0">
+                            
+                            <b-form-group label-cols-sm="3" label="Role:" label-align-sm="right" label-for="nested-street">
                                 <select class="form-control" v-model="usersFilters.role">
-                                    <option value>{{ t('CHOOSE') }} </option>
+                                    <option value="">{{ t('CHOOSE') }} </option>
                                     <option value="viewer">Viewer</option>
                                     <option value="user">User</option>
                                     <option value="manager">Manager</option>
+                                     <option value="administrator">Administrator</option>
                                 </select>
                             </b-form-group>
                             <b-form-group label-cols-sm="3" label="Jobs:" label-align-sm="right" label-for="jobs">
@@ -31,14 +33,13 @@
                                 <multiselect class="form-input" v-model="usersFilters.groups" :multiple="true" :options="groups" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
                                 <pre class="language-json"><code>{{ value }}</code></pre>
                             </b-form-group>
-                             <b-form-group label-cols-sm="3" label="Users:" label-align-sm="right" label-for="users">
+                            <b-form-group label-cols-sm="3" label="Users:" label-align-sm="right" label-for="users">
                                 <multiselect class="form-input" v-model="usersFilters.users" :multiple="true" :options="users" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
-                                    <pre class="language-json"><code>{{ value }}</code></pre>
+                                <pre class="language-json"><code>{{ value }}</code></pre>
                             </b-form-group>
-                             <b-form-group label-cols-sm="3" label="Age:" label-align-sm="right" label-for="age">
-                               <vue-slider v-model="usersFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
-                              </b-form-group>
-                           
+                            <b-form-group label-cols-sm="3" label="Age:" label-align-sm="right" label-for="age">
+                                <vue-slider v-model="usersFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
+                            </b-form-group>
 
                         </b-form-group>
                     </b-tab>
@@ -114,7 +115,9 @@ export default {
             jobs: [],
             users: [],
             groups: [],
-            usersFilters: {},
+            usersFilters: {
+                role: ""
+            },
             value: "",
             /* Age range filter */
             min: 0,
@@ -177,6 +180,7 @@ export default {
         initializeFilters: function () {
             this.usersFilters = {
                 ageValues: [18, 60],
+                role:""
             };
             this.$store.commit("deleteUsersFilters")
             this.$emit("filters", this.usersFilters);
@@ -216,8 +220,8 @@ export default {
     margin-right: 5px
 }
 
-.col-form-label{
-    max-height:80px !important;
+.col-form-label {
+    max-height: 80px !important;
 }
 
 /* .form-control{
