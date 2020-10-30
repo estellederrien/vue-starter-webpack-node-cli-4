@@ -150,11 +150,11 @@ export default {
                         },
                         {
                             href: "/generic_crud",
-                            title: this.$translate.text('GENERIC_CRUD')
+                            title: "Generic Crud example"
                         },
                         {
                             href: "/mongoose_populate",
-                            title: "Mongoose populate"
+                            title: "Mongoose Populate example"
                         }
                     ]
                 },

@@ -6,60 +6,82 @@
             <b> <i class="fas fa-filter"></i> {{ t('FILTERS') }} </b>
         </label>
         <button @click="closeModal" class="btn btn-primary float-right">X</button>
-    </div>
-    <div class="card-body d-flex flex-column" style="">
-        <div class="row">
-            <div class="col-md-6" style="padding:30px">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text">{{ t('ROLE') }}</label>
-                    </div>
-                    <select class="form-control" v-model="usersFilters.role">
-                        <option value>{{ t('CHOOSE') }} </option>
-                        <option value="viewer">Viewer</option>
-                        <option value="user">User</option>
-                        <option value="manager">Manager</option>
-                    </select>
-                </div>
-                <br />
-                <div class="input-group mb-3">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text">{{ t('JOB') }}</label>
-                        </div>
-                        <multiselect class="form-control" v-model="usersFilters.jobs" :multiple="true" :options="jobs" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
-                        <pre class="language-json"><code>{{ value}}</code></pre>
-                    </div>
-                    <br />
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text">{{ t('TEAMS') }}</label>
-                    </div>
-                    <multiselect class="form-control" v-model="usersFilters.groups" :multiple="true" :options="groups" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
-                    <pre class="language-json"><code>{{ value }}</code></pre>
-                </div>
-                <br />
-            </div>
-            <div class="col-md-6" style="padding:30px">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text">{{ t('USER') }}</label>
-                    </div>
-                    <multiselect class="form-control" v-model="usersFilters.users" :multiple="true" :options="users" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
-                    <pre class="language-json"><code>{{ value }}</code></pre>
-                </div>
-                <br />
-                <div class="mb-3">
-                    <div>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text">{{ t('AGE') }}</label>
-                        </div>
-                        <vue-slider v-model="usersFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <b-card no-body bg-variant="light">
+                <b-tabs bg-variant="light">
+                    <b-tab active style="padding:20px">
+                        <template #title>
+                            <b-icon icon="filter" aria-hidden="true"></b-icon> Standard</strong>
+                        </template>
 
+                        <b-form-group label-cols-lg="3" label="Résumé" label-size="lg" label-class="font-weight-bold pt-0" class="mb-0">
+                            <b-form-group label-cols-sm="3" label="User:" label-align-sm="right" label-for="nested-street">
+                                <select class="form-control" v-model="usersFilters.role">
+                                    <option value>{{ t('CHOOSE') }} </option>
+                                    <option value="viewer">Viewer</option>
+                                    <option value="user">User</option>
+                                    <option value="manager">Manager</option>
+                                </select>
+                            </b-form-group>
+                            <b-form-group label-cols-sm="3" label="Jobs:" label-align-sm="right" label-for="jobs">
+                                <multiselect class="form-input" v-model="usersFilters.jobs" :multiple="true" :options="jobs" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
+                                <pre class="language-json"><code>{{ value}}</code></pre>
+                            </b-form-group>
+                            <b-form-group label-cols-sm="3" label="Teams:" label-align-sm="right" label-for="teams">
+                                <multiselect class="form-input" v-model="usersFilters.groups" :multiple="true" :options="groups" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
+                                <pre class="language-json"><code>{{ value }}</code></pre>
+                            </b-form-group>
+                             <b-form-group label-cols-sm="3" label="Users:" label-align-sm="right" label-for="users">
+                                <multiselect class="form-input" v-model="usersFilters.users" :multiple="true" :options="users" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="Choix multiple"></multiselect>
+                                    <pre class="language-json"><code>{{ value }}</code></pre>
+                            </b-form-group>
+                             <b-form-group label-cols-sm="3" label="Age:" label-align-sm="right" label-for="age">
+                               <vue-slider v-model="usersFilters.ageValues" :tooltip="'always'" :enable-cross="false"></vue-slider>
+                              </b-form-group>
+                           
+
+                        </b-form-group>
+                    </b-tab>
+                    <b-tab style="padding:20px">
+                        <template #title>
+                            <b-icon icon="bar-chart-line-fill  " aria-hidden="true"></b-icon> Sorting
+                        </template>
+                        <b-form-group label-cols-lg="3" label="Sorting : Comin' soon" label-size="lg" label-class="font-weight-bold pt-0" class="mb-0">
+                            <b-form-group label-cols-sm="3" label="Street:" label-align-sm="right" label-for="nested-street">
+                                <b-form-input id="nested-street"></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group label-cols-sm="3" label="City:" label-align-sm="right" label-for="nested-city">
+                                <b-form-input id="nested-city"></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group label-cols-sm="3" label="State:" label-align-sm="right" label-for="nested-state">
+                                <b-form-input id="nested-state"></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group label-cols-sm="3" label="Country:" label-align-sm="right" label-for="nested-country">
+                                <b-form-input id="nested-country"></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group label-cols-sm="3" label="Ship via:" label-align-sm="right" class="mb-0">
+                                <b-form-radio-group class="pt-2" :options="['Air', 'Courier', 'Mail']"></b-form-radio-group>
+                            </b-form-group>
+                        </b-form-group>
+                    </b-tab>
+                    <b-tab style="padding:20px">
+                        <template #title>
+                            <b-icon icon="box-seam" aria-hidden="true"></b-icon> Dynamic
+                        </template>
+                        <b-card-text>Comin soon 3</b-card-text>
+                    </b-tab>
+                    <b-tab style="padding:20px">
+                        <template #title>
+                            <b-icon icon="bricks" aria-hidden="true"></b-icon> Generated
+                        </template>
+                        <b-card-text>Comin soon 4</b-card-text>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
         </div>
         <div class="card-footer float-right">
             <!-- LOADING PIC -->
@@ -116,18 +138,15 @@ export default {
                     this.jobs = this.jobs.map(function (item) {
                         return item["name"];
                     });
-
                 })
                 .catch(error => {
                     console.log(error);
-
                 });
         },
         readGroupsForFilters: function () {
             axios.post("/readGroupsForFilters")
                 .then((response) => {
                     this.groups = response.data;
-
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -151,7 +170,7 @@ export default {
             console.log(this.usersFilters)
             // Storing filters in localStorage, for later displaying - On enregistre les filtres que lutilisateur a choisi dans le localstorage
             // localStorage.setItem('filters', JSON.stringify(this.usersFilters));
-            this.$store.commit("setUsersFilters",this.usersFilters)
+            this.$store.commit("setUsersFilters", this.usersFilters)
             // Sending filters to the parent component
             this.$emit("filters", this.usersFilters);
         },
@@ -159,7 +178,7 @@ export default {
             this.usersFilters = {
                 ageValues: [18, 60],
             };
-             this.$store.commit("deleteUsersFilters")
+            this.$store.commit("deleteUsersFilters")
             this.$emit("filters", this.usersFilters);
         },
         closeModal: function () {
@@ -172,7 +191,6 @@ export default {
         this.readGroupsForFilters();
         //Getting filters from vuex store, if they do exist - On va chercher les filtrs dans vuex store si ils ont été utlisés auparavant.
         this.usersFilters = this.$store.getters.usersFilters
-
     },
 };
 </script>
@@ -189,4 +207,25 @@ export default {
 .app-content {
     padding: 40px 15px;
 }
+
+.tab-pane {
+    min-height: 350px !important;
+}
+
+.b-icon {
+    margin-right: 5px
+}
+
+.col-form-label{
+    max-height:80px !important;
+}
+
+/* .form-control{
+    border:white
+}
+
+.label{
+    float:left;
+} */
+/* .input-group {border: 1px solid black;} */
 </style>
