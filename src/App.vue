@@ -377,6 +377,11 @@ export default {
         height: 150px !important;
     }
 
+      .v--modal {
+
+        margin-top: 60px !important;
+    }
+
   
 }
 
@@ -600,9 +605,6 @@ CHANGE ALL MODALS BEHAVIOR */
     position: relative !important;
     overflow: visible !important;
 }
-  .v--modal {
 
-        margin-top: 60px !important;
-    }
 
 </style>
