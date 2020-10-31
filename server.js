@@ -223,7 +223,7 @@ function mysql_connect() {
 }
 
 /*
- * Create db if no exist
+ * Create db if no exist.
  * @params config.json
  * @return none
  * @error  none
