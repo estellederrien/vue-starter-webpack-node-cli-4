@@ -7,7 +7,7 @@ module.exports = {
             phone: "",
             profession: "",
             email: "admin@admin.com",
-            password: bcrypt.hashSync("admin", 10),
+            password: "$2a$10$VEG2PKwjp5VzebdKCTF0Nu1v1jcyUuB.mXKwd3NJ2uH6XVrxAeKTG",
             img: "",
             filenames: [],
             role: "administrator",
