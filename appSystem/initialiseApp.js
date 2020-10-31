@@ -7,11 +7,19 @@ module.exports = {
             phone: "",
             profession: "",
             email: "admin@admin.com",
-            password: "admin",
+            password: bcrypt.hashSync("admin", 10),
             img: "",
             filenames: [],
-            role: "administrator"
+            role: "administrator",
+            permissions: middleware.create_permissions("administrator"),
+            filenames: [],
+            groups: [],
+            social_messages: [],
+            last_update: new Date(),
+            job: "Administrator",
+            mentra: "Im the admin"
         };
+
 
         admin.middleware = middleware.create_permissions(admin);
 
