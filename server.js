@@ -16,9 +16,12 @@ const { MongoClient, ObjectID } = require("mongodb"); // Object is needed when C
 const ObjectId = require("mongodb").ObjectID; // This is needed in all web services for mongoDb updates :
 const fs = require("fs");
 const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
+
 // Mysql
 const { Sequelize } = require('sequelize');
 const mysql = require('mysql2/promise');
+const system = require('system-commands')
+
 // -------------------------------
 // LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE 
 // -------------------------------
@@ -58,6 +61,7 @@ if (port == 80) {
 if (port == 80) {
     // LOCALHOST AND OPENODE 
     mysql_initialize();
+    mysql_crud_routes_generation();
 } else {
     // It's heroku, so we need this to hide credentials: 
     get_heroku_env_vars();
@@ -220,6 +224,7 @@ function mysql_connect() {
         .catch(err => {
             console.error('Unable to connect to the database:', err);
         });
+
 }
 
 /*
@@ -236,6 +241,27 @@ async function mysql_initialize() {
     mysql_connect();
 }
 
+/*
+ * Create all Mysql DB Cruds and Routes  automatically !! - See https://github.com/o1lab/xmysql
+ * No need to write generic back ends .
+ *  GET 	/ 	Gets all REST APIs
+    GET 	/api/tableName 	Lists rows of table
+    POST 	/api/tableName 	Create a new row
+    PUT 	/api/tableName 	Replaces existing row with new row
+    POST 🔥 /api/tableName/bulk 	Create multiple rows - send object array in request body
+    GET 🔥 	/api/tableName/bulk 	Lists multiple rows - /api/tableName/bulk?_ids=1,2,3
+    DELETE 🔥 /api/tableName/bulk 	Deletes multiple rows - /api/tableName/bulk?_ids=1,2,3
+ * @params config.json
+ * @return none
+ * @error  none
+ */
+async function mysql_crud_routes_generation() {
+    system('xmysql -h localhost -u root -p password -d ' + config.mysql.name).then(output => {
+        console.log(output)
+    }).catch(error => {
+        console.error(error)
+    })
+}
 /*
  * Create models if no exist
  * @params none
