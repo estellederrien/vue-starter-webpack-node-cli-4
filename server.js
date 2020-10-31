@@ -2,7 +2,6 @@
 // LOAD APP CONFIG ( FTP TOKEN,CLOUDINARY TOKEN,MONGODB ATLAS TOKEN, etc ...)- ON CHARGE LA CONFIGURATION DE L'APP ( FTP,CLOUDINARY,DB URL, etc ...)
 // -------------------------------
 const config = require("./config.json");
-
 // ------------------------------
 // LOAD OFFICIAL NODE MODULES - CHARGEMENT DES MODULES NODES 
 // -------------------------------
@@ -17,32 +16,30 @@ const { MongoClient, ObjectID } = require("mongodb"); // Object is needed when C
 const ObjectId = require("mongodb").ObjectID; // This is needed in all web services for mongoDb updates :
 const fs = require("fs");
 const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
-
+// Mysql
+const { Sequelize } = require('sequelize');
+const mysql = require('mysql2/promise');
 // -------------------------------
 // LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE 
 // -------------------------------
 const models = require('./models/models');
-
 // ------------------------------------ 
 // LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle de permissions sur les web services
 // -------------------------------
 const middleware = require("./appSystem/middleware.js");
-
 // -------------------------------
 // THIS IS AN EXPRESS APP
 // -------------------------------
 const app = express();
-
 // -------------------------------
 // MANAGING SERVER PORT - GESTION DES PORTS
 // -------------------------------
 const port = process.env.PORT || 80;
-
 // -------------------------------
 // CORS - GESTION DE LA PROTECTION CORS 
 // -------------------------------
 if (port == 80) {
-    // LOCALHOST AND OPENODE
+    // LOCALHOST AND OPENODE 
     app.use(
         require("cors")({
             origin: function(origin, callback) {
@@ -54,18 +51,21 @@ if (port == 80) {
 } else {
     // AZURE AND HEROKU
     app.use(cors());
-    // It's heroku, so we need this : 
-    get_heroku_env_vars();
-
-
 }
-
+// -------------------------------
+// OTHER RELATED PORTS FUNCTIONS  (CONNEXION TO OTHERS DATABASE IF LOCALHOST)
+// -------------------------------
+if (port == 80) {
+    // LOCALHOST AND OPENODE 
+    mysql_initialize();
+} else {
+    // It's heroku, so we need this to hide credentials: 
+    get_heroku_env_vars();
+}
 // -------------------------------
 // USING SESSIONS - UTILISATION DES SESSIONS
 // -------------------------------             
 app.use(session({ secret: "ssshhhhh", saveUninitialized: true, resave: true }));
-// var sess = {};
-
 // -------------------------------
 // MANAGING FILES AND STATICS DIRECTORIES 
 // -------------------------------
@@ -75,7 +75,6 @@ app.use(serveStatic(__dirname + "/dist"));
 app.use(express.static(__dirname + "/tmp"));
 // UPLOADS : FILES STORING DIRECTORY
 app.use(express.static(__dirname + "/tmp/files"));
-
 // -------------------------------
 // MANAGING JSON AND BODY PARSER PARAMS 
 // -------------------------------
@@ -95,16 +94,13 @@ app.use(
         strict: false,
     })
 );
-
 // -------------------------------
 // POOL CONNEXION DATABASE 
 // -------------------------------
 // This is Needed 
 var db;
-
 // Dev or prod ( Set in config.json)
 if (config.dev == true) { var url = config.localhost_db; } else { var url = config.mongoDb_atlas_db; }
-
 // DB Connexion POOL
 MongoClient.connect(url, function(err, client) {
     if (err) {
@@ -118,11 +114,9 @@ MongoClient.connect(url, function(err, client) {
         write_connexion_to_logs();
     }
 });
-
 // -------------------------------
 // HELPER FUNCTIONS
 // -------------------------------
-
 /*
  * MongoDb atlas authentication - identification sur mongoDb atlas
  * @params db
@@ -132,7 +126,6 @@ MongoClient.connect(url, function(err, client) {
 function load_auth(db) {
     require("./appSystem/auth.js")(app, db, session, bcrypt, logStream);
 }
-
 /*
  * Load CRUD one by one - Charger les cruds un par un 
  * @params db
@@ -145,16 +138,16 @@ function load_cruds(db) {
     require("./cruds/pictures_crud.js")(app, db, middleware, config.cloudinary_token);
     require("./cruds/groups_crud.js")(app, db, middleware, models.Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, models.Message, ObjectId);
-
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
     app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
     app.use('/api/things', require("./cruds/generic_crud.js")(models.things, middleware));
     app.use('/api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
     app.use('/api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
-
     // TRYING OUT MONGODB POPULATE
     require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
+
+
 
 /*
  * Fresh install control - controle d' Installation initiale et vide
@@ -169,7 +162,6 @@ function fresh_install(db) {
     // IF THERE ARE NO STANDARD JOBS LIST WE NEED TO CREATE ONE
     freshInstall.insertJobs(middleware, db);
 }
-
 /*
  * Write db connexion to logs file - On journalise la connexion
  * @params none
@@ -181,7 +173,6 @@ function write_connexion_to_logs() {
     logStream.write("DB CONNEXION AT " + d.toString() + "\r\n");
     // logStream.end(''); TODO
 }
-
 /*
  * HEROKU ENV VARS : NEEDED TO HIDE ALL CREDENTIALS IN A HEROKU / GITHUB ENV . 
  * On récupère nos mots de passe des variables d'environnement stockés sur heroku, sinon, tout le monde verrait nos mots de passe .
@@ -195,12 +186,95 @@ function get_heroku_env_vars() {
     config.cloudinary_token.api_secret = process.env.cloudinary_password;
 }
 
+
 // -------------------------------
-// STARTING SERVER
+// RELATIONAL DBS CONNEXIONS (MYSQL,SQLITE)
+// -------------------------------
+/*
+ * Connect mysql using sequelize
+ 
+    Pool : max :Never have more than five open connections (max: 5)
+    min : At a minimum, have zero open connections/maintain no minimum number of connections (min: 0)
+    idle: Remove a connection from the pool after the connection has been idle (not been used) for 10 seconds (idle: 10000)
+
+ * @params config.json
+ * @return none
+ * @error  none
+ */
+function mysql_connect() {
+    const sequelize = new Sequelize(config.mysql.db_name, config.mysql.user, config.mysql.password, {
+        dialect: config.mysql.dialect,
+        host: config.mysql.host,
+        port: config.mysql.port,
+        pool: {
+            max: 5,
+            min: 0,
+            idle: 10000
+        }
+    });
+    sequelize
+        .authenticate()
+        .then(() => {
+            console.log('Connection has been established successfully.');
+        })
+        .catch(err => {
+            console.error('Unable to connect to the database:', err);
+        });
+}
+
+/*
+ * Create db if no exist
+ * @params config.json
+ * @return none
+ * @error  none
+ */
+async function mysql_initialize() {
+    // create db if it doesn't already exist
+    const token = { "user": config.mysql.user, "password": config.mysql.password };
+    const connection = await mysql.createConnection(token);
+    await connection.query('CREATE DATABASE IF NOT EXISTS ' + config.mysql.name + ';');
+    mysql_connect();
+}
+
+/*
+ * Create models if no exist
+ * @params none
+ * @return none
+ * @error  none
+ */
+async function mysql_models() {
+    // init models and add them to the exported db object
+    // db.User = require('../users/user.model')(sequelize);
+
+    // sync all models with database
+    // await sequelize.sync();
+}
+
+/*
+ * Connect sqlite using sequelize
+ * @params db
+ * @return none
+ * @error  none
+ */
+function connect_sqlite() {
+    const sequelize = new Sequelize({
+        dialect: 'sqlite',
+        storage: 'db/database.sqlite'
+    });
+    sequelize
+        .authenticate()
+        .then(() => {
+            console.log('Connection has been established successfully.');
+        })
+        .catch(err => {
+            console.error('Unable to connect to the database:', err);
+        });
+}
+// -------------------------------
+// STARTING NODE SERVER
 // -------------------------------
 app.listen(port);
 console.log("server started " + port);
-
 // -------------------------------
 // AZURE
 // -------------------------------
