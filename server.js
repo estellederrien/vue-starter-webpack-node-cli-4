@@ -2,6 +2,7 @@
 // LOAD APP CONFIG ( FTP TOKEN,CLOUDINARY TOKEN,MONGODB ATLAS TOKEN, etc ...)- ON CHARGE LA CONFIGURATION DE L'APP ( FTP,CLOUDINARY,DB URL, etc ...)
 // -------------------------------
 const config = require("./config.json");
+
 // ------------------------------
 // LOAD OFFICIAL NODE MODULES - CHARGEMENT DES MODULES NODES 
 // -------------------------------
@@ -16,9 +17,7 @@ const { MongoClient, ObjectID } = require("mongodb"); // Object is needed when C
 const ObjectId = require("mongodb").ObjectID; // This is needed in all web services for mongoDb updates :
 const fs = require("fs");
 const logStream = fs.createWriteStream(config.logs_path, { flags: "a" });
-
-// Mysql
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require('sequelize'); // Relational DBS
 const mysql = require('mysql2/promise');
 const system = require('system-commands')
 
@@ -26,18 +25,22 @@ const system = require('system-commands')
 // LOAD PERSONAL MONGOOSE DATA SCHEMAS - CHARGEMENT DES SCHEMAS MONGOOSE 
 // -------------------------------
 const models = require('./models/models');
+
 // ------------------------------------ 
 // LOAD PERSONAL MIDDLEWARE FUNCTIONS - On charge le MIDDLEWARE , un système de controle de permissions sur les web services
 // -------------------------------
 const middleware = require("./appSystem/middleware.js");
+
 // -------------------------------
 // THIS IS AN EXPRESS APP
 // -------------------------------
 const app = express();
+
 // -------------------------------
 // MANAGING SERVER PORT - GESTION DES PORTS
 // -------------------------------
 const port = process.env.PORT || 80;
+
 // -------------------------------
 // CORS - GESTION DE LA PROTECTION CORS 
 // -------------------------------
@@ -55,6 +58,7 @@ if (port == 80) {
     // AZURE AND HEROKU
     app.use(cors());
 }
+
 // -------------------------------
 // OTHER RELATED PORTS FUNCTIONS  (CONNEXION TO OTHERS DATABASE IF LOCALHOST)
 // -------------------------------
@@ -70,6 +74,7 @@ if (port == 80) {
 // USING SESSIONS - UTILISATION DES SESSIONS
 // -------------------------------             
 app.use(session({ secret: "ssshhhhh", saveUninitialized: true, resave: true }));
+
 // -------------------------------
 // MANAGING FILES AND STATICS DIRECTORIES 
 // -------------------------------
@@ -79,10 +84,6 @@ app.use(serveStatic(__dirname + "/dist"));
 app.use(express.static(__dirname + "/tmp"));
 // UPLOADS : FILES STORING DIRECTORY
 app.use(express.static(__dirname + "/tmp/files"));
-
-
-
-
 
 // -------------------------------
 // MANAGING JSON AND BODY PARSER PARAMS 
@@ -103,6 +104,12 @@ app.use(
         strict: false,
     })
 );
+
+
+// -------------------------------
+// NOSQL DATABASES HANDLINGS(MONGODB)
+// -------------------------------
+
 // -------------------------------
 // POOL CONNEXION DATABASE 
 // -------------------------------
@@ -123,11 +130,9 @@ MongoClient.connect(url, function(err, client) {
         write_connexion_to_logs();
     }
 });
-// -------------------------------
-// HELPER FUNCTIONS
-// -------------------------------
+
 /*
- * MongoDb atlas authentication - identification sur mongoDb atlas
+ * MONGODB atlas authentication - identification sur mongoDb atlas
  * @params db
  * @return none
  * @error  none
@@ -136,7 +141,7 @@ function load_auth(db) {
     require("./appSystem/auth.js")(app, db, session, bcrypt, logStream);
 }
 /*
- * Load CRUD one by one - Charger les cruds un par un 
+ * Load MONGODB CRUD one by one - Charger les cruds un par un 
  * @params db
  * @return none
  * @error  none
@@ -157,49 +162,9 @@ function load_cruds(db) {
 }
 
 
-
-/*
- * Fresh install control - controle d' Installation initiale et vide
- * @params db
- * @return none
- * @error  none
- */
-function fresh_install(db) {
-    // IF THERE IS NO ADMIN WE NEED TO CREATE ONE
-    var freshInstall = require("./appSystem/initialiseApp.js");
-    freshInstall.insertAdmin(middleware, bcrypt, db);
-    // IF THERE ARE NO STANDARD JOBS LIST WE NEED TO CREATE ONE
-    freshInstall.insertJobs(middleware, db);
-}
-/*
- * Write db connexion to logs file - On journalise la connexion
- * @params none
- * @return none
- * @error  none
- */
-function write_connexion_to_logs() {
-    var d = new Date(Date.now());
-    logStream.write("DB CONNEXION AT " + d.toString() + "\r\n");
-    // logStream.end(''); TODO
-}
-/*
- * HEROKU ENV VARS : NEEDED TO HIDE ALL CREDENTIALS IN A HEROKU / GITHUB ENV . 
- * On récupère nos mots de passe des variables d'environnement stockés sur heroku, sinon, tout le monde verrait nos mots de passe .
- * @params none
- * @return none
- * @error  none
- */
-function get_heroku_env_vars() {
-    config.ftp_config.password = process.env.ftp_password;
-    config.mongoDb_atlas_db = "mongodb+srv://jose:" + process.env.mongodb_atlas_pwd + "@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority";
-    config.cloudinary_token.api_secret = process.env.cloudinary_password;
-}
-
-
 // -------------------------------
-// RELATIONAL DBS CONNEXIONS (MYSQL,SQLITE)
+// RELATIONAL DATABASES HANDLINGS (MYSQL,SQLITE)
 // -------------------------------
-
 
 // -------------------------------
 // PROXY ALL API ROUTES QUERIES TO PORT 3000 TO USE WITH MYSQL ROUTES GENERATOR https://stackoverflow.com/questions/10435407/proxy-with-express-js
@@ -309,6 +274,48 @@ function connect_sqlite() {
         .catch(err => {
             console.error('Unable to connect to the database:', err);
         });
+}
+
+
+// -------------------------------
+// HELPER FUNCTIONS
+// -------------------------------
+
+/*
+ * Fresh install control - controle d' Installation initiale et vide
+ * @params db
+ * @return none
+ * @error  none
+ */
+function fresh_install(db) {
+    // IF THERE IS NO ADMIN WE NEED TO CREATE ONE
+    var freshInstall = require("./appSystem/initialiseApp.js");
+    freshInstall.insertAdmin(middleware, bcrypt, db);
+    // IF THERE ARE NO STANDARD JOBS LIST WE NEED TO CREATE ONE
+    freshInstall.insertJobs(middleware, db);
+}
+/*
+ * Write db connexion to logs file - On journalise la connexion
+ * @params none
+ * @return none
+ * @error  none
+ */
+function write_connexion_to_logs() {
+    var d = new Date(Date.now());
+    logStream.write("DB CONNEXION AT " + d.toString() + "\r\n");
+    // logStream.end(''); TODO
+}
+/*
+ * HEROKU ENV VARS : NEEDED TO HIDE ALL CREDENTIALS IN A HEROKU / GITHUB ENV . 
+ * On récupère nos mots de passe des variables d'environnement stockés sur heroku, sinon, tout le monde verrait nos mots de passe .
+ * @params none
+ * @return none
+ * @error  none
+ */
+function get_heroku_env_vars() {
+    config.ftp_config.password = process.env.ftp_password;
+    config.mongoDb_atlas_db = "mongodb+srv://jose:" + process.env.mongodb_atlas_pwd + "@cluster0-6kmcn.azure.mongodb.net/vue-starter-webpack?retryWrites=true&w=majority";
+    config.cloudinary_token.api_secret = process.env.cloudinary_password;
 }
 // -------------------------------
 // STARTING NODE SERVER
