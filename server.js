@@ -151,7 +151,7 @@ function load_cruds(db) {
     app.use('/generic-api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
     app.use('/generic-api/things', require("./cruds/generic_crud.js")(models.things, middleware));
     app.use('/generic-api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
-    app.use('/generic-api/personness', require("./cruds/generic_crud.js")(models.personnes, middleware));
+    app.use('/generic-api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
     // TRYING OUT MONGODB POPULATE
     require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
