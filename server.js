@@ -222,8 +222,8 @@ async function mysql_initialize() {
 }
 
 /*
- * Create all Mysql DB Cruds and Routes  automatically !! - See https://github.com/o1lab/xmysql
- * Crée toutes les routes ( Post, Put, Delete, Read) et cruds NODE EXPRESS automatiquement, à partir d'une database MYSQL
+ * Create all Mysql DB Cruds and Routes  automatically from an existing database HIIK !! - See https://github.com/o1lab/xmysql
+ * Crée toutes les routes ( Post, Put, Delete, Read) et cruds NODE EXPRESS automatiquement, à partir d'une database MYSQL existante !
  * No need to write generic back ends .
  *  GET 	/ 	Gets all REST APIs
     GET 	/api/tableName 	Lists rows of table
