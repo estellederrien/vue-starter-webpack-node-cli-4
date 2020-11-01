@@ -79,6 +79,11 @@ app.use(serveStatic(__dirname + "/dist"));
 app.use(express.static(__dirname + "/tmp"));
 // UPLOADS : FILES STORING DIRECTORY
 app.use(express.static(__dirname + "/tmp/files"));
+
+
+
+
+
 // -------------------------------
 // MANAGING JSON AND BODY PARSER PARAMS 
 // -------------------------------
@@ -146,7 +151,7 @@ function load_cruds(db) {
     app.use('/generic-api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
     app.use('/generic-api/things', require("./cruds/generic_crud.js")(models.things, middleware));
     app.use('/generic-api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
-    app.use('/generic-api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
+    app.use('/generic-api/personness', require("./cruds/generic_crud.js")(models.personnes, middleware));
     // TRYING OUT MONGODB POPULATE
     require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
@@ -194,6 +199,14 @@ function get_heroku_env_vars() {
 // -------------------------------
 // RELATIONAL DBS CONNEXIONS (MYSQL,SQLITE)
 // -------------------------------
+
+
+// -------------------------------
+// PROXY ALL API ROUTES QUERIES TO PORT 3000 TO USE WITH MYSQL ROUTES GENERATOR https://stackoverflow.com/questions/10435407/proxy-with-express-js
+// -------------------------------
+var proxy = require('express-proxy-server');
+app.use('/api', proxy('http://localhost:3000/api'));
+
 /*
  * Connect mysql using sequelize
  
