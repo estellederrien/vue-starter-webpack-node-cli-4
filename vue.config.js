@@ -3,14 +3,14 @@ module.exports = {
     devServer: {
         proxy: {
             "/api": {
-                target: "http://localhost:3000",
+                target: "http://localhost:3000", // This is set for xmysql routes generator https://github.com/o1lab/xmysql
                 // ,pathRewrite: {'^/api' : ''}
             },
             "/": {
-                target: "http://localhost:80",
+                target: "http://localhost:80", // Serving the vue.js app
             },
             "/generic-api": {
-                target: "http://localhost:80",
+                target: "http://localhost:80", // When using generic-crud.js with mongoDb
             }
         },
         hot: true,
