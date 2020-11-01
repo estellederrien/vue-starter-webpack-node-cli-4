@@ -152,11 +152,13 @@ function load_cruds(db) {
     require("./cruds/pictures_crud.js")(app, db, middleware, config.cloudinary_token);
     require("./cruds/groups_crud.js")(app, db, middleware, models.Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, models.Message, ObjectId);
+
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
     app.use('/generic-api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
     app.use('/generic-api/things', require("./cruds/generic_crud.js")(models.things, middleware));
     app.use('/generic-api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
     app.use('/generic-api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
+
     // TRYING OUT MONGODB POPULATE
     require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
