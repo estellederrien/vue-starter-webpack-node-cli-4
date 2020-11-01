@@ -143,10 +143,10 @@ function load_cruds(db) {
     require("./cruds/groups_crud.js")(app, db, middleware, models.Group, ObjectId);
     require("./cruds/messages_crud.js")(app, db, middleware, models.Message, ObjectId);
     // TRYING OUT THE NEW GENERIC CRUD, NO NEED TO WRITE CRUD BACK END FILES NO MORE - ON TEST LE CRUD GENERIQUE , PLUS BESOIN DE REECRIRE UN CRUD A CAHQUE FOIS !!
-    app.use('/api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
-    app.use('/api/things', require("./cruds/generic_crud.js")(models.things, middleware));
-    app.use('/api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
-    app.use('/api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
+    app.use('/generic-api/jobs', require("./cruds/generic_crud.js")(models.jobs, middleware));
+    app.use('/generic-api/things', require("./cruds/generic_crud.js")(models.things, middleware));
+    app.use('/generic-api/stories', require("./cruds/generic_crud.js")(models.stories, middleware));
+    app.use('/generic-api/personnes', require("./cruds/generic_crud.js")(models.personnes, middleware));
     // TRYING OUT MONGODB POPULATE
     require("./cruds/populate_cruds.js")(app, db, middleware, models.stories, ObjectId);
 }
@@ -243,6 +243,7 @@ async function mysql_initialize() {
 
 /*
  * Create all Mysql DB Cruds and Routes  automatically !! - See https://github.com/o1lab/xmysql
+ * Crée toutes les routes ( Post, Put, Delete, Read) et cruds NODE EXPRESS automatiquement, à partir d'une database MYSQL
  * No need to write generic back ends .
  *  GET 	/ 	Gets all REST APIs
     GET 	/api/tableName 	Lists rows of table
@@ -256,7 +257,7 @@ async function mysql_initialize() {
  * @error  none
  */
 async function mysql_crud_routes_generation() {
-    system('xmysql -h localhost -u root -p password -d ' + config.mysql.name).then(output => {
+    system('xmysql -h localhost -u root -p password -n 3000  -d ' + config.mysql.name).then(output => {
         console.log(output)
     }).catch(error => {
         console.error(error)

@@ -135,7 +135,7 @@ export default {
     methods: {
         readJobsForFilters: function () {
             axios
-                .get("/api/jobs")
+                .get("/generic-api/jobs")
                 .then(response => {
                     this.jobs = response.data;
                     this.jobs = this.jobs.map(function (item) {

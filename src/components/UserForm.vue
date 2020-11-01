@@ -207,7 +207,7 @@ export default {
                 return;
             }
             axios
-                .post("/api/jobs", {
+                .post("/generic-api/jobs", {
                     name: this.newJob,
                     creation_date: new Date()
                 })
@@ -227,7 +227,7 @@ export default {
         },
         readJobs: function () {
             axios
-                .get("/api/jobs")
+                .get("/generic-api/jobs")
                 .then(response => {
                     this.jobs = response.data;
                 })
@@ -251,7 +251,7 @@ export default {
                 }
             })
             // building URL 
-            const url = '/api/jobs/' + job_id;
+            const url = '/generic-api/jobs/' + job_id;
             // Delete using generic_crud.js
             if (confirm("Do you really want to delete : " + this.user.job + " ?")) {
                 axios

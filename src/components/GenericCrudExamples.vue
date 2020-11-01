@@ -4,7 +4,7 @@
         <div class="col-md-12 col-xs-6">
             <div class="card">
                 <div class="card-body">
-                     <img style="width:300px;height:200px" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5IllY723--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/a3exuz06e9h212pandfr.png"></img>
+                    <img style="width:300px;height:200px" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5IllY723--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/a3exuz06e9h212pandfr.png"></img>
                     <h5 class="card-title">Using Reusable crud (generic_crud.js): Crud on things data model :</h5>
                     <div class="row">
                         <div class="col-md-2">
@@ -39,8 +39,8 @@
             </div>
         </div>
     </div>
-    
-   <!--  <div class="row">
+
+    <!--  <div class="row">
         <div class="col-md-12 col-xs-6">
             <div class="card">
                 <div class="card-body">
@@ -67,7 +67,7 @@ export default {
             },
             things: [],
             chosen_thing: -1, // Otherwize, Select 1st option is empty
-        
+
         };
     },
     methods: {
@@ -77,7 +77,7 @@ export default {
                 return;
             }
             axios
-                .post("/api/things", this.thing)
+                .post("/generic-api/things", this.thing)
                 .then(response => {
                     this.read_things();
                     this.$notify({
@@ -93,7 +93,7 @@ export default {
         },
         read_things: function () {
             axios
-                .get("/api/things")
+                .get("/generic-api/things")
                 .then(response => {
                     this.things = response.data;
                 })
@@ -102,7 +102,7 @@ export default {
                 });
         },
         update_thing: function () {
-            const url = '/api/things/' + this.chosen_thing._id;
+            const url = '/generic-api/things/' + this.chosen_thing._id;
             axios
                 .put(url, this.chosen_thing)
                 .then(response => {
@@ -115,7 +115,7 @@ export default {
                 });
         },
         delete_thing: function () {
-            const url = '/api/things/' + this.chosen_thing._id;
+            const url = '/generic-api/things/' + this.chosen_thing._id;
             // Delete using generic_crud.js
             if (confirm("Do you really want to delete : " + this.chosen_thing.name + " ?")) {
                 axios
@@ -134,6 +134,20 @@ export default {
     },
     mounted: function () {
         this.read_things();
+
+        axios
+            .get('/api/meetings', {
+                headers: {
+                    'Access-Control-Allow-Origin': 'all',
+                }
+            })
+            .then(response => {
+                console.log('ok')
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 };
 </script>

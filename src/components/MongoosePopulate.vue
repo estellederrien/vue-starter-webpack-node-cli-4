@@ -68,7 +68,7 @@ export default {
                 return;
             }
             axios
-                .post("/api/personnes", this.person)
+                .post("/generic-api/personnes", this.person)
                 .then(response => {
                     this.read_persons();
                     this.$notify({
@@ -90,7 +90,7 @@ export default {
         },
         read_persons: function () {
             axios
-                .get("/api/personnes")
+                .get("/generic-api/personnes")
                 .then(response => {
                     this.persons = response.data;
                 })
@@ -101,7 +101,7 @@ export default {
         create_story: function () {
             this.story.author = this.persons[1]._id
             axios
-                .post("/api/stories", this.story)
+                .post("/generic-api/stories", this.story)
                 .then(response => {
                     this.read_stories();
                     this.$notify({
