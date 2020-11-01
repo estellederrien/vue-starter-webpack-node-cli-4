@@ -26,7 +26,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
-  31-10-2020 :  Nice Node-Mysql routes and cruds generator : https://github.com/o1lab/xmysql and https://github.com/johnroers/dbCRUD : I will do another vue-node-mysql starter only using <b>xmysql</b> real fast, it is great and so impressive, <b>no need to write routes or cruds file no more in a relational env </b>!.<br>
+  31-10-2020 :  Nice Node-Mysql routes and cruds generator : https://github.com/o1lab/xmysql : I will do another vue-node-mysql starter only using <b>xmysql</b> real fast, it is great and so impressive, <b>no need to write routes or cruds file no more in a relational env </b>!. Also this is also nice : https://github.com/johnroers/dbCRUD <br>
   30-10-2020 : All of theses queries are very important : https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/ , for example, $geoNear query is really cool<br>
   26-10-2020 : Refactoring groups crud using mongoose populate joints<br>
   25-10-2020 : Nice documents : JWT auth vs Sessions auth : https://medium.com/@sherryhsu/session-vs-token-based-authentication-11a6c5ac45e4<br>
