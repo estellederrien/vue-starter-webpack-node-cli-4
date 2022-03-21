@@ -26,6 +26,7 @@ This 2020 starter aims is to be able to start any web-app, with all ready generi
 
 ## LATEST STARTER NEWS ! 
   <br>
+  03-21-2022: Warning, this starter now has heroku server global variables, so a simple clone will maybe fail, you'll have to refill config.json<br>
   31-10-2020 :  Nice Node-Mysql routes and cruds generator : https://github.com/o1lab/xmysql : I will do another vue-node-mysql starter only using <b>xmysql</b> real fast, it is great and so impressive, <b>no need to write routes or cruds files no more in a relational env </b> I can't believe my eyes!. Also this is also nice : https://github.com/johnroers/dbCRUD <br>
   30-10-2020 : All of theses queries are very important : https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/ , for example, $geoNear query is really cool<br>
   26-10-2020 : Refactoring groups crud using mongoose populate joints<br>
