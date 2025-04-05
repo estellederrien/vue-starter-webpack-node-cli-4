@@ -124,19 +124,6 @@ I am looking for collabs and can give you access to the depot !!
 - Random forest lib : https://github.com/mljs/random-forest<br />
 - AJAX call some to some python matplot scripts - pictures generators from a FLASK server.<br />
 <br /><br />
-## French : 
-Ce starter est directement mis à jour sur HEROKU quand je commite des mises à jour.<br>
-Le but de ce starter est de pouvoir commencer n'importe quel application Node.js + Vue.js + MongoDb Atlas , avec tous les modèles de données génériques déjà prêts (utilisateurs, messages, middleware, gestion de fichiers, temps réel avec socket.io, calendriers ...), ainsi que des libs de data science déjà prêtes à être utilisées pour réaliser des régressions mathématiques, un petit réseau de neurone,  et des graphiques . <br> Si vous clonez ce dépot, l'app doit normalement fonctionner instantanément chez vous ... Il peut vous donner des idées, bien sur, il existe peut être de meilleures architectures... Mais au moins, celle ci FONCTIONNE<br /><br>
--   <b>CONFIG.JSON</b> On trouve la configuration de l'app dans ce fichier : Connexion à la db, au ftp, à cloudinary ...<br>
--   <b>SERVER.js</b> Il s'agit du serveur node.js: Inclut les paramètres node.js, le chargement du module de gestion des sessions utilisateur et le chargement des services Web CRUDS.<br>
--   <b>\ SRC:</b> C'est ici que vous développez l'application front-end vue.js, c'est fondamentalement l'application VUE.JS FRONT END complète.<br>
--   <b>\ DIST:</b> C'est là que le build apparaît lorsque vous tapez NPM RUN BUILD, c'est l'application compressée et optimisée pour la production par webpack.<br>
--   <b>\ CRUDS:</b> Chaque fichier est un CRUD WEBS SERVICES (créer, lire, mettre à jour, supprimer) un peu comme en java ou en php, sauf que c'est du NODE.JS.<br>
--   <b>\MODELS</b> : On modélise nos objets JSON avec Mongoose dans ce répertoire, on y spécifie les types des variables.  <br>
--   <b>\ APPSYSTEM:</b> Vous y trouverez le service Web d'authentification sur MongoDb Atlas (auth.js) et les fonctions middleware utilisées pour le contrôle des autorisations des services Web (middleware.js)<br>
--   <b>\ TMP:</b> C'est un répertoire obligatoire pour les téléchargements de fichiers sur Héroku.<br>
--   <b>\SRC\App.vue</b> : Dans ce fichier, vous pouvez trouver les CSS Medias queries de l'app qui permettent de régler les styles css pour que cela passe sur tous les matériels .</br>
--   <b>\TESTS</b> : On execute NPM RUN TEST dans ce rep pour tester tous les components de l'app vue.js
 
 ## Project setup
 ```
